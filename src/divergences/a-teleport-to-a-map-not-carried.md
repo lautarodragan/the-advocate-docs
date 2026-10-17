@@ -16,6 +16,11 @@ A page that does nothing is a hole nobody can see; a box says where the hole
 is. The converter also warns, one line per map, with how many such teleports
 there are and to which maps.
 
+A map is not carried when the game's project excludes it, or since
+2026-10-17 when its grid does not fit in WRAM even one byte a cell: the
+converter leaves it out on its own, with a warning and a `map-left-out` in
+`degradations.json` (see [Maps](../internals/maps.md)).
+
 ## How it looks today
 
 The box is an ordinary `ShowMessage`, so its text goes to the text block like
@@ -24,6 +29,6 @@ no new map. Only the screen: if an event erased it before the jump, it is
 shown again with the cut before the box. An erased screen is black over the
 windows too, as in RPG_RT, and a game that erases it before a `Teleport`
 leaves the showing to the destination; until 2026-10-17 the box waited for A
-in the black and the screen stayed black after it —Zounds' bed, whose dream
-is its left-out map 30—. It is only the `Teleport`: `MemorizeLocation` names no map, and
+in the black and the screen stayed black after it —Zounds' bed, whose dream,
+map 30, was left out until the same day—. It is only the `Teleport`: `MemorizeLocation` names no map, and
 `ChangeVehicleLocation` is not compiled at all.
