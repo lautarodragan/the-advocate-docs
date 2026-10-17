@@ -85,12 +85,12 @@ the same reason, an event with a condition we don't know how to evaluate is
 left out entirely: without knowing which page is active, running the wrong
 one is worse than running none.
 
-From that comes the only class of error that is fixed **from the outside**
-and not by touching code: a page that teleports to a map the cartridge
-doesn't carry is not emitted, and the event is drawn, stepped on, and does
-nothing. That is why the converter names the missing maps of each page that
-falls out for this reason: of all the reasons a page falls out, it is the
-only one fixed by adding the map to the ROM.
+A `Teleport` to a map the cartridge doesn't carry is the exception: since
+2026-10-15 it does not leave the page out but becomes a box that says so,
+after showing the screen if an event erased it, and the page goes on —see
+[A teleport to a map not carried](../divergences/a-teleport-to-a-map-not-carried.md)—.
+The converter warns, one line per map, about the missing maps it jumps to: it is
+fixed from the outside, by adding the map to the ROM.
 
 The command codes the converter decides all this with come from liblcf and
 from nowhere else: the compiler's `codes.rs` is held against the names in
