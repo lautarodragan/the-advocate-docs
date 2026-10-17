@@ -82,7 +82,11 @@ current: whoever fixes one removes its line in the same change.
   the three songs still missing (`waltz`, `boat1`, `boat2`); and the
   EasyRPG RTP's charsets, faces and sounds look and sound unlike RPG Maker
   2003's. See above.
-* **Map 30 is left out**: 200x200, its cells do not fit WRAM. Draft:
+* **Map 30 is left out**: 200x200, its cells do not fit WRAM. It is the
+  dream after sleeping in Uname's bed, on map 17: there a box says
+  "Teleport to missing map 30", and after it the room is under the dream's
+  fog picture, with the dream's song; the story does not go on, since only
+  the dream turns on the switch the next scene waits for. Until 2026-10-17 the screen stayed black there. Task:
   [`a-200x200-map-does-not-fit-the-cell-stream`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-200x200-map-does-not-fit-the-cell-stream.md).
 * **Four maps lose their events past the 120th**: the grids of info, rock
   and coin events on maps 47, 51, 57 and 178. Draft:

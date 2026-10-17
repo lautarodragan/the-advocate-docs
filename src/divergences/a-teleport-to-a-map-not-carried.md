@@ -20,5 +20,10 @@ there are and to which maps.
 
 The box is an ordinary `ShowMessage`, so its text goes to the text block like
 any other. Nothing else about the teleport happens: no fade, no song change,
-no new map. It is only the `Teleport`: `MemorizeLocation` names no map, and
+no new map. Only the screen: if an event erased it before the jump, it is
+shown again with the cut before the box. An erased screen is black over the
+windows too, as in RPG_RT, and a game that erases it before a `Teleport`
+leaves the showing to the destination; until 2026-10-17 the box waited for A
+in the black and the screen stayed black after it —Zounds' bed, whose dream
+is its left-out map 30—. It is only the `Teleport`: `MemorizeLocation` names no map, and
 `ChangeVehicleLocation` is not compiled at all.
