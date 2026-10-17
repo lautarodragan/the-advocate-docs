@@ -45,9 +45,13 @@ there— will too.
   frames on average and 8 on map 52, the 40 KB one.
 * **Loading frames**: decompressing the grid adds the same as above to
   every map change. Measured in the ROM over `release`'s forty maps.
-* **A map with more than 64 KB of grid doesn't fit**: the converter stops.
-  The biggest today is 40,000 B (map 52, 500×40). RM2k goes up to 500×500,
-  which would be 500 KB: a map like that doesn't fit in any way without
+* **A map with more than 64 KB of grid doesn't fit**. Until 2026-10-17 the
+  converter stopped, and a cell was always two bytes, so the limit was
+  32,768 cells: Zounds' 200x200 dream was left out by hand. Since then a
+  map with at most 256 blocks goes one byte a cell —65,536 cells less what
+  lives behind the grid— and one that fits neither way is left out with a
+  warning (see [Maps](../../../internals/maps.md)). RM2k goes up to
+  500×500, 250,000 cells: a map like that doesn't fit in any way without
   chunks.
 
 ## How you would know it needs reverting

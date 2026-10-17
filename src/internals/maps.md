@@ -40,6 +40,21 @@ battle overwrites the `$7F` half, and `back_from_battle` decompresses it
 again. What reserving that RAM cost and how it is reverted:
 [the grid lives in WRAM](../optimizations/lossless/the-map/the-grid-in-wram.md).
 
+**A cell is one byte in a map with at most 256 blocks**, and two in the
+others, since 2026-10-17. Most maps have that few —305 of A Blurred Line's
+313 that day—, and narrow is not kept for the maps that need it: every map
+that can goes narrow, so the suite plays that path on every map and not on
+one. The record says it in the fourth byte of the grid's pointer
+(`M_GRID_NARROW`), which a pointer does not use; `enter_map` turns it into
+`cell_bytes` and `cell_mask`, and whoever reads a cell masks it with the
+second and whoever steps over the grid steps the first. The 64 KB then hold
+65,536 cells less what lives behind the grid, instead of 32,768 less half
+of it: Zounds' dream, 200x200, is 40,000 bytes. A map that fits neither way
+is left out of the cartridge with a warning and a `map-left-out` in
+`degradations.json`, and a teleport to it is the box that says the map is
+missing. Which maps go narrow and the limits: `cell_bytes` in
+`materials.rs` of `rm2k-snes/mapdata/`.
+
 The same happens with the tiles of the background, of the layer above, of
 the sprites, and with the drawings of the ChipSet animation: they travel as
 LZ2, are decompressed to `$7F0000` and uploaded with the same DMA as
