@@ -19,6 +19,7 @@ One page per part of the port:
 * [Opaque fixed events baked into the map](lossless/the-map.md#opaque-fixed-events-baked-into-the-map)
 * [A painted map keeps only what the screen shows](lossless/the-map.md#a-painted-map-keeps-only-what-the-screen-shows)
 * [A panorama gets only the layer it needs](lossless/the-map.md#a-panorama-gets-only-the-layer-it-needs)
+* [The pictures that stay put are drawn into the map](lossless/the-map.md#the-pictures-that-stay-put-are-drawn-into-the-map)
 * [The tilemap is a window the camera fills at its edges](lossless/the-map.md#the-tilemap-is-a-window-the-camera-fills-at-its-edges)
 * [The ChipSet animation is one DMA, on the tick it changes](lossless/the-map.md#the-chipset-animation-is-one-dma-on-the-tick-it-changes)
 
@@ -71,6 +72,7 @@ One page per part of the port:
 * [The battlers and the light backdrops in LZ2](lossless/battle.md#the-battlers-and-the-light-backdrops-in-lz2)
 * [Encounters and experience, precomputed](lossless/battle.md#encounters-and-experience-precomputed)
 * [The battlers in the grid's half of `$7E`](lossless/battle.md#the-battlers-in-the-grids-half-of-7e)
+* [A dead enemy redraws only its cells](lossless/battle.md#a-dead-enemy-redraws-only-its-cells)
 
 ## [Audio](lossless/audio.md)
 
@@ -105,3 +107,4 @@ One page per part of the port:
 * [Tables of pointers, stored once by their text](lossless/the-cartridge.md#tables-of-pointers-stored-once-by-their-text)
 * [The fast half first](lossless/the-cartridge.md#the-fast-half-first)
 * [What does not fit, in the `.msu`](lossless/the-cartridge.md#what-does-not-fit-in-the-msu)
+* [A save slot per SRAM bank](lossless/the-cartridge.md#a-save-slot-per-sram-bank)

@@ -145,6 +145,26 @@ the map in mode 1 and the panorama on a third layer.
 - **More**: [Mode 3 by default](../../internals/mode-3.md),
   [Panoramas](../../research/2026-10-05-panoramas.md).
 
+## The pictures that stay put are drawn into the map
+
+With `[graphics] map_pictures = true`, the `ShowPicture` pictures that
+stay where they are on a map —the lights, shadows, mists and what goes in
+front of the hero in a game drawn as a painting— are drawn into the map
+when the cartridge is built: blended into its panorama or its tiles, and
+what the opaque ones cover put in front of the hero by the priority bit.
+Their commands are then accepted without being done.
+
+- **Saves**: the layer, the sprites and the palettes the pictures would
+  take at run time —in mode 3 there is no layer left for them, and colour
+  math does not reach the characters—, and the CPU of drawing them.
+- **Not lossless when**: the picture moves, fades, is erased or shades the
+  characters, what goes in front of the hero falls on 8x8 cells, and the
+  colours and tiles it blends in count against the map's, which may merge
+  or fuse some.
+- **Where**: `map_pictures.rs` in `rm2k-snes/convert/src/` and in
+  `rm2k-snes/wally/src/`.
+- **More**: [Pictures drawn into the map](../../divergences/pictures-drawn-into-the-map.md).
+
 ## The tilemap is a window the camera fills at its edges
 
 The map's tilemaps in VRAM are a window of 64 columns by 32 rows that
