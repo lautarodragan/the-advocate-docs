@@ -88,9 +88,10 @@ current: whoever fixes one removes its line in the same change.
   plays —the boss runs off, and two minutes later the story goes back to
   the room— since 2026-10-17; until then the map was left out. Draft:
   [`zounds-the-dreams-fog-is-not-shown`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-the-dreams-fog-is-not-shown.md).
-* **Four maps lose their events past the 120th**: the grids of info, rock
-  and coin events on maps 47, 51, 57 and 178. Draft:
-  [`zounds-maps-over-120-events`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-maps-over-120-events.md).
+* **The Kuak-Man mini-game has 108 of its 314 coins**: map 178 has more
+  events than the console's 120, and the coins with the highest ids are
+  left out. Draft:
+  [`zounds-kuak-man-loses-its-coins`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-kuak-man-loses-its-coins.md).
 * **Without MSU-1 four `.wav` songs are silent**: the battle and victory
   themes, the mountains' (map 33) and the small caves' (maps 89, 91, 92
   and 177), which the map tree sets; no MIDI of them was found. The title
