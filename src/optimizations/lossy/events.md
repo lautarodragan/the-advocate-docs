@@ -65,3 +65,24 @@ them, and not from a counter that starts when the map creates it.
   the VRAM slot that the ones with the same graphic, pose and speed share.
 - **Where**: `animate_still` in `runtime/animated_stills.s`.
 - **More**: [The phase of still events that animate](../../divergences/the-phase-of-still-events-that-animate.md).
+
+## A common event declared a counter is one opcode
+
+A common event that draws a variable as two digit pictures can be
+declared a counter in the project's `[events] counters`, and the compiler
+replaces each call to it with `OP_COUNTER` —the variable and where—, which
+draws the number with the timer's glyphs, clamped to 0..99, the tens
+erased under ten. On 2026-09-30, A Blurred Line's common event 9 pasted
+at each of its 31 calls was 1,345 bytes of `ConditionalBranch` chains
+each.
+
+- **Loses**: whatever else the common event draws —the "Fortitude" label
+  is not drawn—, and the digits are the timer's, not the game's pictures.
+  That the common event means a counter is taken on trust from the
+  project's declaration; only where it draws is checked.
+- **Saves**: ROM and WRAM —the body pasted at every call— and the CPU of
+  running it.
+- **Where**: `compile_counter` in `rm2k-snes/events/src/compile.rs`;
+  `op_counter` in `runtime/interpreter_timer.s`, `counter_set` and
+  `counter_oam` in `runtime/counter.s`.
+- **More**: the header of `runtime/counter.s`.

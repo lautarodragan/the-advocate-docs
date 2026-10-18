@@ -47,3 +47,18 @@ the MSU-1.
   `lz2_msu` and `msu_dma0` in `runtime/decompress.s`.
 - **More**: [The `.msu` file](../../internals/the-msu-file.md#what-does-not-fit-in-the-rom),
   [The MSU-1 is required only when the ROM does not reach](../../decisions/the-msu-1-is-required-only-when-the-rom-does-not-reach.md).
+
+## A save slot per SRAM bank
+
+ExHiROM shows the SRAM through an 8 KB window at `$6000` in each bank
+from `$20`, and each save slot takes a whole bank: slot N is bank `$20 +
+N`, so every slot has the same addresses and nothing multiplies to find
+one.
+
+- **Saves**: CPU and code when saving and loading, and a slot that
+  crosses no bank.
+- **Costs**: 32 KB of SRAM for four slots, a whole window each whatever a
+  saved game weighs; any cartridge and flash cart has them.
+- **Where**: `SRAM_BANK`, `SRAM_STRIDE` and `slot_bank` in
+  `runtime/save_game.s`.
+- **More**: the comment on `SRAM_SLOTS` there.

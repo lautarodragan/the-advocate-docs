@@ -53,3 +53,19 @@ uses, since `back_from_battle` decompresses the grid again anyway.
 - **Saves**: far RAM.
 - **Where**: `SCN_BATTLERS` in `runtime/battle_scene.s`.
 - **More**: [The grid lives in WRAM](the-map/the-grid-in-wram.md#what-is-lost).
+
+## A dead enemy redraws only its cells
+
+The battle scene is composed on the console, and a clean copy of the
+backdrop stays in far RAM beside it. When an enemy dies, only the cells
+it covered are composed again —the clean backdrop, and on top the enemies
+still alive, clipped to those cells and in drawing order— and only those
+rows go up, up to 2 KB per vblank, one enemy at a time.
+
+- **Saves**: CPU and vblank time —recomposing and uploading the whole
+  scene for each enemy that dies—.
+- **Where**: `scene_tick` and `SCN_SUB_BUDGET` in
+  `runtime/battle_scene.s`; `SCN_CLEAN` and `SCN_SCENE` there too.
+- **More**: the comment on `scene_tick`. That the enemy goes all at once
+  instead of fading as in RM2k is not this entry's: it is a divergence
+  the book does not tell yet.

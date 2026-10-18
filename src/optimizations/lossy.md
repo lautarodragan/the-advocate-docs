@@ -65,6 +65,7 @@ One page per part of the port:
 * [Decorative events become background](lossy/events.md#decorative-events-become-background)
 * [Still events that animate past the sprite bank](lossy/events.md#still-events-that-animate-past-the-sprite-bank)
 * [Still events that animate share one phase](lossy/events.md#still-events-that-animate-share-one-phase)
+* [A common event declared a counter is one opcode](lossy/events.md#a-common-event-declared-a-counter-is-one-opcode)
 
 ## [Pictures and animations](lossy/pictures-and-animations.md)
 
