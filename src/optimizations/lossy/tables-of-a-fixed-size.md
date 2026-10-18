@@ -10,6 +10,20 @@ to; the rest are ignored.
   same number, in `rm2k-snes/mapdata/src/record.rs`.
 - **More**: [Move route command 34 on the hero](../../decisions/move-route-command-34-on-the-hero.md).
 
+## Events that walk by a movement type, past the route slots
+
+An event whose page walks by a movement type —random, toward the hero,
+back and forth— walks on one of the map's route slots, the same ones a
+`MoveEvent` uses, and takes one only while a few stay free for those. On
+a map with more walkers than that, the rest stand at their cell.
+
+- **Loses**: those events' walking.
+- **Saves**: bank 0's RAM —a route slot per walker on the map— and a
+  `MoveEvent` that finds no slot.
+- **Where**: `walk_may_take` and `WALK_RESERVE` in
+  `runtime/walk_by_type.s`.
+- **More**: [What walking by a movement type does not model](../../divergences/what-walking-by-a-movement-type-does-not-model.md#when-it-stops-being-enough).
+
 ## Variables
 
 The console keeps a fixed number of variables, each with a one-byte slot.

@@ -87,5 +87,6 @@ One page per part of the port:
 ## [Tables of a fixed size](lossy/tables-of-a-fixed-size.md)
 
 * [Graphics a move route switches to](lossy/tables-of-a-fixed-size.md#graphics-a-move-route-switches-to)
+* [Events that walk by a movement type, past the route slots](lossy/tables-of-a-fixed-size.md#events-that-walk-by-a-movement-type-past-the-route-slots)
 * [Variables](lossy/tables-of-a-fixed-size.md#variables)
 * [A troop of more than eight enemies](lossy/tables-of-a-fixed-size.md#a-troop-of-more-than-eight-enemies)

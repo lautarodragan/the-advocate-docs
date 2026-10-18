@@ -62,3 +62,18 @@ one.
 - **Where**: `SRAM_BANK`, `SRAM_STRIDE` and `slot_bank` in
   `runtime/save_game.s`.
 - **More**: the comment on `SRAM_SLOTS` there.
+
+## The far RAM tables are as big as the game asks
+
+The tables of far RAM whose size depends on the game —the variables, the
+items, the actors' equipment, HP, SP and graphic, the skills, the
+experience, the parallels' state— take the size the cartridge's `.inc`
+declares for that game, not one chosen for any game, and the linker
+places them; the converter gives a variable a slot only if some page
+names it.
+
+- **Saves**: far RAM —what one game does not use, another table of it
+  can—.
+- **Where**: `runtime/far_ram_game.s`, which comes after the cartridge's
+  `.inc`; the names and their whys, in `runtime/far_ram.s`.
+- **More**: the header of `runtime/far_ram_game.s`.
