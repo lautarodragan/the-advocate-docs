@@ -137,6 +137,8 @@ One page per part of the port:
 * [A zoom's texture goes up while the picture stands still](lossless/cpu-time-in-the-frame.md#a-zooms-texture-goes-up-while-the-picture-stands-still)
 * [A fade rewrites only the volumes that changed](lossless/cpu-time-in-the-frame.md#a-fade-rewrites-only-the-volumes-that-changed)
 * [In mode 7, the music multiplies by a table of squares](lossless/cpu-time-in-the-frame.md#in-mode-7-the-music-multiplies-by-a-table-of-squares)
+* [A page that returns to nobody does not call bank 1](lossless/cpu-time-in-the-frame.md#a-page-that-returns-to-nobody-does-not-call-bank-1)
+* [The title image is decompressed while the boot waits](lossless/cpu-time-in-the-frame.md#the-title-image-is-decompressed-while-the-boot-waits)
 
 ## [The cartridge](lossless/the-cartridge.md)
 

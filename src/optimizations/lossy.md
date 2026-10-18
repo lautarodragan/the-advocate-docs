@@ -66,6 +66,7 @@ One page per part of the port:
 * [Still events that animate past the sprite bank](lossy/events.md#still-events-that-animate-past-the-sprite-bank)
 * [Still events that animate share one phase](lossy/events.md#still-events-that-animate-share-one-phase)
 * [A common event declared a counter is one opcode](lossy/events.md#a-common-event-declared-a-counter-is-one-opcode)
+* [A common event declared a menu is a screen of the engine](lossy/events.md#a-common-event-declared-a-menu-is-a-screen-of-the-engine)
 
 ## [Pictures and animations](lossy/pictures-and-animations.md)
 

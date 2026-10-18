@@ -251,3 +251,23 @@ longer than the music has before the vblank.
 - **Costs**: ROM for the table, in a far bank.
 - **Where**: `mpym` and `quarter_squares` in `runtime/music.s`.
 - **More**: the comment on `mpym`.
+
+## A page that returns to nobody does not call bank 1
+
+Every page's end goes through `op_done`, a parallel page's once a frame, and
+it looks at the call depth itself instead of always calling `call_leave` in
+bank 1 with a `jsl`: the page that returns to nobody, which is almost all of
+them, pays seven cycles.
+
+- **Saves**: CPU —with the `jsl` on every end, A Blurred Line's race lost
+  fifty frames in a thousand—.
+- **Where**: `op_done` in `runtime/interpreter.s`.
+
+## The title image is decompressed while the boot waits
+
+The boot waits a fixed number of frames, `BOOT_FRAMES`, and the title image
+is decompressed to WRAM before that wait instead of when the title is
+shown; `title_upload` only uploads it.
+
+- **Saves**: frames of black before the title —about nine—.
+- **Where**: the boot in `runtime/boot.s`; `title_upload` in `runtime/title.s`.

@@ -86,3 +86,23 @@ each.
   `op_counter` in `runtime/interpreter_timer.s`, `counter_set` and
   `counter_oam` in `runtime/counter.s`.
 - **More**: the header of `runtime/counter.s`.
+
+## A common event declared a menu is a screen of the engine
+
+A common event that builds a menu out of pictures and waits for keys can be
+declared a custom menu in the project's `[menus]`, with a file that writes
+what each of its pages says; the compiler replaces the common event with
+`OP_MENU_OPEN` —and turns its switch off, as the game's own body did when
+the menu closed—, and the runtime draws it as a full-screen screen of the
+engine, with the System's windows and the text layer.
+
+- **Loses**: the game's own pictures and layout —it looks like the pause
+  menu, not like the game's menu—. What the menu shows is taken on trust
+  from the project's file, written by hand; nothing checks it against the
+  common event.
+- **Saves**: the pictures —A Blurred Line's menu was one of 61— with their
+  VRAM, palettes and the CPU of moving them, and the common event's body.
+- **Where**: `OP_MENU_OPEN` in `rm2k-snes/events/src/commons.rs`;
+  `custom_menu.rs` in `rm2k-snes/screens/`; `runtime/custom_menu.s`.
+- **More**: the header of `runtime/custom_menu.s`;
+  [The custom menu](../../research/2026-10-04-the-custom-menu.md).
