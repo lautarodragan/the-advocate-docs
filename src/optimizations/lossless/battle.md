@@ -45,6 +45,20 @@ victory is dead.
   in `runtime/battle_loop.s`.
 - **More**: the comments of those routines.
 
+## Experience only for the actors who can fight, each curve once
+
+Only the actors who can be in the party get an experience slot —four bytes
+of experience and level, and what the materials added—; any other keeps
+its database level forever and answers from the cartridge's tables. The
+experience each level asks for is stored once per distinct curve, not per
+actor.
+
+- **Saves**: far RAM and SRAM —the slots travel in the save— and ROM.
+- **Where**: `tables` and `slots` in
+  `rm2k-snes/battle/src/experience.rs`, `actor_exp_k` and `exp_table`;
+  `actor_level_of`, `level_param` and `exp_add` in `runtime/level.s`.
+- **More**: the comment on `FAR_EXP` in `runtime/far_ram.s`.
+
 ## The battlers in the grid's half of `$7E`
 
 The troop's battlers are decompressed into the half of `$7E` the grid

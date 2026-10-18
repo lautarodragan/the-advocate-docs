@@ -98,3 +98,116 @@ the mode, the greeting, the cursor or the list changed, not every frame.
 - **Where**: `msg_arrow` in `runtime/message_arrow.s`; `ti_windows` in
   `runtime/shop.s`.
 - **More**: the comments of those routines.
+
+## The composed glyphs carry palette entries, not colours
+
+Each row of a System's text is a single colour —the gradient is vertical—
+and the shadow is flat, so the precomposed glyphs say which palette entry
+each row takes, and the colour is the palette's. The converter gives the
+text the same entries in every System a cartridge switches to, so the
+message window's glyph tables are carried once for all of them, and a
+`ChangeSystemGraphics` is a palette and a few tiles; and the screens' text
+lays every ink out the same way —row k is entry 1 + k, the shadow 13—, so
+one set of tables paints every colour of the items, equipment, shop and
+battle.
+
+- **Saves**: ROM —the eight tables, one per phase, are most of the font's
+  weight, and are not carried per System nor per ink— and the CPU of sampling the System's colours per
+  pixel. The converter refuses a System whose text rows are not one colour
+  each.
+- **Where**: `text_rows`, `common_rows` and `font_prerender` in
+  `rm2k-snes/screens/src/message_window.rs`; `ink_colors` in
+  `rm2k-snes/screens/src/items.rs`; `compose_char` in `runtime/messages.s`,
+  `tl_glyph` in `runtime/text_layer.s`, and `runtime/window_system.s`.
+- **More**: the header of `runtime/window_system.s` and the comment on
+  `tl_glyph`.
+
+## A message is composed a few letters a frame, a line a vblank
+
+The message window's text is composed by the main loop a handful of
+letters per frame into a buffer of one line, and that line goes up in the
+next vblank as one DMA; the window turns on when the box is whole. No
+frame carries more than its share of composing, and no vblank more than a
+line.
+
+- **Saves**: frame time and vblank time while a box is built, and bank 0's
+  RAM —one line's buffer, not the window's—.
+- **Costs**: a box takes some frames to appear, more the more letters it
+  has; RM2k opens its window with an animation.
+- **Where**: `MSG_CHARS`, `message_tick` and `upload_line` in
+  `runtime/messages.s`.
+- **More**: the comment on `MSG_CHARS`, with what was measured.
+
+## A wait in the middle of a box draws its line again
+
+A box with `\.`, `\|` or `\!` is cut at the wait: the window shows what
+there is, the wait runs, and the box is composed again from the start of
+the line that was cut, over what was already there. Keeping the half-drawn
+line while blanking the ones below would need a second line buffer.
+
+- **Saves**: bank 0's RAM —a second buffer of a line—.
+- **Costs**: a few frames of the composer after each wait.
+- **Where**: `msg_wait_mark`, `msg_hold_tick` and `msg_line_start` in
+  `runtime/message_waits.s`.
+- **More**: the header of `runtime/message_waits.s`.
+
+## The party panel is one block for every row and every actor
+
+The pause menu's and the actor choice's party rows share one fixed block
+—the level and HP terms, the status— whoever is in the row; the name, the
+level and the maximum go over it, the name composed into tiles of its own
+and the numbers with the bank's glyphs.
+
+- **Saves**: VRAM and ROM —the menu's tile bank does not grow with the
+  number of actors—. The slot screen does the same with its leader's name
+  and level.
+- **Where**: `menu_party_paint` in `runtime/menu.s`; `slot_party_paint`
+  and "the text that depends on the actor" in `runtime/slots.s`; `tl_strip`
+  and `tl_slot_name` in `runtime/text_layer.s`.
+- **More**: the comment on `menu_party_paint`.
+
+## A renamed actor's name is one byte, and the others are baked
+
+Every name a `ChangeHeroName` can give is a literal of the game, so the
+converter writes them all as texts, and what changes at run time is one
+byte per actor some `ChangeHeroName` renames: which of its names it
+carries. An actor nobody renames keeps the database's name, which a
+message's `\N[n]` gets baked into its text, letter by letter.
+
+- **Saves**: RAM and SRAM —no name buffer per actor—, and the CPU of
+  writing a name the box can already carry. A game that renames no one
+  carries no byte and no table.
+- **Where**: `actor_name_txt`, `actor_name_row_now`, `change_name` and
+  `msg_name_mark` in `runtime/actor_names.s`; `with_names` and
+  `OP_CHANGE_NAME` in the event compiler.
+- **More**: [What names in messages do not model](../../divergences/what-names-in-messages-do-not-model.md).
+
+## End Game's cursor is a palette
+
+End Game's two windows come drawn whole, and its two pictures —the bar on
+"Yes" and on "No"— share the tiles and the tilemap: each pair of colours a
+pixel takes in the two pictures is a palette entry, so moving the cursor is
+writing the other picture's palette.
+
+- **Saves**: VRAM —no second tilemap and no tiles of a second bar— and the
+  vblank of moving the cursor, sixteen colours.
+- **Where**: `end_game.rs` in `rm2k-snes/screens/src/`; `ending_palette`
+  in `runtime/end_game.s`.
+- **More**: the header of `end_game.rs`; what happens when those pairs do
+  not fit is [lossy](../lossy/tiles.md#a-window-with-a-gradient-is-fused-until-it-fits).
+
+## The shop's party: its frames when the vblank has room, its grey a palette
+
+The shop's party walks as objects. Its OAM is written once, when the shop
+opens; a member that cannot equip the item under the cursor is greyed by
+giving its objects its grey palette, not other tiles; who can equip it is
+worked out only when the item or the layer changes; and a member's next
+frame goes up only if the vblank's line leaves room after the text and the
+windows, or the next frame.
+
+- **Saves**: vblank time, the tightest budget there is, and VRAM.
+- **Costs**: a member can step a frame or two late after a key.
+- **Where**: `ti_party_open`, `ti_party_compute` and `ti_party_vblank`,
+  with its `room` and `TI_PARTY_VBLANK`, in `runtime/shop_party.s`.
+- **More**: the header of `runtime/shop_party.s`; [The shop's party
+  window](../../divergences/the-shops-party-window.md).

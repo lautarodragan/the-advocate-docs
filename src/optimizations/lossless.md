@@ -22,6 +22,7 @@ One page per part of the port:
 * [The pictures that stay put are drawn into the map](lossless/the-map.md#the-pictures-that-stay-put-are-drawn-into-the-map)
 * [The tilemap is a window the camera fills at its edges](lossless/the-map.md#the-tilemap-is-a-window-the-camera-fills-at-its-edges)
 * [The ChipSet animation is one DMA, on the tick it changes](lossless/the-map.md#the-chipset-animation-is-one-dma-on-the-tick-it-changes)
+* [A cell's terrain is its block's, and a flat map's is one byte](lossless/the-map.md#a-cells-terrain-is-its-blocks-and-a-flat-maps-is-one-byte)
 * [The panorama's tilemap is a ring the camera fills too](lossless/the-map.md#the-panoramas-tilemap-is-a-ring-the-camera-fills-too)
 * [A grid of at most 256 blocks takes one byte a cell](lossless/the-map.md#a-grid-of-at-most-256-blocks-takes-one-byte-a-cell)
 * [A cell's passability is worked out when the cartridge is built](lossless/the-map.md#a-cells-passability-is-worked-out-when-the-cartridge-is-built)
@@ -58,6 +59,11 @@ One page per part of the port:
 * [`OP_CELL_TEST`: four commands in one opcode](lossless/events.md#op_cell_test-four-commands-in-one-opcode)
 * [A parallel that stops at its cell test runs without its interpreter](lossless/events.md#a-parallel-that-stops-at-its-cell-test-runs-without-its-interpreter)
 * [The commands the parallel pages run every frame take the short way](lossless/events.md#the-commands-the-parallel-pages-run-every-frame-take-the-short-way)
+* [Every jump lands where the compiler already said](lossless/events.md#every-jump-lands-where-the-compiler-already-said)
+* [A command that waits goes back to itself](lossless/events.md#a-command-that-waits-goes-back-to-itself)
+* [The parallel common events save the foreground only when one runs](lossless/events.md#the-parallel-common-events-save-the-foreground-only-when-one-runs)
+* [Only the variables the game names get a slot](lossless/events.md#only-the-variables-the-game-names-get-a-slot)
+* [A skill learned is one bit, for the pairs the game can ask about](lossless/events.md#a-skill-learned-is-one-bit-for-the-pairs-the-game-can-ask-about)
 
 ## [Text and windows](lossless/text-and-windows.md)
 
@@ -70,6 +76,13 @@ One page per part of the port:
 * [The screens' text takes tiles only where it has ink](lossless/text-and-windows.md#the-screens-text-takes-tiles-only-where-it-has-ink)
 * [The screens' text is typeset while the frame waits for the vblank](lossless/text-and-windows.md#the-screens-text-is-typeset-while-the-frame-waits-for-the-vblank)
 * [The window's arrow and the shop's windows go up only when they change](lossless/text-and-windows.md#the-windows-arrow-and-the-shops-windows-go-up-only-when-they-change)
+* [The composed glyphs carry palette entries, not colours](lossless/text-and-windows.md#the-composed-glyphs-carry-palette-entries-not-colours)
+* [A message is composed a few letters a frame, a line a vblank](lossless/text-and-windows.md#a-message-is-composed-a-few-letters-a-frame-a-line-a-vblank)
+* [A wait in the middle of a box draws its line again](lossless/text-and-windows.md#a-wait-in-the-middle-of-a-box-draws-its-line-again)
+* [The party panel is one block for every row and every actor](lossless/text-and-windows.md#the-party-panel-is-one-block-for-every-row-and-every-actor)
+* [A renamed actor's name is one byte, and the others are baked](lossless/text-and-windows.md#a-renamed-actors-name-is-one-byte-and-the-others-are-baked)
+* [End Game's cursor is a palette](lossless/text-and-windows.md#end-games-cursor-is-a-palette)
+* [The shop's party: its frames when the vblank has room, its grey a palette](lossless/text-and-windows.md#the-shops-party-its-frames-when-the-vblank-has-room-its-grey-a-palette)
 
 ## [Battle](lossless/battle.md)
 
@@ -77,6 +90,7 @@ One page per part of the port:
 * [Each distinct troop page once](lossless/battle.md#each-distinct-troop-page-once)
 * [The battlers and the light backdrops in LZ2](lossless/battle.md#the-battlers-and-the-light-backdrops-in-lz2)
 * [Encounters and experience, precomputed](lossless/battle.md#encounters-and-experience-precomputed)
+* [Experience only for the actors who can fight, each curve once](lossless/battle.md#experience-only-for-the-actors-who-can-fight-each-curve-once)
 * [The battlers in the grid's half of `$7E`](lossless/battle.md#the-battlers-in-the-grids-half-of-7e)
 * [A dead enemy redraws only its cells](lossless/battle.md#a-dead-enemy-redraws-only-its-cells)
 * [The scene is composed on the console, from each backdrop and battler once](lossless/battle.md#the-scene-is-composed-on-the-console-from-each-backdrop-and-battler-once)
@@ -119,6 +133,8 @@ One page per part of the port:
 * [The NPC table is copied to RAM when the map loads](lossless/cpu-time-in-the-frame.md#the-npc-table-is-copied-to-ram-when-the-map-loads)
 * [A picture's palette, only when its tone really changed](lossless/cpu-time-in-the-frame.md#a-pictures-palette-only-when-its-tone-really-changed)
 * [The timer counts seconds](lossless/cpu-time-in-the-frame.md#the-timer-counts-seconds)
+* [The pictures' loops walk only the slots in use](lossless/cpu-time-in-the-frame.md#the-pictures-loops-walk-only-the-slots-in-use)
+* [A zoom's texture goes up while the picture stands still](lossless/cpu-time-in-the-frame.md#a-zooms-texture-goes-up-while-the-picture-stands-still)
 * [A fade rewrites only the volumes that changed](lossless/cpu-time-in-the-frame.md#a-fade-rewrites-only-the-volumes-that-changed)
 * [In mode 7, the music multiplies by a table of squares](lossless/cpu-time-in-the-frame.md#in-mode-7-the-music-multiplies-by-a-table-of-squares)
 
@@ -129,4 +145,5 @@ One page per part of the port:
 * [The fast half first](lossless/the-cartridge.md#the-fast-half-first)
 * [What does not fit, in the `.msu`](lossless/the-cartridge.md#what-does-not-fit-in-the-msu)
 * [A save slot per SRAM bank](lossless/the-cartridge.md#a-save-slot-per-sram-bank)
+* [Only the items the game can give are carried](lossless/the-cartridge.md#only-the-items-the-game-can-give-are-carried)
 * [The far RAM tables are as big as the game asks](lossless/the-cartridge.md#the-far-ram-tables-are-as-big-as-the-game-asks)

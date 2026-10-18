@@ -195,3 +195,92 @@ character's-cell operand before the others.
 - **Where**: `op_if_var` in `runtime/interpreter_conditions.s`; `op_var`
   in `runtime/interpreter_variables.s`.
 - **More**: the comments there.
+
+## Every jump lands where the compiler already said
+
+A `ConditionalBranch` that fails, the `else` that skips the other branch,
+a choice's options, a battle's handlers, `JumpToLabel`, `EndLoop` and
+`BreakLoop` all carry their destination as an index within the page, which
+the compiler resolved because it is the only one that sees the whole page:
+on the console, jumping is assigning the cursor. RM2k finds the same place
+by walking the list of commands —`SkipToNextConditional`,
+`CommandJumpToLabel`, `CommandEndLoop`—, looking at indentations or at
+label numbers.
+
+- **Saves**: CPU on every branch that does not hold, every frame on the
+  parallel pages; and since the index is relative to the page, a page can
+  be moved —`CODE_CARRY`— or shared —[identical pages are stored
+  once](#identical-pages-are-stored-once)— without touching it.
+- **Where**: `patch`, `label_targets`, `loop_start` and `break_target` in
+  `rm2k-snes/events/src/compile.rs`; `op_if`, `op_if_var` and `op_goto` in
+  `runtime/interpreter_conditions.s`, `op_choice` in
+  `runtime/interpreter_message.s`, `op_battle_destination` in
+  `runtime/interpreter_shop_and_battle.s`.
+- **More**: [ConditionalBranch: five of the twelve kinds](../../decisions/conditional-branch-five-of-the-twelve-kinds.md#how-it-compiles).
+
+## A command that waits goes back to itself
+
+A command that cannot go on yet —a `KeyInputProc` that waits and finds no
+key, a parallel's message while another one is on screen, "wait for the
+move routes" with one still moving, a `GameOver` behind someone's message,
+a level-up message waiting for the window— puts the cursor back on its own
+opcode and ends the frame; the next frame runs it again. Nothing says "I am
+waiting" anywhere.
+
+- **Saves**: RAM —a parallel page's state is seven bytes, and a waiting
+  flag per command and per interpreter would be more—, and the code that
+  would resume from it.
+- **Where**: `op_key` in `runtime/interpreter_keys_and_waits.s`;
+  `op_message` and `op_number` in `runtime/interpreter_message.s`;
+  `op_wait_routes` in `runtime/interpreter_movement.s`; `op_game_over` in
+  `runtime/interpreter_game_over.s`; `op_level_page` in
+  `runtime/interpreter_party.s`.
+- **More**: the comment on `op_key`.
+
+## The parallel common events save the foreground only when one runs
+
+Every frame each parallel common event looks at its switch, and the ones
+that do not run —almost all, almost always— cost that and nothing else:
+the foreground interpreter's state is saved in far RAM by the first one
+that does run, and given back once after the last.
+
+- **Saves**: CPU on every frame, on every map.
+- **Where**: `compar_tick` and `compar_one` in `runtime/common_events.s`.
+- **More**: the comment on `compar_tick`.
+
+## Only the variables the game names get a slot
+
+RM2k declares thousands of variables; the compiler sweeps every page,
+common event and troop page of the game and gives a slot, from zero up,
+only to the variables some command or condition names, and the bytecode
+names a variable by its slot. The switches are a bitmap only as long as the
+highest switch the game names.
+
+- **Saves**: far RAM and SRAM —two bytes per variable the game uses, not
+  per variable it declares, and the same in the saved game—, and a
+  variable's operand is one byte. The slots come from the whole game, not
+  from a cartridge's maps, so a saved game loads in any cartridge of it.
+- **Where**: `variables` and `switch_top` in
+  `rm2k-snes/events/src/indices.rs`; `var_read` and `var_write` in
+  `runtime/variables.s`; `SWITCH_BYTES` in `runtime/switches.s`.
+- **More**: the doc comment on `variables` in `indices.rs`; the cap on
+  slots is [lossy](../lossy/tables-of-a-fixed-size.md#variables); and the
+  far RAM tables they live in are [as big as the game
+  asks](the-cartridge.md#the-far-ram-tables-are-as-big-as-the-game-asks).
+
+## A skill learned is one bit, for the pairs the game can ask about
+
+Which skills each actor knows is world state that travels in the save. It
+is kept as one bit per (actor, skill) pair, and only for the pairs the game
+can look at: the ones the actors learn by level, and the ones some
+`ChangeSkills` or "knows the skill" branch names. The compiler puts the
+pair's bit where the command carries its operand, so the console does not
+need the actor to find it.
+
+- **Saves**: far RAM and SRAM —no list per actor, with its searching,
+  sorted insertion and cap—.
+- **Where**: `skills` in `rm2k-snes/events/src/indices.rs`; the
+  `FAR_SKILL` bits, read by `skill_known` in
+  `runtime/equipment_from_events.s` for `op_if_actor` in
+  `runtime/interpreter_conditions.s`.
+- **More**: the doc comment on `skills` in `indices.rs`.
