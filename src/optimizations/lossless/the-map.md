@@ -199,3 +199,19 @@ division that says where in the cycle it is.
   `runtime/chipset_animation.s`; the run, `layers.rs` in
   `rm2k-snes/wally/src/background/`.
 - **More**: the header of `runtime/chipset_animation.s`.
+
+## A cell's terrain is its block's, and a flat map's is one byte
+
+`StoreTerrainID` reads a cell's terrain from its lower layer's tile, so the
+converter puts the terrain in the block's key and carries one byte per
+block, not per cell; and a map whose blocks all have the same terrain
+carries no table at all, only that terrain, a block shared by every such
+map. A `TileSubstitution` changes the terrain the same way it changes the
+block.
+
+- **Saves**: ROM and the WRAM behind the grid —a table per block instead
+  of per cell, and none on a flat map—.
+- **Where**: `terrain_plane` and `map_terrain` in
+  `rm2k-snes/mapdata/src/record.rs`; `op_terrain` in
+  `runtime/interpreter_map.s`, `M_TERRAIN_PLANE`.
+- **More**: the comment on `op_terrain`.

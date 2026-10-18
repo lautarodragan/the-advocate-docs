@@ -98,3 +98,68 @@ the mode, the greeting, the cursor or the list changed, not every frame.
 - **Where**: `msg_arrow` in `runtime/message_arrow.s`; `ti_windows` in
   `runtime/shop.s`.
 - **More**: the comments of those routines.
+
+## The composed glyphs carry palette entries, not colours
+
+Each row of a System's text is a single colour —the gradient is vertical—
+and the shadow is flat, so the precomposed glyphs say which palette entry
+each row takes, and the colour is the palette's. The converter gives the
+text the same entries in every System a cartridge switches to, so the
+message window's glyph tables are carried once for all of them, and a
+`ChangeSystemGraphics` is a palette and a few tiles; and the screens' text
+lays every ink out the same way —row k is entry 1 + k, the shadow 13—, so
+one set of tables paints every colour of the items, equipment, shop and
+battle.
+
+- **Saves**: ROM —the eight tables, one per phase, are most of the font's
+  weight, and are not carried per System nor per ink— and the CPU of sampling the System's colours per
+  pixel. The converter refuses a System whose text rows are not one colour
+  each.
+- **Where**: `text_rows`, `common_rows` and `font_prerender` in
+  `rm2k-snes/screens/src/message_window.rs`; `ink_colors` in
+  `rm2k-snes/screens/src/items.rs`; `compose_char` in `runtime/messages.s`,
+  `tl_glyph` in `runtime/text_layer.s`, and `runtime/window_system.s`.
+- **More**: the header of `runtime/window_system.s` and the comment on
+  `tl_glyph`.
+
+## A message is composed a few letters a frame, a line a vblank
+
+The message window's text is composed by the main loop a handful of
+letters per frame into a buffer of one line, and that line goes up in the
+next vblank as one DMA; the window turns on when the box is whole. No
+frame carries more than its share of composing, and no vblank more than a
+line.
+
+- **Saves**: frame time and vblank time while a box is built, and bank 0's
+  RAM —one line's buffer, not the window's—.
+- **Costs**: a box takes some frames to appear, more the more letters it
+  has; RM2k opens its window with an animation.
+- **Where**: `MSG_CHARS`, `message_tick` and `upload_line` in
+  `runtime/messages.s`.
+- **More**: the comment on `MSG_CHARS`, with what was measured.
+
+## A wait in the middle of a box draws its line again
+
+A box with `\.`, `\|` or `\!` is cut at the wait: the window shows what
+there is, the wait runs, and the box is composed again from the start of
+the line that was cut, over what was already there. Keeping the half-drawn
+line while blanking the ones below would need a second line buffer.
+
+- **Saves**: bank 0's RAM —a second buffer of a line—.
+- **Costs**: a few frames of the composer after each wait.
+- **Where**: `msg_wait_mark`, `msg_hold_tick` and `msg_line_start` in
+  `runtime/message_waits.s`.
+- **More**: the header of `runtime/message_waits.s`.
+
+## The party panel is one block for every row and every actor
+
+The pause menu's and the actor choice's party rows share one fixed block
+—the level and HP terms, the status— whoever is in the row; the name, the
+level and the maximum go over it, the name composed into tiles of its own
+and the numbers with the bank's glyphs.
+
+- **Saves**: VRAM and ROM —the menu's tile bank does not grow with the
+  number of actors—.
+- **Where**: `menu_party_paint` in `runtime/menu.s`; `tl_strip` in
+  `runtime/text_layer.s`.
+- **More**: the comment on `menu_party_paint`.

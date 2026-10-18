@@ -62,3 +62,19 @@ one.
 - **Where**: `SRAM_BANK`, `SRAM_STRIDE` and `slot_bank` in
   `runtime/save_game.s`.
 - **More**: the comment on `SRAM_SLOTS` there.
+
+## Only the items the game can give are carried
+
+The cartridge carries the name, description and tables of the items that
+can reach the inventory with its maps: the ones a `ChangeItems` gives, a
+shop sells, an enemy drops or an actor starts equipped with. Each has a
+place `k` in those tables, and `item_k` turns an RM2k number into it, or
+into "not carried".
+
+- **Saves**: ROM —the texts of the database's items no page gives—.
+- **Where**: `possible_items` and `drop_items` in
+  `rm2k-snes/convert/src/scan.rs`; `items_and_battle` in
+  `rm2k-snes/mapdata/src/emit.rs`; `item_k` and `items_build_list` in
+  `runtime/items.s`.
+- **More**: the doc comment on `possible_items`, and the header of
+  `runtime/items.s`.

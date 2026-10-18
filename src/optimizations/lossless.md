@@ -22,6 +22,7 @@ One page per part of the port:
 * [The pictures that stay put are drawn into the map](lossless/the-map.md#the-pictures-that-stay-put-are-drawn-into-the-map)
 * [The tilemap is a window the camera fills at its edges](lossless/the-map.md#the-tilemap-is-a-window-the-camera-fills-at-its-edges)
 * [The ChipSet animation is one DMA, on the tick it changes](lossless/the-map.md#the-chipset-animation-is-one-dma-on-the-tick-it-changes)
+* [A cell's terrain is its block's, and a flat map's is one byte](lossless/the-map.md#a-cells-terrain-is-its-blocks-and-a-flat-maps-is-one-byte)
 
 ## [Characters and sprites](lossless/characters-and-sprites.md)
 
@@ -52,6 +53,11 @@ One page per part of the port:
 * [`OP_CELL_TEST`: four commands in one opcode](lossless/events.md#op_cell_test-four-commands-in-one-opcode)
 * [A parallel that stops at its cell test runs without its interpreter](lossless/events.md#a-parallel-that-stops-at-its-cell-test-runs-without-its-interpreter)
 * [The commands the parallel pages run every frame take the short way](lossless/events.md#the-commands-the-parallel-pages-run-every-frame-take-the-short-way)
+* [Every jump lands where the compiler already said](lossless/events.md#every-jump-lands-where-the-compiler-already-said)
+* [A command that waits goes back to itself](lossless/events.md#a-command-that-waits-goes-back-to-itself)
+* [The parallel common events save the foreground only when one runs](lossless/events.md#the-parallel-common-events-save-the-foreground-only-when-one-runs)
+* [Only the variables the game names get a slot](lossless/events.md#only-the-variables-the-game-names-get-a-slot)
+* [A skill learned is one bit, for the pairs the game can ask about](lossless/events.md#a-skill-learned-is-one-bit-for-the-pairs-the-game-can-ask-about)
 
 ## [Text and windows](lossless/text-and-windows.md)
 
@@ -64,6 +70,10 @@ One page per part of the port:
 * [The screens' text takes tiles only where it has ink](lossless/text-and-windows.md#the-screens-text-takes-tiles-only-where-it-has-ink)
 * [The screens' text is typeset while the frame waits for the vblank](lossless/text-and-windows.md#the-screens-text-is-typeset-while-the-frame-waits-for-the-vblank)
 * [The window's arrow and the shop's windows go up only when they change](lossless/text-and-windows.md#the-windows-arrow-and-the-shops-windows-go-up-only-when-they-change)
+* [The composed glyphs carry palette entries, not colours](lossless/text-and-windows.md#the-composed-glyphs-carry-palette-entries-not-colours)
+* [A message is composed a few letters a frame, a line a vblank](lossless/text-and-windows.md#a-message-is-composed-a-few-letters-a-frame-a-line-a-vblank)
+* [A wait in the middle of a box draws its line again](lossless/text-and-windows.md#a-wait-in-the-middle-of-a-box-draws-its-line-again)
+* [The party panel is one block for every row and every actor](lossless/text-and-windows.md#the-party-panel-is-one-block-for-every-row-and-every-actor)
 
 ## [Battle](lossless/battle.md)
 
@@ -108,3 +118,4 @@ One page per part of the port:
 * [The fast half first](lossless/the-cartridge.md#the-fast-half-first)
 * [What does not fit, in the `.msu`](lossless/the-cartridge.md#what-does-not-fit-in-the-msu)
 * [A save slot per SRAM bank](lossless/the-cartridge.md#a-save-slot-per-sram-bank)
+* [Only the items the game can give are carried](lossless/the-cartridge.md#only-the-items-the-game-can-give-are-carried)
