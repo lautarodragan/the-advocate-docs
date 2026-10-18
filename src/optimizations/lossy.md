@@ -46,6 +46,7 @@ One page per part of the port:
 * [The timer borrows a character's palette](lossy/colours.md#the-timer-borrows-a-characters-palette)
 * [The raindrops are lent a palette](lossy/colours.md#the-raindrops-are-lent-a-palette)
 * [Seven palettes on a map with battle animations](lossy/colours.md#seven-palettes-on-a-map-with-battle-animations)
+* [The screen flash changes every other frame](lossy/colours.md#the-screen-flash-changes-every-other-frame)
 
 ## [Tiles](lossy/tiles.md)
 
@@ -55,12 +56,15 @@ One page per part of the port:
 * [A panorama's similar tiles are grouped](lossy/tiles.md#a-panoramas-similar-tiles-are-grouped)
 * [A map that shows its panorama gives up its layer above](lossy/tiles.md#a-map-that-shows-its-panorama-gives-up-its-layer-above)
 * [A ChipSet animation that does not fit in WRAM stands still in part](lossy/tiles.md#a-chipset-animation-that-does-not-fit-in-wram-stands-still-in-part)
+* [The ChipSet animation's clocks come from the game tick](lossy/tiles.md#the-chipset-animations-clocks-come-from-the-game-tick)
+* [The choice bar keeps one of its two drawings](lossy/tiles.md#the-choice-bar-keeps-one-of-its-two-drawings)
 
 ## [Events](lossy/events.md)
 
 * [Translucent events are baked](lossy/events.md#translucent-events-are-baked)
 * [Decorative events become background](lossy/events.md#decorative-events-become-background)
 * [Still events that animate past the sprite bank](lossy/events.md#still-events-that-animate-past-the-sprite-bank)
+* [Still events that animate share one phase](lossy/events.md#still-events-that-animate-share-one-phase)
 
 ## [Pictures and animations](lossy/pictures-and-animations.md)
 

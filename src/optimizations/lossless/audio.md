@@ -54,6 +54,19 @@ stored and uploaded once.
   `compile.rs` of `rm2k-snes/rm2k-snes-audio/`.
 - **More**: [Audio](../../internals/audio.md).
 
+## A package's effects lie in the `.msu` in the order they go up
+
+The sound effects a package takes from the `.msu` are stored there one
+after the other, in the order the ROM uploads them, so loading a package
+seeks once and then reads straight through; an effect in two packages is
+stored twice.
+
+- **Saves**: seeks, which cost one or two frames each in Mednafen.
+- **Costs**: `.msu` bytes for the effects that repeat.
+- **Where**: `msu.rs` of `rm2k-snes/rm2k-snes-audio/`; `se_msu_upload` in
+  `runtime/msu_effects.s`.
+- **More**: [The `.msu` file](../../internals/the-msu-file.md#the-effects).
+
 ## With MSU-1, the themes with a track upload no samples
 
 A package does not upload the samples of the themes the MSU-1 plays,

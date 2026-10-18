@@ -103,3 +103,16 @@ that show animations the characters share seven.
 - **Loses**: a merged colour or two in those maps' characters.
 - **Where**: `palette_cap` in `rm2k-snes/wally/src/map.rs`.
 - **More**: [Seven palettes on a map with animations](../../divergences/seven-palettes-on-a-map-with-animations.md).
+
+## The screen flash changes every other frame
+
+A screen flash is a CGRAM transform of the map's three palettes, and
+running all of them does not fit in a frame with everything else, so it
+takes two: the background and the layer above on one frame, the sprites
+and the upload on the next. What is seen changes every other frame.
+
+- **Loses**: half the steps of the fade, which RM2k draws every frame.
+- **Saves**: the frames a flash would lose.
+- **Where**: `flash_tick` in `runtime/screen_flash.s`.
+- **More**: the header of `runtime/screen_flash.s`;
+  [The flash does not reach pictures](../../divergences/the-flash-does-not-reach-pictures.md).

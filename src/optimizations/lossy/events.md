@@ -53,3 +53,15 @@ is lost.
 - **Where**: `moves` in Wally, `rm2k-snes/wally/src/moves.rs`, and
   `fewer_still_animations` in `rm2k-snes/wally/src/map.rs`.
 - **More**: [Still events that animate past the sprite bank](../../divergences/still-events-that-animate-past-the-sprite-bank.md).
+
+## Still events that animate share one phase
+
+A still event that runs through its walk cycle has no byte of its own to
+count in, so its column comes from the game tick, the same for all of
+them, and not from a counter that starts when the map creates it.
+
+- **Loses**: which of the four steps each event starts on.
+- **Saves**: RAM —a counter per event— and, because they are all in step,
+  the VRAM slot that the ones with the same graphic, pose and speed share.
+- **Where**: `animate_still` in `runtime/animated_stills.s`.
+- **More**: [The phase of still events that animate](../../divergences/the-phase-of-still-events-that-animate.md).
