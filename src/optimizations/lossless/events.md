@@ -41,6 +41,23 @@ for.
 - **More**: [Events](../../internals/events.md); measured in
   [Frozen World's battle system](../../research/2026-10-15-frozen-worlds-battle-system.md).
 
+## Copies of an event share a row
+
+Events of a map whose pages are the same, field by field, that draw nothing
+and never move —a strip of invisible touch exits along an edge, a grid of
+the same sign— keep only the row of the one with the lowest id in the RAM's
+event tables; the others are a cell in a ROM table behind the map's
+positions, and the cell fires the first one's page. A map of 284 events
+needs 38 rows.
+
+- **Saves**: RAM —an event's row is bank 0's, and there are `EV_MAX`—; and
+  it is what keeps a map over that cap from losing anything.
+- **Not lossless in one case**: a twin on the hero's layer stops the hero,
+  but not an event that walks into it.
+- **Where**: `trim.rs` in `rm2k-snes/convert/`; `twin_in_cell` in
+  `runtime/action_key.s` and `hero_blocked_rest` in `runtime/twins_block.s`.
+- **More**: [Events that do not fit in the RAM](../../divergences/events-that-do-not-fit-in-the-ram.md).
+
 ## The pure parallel common events run only when what they read changes
 
 A parallel common event that only reads switches and equipment, and only
