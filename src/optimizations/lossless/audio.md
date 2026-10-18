@@ -104,3 +104,45 @@ in—. The only ceiling left is the byte the ROM counts boot frames in.
   which `rm2k-snes-audio cartridge` writes into the cartridge's
   `musicdata.inc`; `BOOT_FRAMES_FLOOR` in `runtime/far_ram.s`.
 - **More**: [Audio](../../internals/audio.md).
+
+## A package uploads only what the ARAM lacks
+
+When a map's package loads, the samples it shares with the one before
+stay where they are and only the missing ones go up. Where each one goes
+is decided first and the upload comes at the end, so when the gaps leave
+something out and everything is placed again from scratch, nothing is
+uploaded twice; and if what the package wants does not fit even in an
+empty ARAM, that rebuild is not tried, because it would only upload again
+what was already there.
+
+- **Saves**: loading time —the frozen frames of a map change, of entering
+  and leaving a battle, and of a `PlayBGM` that completes its package—.
+- **Where**: `package_load_done`, `place_sample`, `upload_placed` and
+  `wanted_fits` in `runtime/audio_package.s`.
+- **More**: the comments in `package_load_done`.
+
+## Samples go up three bytes per handshake
+
+The driver takes a block of up to 85 triplets with one command, three
+bytes per token, and the 65816 reads the next triplet while the SPC700
+stores the one before, which is what takes longest; only the last one or
+two bytes go one at a time.
+
+- **Saves**: loading time —a third of the handshakes, and the reads
+  hidden behind the SPC700's—.
+- **Where**: command 3 of `DRIVER` in
+  `rm2k-snes/rm2k-snes-audio/src/spc700.rs`; `upload_sample` in
+  `runtime/audio_package.s`; `msu_a_aram` in `runtime/msu_effects.s`.
+- **More**: the comment on `DRIVER`.
+
+## A note goes to the voice its channel last held
+
+When it can choose, the voice allocation gives a note the voice that
+last played its channel: same instrument and same volume, so the note
+needs no volume in the stream and the decoder's register cache skips
+what it would write again.
+
+- **Saves**: ROM in the music —such a note is two bytes— and DSP writes.
+- **Where**: `free_order` in `rm2k-snes/rm2k-snes-audio/src/voices.rs`;
+  `ev_note` and `mus_write` in `runtime/music.s`.
+- **More**: the comment on `free_order`.

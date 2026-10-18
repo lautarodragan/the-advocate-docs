@@ -35,3 +35,34 @@ too little"—.
   named in `degradations.json`.
 - **Where**: `relief.rs` of `rm2k-snes/rm2k-snes-audio/`.
 - **More**: [Audio](../../internals/audio.md).
+
+## Sound effects borrow two of the music's voices
+
+No voice is kept for the sound effects: a `PlaySound` takes voice 7 or 6
+from the music while it lasts, and gives it back with the registers the
+music wrote to it meanwhile. The voice allocation fills those two first
+with percussion hits, which are short, and with melodic notes only when
+no other voice is free.
+
+- **Saves**: voices —the music has all eight while nothing else plays—.
+- **Loses**: what the music plays on that voice while the effect lasts;
+  without MSU-1, a third effect cuts one of the two.
+- **Where**: `EFFECT_VOICES` in `rm2k-snes/rm2k-snes-audio/src/voices.rs`;
+  `dsp_music`, `se_before` and `se_after` in `runtime/sound_effects.s`.
+- **More**: [Audio](../../internals/audio.md).
+
+## A song the map plays only to leave, or apart, goes up alone
+
+The songs a map turns on only to leave it, and those a project declares
+in `[music] apart_themes`, do not count in the map's package: when their
+`PlayBGM` asks for one that is not there, it is uploaded alone —an exit
+song letting go of the rest of the package, a separate one with the
+package's effects— and the next `PlayBGM` completes the package.
+
+- **Saves**: ARAM, which the package's other samples get as rate.
+- **Loses**: a pause at that `PlayBGM`, while the song uploads.
+- **Where**: `Songs::exit_songs` in `rm2k-snes/rm2k-snes-audio/src/cartridge.rs`;
+  `exit_extra`, `extra_separate` and `song_ensure` in
+  `runtime/audio_package.s`.
+- **More**: [A single sample bank](../lossless/audio/the-sample-bank.md),
+  [Audio](../../internals/audio.md).

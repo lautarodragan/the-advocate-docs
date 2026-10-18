@@ -159,3 +159,28 @@ divides by 60 every frame.
 - **Where**: `timer_tick` and `timer_digits` in `runtime/timer.s`;
   `timer_sec` and `timer_sub` in `runtime/low_ram.s`.
 - **More**: the comment on `timer_sec`.
+
+## A fade rewrites only the volumes that changed
+
+On each frame of a `FadeOutBGM` the music's voice volumes are scaled
+again, but each is compared with what the previous frame's level gave and
+written only if it differs: a long fade moves each volume once every so
+many frames.
+
+- **Saves**: writes through the SPC700's ports, each with its wait, on
+  every frame of a fade.
+- **Where**: `voices_refresh` and `volume_refresh` in `runtime/music.s`.
+- **More**: the comment on `voices_refresh`.
+
+## In mode 7, the music multiplies by a table of squares
+
+The music scales its volumes with the PPU's multiplier, which in mode 7 is
+the matrix being drawn; while a big picture zooms it multiplies by hand
+instead, as two lookups in a table of quarter squares,
+`m × f = q(m + f) − q(|f − m|)`, because a loop of shifts and adds took
+longer than the music has before the vblank.
+
+- **Saves**: CPU in `irq_music` during a zoom.
+- **Costs**: ROM for the table, in a far bank.
+- **Where**: `mpym` and `quarter_squares` in `runtime/music.s`.
+- **More**: the comment on `mpym`.
