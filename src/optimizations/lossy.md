@@ -81,6 +81,8 @@ One page per part of the port:
 * [Each sample at the rate its worst package allows](lossy/audio.md#each-sample-at-the-rate-its-worst-package-allows)
 * [Past 256 samples, the least used are dropped](lossy/audio.md#past-256-samples-the-least-used-are-dropped)
 * [A package whose music would go below 6 kHz is relieved](lossy/audio.md#a-package-whose-music-would-go-below-6-khz-is-relieved)
+* [Sound effects borrow two of the music's voices](lossy/audio.md#sound-effects-borrow-two-of-the-musics-voices)
+* [A song the map plays only to leave, or apart, goes up alone](lossy/audio.md#a-song-the-map-plays-only-to-leave-or-apart-goes-up-alone)
 
 ## [Tables of a fixed size](lossy/tables-of-a-fixed-size.md)
 

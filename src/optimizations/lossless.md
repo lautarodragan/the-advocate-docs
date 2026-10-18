@@ -91,6 +91,9 @@ One page per part of the port:
 * [A package's effects lie in the `.msu` in the order they go up](lossless/audio.md#a-packages-effects-lie-in-the-msu-in-the-order-they-go-up)
 * [With MSU-1, the themes with a track upload no samples](lossless/audio.md#with-msu-1-the-themes-with-a-track-upload-no-samples)
 * [Boot is sized for the boot package](lossless/audio.md#boot-is-sized-for-the-boot-package)
+* [A package uploads only what the ARAM lacks](lossless/audio.md#a-package-uploads-only-what-the-aram-lacks)
+* [Samples go up three bytes per handshake](lossless/audio.md#samples-go-up-three-bytes-per-handshake)
+* [A note goes to the voice its channel last held](lossless/audio.md#a-note-goes-to-the-voice-its-channel-last-held)
 
 ## [CPU time in the frame](lossless/cpu-time-in-the-frame.md)
 
@@ -107,6 +110,8 @@ One page per part of the port:
 * [The NPC table is copied to RAM when the map loads](lossless/cpu-time-in-the-frame.md#the-npc-table-is-copied-to-ram-when-the-map-loads)
 * [A picture's palette, only when its tone really changed](lossless/cpu-time-in-the-frame.md#a-pictures-palette-only-when-its-tone-really-changed)
 * [The timer counts seconds](lossless/cpu-time-in-the-frame.md#the-timer-counts-seconds)
+* [A fade rewrites only the volumes that changed](lossless/cpu-time-in-the-frame.md#a-fade-rewrites-only-the-volumes-that-changed)
+* [In mode 7, the music multiplies by a table of squares](lossless/cpu-time-in-the-frame.md#in-mode-7-the-music-multiplies-by-a-table-of-squares)
 
 ## [The cartridge](lossless/the-cartridge.md)
 
