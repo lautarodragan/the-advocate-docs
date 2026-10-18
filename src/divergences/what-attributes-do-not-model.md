@@ -24,13 +24,6 @@ What is not the same:
   and the ranks stay. *A Blurred Line*, *The Book of Three*, *El Dorado* and
   *The Frozen World* have two —Heat Barrier and Cold Barrier—, and
   *Vampires Dawn* six.
-* **A skill with a physical attribute does not ask for the weapon.** In
-  RM2k an actor cannot use one —it is grayed out— unless a weapon it holds
-  carries that attribute (`Game_Actor::IsSkillUsable`), except for those
-  with `affect_attr_defence`; here it is offered as any other. In *A
-  Blurred Line* that is Saldra's Trip, which her Bent Staff does not carry
-  (Martial), and AG7-17's ArmLaser and TillTheyGlow with the ArmCannon,
-  which carries no Ray.
 * **An effect past 32,767 before the variance is held there**: the console
   multiplies in thirty-two bits and keeps sixteen. No game comes near: the
   damage's cap is 999.
