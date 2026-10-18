@@ -122,3 +122,53 @@ cartridge. What the box costs in fidelity is in
 - **Saves**: ROM —one copy of each animation's frames, not one per map—.
 - **Where**: `rm2k-snes/convert/src/animations.rs`.
 - **More**: [The shrunk battle animation](../../divergences/the-shrunk-battle-animation.md).
+
+## A battle animation's frame: without its empty tiles, one at a time
+
+Each frame of a battle animation is stored as the list of the box's tiles
+that draw something, in LZ2, and is decompressed when it is due, not the
+whole animation when it starts. The box's 2 KB buffer is kept at zero but
+for the last frame's tiles, so building the next one clears those and
+copies the new ones, unrolled; the vblank uploads the 2 KB whole.
+
+- **Saves**: ROM —the frames are mostly transparency—, the frames a
+  whole animation would stop the map for while it decompresses, and CPU
+  per frame built.
+- **Where**: `frame_without_gaps` in `rm2k-snes/mapdata/src/emit.rs`;
+  `anim_frame_build` and `anim_buf_clear` in
+  `runtime/battle_animation_frames.s`.
+- **More**: the header of `runtime/battle_animation_frames.s`.
+
+## Still events that animate are walked only when a column changes
+
+The still events that run through their walk cycle take their column from
+the game tick, so the rows are walked only on the tick where the soonest
+of them changes column, or when something else wrote one of their poses;
+the frames in between cost a subtraction.
+
+- **Saves**: CPU on maps with many of them.
+- **Where**: `animate_still` and `still_touched` in
+  `runtime/animated_stills.s`.
+- **More**: the header of `runtime/animated_stills.s`.
+
+## The timer and the raindrops fill the last row's free columns
+
+The timer's glyphs and the raindrops are a strip two tiles tall in the
+sprite bank, and it goes into the columns the last row of blocks leaves
+free when they are enough, instead of starting a row of its own.
+
+- **Saves**: sprite VRAM —on a map with a slot cache, slots—.
+- **Where**: `strip_base` in `rm2k-snes/wally/src/sprites/extras.rs`.
+- **More**: [The VRAM split](../../internals/vram.md#the-timer-and-the-raindrops).
+
+## A small picture: its sparse blocks in 8x8, its repeated tiles once
+
+A `ShowPicture` picture in sprites is cut into 32x32 objects, but a block
+with four of its sixteen 8x8 cells drawn or fewer goes as 8x8 objects
+whose tiles fill what the last row of blocks leaves free, and the same
+pixels take their tiles once, whether in one picture or in two.
+
+- **Saves**: sprite VRAM.
+- **Where**: `picture_tables` in `rm2k-snes/mapdata/src/emit.rs`;
+  `pic_draw` in `runtime/picture_far.s`.
+- **More**: [The VRAM split](../../internals/vram.md#the-small-pictures-go-at-the-end-of-the-sprite-bank).

@@ -79,3 +79,29 @@ cells, and the rest stay on their first drawing.
 - **Where**: `rm2k-snes/mapdata/src/animation.rs`; `ANIM_DRAWINGS` in
   `runtime/far_ram.s`.
 - **More**: [A ChipSet animation that does not fit in WRAM](../../divergences/a-chipset-animation-that-does-not-fit-in-wram.md).
+
+## The ChipSet animation's clocks come from the game tick
+
+The water and the animated tiles keep no counter and no pointer of their
+own: where each is in its cycle comes from dividing the sixteen-bit game
+tick by its rate, with the hardware's divider. Neither rate divides 65,536,
+so the cycle skips a frame when the tick wraps around.
+
+- **Loses**: one frame of the water every 65,536 ticks, about eighteen
+  minutes of play.
+- **Saves**: bank 0's RAM, which had no byte left for them.
+- **Where**: `anim_tick` in `runtime/chipset_animation.s`.
+- **More**: [The ChipSet skips a frame every 18 minutes](../../divergences/the-chipset-skips-a-frame-every-18-minutes.md).
+
+## The choice bar keeps one of its two drawings
+
+The System carries two drawings of the cursor and RM2k alternates them;
+the bar is composed into the window's tiles like the text, so the console
+draws only the first one.
+
+- **Loses**: the cursor's blink between its two drawings.
+- **Saves**: recomposing the highlighted line every ten frames, or the
+  tiles of a second version of it in VRAM.
+- **Where**: `msg_bar_source` in `runtime/message_arrow.s`; `Skin::cursor`
+  in `rm2k-snes/screens/`.
+- **More**: [The choice bar does not alternate its two drawings](../../divergences/the-choice-bar-does-not-alternate-its-two-drawings.md).

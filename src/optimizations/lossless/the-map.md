@@ -144,3 +144,38 @@ the map in mode 1 and the panorama on a third layer.
   `runtime/pano.s`.
 - **More**: [Mode 3 by default](../../internals/mode-3.md),
   [Panoramas](../../research/2026-10-05-panoramas.md).
+
+## The tilemap is a window the camera fills at its edges
+
+The map's tilemaps in VRAM are a window of 64 columns by 32 rows that
+wraps around, not the map: each tick builds, outside the vblank, only the
+row and the column the camera just uncovered, and the next vblank uploads
+each in one DMA, because the strips are laid out in the order VRAM wants
+them.
+
+- **Saves**: VRAM —a map of any size takes one window— and vblank time,
+  since the strips are built while the screen is drawn.
+- **Costs**: what changes under a still camera is not redrawn by itself:
+  a `TileSubstitution` redraws the window one column per frame, on the
+  frames the camera leaves free.
+- **Where**: `stream_map`, `build_column` and `build_row` in
+  `runtime/map_window.s`; `push_strips` in `runtime/vblank.s`;
+  `sub_refresh` in `runtime/low_ram.s`.
+- **More**: the comments of those routines.
+
+## The ChipSet animation is one DMA, on the tick it changes
+
+The tiles that the water and the animated tiles change go in a contiguous
+run at the end of the map's background bank, shared with no still cell,
+so a step of the animation overwrites those tiles with a single DMA and
+leaves the tilemap alone. Whether a tick is a step comes from the same
+division that says where in the cycle it is.
+
+- **Saves**: vblank time —no tilemap rewrite, and no DMA on the ticks
+  that change nothing—. What it saves in RAM is lossy: see [the ChipSet
+  animation's clocks come from the game
+  tick](../lossy/tiles.md#the-chipset-animations-clocks-come-from-the-game-tick).
+- **Where**: `anim_tick`, `anim_flush` and `anim_upload` in
+  `runtime/chipset_animation.s`; the run, `layers.rs` in
+  `rm2k-snes/wally/src/background/`.
+- **More**: the header of `runtime/chipset_animation.s`.
