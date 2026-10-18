@@ -152,6 +152,7 @@
         - [Autofire of A with X](divergences/autofire-of-a-with-x.md)
         - [The hero's speed with L and R](divergences/the-heros-speed-with-l-and-r.md)
         - [One counter for all four arrows](divergences/one-counter-for-all-four-arrows.md)
+        - [A held arrow waits for the text](divergences/a-held-arrow-waits-for-the-text.md)
 - [Research](research/README.md)
     - [Graphics and sound, from RM2k to the SNES](research/graphics-and-sound-from-rm2k-to-the-snes.md)
     - [The map of the Python tools](research/the-map-of-the-python-tools.md)

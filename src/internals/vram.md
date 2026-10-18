@@ -358,6 +358,32 @@ less —the description and five lines— and the converter warns against the
 text at the same time: see `battle_bank_upload` in
 `runtime/screen_bank.s`.
 
+## The items and equipment screens take the map's VRAM too
+
+They are text over the System's windows, from the pause menu's bank
+(`SLOT_VRAM`, `$2000`); since 2026-10-18 their text also takes the pairs
+from `$4000`:
+
+```text
+$2000 .. ITEM_BORDER_VRAM    the bank's blank tiles, then pairs of the text, 4bpp
+ITEM_BORDER_VRAM .. $37FF    the windows' tiles, 8bpp, BG1
+$3800 ..                     BG1's tilemap, the windows
+$3C00 ..                     the text tilemap, `SLOT_MAP`
+$4000 .. $57FF               more pairs of the text: up to the 448th
+```
+
+**Both stretches are one pool**: the text layer hands out pairs by number,
+and a number past the windows is just a tile further from BG2's base —a
+pair is two tiles, and 448 pairs are 896 tiles, below the 1024 a tilemap
+entry names—. With the bank alone, some 180 pairs, a step that scrolled
+the list could not hold what the screen showed and what it was going to
+show at once, and the tilemap switched halfway: see
+[the task](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/scrolling-a-list-shows-the-last-row-repeated-for-a-moment.md).
+What it overwrites —the map's tiles and sprites— comes back the way a
+custom menu's does: `CM_DIRTY`, and `big_back_far` when the pause menu
+closes, which is the only way out of these two screens. See `items_pool`
+in `runtime/screen_bank.s`.
+
 ## The title screen doesn't use the layout
 
 While the title is shown there is no map loaded, so its addresses are
