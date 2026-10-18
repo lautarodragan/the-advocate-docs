@@ -49,6 +49,19 @@ looked at first thing in `place_npc`. It discards the same objects as
 - **Where**: `build_oam` and `place_npc` in `runtime/oam.s`.
 - **More**: the comment in `build_oam`.
 
+## The raindrops go straight to OAM
+
+A drop lives on a 256x256 surface stuck to the map, one byte per axis, so
+each frame's step wraps by itself, and its X on screen never needs a
+ninth bit: its two objects are written to OAM directly, not through the
+general `emit_object`, and its state is read with long addressing, not
+through the WRAM port.
+
+- **Saves**: CPU on every frame it rains —through `emit_object`, a
+  hundred and fifty drops took more than half a screen—.
+- **Where**: `rain_tick` and `rain_oam` in `runtime/rain.s`.
+- **More**: the comments there.
+
 ## A DSP write the register already has is skipped
 
 The music decoder keeps a copy of what it wrote to each DSP register, and

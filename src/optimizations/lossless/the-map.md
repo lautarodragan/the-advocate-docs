@@ -200,6 +200,20 @@ division that says where in the cycle it is.
   `rm2k-snes/wally/src/background/`.
 - **More**: the header of `runtime/chipset_animation.s`.
 
+## The panorama's tilemap is a ring the camera fills too
+
+A panorama on a layer of its own does not fit in the 64x32 tilemap
+—RM2k's are 640 pixels wide and more—, so its tilemap is a ring like the
+map's: a running position that wraps where both the tilemap's width and
+the panorama's do, and each frame at most the column and the row that
+came into view, built outside the vblank and uploaded in it.
+
+- **Saves**: VRAM —one tilemap for a panorama of any size— and vblank
+  time.
+- **Where**: `pano_tick`, `pano_vblank` and `PANO_UX` in
+  `runtime/pano.s`.
+- **More**: the header of `runtime/pano.s`.
+
 ## A grid of at most 256 blocks takes one byte a cell
 
 A cell of the grid is the number of its block, and a map with at most 256
