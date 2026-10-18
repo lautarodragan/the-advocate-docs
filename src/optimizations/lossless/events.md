@@ -54,6 +54,9 @@ needs 38 rows.
   it is what keeps a map over that cap from losing anything.
 - **Not lossless in one case**: a twin on the hero's layer stops the hero,
   but not an event that walks into it.
+- **A map without twins pays nothing**: whether it has any is a byte of the
+  direct page, `twins_here`, set when the map loads, and the hero's step
+  goes straight to `cell_blocked` when it is zero.
 - **Where**: `trim.rs` in `rm2k-snes/convert/`; `twin_in_cell` in
   `runtime/action_key.s` and `hero_blocked_rest` in `runtime/twins_block.s`.
 - **More**: [Events that do not fit in the RAM](../../divergences/events-that-do-not-fit-in-the-ram.md).
@@ -119,6 +122,24 @@ declaration, instead of a chain of comparisons.
 - **Saves**: CPU on every opcode.
 - **Where**: the `EVENT_HANDLERS` macro, from `rm2k-snes/bytecode/src/events.rs`.
 - **More**: [Events](../../internals/events.md).
+
+## Choosing the active pages reads one byte of the pages with nothing to choose
+
+The refresh walks the map's pages once, noting each event's winner, and
+then the events once, instead of every page of each event. And each page
+carries three bits the converter sets for its whole event —some page has
+a route of its own, its graphic follows the page, some page is an
+autorun—: the pages of an event with none of the three are passed over
+reading that byte, and the others are read only as far as their
+conditions. The short pass from inside the command loop looks only at the
+autorun bit.
+
+- **Saves**: CPU on every refresh —reading every page whole, and events
+  times pages, each cost more than a frame—.
+- **Where**: `pick_with_filter`, `read_page_head` and `apply_pages` in
+  `runtime/event_pages.s`; the `+13` bits, from `with_route`,
+  `with_autostart` and `follows`, in `record.rs` of `rm2k-snes/mapdata/`.
+- **More**: the comments of `page_routes` and `pick_with_filter`.
 
 ## The refresh leaves its answers for the frames that follow
 
@@ -243,7 +264,9 @@ highest switch the game names.
   `rm2k-snes/events/src/indices.rs`; `var_read` and `var_write` in
   `runtime/variables.s`; `SWITCH_BYTES` in `runtime/switches.s`.
 - **More**: the doc comment on `variables` in `indices.rs`; the cap on
-  slots is [lossy](../lossy/tables-of-a-fixed-size.md#variables).
+  slots is [lossy](../lossy/tables-of-a-fixed-size.md#variables); and the
+  far RAM tables they live in are [as big as the game
+  asks](the-cartridge.md#the-far-ram-tables-are-as-big-as-the-game-asks).
 
 ## A skill learned is one bit, for the pairs the game can ask about
 

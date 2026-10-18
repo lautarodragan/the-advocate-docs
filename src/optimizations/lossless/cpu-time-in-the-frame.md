@@ -26,6 +26,42 @@ restores them the same way.
   `runtime/character_flash.s`; `pic_palette` in `runtime/picture.s`.
 - **More**: the comments of those routines.
 
+## A character flash divides once per channel
+
+A flash blends each of a channel's 32 values toward its colour, and from
+one value to the next the blend's numerator grows by the same amount, so
+the division is done once, for the first, and the rest carry its
+remainder: an addition per entry instead of two products and a division.
+
+- **Saves**: CPU on every frame of a flash —most of what one cost—.
+- **Where**: `flash_channel_table` in `runtime/character_flash.s`.
+- **More**: the comment at its top.
+
+## An NPC off screen is discarded before its row is built
+
+`build_oam` looks at a row's X before calling anything for it, and the
+rows outside the screen go no further; the Y, with the jump's arc, is
+looked at first thing in `place_npc`. It discards the same objects as
+`emit_object` would, so the OAM comes out the same.
+
+- **Saves**: CPU on every frame —on a map with many events, most rows are
+  off screen—.
+- **Where**: `build_oam` and `place_npc` in `runtime/oam.s`.
+- **More**: the comment in `build_oam`.
+
+## The raindrops go straight to OAM
+
+A drop lives on a 256x256 surface stuck to the map, one byte per axis, so
+each frame's step wraps by itself, and its X on screen never needs a
+ninth bit: its two objects are written to OAM directly, not through the
+general `emit_object`, and its state is read with long addressing, not
+through the WRAM port.
+
+- **Saves**: CPU on every frame it rains —through `emit_object`, a
+  hundred and fifty drops took more than half a screen—.
+- **Where**: `rain_tick` and `rain_oam` in `runtime/rain.s`.
+- **More**: the comments there.
+
 ## A DSP write the register already has is skipped
 
 The music decoder keeps a copy of what it wrote to each DSP register, and
@@ -135,7 +171,7 @@ instead of read through a pointer: `build_oam` reads it with an index at
 several offsets, and that is one instruction per field instead of three.
 
 - **Saves**: CPU on every frame.
-- **Costs**: one DMA per map load, and bank 0's RAM.
+- **Costs**: a copy per map load —a loop, not a DMA—, and bank 0's RAM.
 - **Where**: `npc_buf` in `runtime/low_ram.s`; `load_npcs` in
   `runtime/load_graphics.s`.
 - **More**: the comment on `npc_buf`.
@@ -190,3 +226,28 @@ sends the rest with the screen off.
   `runtime/big_picture_zoom.s`.
 - **More**: the header of `runtime/big_picture_zoom.s`; [The VRAM
   split](../../internals/vram.md#a-big-picture-with-zoom-uses-the-other-half).
+
+## A fade rewrites only the volumes that changed
+
+On each frame of a `FadeOutBGM` the music's voice volumes are scaled
+again, but each is compared with what the previous frame's level gave and
+written only if it differs: a long fade moves each volume once every so
+many frames.
+
+- **Saves**: writes through the SPC700's ports, each with its wait, on
+  every frame of a fade.
+- **Where**: `voices_refresh` and `volume_refresh` in `runtime/music.s`.
+- **More**: the comment on `voices_refresh`.
+
+## In mode 7, the music multiplies by a table of squares
+
+The music scales its volumes with the PPU's multiplier, which in mode 7 is
+the matrix being drawn; while a big picture zooms it multiplies by hand
+instead, as two lookups in a table of quarter squares,
+`m × f = q(m + f) − q(|f − m|)`, because a loop of shifts and adds took
+longer than the music has before the vblank.
+
+- **Saves**: CPU in `irq_music` during a zoom.
+- **Costs**: ROM for the table, in a far bank.
+- **Where**: `mpym` and `quarter_squares` in `runtime/music.s`.
+- **More**: the comment on `mpym`.

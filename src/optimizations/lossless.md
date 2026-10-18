@@ -23,6 +23,11 @@ One page per part of the port:
 * [The tilemap is a window the camera fills at its edges](lossless/the-map.md#the-tilemap-is-a-window-the-camera-fills-at-its-edges)
 * [The ChipSet animation is one DMA, on the tick it changes](lossless/the-map.md#the-chipset-animation-is-one-dma-on-the-tick-it-changes)
 * [A cell's terrain is its block's, and a flat map's is one byte](lossless/the-map.md#a-cells-terrain-is-its-blocks-and-a-flat-maps-is-one-byte)
+* [The panorama's tilemap is a ring the camera fills too](lossless/the-map.md#the-panoramas-tilemap-is-a-ring-the-camera-fills-too)
+* [A grid of at most 256 blocks takes one byte a cell](lossless/the-map.md#a-grid-of-at-most-256-blocks-takes-one-byte-a-cell)
+* [A cell's passability is worked out when the cartridge is built](lossless/the-map.md#a-cells-passability-is-worked-out-when-the-cartridge-is-built)
+* [The load buffer is lent while the map is played](lossless/the-map.md#the-load-buffer-is-lent-while-the-map-is-played)
+* [Coming back from a screen reloads only what it overwrote](lossless/the-map.md#coming-back-from-a-screen-reloads-only-what-it-overwrote)
 
 ## [Characters and sprites](lossless/characters-and-sprites.md)
 
@@ -49,6 +54,7 @@ One page per part of the port:
 * [The refresh runs at three moments](lossless/events.md#the-refresh-runs-at-three-moments)
 * [A refresh only when something changes, and only for what changed](lossless/events.md#a-refresh-only-when-something-changes-and-only-for-what-changed)
 * [One dispatch table for the opcodes](lossless/events.md#one-dispatch-table-for-the-opcodes)
+* [Choosing the active pages reads one byte of the pages with nothing to choose](lossless/events.md#choosing-the-active-pages-reads-one-byte-of-the-pages-with-nothing-to-choose)
 * [The refresh leaves its answers for the frames that follow](lossless/events.md#the-refresh-leaves-its-answers-for-the-frames-that-follow)
 * [`OP_CELL_TEST`: four commands in one opcode](lossless/events.md#op_cell_test-four-commands-in-one-opcode)
 * [A parallel that stops at its cell test runs without its interpreter](lossless/events.md#a-parallel-that-stops-at-its-cell-test-runs-without-its-interpreter)
@@ -87,6 +93,13 @@ One page per part of the port:
 * [Experience only for the actors who can fight, each curve once](lossless/battle.md#experience-only-for-the-actors-who-can-fight-each-curve-once)
 * [The battlers in the grid's half of `$7E`](lossless/battle.md#the-battlers-in-the-grids-half-of-7e)
 * [A dead enemy redraws only its cells](lossless/battle.md#a-dead-enemy-redraws-only-its-cells)
+* [The scene is composed on the console, from each backdrop and battler once](lossless/battle.md#the-scene-is-composed-on-the-console-from-each-backdrop-and-battler-once)
+* [A battler is its mask and four planes](lossless/battle.md#a-battler-is-its-mask-and-four-planes)
+* [The battlers are placed with one loop per shift](lossless/battle.md#the-battlers-are-placed-with-one-loop-per-shift)
+* [The light backdrop is doubled through a table](lossless/battle.md#the-light-backdrop-is-doubled-through-a-table)
+* [The windows: a band per layout, and each bar only where it changes](lossless/battle.md#the-windows-a-band-per-layout-and-each-bar-only-where-it-changes)
+* [The critical hit is looked up](lossless/battle.md#the-critical-hit-is-looked-up)
+* [The battle's tint and flash, composed once per change](lossless/battle.md#the-battles-tint-and-flash-composed-once-per-change)
 
 ## [Audio](lossless/audio.md)
 
@@ -98,11 +111,17 @@ One page per part of the port:
 * [A package's effects lie in the `.msu` in the order they go up](lossless/audio.md#a-packages-effects-lie-in-the-msu-in-the-order-they-go-up)
 * [With MSU-1, the themes with a track upload no samples](lossless/audio.md#with-msu-1-the-themes-with-a-track-upload-no-samples)
 * [Boot is sized for the boot package](lossless/audio.md#boot-is-sized-for-the-boot-package)
+* [A package uploads only what the ARAM lacks](lossless/audio.md#a-package-uploads-only-what-the-aram-lacks)
+* [Samples go up three bytes per handshake](lossless/audio.md#samples-go-up-three-bytes-per-handshake)
+* [A note goes to the voice its channel last held](lossless/audio.md#a-note-goes-to-the-voice-its-channel-last-held)
 
 ## [CPU time in the frame](lossless/cpu-time-in-the-frame.md)
 
 * [The hottest NPC code in bank 1, unrolled](lossless/cpu-time-in-the-frame.md#the-hottest-npc-code-in-bank-1-unrolled)
 * [The tint's tables are copied, not rebuilt](lossless/cpu-time-in-the-frame.md#the-tints-tables-are-copied-not-rebuilt)
+* [A character flash divides once per channel](lossless/cpu-time-in-the-frame.md#a-character-flash-divides-once-per-channel)
+* [An NPC off screen is discarded before its row is built](lossless/cpu-time-in-the-frame.md#an-npc-off-screen-is-discarded-before-its-row-is-built)
+* [The raindrops go straight to OAM](lossless/cpu-time-in-the-frame.md#the-raindrops-go-straight-to-oam)
 * [A DSP write the register already has is skipped](lossless/cpu-time-in-the-frame.md#a-dsp-write-the-register-already-has-is-skipped)
 * [The code runs from the FastROM mirror](lossless/cpu-time-in-the-frame.md#the-code-runs-from-the-fastrom-mirror)
 * [LZ2 decompressed with block moves](lossless/cpu-time-in-the-frame.md#lz2-decompressed-with-block-moves)
@@ -116,6 +135,8 @@ One page per part of the port:
 * [The timer counts seconds](lossless/cpu-time-in-the-frame.md#the-timer-counts-seconds)
 * [The pictures' loops walk only the slots in use](lossless/cpu-time-in-the-frame.md#the-pictures-loops-walk-only-the-slots-in-use)
 * [A zoom's texture goes up while the picture stands still](lossless/cpu-time-in-the-frame.md#a-zooms-texture-goes-up-while-the-picture-stands-still)
+* [A fade rewrites only the volumes that changed](lossless/cpu-time-in-the-frame.md#a-fade-rewrites-only-the-volumes-that-changed)
+* [In mode 7, the music multiplies by a table of squares](lossless/cpu-time-in-the-frame.md#in-mode-7-the-music-multiplies-by-a-table-of-squares)
 
 ## [The cartridge](lossless/the-cartridge.md)
 
@@ -125,3 +146,4 @@ One page per part of the port:
 * [What does not fit, in the `.msu`](lossless/the-cartridge.md#what-does-not-fit-in-the-msu)
 * [A save slot per SRAM bank](lossless/the-cartridge.md#a-save-slot-per-sram-bank)
 * [Only the items the game can give are carried](lossless/the-cartridge.md#only-the-items-the-game-can-give-are-carried)
+* [The far RAM tables are as big as the game asks](lossless/the-cartridge.md#the-far-ram-tables-are-as-big-as-the-game-asks)

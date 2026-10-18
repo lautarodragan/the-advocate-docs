@@ -83,3 +83,97 @@ rows go up, up to 2 KB per vblank, one enemy at a time.
 - **More**: the comment on `scene_tick`. That the enemy goes all at once
   instead of fading as in RM2k is not this entry's: it is a divergence
   the book does not tell yet.
+
+## The scene is composed on the console, from each backdrop and battler once
+
+The cartridge does not carry a picture of each troop's scene: it carries
+each backdrop once and each battler once, and the console composes the
+scene when the battle starts, in far RAM. Two enemies with the same
+battler share its palette and its decompressed bytes.
+
+- **Saves**: ROM —a scene per troop—, and CGRAM and decompression time
+  for repeated enemies.
+- **Where**: `scene_upload` and `scn_battlers_load` in
+  `runtime/battle_scene.s`; `rm2k-snes/convert/src/scene.rs`.
+- **More**: the header of `scene.rs`.
+
+## A battler is its mask and four planes
+
+The scene is 8 bits a pixel, but a battler stores only its mask and the
+four planes of its drawing: its colours are one palette of sixteen, so
+the other four planes are the palette's number, the same on every pixel
+it draws, and the console sets them while placing it.
+
+- **Saves**: ROM —close to half of each battler—.
+- **Where**: `BATTLER_PLANES` in `rm2k-snes/convert/src/scene.rs`;
+  `ED_P45`, `ED_P67` and `SCN_LOOP` in `runtime/battle_scene.s`.
+- **More**: the comments of `scene_set`.
+
+## The battlers are placed with one loop per shift
+
+A battler that does not start on a tile edge is shifted by a fixed number
+of bits, so the placing loop is written eight times, once per shift, with
+its shifts unrolled; a column with nothing of the battler is skipped; and
+the loop runs on a borrowed direct page aligned to 256, which saves a
+cycle on each of its accesses.
+
+- **Saves**: CPU —the frames composing the scene takes, when the battle
+  starts and each time an enemy is erased or appears—.
+- **Costs**: ROM for the eight copies of the loop.
+- **Where**: `SCN_LOOP`, `scn_loops` and `scn_dp_take` in
+  `runtime/battle_scene.s`.
+- **More**: the comments above `SCN_LOOP` and on the borrowed direct page.
+
+## The light backdrop is doubled through a table
+
+A backdrop the ROM carries goes at half size and 4 bits: its four upper
+planes, the same on every pixel, go into every tile by DMA, and its lower
+ones are doubled by the CPU through a table of 256 words that turns each
+byte into the two it becomes. The converter leaves the bytes in the order
+they are read, so the loop only moves forward.
+
+- **Saves**: CPU when a battle starts without the `.msu`.
+- **Where**: `scn_fill` and `scn_double` in `runtime/battle_scene.s`;
+  `fallback_bytes` in `rm2k-snes/convert/src/scene.rs`.
+- **More**: what that backdrop loses is in [Lossy](../lossy/pictures-and-animations.md#light-battle-backdrops-in-the-rom).
+
+## The windows: a band per layout, and each bar only where it changes
+
+The battle's windows are stored as the tilemap rows of each of their
+layouts, and each cursor bar as only the cells where it differs from its
+layout, a piece equal to another stored once. They go up only when the
+layout or a bar changes, and then only the band and the bars' cells.
+
+- **Saves**: ROM, and vblank time.
+- **Where**: `battle_windows` in `rm2k-snes/screens/src/battle.rs`;
+  `ba_win_tick` and `ba_win_upload` in `runtime/battle_scene.s`.
+- **More**: the comment on `battle_windows`.
+
+## The critical hit is looked up
+
+RM2k adds an actor's own critical chance and its weapon's in floating
+point, so the console does not add them: it reads the result from a table
+with a row per distinct own chance and a column per distinct weapon
+bonus. The columns go by bonus, so the better of two weapons is the
+higher column, and each actor's is worked out once, when the battle
+starts.
+
+- **Saves**: CPU and code —no floating point on the console—, and ROM,
+  since the table is only as big as the distinct values.
+- **Where**: `critical_percent` in `rm2k-snes/battle/src/rules.rs`;
+  `crit_table` in `rm2k-snes/mapdata/src/emit.rs`; `ba_crit_of` in
+  `runtime/battle.s`.
+- **More**: the comment on `crit_table` in `emit.rs`.
+
+## The battle's tint and flash, composed once per change
+
+A flash or a tint in battle runs the scene's colours through the tint's
+three channel tables composed with the flash's, so each colour is three
+lookups; the palette is built only on a frame where the tint or the flash
+changed, and only over the colours the backdrop draws —sixteen for the
+light one—.
+
+- **Saves**: CPU on every frame of a flash in battle.
+- **Where**: `ba_tone_tick` and `ba_tone_build` in `runtime/battle_tone.s`.
+- **More**: [The tint is a table per channel](cpu-time-in-the-frame.md#the-tint-is-a-table-per-channel),
+  and the header of `runtime/battle_tone.s`.
