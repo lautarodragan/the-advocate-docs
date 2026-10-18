@@ -13,7 +13,9 @@ same layer as the one above the map, and mode 3 does not have a third.
   objects with priority 2, which in mode 3 go in front. With a background it
   does not show because HDMA hides the objects on the window's lines
   —`mask_*`, in `message_place.s` in the-advocate—; without a background they
-  cannot be hidden, because they have to be seen.
+  cannot be hidden, because they have to be seen. The arrow of a message
+  waiting for a key does go over them, in a map with room for it: see
+  [The arrow, as objects](#the-arrow-as-objects).
 * **The layer above the map is not visible on the lines the window draws
   on.** On those lines BG2 shows the window's tilemap —the plane without a
   frame, with the cells that are not text left blank—, so roofs, treetops
@@ -38,13 +40,57 @@ window takes BG2 only on its own bands:
 * with a **face**, the four lines, which the face covers;
 * and the **bottom row**, eight lines, where the arrow of a message
   waiting for a key goes —RM2k draws it with the window's opacity at zero
-  too—, unless the page cannot show it: a choice, the digits, or a `\^`
-  closing it. The top row, never.
+  too—, **only in a map without room to draw the arrow as objects** —see
+  below— and unless the page cannot show it: a choice, the digits, or a
+  `\^` closing it. The top row, never.
 
-So a message of one line takes 24 lines from the layer above, and one of
-three takes 56. Until 2026-10-18 it was always the 80: in A Blurred Line,
-Core and Manta's talk on the island of their memory took the tops of the
-trees under the window's empty lines.
+So a message of one line takes 16 lines from the layer above, and one of
+three takes 48; in a map without room for the arrow's objects, 24 and 56.
+Until 2026-10-18 it was always the 80: in A Blurred Line, Core and Manta's
+talk on the island of their memory took the tops of the trees under the
+window's empty lines, and later that day the trees just under the window
+got back the top row of tiles the arrow's band still took.
+
+## The arrow, as objects
+
+In a window without its background the arrow is **two 8x8 objects**, and
+the bottom row's eight lines are the map's but for the arrow's own pixels.
+It is where RM2k puts it: over everything but the timer —`Priority_Window`
+is 130 and `Priority_Timer` 140—, so priority 3, in front of both layers,
+and the first objects after the timer's in OAM, which is what puts it over
+the characters too: between two objects the PPU draws the one with the
+lower index. It blinks with the same count as in the cells, twenty frames
+up and twenty off.
+
+It needs, per map, **two tiles past the sprite bank** that the layout's
+sprite tiles still reach, and **a whole sprite palette nobody takes**: the
+top one the pictures leave, above the characters' and the battle
+animation's box. Into them go the window's own arrow tiles and the window's
+colours, so the System is not redrawn nor loses a colour, and the screen's
+tint does not reach it, which is what RM2k does with the window. The
+converter decides it —`arrow_obj` in rm2k-snes-mapdata, a word per map in
+`arrow_objs`— and the console uploads both when the window appears
+—`arrow_obj_choose` in `message_arrow.s`, in the-advocate—.
+
+**A map without that room keeps the arrow in the window's cells**, and the
+bottom row's band with it. The converter's log says which, map by map:
+`the message arrow stays in the window's cells`, with why —the bank
+reaching the layout's sprite tiles, or the eight palettes taken—. In A
+Blurred Line it is the eight palettes almost always: the busy maps, with
+seven palettes of characters and a battle animation's box or a picture.
+The window keeps the cells too while a big picture is up, which has the
+window's tilemap elsewhere and its tiles over the sprite bank.
+
+**What the PPU does not draw**: on a line with more than 32 objects, the
+first 32 in OAM order, so never the arrow; but with more than 34 tiles on
+a line —time over— it fetches tiles from the last of those 32 back to the
+first and drops what does not fit, so the arrow, early in OAM, is the
+first to lose them. Each character crossing the arrow's lines is four
+tiles: up to eight fit with the arrow, and with nine the line was already
+over without it.
+
+A window **with** its background keeps the arrow in its cells: it takes
+BG2 on its eighty lines anyway, and its mask hides the objects on them.
 
 **On a painted map the first one is the other way round.** There the
 painting is BG1 in mode 1, and on the lines the window draws on BG1 and BG2
@@ -94,7 +140,10 @@ picture, where neither difference shows. Where it does show —Core and
 Manta's memory, over the island's trees—, ABL's
 `test_the_layer_above_shows_off_the_text` looks at a message of one line:
 on the window's lines without text the screen is the same as with the
-window closed.
+window closed, and on the bottom row too but for the arrow's sixteen
+columns, where it is up some frames and not others. The arrow as objects
+lands on the same pixels as it did in the cells, measured against the
+cells on 2026-10-18.
 
 ## When it stops being enough
 
