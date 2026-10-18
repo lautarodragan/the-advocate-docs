@@ -159,3 +159,34 @@ divides by 60 every frame.
 - **Where**: `timer_tick` and `timer_digits` in `runtime/timer.s`;
   `timer_sec` and `timer_sub` in `runtime/low_ram.s`.
 - **More**: the comment on `timer_sec`.
+
+## The pictures' loops walk only the slots in use
+
+The loops that walk the picture slots every frame —their ramps, their
+objects, their translucency— stop one past the highest slot shown since
+the map was entered, and a flag says whether some palette waits for the
+vblank, so the upload does not walk the palettes to find none.
+
+- **Saves**: CPU on every frame, on every map, including the ones that
+  show one picture or none.
+- **Where**: `pic_last` and `pic_dirty` in `runtime/picture.s`, set by
+  `pic_show` and `pic_clear` and read by `pic_tick` and `pic_oam` in
+  `runtime/picture_far.s` and `pic_blend` and `pic_flush` in
+  `runtime/picture.s`.
+- **More**: the comment on `pic_last`.
+
+## A zoom's texture goes up while the picture stands still
+
+A big picture that a `MovePicture` zooms is shown still in VRAM's upper
+half, and its mode 7 texture goes up into the lower half a piece per
+vblank meanwhile, so switching to mode 7 when the zoom starts costs no
+frame; once mode 7 is on screen, what the window needs goes back to the
+upper half the same way. Only a zoom that comes before the texture is up
+sends the rest with the screen off.
+
+- **Saves**: frames —the black ones a texture uploaded at once would
+  cost—.
+- **Where**: `big_m7_piece`, `big_m7_vblank` and `big_m7_texture_now` in
+  `runtime/big_picture_zoom.s`.
+- **More**: the header of `runtime/big_picture_zoom.s`; [The VRAM
+  split](../../internals/vram.md#a-big-picture-with-zoom-uses-the-other-half).

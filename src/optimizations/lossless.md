@@ -84,6 +84,7 @@ One page per part of the port:
 * [Each distinct troop page once](lossless/battle.md#each-distinct-troop-page-once)
 * [The battlers and the light backdrops in LZ2](lossless/battle.md#the-battlers-and-the-light-backdrops-in-lz2)
 * [Encounters and experience, precomputed](lossless/battle.md#encounters-and-experience-precomputed)
+* [Experience only for the actors who can fight, each curve once](lossless/battle.md#experience-only-for-the-actors-who-can-fight-each-curve-once)
 * [The battlers in the grid's half of `$7E`](lossless/battle.md#the-battlers-in-the-grids-half-of-7e)
 * [A dead enemy redraws only its cells](lossless/battle.md#a-dead-enemy-redraws-only-its-cells)
 
@@ -113,6 +114,8 @@ One page per part of the port:
 * [The NPC table is copied to RAM when the map loads](lossless/cpu-time-in-the-frame.md#the-npc-table-is-copied-to-ram-when-the-map-loads)
 * [A picture's palette, only when its tone really changed](lossless/cpu-time-in-the-frame.md#a-pictures-palette-only-when-its-tone-really-changed)
 * [The timer counts seconds](lossless/cpu-time-in-the-frame.md#the-timer-counts-seconds)
+* [The pictures' loops walk only the slots in use](lossless/cpu-time-in-the-frame.md#the-pictures-loops-walk-only-the-slots-in-use)
+* [A zoom's texture goes up while the picture stands still](lossless/cpu-time-in-the-frame.md#a-zooms-texture-goes-up-while-the-picture-stands-still)
 
 ## [The cartridge](lossless/the-cartridge.md)
 
