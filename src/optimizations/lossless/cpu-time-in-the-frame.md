@@ -271,3 +271,18 @@ shown; `title_upload` only uploads it.
 
 - **Saves**: frames of black before the title —about nine—.
 - **Where**: the boot in `runtime/boot.s`; `title_upload` in `runtime/title.s`.
+
+## The window's scroll goes by indirect HDMA
+
+While a message is up, BG2's scroll changes by stretch —the camera on the
+map's, the window's own on its—, and a window without a background splits
+into up to six entries. So the channel is indirect: each entry points at
+one of two four-byte blocks, the camera's or the window's, and the vblank
+writes the camera once and not once per stretch; the window's is written
+when it appears.
+
+- **Saves**: CPU in the vblank while a message is up.
+- **Where**: `build_hdma` in `runtime/messages.s`; `run_emit` in
+  `runtime/message_place.s`; `flush_video` in `runtime/vblank.s`.
+- **More**: [The window without a background does not cover the
+  characters](../../divergences/the-window-without-a-background-does-not-cover-the-characters.md).
