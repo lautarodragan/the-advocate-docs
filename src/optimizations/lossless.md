@@ -73,6 +73,13 @@ One page per part of the port:
 * [Encounters and experience, precomputed](lossless/battle.md#encounters-and-experience-precomputed)
 * [The battlers in the grid's half of `$7E`](lossless/battle.md#the-battlers-in-the-grids-half-of-7e)
 * [A dead enemy redraws only its cells](lossless/battle.md#a-dead-enemy-redraws-only-its-cells)
+* [The scene is composed on the console, from each backdrop and battler once](lossless/battle.md#the-scene-is-composed-on-the-console-from-each-backdrop-and-battler-once)
+* [A battler is its mask and four planes](lossless/battle.md#a-battler-is-its-mask-and-four-planes)
+* [The battlers are placed with one loop per shift](lossless/battle.md#the-battlers-are-placed-with-one-loop-per-shift)
+* [The light backdrop is doubled through a table](lossless/battle.md#the-light-backdrop-is-doubled-through-a-table)
+* [The windows: a band per layout, and each bar only where it changes](lossless/battle.md#the-windows-a-band-per-layout-and-each-bar-only-where-it-changes)
+* [The critical hit is looked up](lossless/battle.md#the-critical-hit-is-looked-up)
+* [The battle's tint and flash, composed once per change](lossless/battle.md#the-battles-tint-and-flash-composed-once-per-change)
 
 ## [Audio](lossless/audio.md)
 
