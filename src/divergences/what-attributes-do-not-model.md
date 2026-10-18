@@ -31,6 +31,9 @@ What is not the same:
   Blurred Line* that is Saldra's Trip, which her Bent Staff does not carry
   (Martial), and AG7-17's ArmLaser and TillTheyGlow with the ArmCannon,
   which carries no Ray.
+* **An actor a troop page takes out and brings back comes in with the
+  database's ranks.** In RM2k its shifts stay with it until the battle ends
+  or it falls; here coming back clears them, as for one who gets up.
 * **An effect past 32,767 before the variance is held there**: the console
   multiplies in thirty-two bits and keeps sixteen. No game comes near: the
   damage's cap is 999.
