@@ -199,3 +199,65 @@ division that says where in the cycle it is.
   `runtime/chipset_animation.s`; the run, `layers.rs` in
   `rm2k-snes/wally/src/background/`.
 - **More**: the header of `runtime/chipset_animation.s`.
+
+## A grid of at most 256 blocks takes one byte a cell
+
+A cell of the grid is the number of its block, and a map with at most 256
+distinct blocks stores it in one byte instead of two. Every map that can
+goes narrow, not only those that need it, so every map plays that path.
+
+- **Saves**: WRAM —half the grid on most maps— and with it the maps that
+  fit at all: the 64 KB hold twice the cells.
+- **Where**: `cell_bytes` in `materials.rs` of `rm2k-snes/mapdata/`;
+  `M_GRID_NARROW`, which `enter_map_no_events` in `runtime/enter_map.s`
+  turns into `cell_bytes` and `cell_mask`, read by `cell_ptr` in
+  `runtime/hero.s` and by `build_column`, `build_row` and
+  `cells_to_bytes` in `runtime/map_window.s`.
+- **More**: [Maps](../../internals/maps.md#the-grid-lives-in-wram-and-the-cartridge-carries-it-compressed).
+
+## A cell's passability is worked out when the cartridge is built
+
+RM2k asks, on every step, for the passability of the cell's lower and
+upper tiles and which of the two rules; the converter answers that for
+each cell, with both layers resolved as the hero meets them, and the
+block carries the answer as four bits, one per side. A step reads one
+byte.
+
+- **Saves**: CPU on every step and every passability question, and the
+  ChipSet's passability tables in the cartridge.
+- **Where**: `blocks_of` in `rm2k-snes/wally/src/layers.rs`, with
+  `rm2k_rules::passability::cell`; `pass_of_ptr`, `can_leave` and
+  `can_enter` in `runtime/hero.s`.
+- **More**: the header of `runtime/hero.s`.
+
+## The load buffer is lent while the map is played
+
+The 24 KB where a map load decompresses each tile block before its DMA
+are idle once the map is on screen, so they hold what lives only then:
+the battle animation's frames as they are decompressed, and the bytecode
+of a page that goes on after a teleport. The ChipSet animation's drawings
+live right above it; a battle takes the whole bank, and coming back
+decompresses them again.
+
+- **Saves**: far RAM —none of them has a buffer of its own—.
+- **Costs**: what borrows it is rebuilt after a load, a screen or a
+  battle: `back_to_map` decompresses the carried bytecode again.
+- **Where**: `LZ2_BUFFER`, `CODE_CARRY` and `ANIM_DRAWINGS` in
+  `runtime/far_ram.s`, with the asserts at the end of
+  `runtime/decompress.s`; `code_carry_after` there.
+- **More**: [The WRAM and SRAM map, measured](../../research/2026-10-15-the-wram-and-sram-map.md#what-is-shared-in-time-and-what-is-idle-when).
+
+## Coming back from a screen reloads only what it overwrote
+
+The menu, the shop and the slot screen draw only in tiles and a tilemap
+that fall inside the map's background tile bank in every VRAM layout, so
+closing one uploads that bank and its palettes again, not the whole map:
+the tilemap window, the sprites and the message window stay. A battle
+overwrites far more and comes back by its own, longer way.
+
+- **Saves**: the frames of a full reload on every screen that closes —the
+  64 columns of `fill_window` among them—.
+- **Where**: `back_to_map` and `back_from_battle` in
+  `runtime/enter_map.s`; `SLOT_VRAM` and `SLOT_MAP`, which the converter
+  checks against every layout in `vram.rs` of `rm2k-snes/mapdata/`.
+- **More**: the comments of those two routines.

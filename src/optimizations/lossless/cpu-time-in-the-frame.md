@@ -26,6 +26,29 @@ restores them the same way.
   `runtime/character_flash.s`; `pic_palette` in `runtime/picture.s`.
 - **More**: the comments of those routines.
 
+## A character flash divides once per channel
+
+A flash blends each of a channel's 32 values toward its colour, and from
+one value to the next the blend's numerator grows by the same amount, so
+the division is done once, for the first, and the rest carry its
+remainder: an addition per entry instead of two products and a division.
+
+- **Saves**: CPU on every frame of a flash —most of what one cost—.
+- **Where**: `flash_channel_table` in `runtime/character_flash.s`.
+- **More**: the comment at its top.
+
+## An NPC off screen is discarded before its row is built
+
+`build_oam` looks at a row's X before calling anything for it, and the
+rows outside the screen go no further; the Y, with the jump's arc, is
+looked at first thing in `place_npc`. It discards the same objects as
+`emit_object` would, so the OAM comes out the same.
+
+- **Saves**: CPU on every frame —on a map with many events, most rows are
+  off screen—.
+- **Where**: `build_oam` and `place_npc` in `runtime/oam.s`.
+- **More**: the comment in `build_oam`.
+
 ## A DSP write the register already has is skipped
 
 The music decoder keeps a copy of what it wrote to each DSP register, and
@@ -135,7 +158,7 @@ instead of read through a pointer: `build_oam` reads it with an index at
 several offsets, and that is one instruction per field instead of three.
 
 - **Saves**: CPU on every frame.
-- **Costs**: one DMA per map load, and bank 0's RAM.
+- **Costs**: a copy per map load —a loop, not a DMA—, and bank 0's RAM.
 - **Where**: `npc_buf` in `runtime/low_ram.s`; `load_npcs` in
   `runtime/load_graphics.s`.
 - **More**: the comment on `npc_buf`.

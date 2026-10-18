@@ -120,6 +120,24 @@ declaration, instead of a chain of comparisons.
 - **Where**: the `EVENT_HANDLERS` macro, from `rm2k-snes/bytecode/src/events.rs`.
 - **More**: [Events](../../internals/events.md).
 
+## Choosing the active pages reads one byte of the pages with nothing to choose
+
+The refresh walks the map's pages once, noting each event's winner, and
+then the events once, instead of every page of each event. And each page
+carries three bits the converter sets for its whole event —some page has
+a route of its own, its graphic follows the page, some page is an
+autorun—: the pages of an event with none of the three are passed over
+reading that byte, and the others are read only as far as their
+conditions. The short pass from inside the command loop looks only at the
+autorun bit.
+
+- **Saves**: CPU on every refresh —reading every page whole, and events
+  times pages, each cost more than a frame—.
+- **Where**: `pick_with_filter`, `read_page_head` and `apply_pages` in
+  `runtime/event_pages.s`; the `+13` bits, from `with_route`,
+  `with_autostart` and `follows`, in `record.rs` of `rm2k-snes/mapdata/`.
+- **More**: the comments of `page_routes` and `pick_with_filter`.
+
 ## The refresh leaves its answers for the frames that follow
 
 The refresh is the only moment an event's active page changes, so what

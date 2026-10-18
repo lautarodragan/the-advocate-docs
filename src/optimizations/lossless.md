@@ -22,6 +22,10 @@ One page per part of the port:
 * [The pictures that stay put are drawn into the map](lossless/the-map.md#the-pictures-that-stay-put-are-drawn-into-the-map)
 * [The tilemap is a window the camera fills at its edges](lossless/the-map.md#the-tilemap-is-a-window-the-camera-fills-at-its-edges)
 * [The ChipSet animation is one DMA, on the tick it changes](lossless/the-map.md#the-chipset-animation-is-one-dma-on-the-tick-it-changes)
+* [A grid of at most 256 blocks takes one byte a cell](lossless/the-map.md#a-grid-of-at-most-256-blocks-takes-one-byte-a-cell)
+* [A cell's passability is worked out when the cartridge is built](lossless/the-map.md#a-cells-passability-is-worked-out-when-the-cartridge-is-built)
+* [The load buffer is lent while the map is played](lossless/the-map.md#the-load-buffer-is-lent-while-the-map-is-played)
+* [Coming back from a screen reloads only what it overwrote](lossless/the-map.md#coming-back-from-a-screen-reloads-only-what-it-overwrote)
 
 ## [Characters and sprites](lossless/characters-and-sprites.md)
 
@@ -48,6 +52,7 @@ One page per part of the port:
 * [The refresh runs at three moments](lossless/events.md#the-refresh-runs-at-three-moments)
 * [A refresh only when something changes, and only for what changed](lossless/events.md#a-refresh-only-when-something-changes-and-only-for-what-changed)
 * [One dispatch table for the opcodes](lossless/events.md#one-dispatch-table-for-the-opcodes)
+* [Choosing the active pages reads one byte of the pages with nothing to choose](lossless/events.md#choosing-the-active-pages-reads-one-byte-of-the-pages-with-nothing-to-choose)
 * [The refresh leaves its answers for the frames that follow](lossless/events.md#the-refresh-leaves-its-answers-for-the-frames-that-follow)
 * [`OP_CELL_TEST`: four commands in one opcode](lossless/events.md#op_cell_test-four-commands-in-one-opcode)
 * [A parallel that stops at its cell test runs without its interpreter](lossless/events.md#a-parallel-that-stops-at-its-cell-test-runs-without-its-interpreter)
@@ -89,6 +94,8 @@ One page per part of the port:
 
 * [The hottest NPC code in bank 1, unrolled](lossless/cpu-time-in-the-frame.md#the-hottest-npc-code-in-bank-1-unrolled)
 * [The tint's tables are copied, not rebuilt](lossless/cpu-time-in-the-frame.md#the-tints-tables-are-copied-not-rebuilt)
+* [A character flash divides once per channel](lossless/cpu-time-in-the-frame.md#a-character-flash-divides-once-per-channel)
+* [An NPC off screen is discarded before its row is built](lossless/cpu-time-in-the-frame.md#an-npc-off-screen-is-discarded-before-its-row-is-built)
 * [A DSP write the register already has is skipped](lossless/cpu-time-in-the-frame.md#a-dsp-write-the-register-already-has-is-skipped)
 * [The code runs from the FastROM mirror](lossless/cpu-time-in-the-frame.md#the-code-runs-from-the-fastrom-mirror)
 * [LZ2 decompressed with block moves](lossless/cpu-time-in-the-frame.md#lz2-decompressed-with-block-moves)
@@ -108,3 +115,4 @@ One page per part of the port:
 * [The fast half first](lossless/the-cartridge.md#the-fast-half-first)
 * [What does not fit, in the `.msu`](lossless/the-cartridge.md#what-does-not-fit-in-the-msu)
 * [A save slot per SRAM bank](lossless/the-cartridge.md#a-save-slot-per-sram-bank)
+* [The far RAM tables are as big as the game asks](lossless/the-cartridge.md#the-far-ram-tables-are-as-big-as-the-game-asks)
