@@ -74,6 +74,9 @@ One page per part of the port:
 * [A message is composed a few letters a frame, a line a vblank](lossless/text-and-windows.md#a-message-is-composed-a-few-letters-a-frame-a-line-a-vblank)
 * [A wait in the middle of a box draws its line again](lossless/text-and-windows.md#a-wait-in-the-middle-of-a-box-draws-its-line-again)
 * [The party panel is one block for every row and every actor](lossless/text-and-windows.md#the-party-panel-is-one-block-for-every-row-and-every-actor)
+* [A renamed actor's name is one byte, and the others are baked](lossless/text-and-windows.md#a-renamed-actors-name-is-one-byte-and-the-others-are-baked)
+* [End Game's cursor is a palette](lossless/text-and-windows.md#end-games-cursor-is-a-palette)
+* [The shop's party: its frames when the vblank has room, its grey a palette](lossless/text-and-windows.md#the-shops-party-its-frames-when-the-vblank-has-room-its-grey-a-palette)
 
 ## [Battle](lossless/battle.md)
 

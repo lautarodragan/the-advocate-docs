@@ -159,7 +159,55 @@ level and the maximum go over it, the name composed into tiles of its own
 and the numbers with the bank's glyphs.
 
 - **Saves**: VRAM and ROM —the menu's tile bank does not grow with the
-  number of actors—.
-- **Where**: `menu_party_paint` in `runtime/menu.s`; `tl_strip` in
-  `runtime/text_layer.s`.
+  number of actors—. The slot screen does the same with its leader's name
+  and level.
+- **Where**: `menu_party_paint` in `runtime/menu.s`; `slot_party_paint`
+  and "the text that depends on the actor" in `runtime/slots.s`; `tl_strip`
+  and `tl_slot_name` in `runtime/text_layer.s`.
 - **More**: the comment on `menu_party_paint`.
+
+## A renamed actor's name is one byte, and the others are baked
+
+Every name a `ChangeHeroName` can give is a literal of the game, so the
+converter writes them all as texts, and what changes at run time is one
+byte per actor some `ChangeHeroName` renames: which of its names it
+carries. An actor nobody renames keeps the database's name, which a
+message's `\N[n]` gets baked into its text, letter by letter.
+
+- **Saves**: RAM and SRAM —no name buffer per actor—, and the CPU of
+  writing a name the box can already carry. A game that renames no one
+  carries no byte and no table.
+- **Where**: `actor_name_txt`, `actor_name_row_now`, `change_name` and
+  `msg_name_mark` in `runtime/actor_names.s`; `with_names` and
+  `OP_CHANGE_NAME` in the event compiler.
+- **More**: [What names in messages do not model](../../divergences/what-names-in-messages-do-not-model.md).
+
+## End Game's cursor is a palette
+
+End Game's two windows come drawn whole, and its two pictures —the bar on
+"Yes" and on "No"— share the tiles and the tilemap: each pair of colours a
+pixel takes in the two pictures is a palette entry, so moving the cursor is
+writing the other picture's palette.
+
+- **Saves**: VRAM —no second tilemap and no tiles of a second bar— and the
+  vblank of moving the cursor, sixteen colours.
+- **Where**: `end_game.rs` in `rm2k-snes/screens/src/`; `ending_palette`
+  in `runtime/end_game.s`.
+- **More**: the header of `end_game.rs`; what happens when those pairs do
+  not fit is [lossy](../lossy/tiles.md#a-window-with-a-gradient-is-fused-until-it-fits).
+
+## The shop's party: its frames when the vblank has room, its grey a palette
+
+The shop's party walks as objects. Its OAM is written once, when the shop
+opens; a member that cannot equip the item under the cursor is greyed by
+giving its objects its grey palette, not other tiles; who can equip it is
+worked out only when the item or the layer changes; and a member's next
+frame goes up only if the vblank's line leaves room after the text and the
+windows, or the next frame.
+
+- **Saves**: vblank time, the tightest budget there is, and VRAM.
+- **Costs**: a member can step a frame or two late after a key.
+- **Where**: `ti_party_open`, `ti_party_compute` and `ti_party_vblank`,
+  with its `room` and `TI_PARTY_VBLANK`, in `runtime/shop_party.s`.
+- **More**: the header of `runtime/shop_party.s`; [The shop's party
+  window](../../divergences/the-shops-party-window.md).
