@@ -114,6 +114,24 @@ writes            --dsp_music-->        the SPC700 driver
   music voice, or that of the MSU-1 track, and never the DSP's master
   volume, which is also the effects'. `bgm_fade_tick`, in
   `runtime/music.s`.
+- **A theme starts at a level**: its volume and balance as a gain per side,
+  its tempo as music frames per video frame, and a fade-in, which is the
+  same ramp as `FadeOutBGM`'s going up. The tools write the level in those
+  units —`Level`, in rm2k-snes-bytecode's `level.rs`—, and the same six
+  bytes come from a `PlayBGM` (`OP_BGM`), from a `ChangeSystemBGM` of the
+  battle or the victory (`OP_SYSTEM_BGM`) and from each map's properties
+  (`map_song_level`, which the music's stage emits). A theme that is
+  already playing only changes level, as RM2k's `BgmPlay` does with the
+  same name. With MSU-1 the gain is the track's volume and the tempo is
+  ignored. How to start a song at a level, and what plays, is at the top of
+  `runtime/bgm_level.s`; the level that plays travels in the save.
+- **The battle's and the victory's themes are state**: the database's,
+  until a `ChangeSystemBGM` gives them another, and they travel in the save
+  (`SYS_SONGS`). A theme a `ChangeSystemBGM` names is a separate song of
+  the battle's package, like a troop page's `PlayBGM`: it goes up first
+  with the battle's effects and without the database's themes, which it
+  plays instead of. A song a battle asks for that is not in ARAM rebuilds
+  the battle's package, not the map's (`song_ensure`).
 - **The MSU-1**: every theme plays from a PCM next to the ROM, and the ROM
   silences the SPC700 meanwhile. The number of each track is the theme's
   place in the game's `Music/` —`track_numbers` in `game.rs`—, so it

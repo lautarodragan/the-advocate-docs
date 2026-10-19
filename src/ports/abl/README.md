@@ -25,6 +25,12 @@ in the [divergences](../../divergences/README.md), not here.
   seconds**: each new rain cuts the one still sounding instead of
   overlapping it. With MSU-1 it overlaps as in RM2k. Draft:
   [`abl-rain-cuts-itself-without-msu-1`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-rain-cuts-itself-without-msu-1.md).
+* **Without MSU-1 some drums and instruments sound duller** in every
+  song that uses them: since the story's battles play their own themes,
+  one of those themes, `T_AVGFighter_KyaraSelect`, has to fit next to the
+  battle's sounds, and thirteen samples it shares went down to about
+  9.5 kHz. With MSU-1 it is not heard. Draft:
+  [`a-battle-song-with-many-instruments-squeezes-shared-samples`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-battle-song-with-many-instruments-squeezes-shared-samples.md).
 
 ## The port
 
