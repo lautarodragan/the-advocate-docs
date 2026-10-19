@@ -92,6 +92,16 @@ current: whoever fixes one removes its line in the same change.
   events than the console's 120, and the coins with the highest ids are
   left out. Draft:
   [`zounds-kuak-man-loses-its-coins`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-kuak-man-loses-its-coins.md).
+* **The throwing items that poison, paralyze or burn only hurt**: since
+  2026-10-19 the battle offers the special items —Kazar throws the
+  Piedra—, and Veneno, Paralizador, Pétalo Violeta, Ácido, Ala Eléctrica
+  and Bola de Fuego do their damage and give no condition, which no skill
+  does in battle yet. The battle writes only the item's line, without the
+  damage. See
+  [What items in battle do not model](../../divergences/what-items-in-battle-do-not-model.md).
+  Drafts:
+  [`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md),
+  [`a-skill-in-battle-writes-no-result-line`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-skill-in-battle-writes-no-result-line.md).
 * **Without MSU-1 four `.wav` songs are silent**: the battle and victory
   themes, the mountains' (map 33) and the small caves' (maps 89, 91, 92
   and 177), which the map tree sets; no MIDI of them was found. The title
