@@ -42,9 +42,6 @@ end under Wine (see "Its walkthrough"):
   back to day, the port jumps to the end of the fade and waits its time.
   Draft:
   [`tint-screen-snaps-instead-of-fading`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/tint-screen-snaps-instead-of-fading.md).
-* **A night's rest has no fade or jingle**, in scenes and at the free
-  resting places: the party is healed at once. Draft:
-  [`book-of-three-inns-in-scenes-are-not-staged`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-inns-in-scenes-are-not-staged.md).
 * **The closing pictures are not drawn** (maps 69 and 72): those moments of
   the ending are a plain or black screen for as long as they last. Draft:
   [`book-of-three-the-last-pictures-are-not-drawn`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-the-last-pictures-are-not-drawn.md).
