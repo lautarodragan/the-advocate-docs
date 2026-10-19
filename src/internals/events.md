@@ -146,6 +146,7 @@ of its routine.
 | Events drawn with a chipset tile | `load_npcs` | `drawable_npcs`, in `wally`; the sheet is drawn by `rm2k-render`, as a library of `wally` |
 | The ones that are also opaque and fixed: baked into the map, with no row to draw | `build_oam` skips the hidden row | `baking::bakeable`, in `wally` |
 | The teleport fade, with the map loading inside the black | `start_fade`, `fade_tick` | `fade_ramp`, and the `FADE_*` constants, in `rm2k-snes-mapdata` |
+| The inn's night, RM2k's `Scene_Map::CallInn`: the song fades out with the screen, the System's inn music plays once —or ten seconds— with the world frozen, and the screen comes back with the party healed and the song before it, kept apart from `MemorizeBGM`'s | `inn_phase` and `inn_tick`, in `inn.s`, from `op_inn` and `fade_tick`; `SONG_LAPS`, which `music_frame` counts | `compile_inn` and `inn_staging`, in the compiler, out of the fades, `OP_BGM`, `OP_HEAL` and `OP_INN`'s three phases |
 | The cap on chained teleports | `JUMPS_MAX` and its uses | enforced by `tests/rpgmaker/test_jumps.py` in the ABL port |
 | The screen turns on in vblank and nowhere else | `flush_video` | — |
 | The message window, placed by HDMA where `MessageOptions` asks —top, middle or bottom, with background or without— | `build_hdma`, `msg_place`, `msg_hdma_build`, `msg_start`, `msg_ptr_next`, `msg_letter` (the DTE pairs) | `rm2k-snes-screens`, which builds it with `rm2k-render` as a library, and `Messages` and `OP_MESSAGE_OPTIONS` in the compiler |

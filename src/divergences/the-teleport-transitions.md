@@ -107,6 +107,9 @@ in `runtime/teleport_transition.s` in the-advocate. What else is different:
   stays black when it comes back.
 * **The custom menu does not show the screen again** on the way back; the
   main menu, the save screen and the shop do, as in RM2k.
+* **An inn's night goes down and up with these same fades**, since
+  2026-10-19: RM2k's inn always fades, whatever the transitions say, and
+  so does the port's, with the teleport's ramps.
 
 It is covered by `tests/rpgmaker/test_erase_screen.py` in the ABL
 port: the black that stays with the page running, the teleport that loads

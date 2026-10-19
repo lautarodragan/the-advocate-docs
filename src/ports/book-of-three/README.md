@@ -40,9 +40,6 @@ end under Wine (see "Its walkthrough"):
   back to day, the port jumps to the end of the fade and waits its time.
   Draft:
   [`tint-screen-snaps-instead-of-fading`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/tint-screen-snaps-instead-of-fading.md).
-* **A night's rest has no fade or jingle**, in scenes and at the free
-  resting places: the party is healed at once. Draft:
-  [`book-of-three-inns-in-scenes-are-not-staged`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-inns-in-scenes-are-not-staged.md).
 * **The map's place names are dimmer**: the map item shows the whole land,
   but its place names, white and already blurred in the original, come out
   grey and are harder to read. Draft:
