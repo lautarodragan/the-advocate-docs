@@ -33,6 +33,9 @@ end under Wine (see "Its walkthrough"):
   drawn —with them the map's own tiles would lose their colours—; the
   rest of the characters that walk into a scene are there. Draft:
   [`characters-a-route-dresses-left-out-where-they-cost-the-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/characters-a-route-dresses-left-out-where-they-cost-the-map.md).
+* **In the lava tunnels a black block covers the message window's lower
+  right corner** (map 46), while Taran and Fflewddur talk. Draft:
+  [`book-of-three-a-black-block-over-the-window-in-the-lava-tunnels`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-a-black-block-over-the-window-in-the-lava-tunnels.md).
 * **The story's battles all play the default battle theme**: the original
   sets each scripted fight's own music and victory music. Draft:
   [`book-of-three-story-battles-play-the-default-theme`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-story-battles-play-the-default-theme.md).
