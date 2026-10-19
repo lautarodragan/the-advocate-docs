@@ -22,6 +22,9 @@ as text.
 * **The menu and the other screens keep the intro's System** for the whole
   game: the original switches to `Systemset_Spiel` in its common event
   `Init`, and only the message window follows. See [What `ChangeSystemGraphics` does not model](../../divergences/what-changesystemgraphics-does-not-model.md).
+* **Two apartments keep their first background** where the original
+  changes it: the dream one on map 34 and the one on map 82. Draft:
+  [`a-panorama-with-pictures-drawn-into-it-is-not-swapped`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-panorama-with-pictures-drawn-into-it-is-not-swapped.md).
 
 ## The lights, drawn into the map (2026-10-16)
 

@@ -38,6 +38,9 @@ as text.
   `System`'s white windows. See [What `ChangeSystemGraphics` does not model](../../divergences/what-changesystemgraphics-does-not-model.md).
 * **Coloured words in messages come out in the plain colour.** Task:
   [`message-colours-and-speed`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/message-colours-and-speed.md).
+* **Three painted maps keep their first painting**: the door on 26 and
+  36 stays as it starts, and the grass field on 34 does not change. Draft:
+  [`a-painted-map-keeps-its-first-painting`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-painted-map-keeps-its-first-painting.md).
 
 ## The painted maps, in mode 1 (2026-10-11)
 
