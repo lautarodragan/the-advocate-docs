@@ -4,7 +4,8 @@
 
 `ChangeFaceGraphic` gives the message window a face —48x48 out of a
 FaceSet, on the left or on the right, mirrored or not— and every box from
-then on draws it, until another command changes or clears it. Since
+then on draws it, until another command changes or clears it or the
+event that set it ends. Since
 2026-10-15 the console draws it:
 
 * **Its tiles go in the window's own text cells**, where RM2k draws it:
@@ -48,14 +49,25 @@ What does not come out as in RM2k:
   The RTP's faces have 125 to 150 colours each, and lose their finest
   shades.
 * **The box's width is decided when building, and the face when playing.**
-  RM2k's face is one state the whole game shares, and a page that shows a
-  box without naming a face shows whatever the last page left. The
-  compiler walks each page in order and knows the face after a
-  `ChangeFaceGraphic` in it; before any, it does not. In a game that shows
-  faces at all it lays those boxes out for a face anyway —in Vampires Dawn
-  2,160 of the 2,686 pages with a face command end with one still set, so
-  the leaked face is the likely one—, and a box that in RM2k had the whole
-  line comes out laid out for 168 pixels: more boxes, nothing lost. A page
+  RM2k's face is one state the whole game shares, which the foreground
+  interpreter clears as it starts an event and as it finishes one
+  —`Game_Interpreter::Push` and `OnFinishStackFrame`, easyrpg—, and a
+  battle clears as it starts; so a foreground page —one the player starts
+  by talking or touching, or an autostart— shows none until it names one,
+  and a parallel page, a common event called from another page and a page
+  another page calls show whatever there is. The console does the same
+  since 2026-10-19, `face_forget` in the runtime: until then it kept the
+  face past the page's end, and taro saw Zounds' save point and chests
+  with someone else's face (the task
+  [`zounds-a-message-shows-a-face-it-should-not`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-a-message-shows-a-face-it-should-not.md)). The compiler walks each page in order
+  and knows the face after a `ChangeFaceGraphic` in it; before any, it
+  does not ask what kind of page it is. In a game that shows faces at all
+  it lays those boxes out for a face anyway, and a box that in RM2k had
+  the whole line comes out laid out for 168 pixels with no face beside
+  it: more boxes, nothing lost. The guess was made while the console kept
+  the face past the page's end —in Vampires Dawn 2,160 of the 2,686 pages
+  with a face command end with one still set—; now it is only right for
+  the pages that run inside another, or in parallel. A page
   that cleared the face gets the whole line. The other way round, a face
   set in one arm of a branch and not in the other leaves the compiler with
   the last one it saw: a line laid out for the whole window under a face is
@@ -112,4 +124,5 @@ faces are swept by `indices::faces`, drawn by `faces.rs` in
 `rm2k-snes-screens` and emitted as `message_face_N` and `message_face_ptr`
 by `rm2k-snes-mapdata`. In the runtime everything is in `message_face.s`,
 with hooks in `messages.s`, `vblank.s`, `interpreter_message.s` and the
-reset. The test game's `test_faces.py` shows the five boxes.
+reset, and `face_forget`'s where a foreground page starts and ends and
+where a battle starts. The test game's `test_faces.py` shows the five boxes.
