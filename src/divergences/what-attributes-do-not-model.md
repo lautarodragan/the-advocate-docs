@@ -20,17 +20,14 @@ resistant on an ally and weaker on an enemy, never more than one step
 either way, with a roll against the skill's hit chance per attribute and no
 roll at the bound (`Game_Battler::ShiftAttributeRate`); the damage reads the
 shifted rank. A healing skill from the menu goes through the same, on the
-actor it heals, with no shift. See `rm2k-snes/battle/src/attributes.rs` in
+actor it heals, with no shift. And an actor's skill with a physical
+attribute, unless it has `affect_attr_defence`, is greyed in the battle
+list and the menu unless a weapon it holds carries that attribute
+(`Game_Actor::IsSkillUsable`; `ba_weapons_allow` in `runtime/battle_weapons.s`).
+See `rm2k-snes/battle/src/attributes.rs` in
 the-advocate, the model, and `runtime/battle_attributes.s`, the console.
 What is not the same:
 
-* **A skill with a physical attribute does not ask for the weapon.** In
-  RM2k an actor cannot use one —it is grayed out— unless a weapon it holds
-  carries that attribute (`Game_Actor::IsSkillUsable`), except for those
-  with `affect_attr_defence`; here it is offered as any other. In *A
-  Blurred Line* that is Saldra's Trip, which her Bent Staff does not carry
-  (Martial), and AG7-17's ArmLaser and TillTheyGlow with the ArmCannon,
-  which carries no Ray.
 * **An actor a troop page takes out and brings back comes in with the
   database's ranks.** In RM2k its shifts stay with it until the battle ends
   or it falls; here coming back clears them, as for one who gets up.
@@ -44,9 +41,11 @@ The tables are the converter's (`attributes` in `emit.rs` of
 rm2k-snes/mapdata), outside bank 0, and only for the attributes a carried
 skill or weapon can carry; the scratch is the zero page's. The shifts take
 far RAM, a byte per combatant and attribute, only for the attributes some
-carried skill can shift. The tests are `tests/rpgmaker/test_battle_attributes.py`
-and `tests/rpgmaker/test_battle_attribute_shift.py` of A Blurred Line,
+carried skill can shift. The tests are `tests/rpgmaker/test_battle_attributes.py`,
+`tests/rpgmaker/test_battle_attribute_shift.py` and
+`tests/rpgmaker/test_skills_weapons_drawing.py` of A Blurred Line,
 against the model and against easyrpg's arithmetic. The tasks are
-[`elemental-attributes-are-not-applied-in-battle`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/elemental-attributes-are-not-applied-in-battle.md)
+[`elemental-attributes-are-not-applied-in-battle`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/elemental-attributes-are-not-applied-in-battle.md),
+[`skills-that-shift-an-attribute-rank-do-not-shift-it`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/skills-that-shift-an-attribute-rank-do-not-shift-it.md),
 and
-[`skills-that-shift-an-attribute-rank-do-not-shift-it`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/skills-that-shift-an-attribute-rank-do-not-shift-it.md).
+[`a-skill-with-a-physical-attribute-does-not-ask-for-the-weapon`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-skill-with-a-physical-attribute-does-not-ask-for-the-weapon.md).
