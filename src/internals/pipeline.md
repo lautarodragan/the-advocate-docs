@@ -51,7 +51,7 @@ file after the music. A page that does not compile takes its losses
 back, as it takes its texts back, so what is listed is what reaches the
 cartridge.
 
-Each entry has a `kind`, a stable slug to count by —`bgm-fade-in-dropped`,
+Each entry has a `kind`, a stable slug to count by —`system-bgm-not-changed`,
 `route-repeat-dropped`, `tint-gradient-dropped`…—, a `text` that says what
 is lost, and where, as precisely as whoever lost it knows:
 

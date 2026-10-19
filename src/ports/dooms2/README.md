@@ -16,6 +16,13 @@ as text.
   `degradations.json`—. Since 2026-10-16; until then map 1 was out and the
   game started on map 2 with Will always in the party. Task:
   [`dooms-2-slots-and-menu-dont-fit-in-their-bank`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/dooms-2-slots-and-menu-dont-fit-in-their-bank.md).
+* **Losing after the game changes the Game Over song plays the default
+  one**: one `ChangeSystemBGM` gives it "Everlasting battle with Jack". Draft:
+  [`change-system-bgm-of-the-game-over-is-ignored`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/change-system-bgm-of-the-game-over-is-ignored.md).
+* **Winning a battle with its own theme may stop the picture a moment**,
+  while the victory song, which is another, is uploaded. Not measured.
+  Draft:
+  [`a-victory-song-other-than-a-changed-battle-songs-uploads-at-victory`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-victory-song-other-than-a-changed-battle-songs-uploads-at-victory.md).
 
 ## What it leaves out (2026-10-11)
 
