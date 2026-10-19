@@ -7,10 +7,6 @@ current: whoever fixes one removes its line in the same change. The work
 behind each one is a draft or a task in the tasks repository, named here
 as text.
 
-* **The Dark Wizard and Borto are missing from their scene in Cliff
-  Swamp 3** (map 88): it places them and its lines go on, but they are not
-  drawn —with them the map's menu pictures would not fit—. Draft:
-  [`characters-a-route-dresses-left-out-where-they-cost-the-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/characters-a-route-dresses-left-out-where-they-cost-the-map.md).
 * **In a fight the music starts after a pause, and most of the battle
   screen's sound effects are silent.** Map 1 ("Battle Screen") is in the
   cartridge since 2026-10-15, but its music does not fit in the sound
@@ -36,12 +32,6 @@ as text.
   [What `ChangeMapTileset` does not model](../../divergences/what-changemaptileset-does-not-model.md).
   Draft:
   [`changemaptileset-is-not-done`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/changemaptileset-is-not-done.md).
-
-* **On some maps the B menu still opens without being drawn**: the ones
-  with no room left in their sprites for its pictures, which the
-  converter's log names ("the common events' pictures … aren't drawn
-  here"). Draft:
-  [`frozen-world-the-b-menu-is-blind-on-the-maps-without-room`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/frozen-world-the-b-menu-is-blind-on-the-maps-without-room.md).
 * **A fight's backdrop is the one the battle screen picks, not the
   place's**: the encounters name the backdrop after jumping to the battle
   screen (map 1), and the console keeps the one there is on those; the
@@ -51,8 +41,24 @@ as text.
 
 ## Its own files
 
-Since 2026-10-19 the B menu's three pictures —`MenuEquipPlates`,
-`MenuItemManage`, `MenuPartyStats`— are the port's, in
+**The B menu is a choice, not the original's pictures** (2026-10-19). The
+game builds it of three `ShowPicture`s, one per lit row, and on 22 maps
+their tiles did not fit in the map's sprites: B opened the menu and
+nothing was drawn. The port redoes common event 15, `BringUpMenu`, as
+RM2k's own `ShowChoice` —"Equip Plates / Item Management / Party
+Stats"—, which is the message window and fits on every map; each option
+does what the original's did. It is less pretty than the window the
+original drew, and the same on every map, taro's choice. It lives in
+`frozen-world/patches/manual/commonevents/0015.json` of the-advocate-ports:
+see [A port's own common events, in the
+dump](../../internals/pipeline.md#a-ports-own-common-events-in-the-dump).
+The task:
+[`frozen-world-the-b-menu-is-blind-on-the-maps-without-room`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/frozen-world-the-b-menu-is-blind-on-the-maps-without-room.md);
+a window of our own for menus like this one, measured and left to do:
+[`show-window-a-window-command-of-our-own`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/show-window-a-window-command-of-our-own.md).
+
+Before that, the same day, the B menu's three pictures —`MenuEquipPlates`,
+`MenuItemManage`, `MenuPartyStats`— became the port's, in
 `frozen-world/patches/manual/files/Picture/` of the-advocate-ports: the
 same window and the same text where the original has them, redrawn flat in
 the original's colours with the console's font, at the console's
@@ -61,7 +67,8 @@ original's gradient and anti-aliased text came out of the scaling and the
 sprite palette blurred, and the lit row's text vanished into its bar. Why
 and how: [A port's own files replace the game's, by
 name](../../decisions/a-ports-own-files-replace-the-games-by-name.md), and
-`patches/manual/README.md` in the port.
+`patches/manual/README.md` in the port. Since the menu became a choice
+nothing shows them; they stay in the patches.
 
 ## What it leaves out (2026-10-11)
 

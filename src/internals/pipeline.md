@@ -154,3 +154,20 @@ The directory carries `.rm2k-own-files.json`, what it replaced: a tool that
 receives one already built keeps it, and the converter prints it in
 `converter.log`. `rm2k-snes-project --unpacked game_dir` answers the same
 directory, so a game's tests and Ditto see the port's files too.
+
+## A port's own common events, in the dump
+
+`patches/manual/commonevents/NNNN.json` is a common event of the game,
+redone: the whole record as Ditto dumps it, with its id inside, and it
+replaces the game's of that number —a number the game lacks is refused,
+since nothing would call it—. The common events are not a file of the
+game but a section of the dump, and five stages read them on their own
+—the converter, the event compiler, Wally, the screens and the music—,
+so the converter does what `Environment::unpack` does with the files: it
+asks Ditto for a dump that is the game's with that section replaced
+(`Dump::with_section`, every other file a link to the game's), in
+`build/patches-manual/dump-<hash>/` of the project, named by the game's
+common events and ours, written aside and renamed; and from there on
+`--data` is that dump for every stage it runs. See
+`fork::with_common_events` in rm2k-snes-convert. Frozen World's B menu
+was the first, on 2026-10-19.
