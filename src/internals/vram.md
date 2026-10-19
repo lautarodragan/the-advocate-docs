@@ -174,7 +174,9 @@ once** —the same file under two numbers, a zero that ten digits share—.
 Each object of a picture says its tile and its size in the map's
 `picture_data`: see `picture_tables` in rm2k-snes-mapdata and `pic_draw` in
 `runtime/picture_far.s`, in the-advocate. A map whose pictures do not fit any
-layout is converted again without them.
+layout is converted again without them; since 2026-10-19 the ones it shows
+**over a black screen** go to the big pictures' layer instead —see
+below—.
 
 ## The message arrow goes past the sprite bank
 
@@ -205,6 +207,31 @@ the window's tiles are from $5000 upwards in all of them, and so are
 BG2's but in "panorama", whose base is the panorama's first tile, at
 $4000. What it overwrites is restored, when it is erased, by the same
 load as returning from a battle: see `runtime/big_picture.s`.
+
+Since it is the same on every map, **nothing of it is a map's**, and two
+things follow from that, both since 2026-10-19:
+
+* **A common event without a map shows it.** An automatic or parallel
+  common event is compiled once, without a map, and runs on whatever map
+  its switch is turned on in; without a map it has no sprite bank, so its
+  small pictures are still not shown, but its big ones are: the converter
+  makes their layers after every map's and the event compiler compiles
+  those bodies with them —`common_pictures` in rm2k-snes-events—. The Book
+  of Three's map item is one. **Only a common event whose big pictures
+  are all under one number**: the layer holds one, and each it shows
+  takes the screen off to load, so a body that stacks several —Desert
+  Nightmare's picture menus, redrawn at every key— stays without them, as
+  the converter's log says. And they take what the maps leave of the
+  table, which a byte names: 255, `$FF` being none.
+* **A small picture can go here when it is shown over black.** A map
+  whose pictures do not fit any layout loses them; but if its page tints
+  the screen black —red, green and blue at 0— before showing one, placed
+  by a constant and with the screen, the converter carries it as a big
+  picture: the layer hides the map and its characters, which over black
+  are not seen, and its transparency darkens, which over black is exact.
+  The rule only looks at the tint in the picture's own page. See
+  `over_black` in `pictures.rs` of rm2k-snes-convert. The Book of Three's
+  ending is one: its credits and quotes on maps 69 and 72.
 
 ## A big picture with zoom uses the other half
 

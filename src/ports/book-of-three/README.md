@@ -45,12 +45,10 @@ end under Wine (see "Its walkthrough"):
 * **A night's rest has no fade or jingle**, in scenes and at the free
   resting places: the party is healed at once. Draft:
   [`book-of-three-inns-in-scenes-are-not-staged`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-inns-in-scenes-are-not-staged.md).
-* **The closing pictures are not drawn** (maps 69 and 72): those moments of
-  the ending are a plain or black screen for as long as they last. Draft:
-  [`book-of-three-the-last-pictures-are-not-drawn`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-the-last-pictures-are-not-drawn.md).
-* **Looking at the map shows nothing**: its sound plays and it waits for a
-  key, over the screen as it was. Draft:
-  [`book-of-three-the-map-item-shows-nothing`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-the-map-item-shows-nothing.md).
+* **The map's place names are dimmer**: the map item shows the whole land,
+  but its place names, white and already blurred in the original, come out
+  grey and are harder to read. Draft:
+  [`book-of-three-the-maps-place-names-are-hard-to-read`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-the-maps-place-names-are-hard-to-read.md).
 * **Some places' music plays louder than in the original**: the South
   Mountains and the northern map ask for their song at 70%, the hills and
   the Eagle Mountains at 50%, and the port plays it at full volume. Draft:

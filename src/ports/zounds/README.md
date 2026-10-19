@@ -58,7 +58,8 @@ current: whoever fixes one removes its line in the same change.
 
 * **Most picture-made screens do not show**: the notes and the pick-axe
   screen (common events 21, 27, 29, 40 and 41), which are common events
-  compiled apart from the maps and so without pictures; the menu on map
+  compiled apart from the maps and so without their small pictures —the
+  notebook (29) shows its background alone, over a hidden map—; the menu on map
   136, whose two faces and bar do not fit the sprite tiles; and the skill
   screen on map 190, whose box and list are big pictures that hide the
   small ones over them. The race's score board on map 75 shows all its
