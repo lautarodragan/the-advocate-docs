@@ -176,6 +176,20 @@ Each object of a picture says its tile and its size in the map's
 `runtime/picture_far.s`, in the-advocate. A map whose pictures do not fit any
 layout is converted again without them.
 
+## The message arrow goes past the sprite bank
+
+A window without its background draws the arrow of a message waiting for a
+key as two 8x8 objects —see [The window without a background does not
+cover the characters](../divergences/the-window-without-a-background-does-not-cover-the-characters.md#the-arrow-as-objects)—,
+and their two tiles are **the first two past the sprite bank**, when the
+layout's sprite tiles still reach them. Everything the console writes into
+the bank —the slots, the cache's, the battle animation's box, a picture's
+8x8 objects— is inside its length, so nobody else touches them; they take
+nothing from the bank either, and a map whose bank fills its layout keeps
+the arrow in the window's cells. The console copies the window's own arrow
+tiles there when the window appears: `arrow_obj` in rm2k-snes-mapdata and
+`arrow_obj_load` in `runtime/message_arrow.s`, in the-advocate.
+
 ## A big picture doesn't use the layout
 
 A `ShowPicture` picture that covers the screen goes in BG1, in mode 1, with
