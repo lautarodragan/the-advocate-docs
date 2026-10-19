@@ -21,10 +21,12 @@ as text.
   black ~1 s and ~0.5 s while the sound chip gets each map's sounds again
   (measured in an emulator, 2026-10-17). Draft:
   [`frozen-world-every-turn-re-uploads-the-battle-screens-audio`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/frozen-world-every-turn-re-uploads-the-battle-screens-audio.md).
-* **Map 2 ("Plate Placement") is in, not played**, and some plates may
-  keep the graphic they had where a route changes it: twenty of those
-  changes find the ROM's table full and are ignored. Draft:
-  [`frozen-world-map-2-route-graphic-changes-past-the-table`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/frozen-world-map-2-route-graphic-changes-past-the-table.md).
+* **In a fight, some plates come out in other colours**: picked in the
+  command grid, the Fire plate shows on the battle screen with its flame
+  grey instead of orange (seen in an emulator, 2026-10-19), and the build
+  says twelve more plates are drawn there with another graphic's colours,
+  on the cursor and on the battle's own events. Draft:
+  [`frozen-world-plates-in-the-battle-are-drawn-with-other-colours`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/frozen-world-plates-in-the-battle-are-drawn-with-other-colours.md).
 * **When time stops or starts again, the place does not change**: in the
   bazaar (maps 9 and 149) and in the temple's scenes (47 and 99) the
   original swaps the map's tileset for one with the water and the

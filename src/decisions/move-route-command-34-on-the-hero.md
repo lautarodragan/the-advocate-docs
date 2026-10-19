@@ -27,12 +27,18 @@ the hero's graphic to board it.
   Since 2026-10-11 that holds only for a graphic some event also gets: one
   only the hero shows goes in the leaders' slot with colours of its own —see
   [The graphics only the hero shows go in the leaders' slot](../optimizations/lossless/characters-and-sprites.md#the-graphics-only-the-hero-shows-go-in-the-leaders-slot)—.
-* **It doesn't survive a map change.** The poses live in the map's sprite
-  bank, so the graphic from over there doesn't exist here; the ROM restores
-  it in `pick_hero_graphic`. In RM2k `Game_Player` carries it along. It
-  isn't noticeable: the only page in the game that changes the hero's
-  graphic and then teleports puts it back in the command right after the
-  teleport.
+* **It doesn't survive a `Teleport`**, and neither does RM2k's:
+  `Game_Player::MoveTo`, which every teleport runs, ends with
+  `ResetGraphic`, the leader's CharSet again. The ROM restores it in
+  `pick_hero_graphic`, on a map load and, since 2026-10-19, on a jump to
+  the same map too: until then it kept the route's graphic there, and The
+  Frozen World's plate menu, which moves the hero as a cursor inside map 2,
+  left Lutine drawn as the last plate taken. Across maps it could not be
+  otherwise: the poses live in the map's sprite bank. A page that changes
+  the graphic **after** the jump —The Frozen World's command grid, which
+  jumps to the battle and gives the hero the plate picked— has it numbered
+  in the destination's table since that day: see `landings.rs` in the
+  events compiler of the-advocate.
 * **In the cartridge**, measured on `abl`: the graphic a route changes the
   hero to goes into the map's sprite bank, like any event's. On map 9 that
   is two more —`Future2:7` and `Future1:0`— and with them an event drawn
