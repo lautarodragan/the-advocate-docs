@@ -146,3 +146,26 @@ what it would write again.
 - **Where**: `free_order` in `rm2k-snes/rm2k-snes-audio/src/voices.rs`;
   `ev_note` and `mus_write` in `runtime/music.s`.
 - **More**: the comment on `free_order`.
+
+## A teleport's package goes up in the fade's frozen ticks
+
+Inside a teleport's fade, the map's package is placed when the map loads
+but its samples are not uploaded there: only the song the map turns on
+goes up at once, when `music_start` asks for it, and the rest is uploaded
+block by block in the ticks of the fade that follow, which are frozen and
+idle, stopping each one before the vblank. On the last black tick, what
+the ramp up could not take goes up at once, still in the black; and the
+fade does not end until the package is complete. Nothing can sound in
+between —the world is frozen and the effects of the map left behind were
+silenced—, and the ARAM and the directory end up the same.
+
+- **Saves**: loading time. Measured on 2026-10-18 over 200 of A Blurred
+  Line's door pairs without MSU-1, the uploads were 17 of the 30 frames a
+  load added to the fade; the fade's 43 idle ticks take some 26 KB of
+  them.
+- **Costs**: nothing seen or heard. The song the map turns on still goes
+  up in the load, because it starts there, as in RM2k.
+- **Where**: `upload_placed`, `package_pump`, `pump`, `package_settle` and
+  `song_now` in `runtime/audio_package.s`; `LOAD_DEFER` and `fade_tick` in
+  `runtime/enter_map.s`.
+- **More**: the comments in `upload_placed` and `package_settle`.
