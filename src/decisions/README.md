@@ -47,6 +47,8 @@ redirect table of `book.toml` (see [Contributing](../contributing/README.md)).
 - [The binary emitter ships with a sourcemap](the-binary-emitter-ships-with-a-sourcemap.md)
 - [A long case at zero proves nothing](a-long-case-at-zero-proves-nothing.md)
 - [RAM is placed by the linker](ram-is-placed-by-the-linker.md)
+- [A port's own files replace the game's, by name](a-ports-own-files-replace-the-games-by-name.md)
+- [The manual patches are one folder per kind of asset](the-manual-patches-are-one-folder-per-kind-of-asset.md)
 
 ## Events and the interpreter
 

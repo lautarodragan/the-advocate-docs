@@ -90,7 +90,7 @@ into the ROM. The fingerprint looks at contents, never at dates:
 - the whole `runtime/`, and the binaries that build: `ca65`, `ld65`, the
   converter and the stages it runs, and `rm2k-snes-assemble`;
 - the game's dump, `data/`, whole, and its hand-made patches —with each
-  name, for the files of `patches/manual/files/`, below—, its project
+  name, for the files of `patches/manual/`'s RM2k folders, below—, its project
   file and the files that file names —custom menus, its own font—;
 - **the original game's resources**: every file below `--game-dir` with an
   extension the stages read —`.png`, `.bmp`, `.xyz`, `.mid`, `.wav`—, with
@@ -139,10 +139,15 @@ goes in its patches, not in the game.
 
 ## A port's own files, in front of the game's
 
-`patches/manual/files/`, in the game's project, is RM2k's own tree, and a
-file there replaces the game's with the same folder and name without
-extension, without regard to case —see [A port's own files replace the
-game's, by name](../decisions/a-ports-own-files-replace-the-games-by-name.md)—.
+The RM2k folders of `patches/manual/`, in the game's project
+—`Picture/`, `ChipSet/`…—, hold files that replace the game's with the
+same folder and name without extension, without regard to case —see [A
+port's own files replace the game's, by
+name](../decisions/a-ports-own-files-replace-the-games-by-name.md)—. What
+else lives in `manual/` —the maps, the `NNNN.json` records, the common
+events— is not a file of the game, and is skipped here: see [The manual
+patches are one folder per kind of
+asset](../decisions/the-manual-patches-are-one-folder-per-kind-of-asset.md).
 `Environment::unpack` does it too, right after the `.zip`: it builds the
 game with ours on top in `own-files/` in the project's cache —links to the
 game's files, ours copied—, named by the game's identity and by our files'

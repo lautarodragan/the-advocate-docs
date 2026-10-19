@@ -59,7 +59,7 @@ a window of our own for menus like this one, measured and left to do:
 
 Before that, the same day, the B menu's three pictures —`MenuEquipPlates`,
 `MenuItemManage`, `MenuPartyStats`— became the port's, in
-`frozen-world/patches/manual/files/Picture/` of the-advocate-ports: the
+`frozen-world/patches/manual/Picture/` of the-advocate-ports: the
 same window and the same text where the original has them, redrawn flat in
 the original's colours with the console's font, at the console's
 resolution, and shown unscaled (`[graphics] console_pictures`). The
