@@ -75,3 +75,17 @@ itself, since the console tones a picture by toning its fifteen entries in
 waiting. See `share_palettes` in `rm2k-snes/convert/src/pictures.rs` and
 `pic_palette` in `runtime/picture.s`, in the-advocate. Until that day each
 of the two slots the console had took a palette of its own, 7 and 6.
+
+## The message arrow takes the palette under the pictures'
+
+Since 2026-10-18 a window without its background draws its arrow as two
+objects —see [The window without a background does not cover the
+characters](../divergences/the-window-without-a-background-does-not-cover-the-characters.md#the-arrow-as-objects)—,
+in **the top sprite palette the pictures leave**, if it is above the
+characters' and the battle animation's box: 7 in a map without pictures.
+The console copies the window's colours into it, entries 1 up, when the
+window appears, so the arrow's tiles are the window's own; and nobody tints
+it, because the tint and the flash upload the map's sprite palettes only
+—`M_SPRITE_CGRAM` entries from 128—, the same as RM2k leaves the window out
+of the screen's tone. A map with the eight taken keeps the arrow in the
+window's cells. See `arrow_obj` in rm2k-snes-mapdata.
