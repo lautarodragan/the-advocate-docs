@@ -7,6 +7,10 @@ current: whoever fixes one removes its line in the same change. The work
 behind each one is a draft or a task in the tasks repository, named here
 as text.
 
+* **A door keeps the screen black for one to three and a half seconds**:
+  the original changes map at once. It is the map's sound effects, which
+  come from the `.msu` and go up to the SPC700 inside the black. Draft:
+  [`vampires-dawn-loads-spend-seconds-on-effects-from-the-msu`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vampires-dawn-loads-spend-seconds-on-effects-from-the-msu.md).
 * **A skill that turns a switch on, used from the pause menu, is
   silent**: the original plays its sound effect. Draft:
   [`switch-skills-from-the-menu-play-no-sound`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/switch-skills-from-the-menu-play-no-sound.md).

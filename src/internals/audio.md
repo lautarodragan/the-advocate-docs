@@ -55,7 +55,10 @@ writes            --dsp_music-->        the SPC700 driver
   per map**, and each sample with the budget of its worst package: `Bank`
   and `allocate` in `bank.rs`, and the reason in [a single sample
   bank](../optimizations/lossless/audio/the-sample-bank.md). `package_load`
-  (`runtime/audio_package.s`) uploads it while the music plays; if
+  (`runtime/audio_package.s`) uploads it while the music plays —inside a
+  teleport's fade, all but the song the map turns on goes up in the
+  fade's frozen ticks: [a teleport's package goes up in the fade's frozen
+  ticks](../optimizations/lossless/audio.md#a-teleports-package-goes-up-in-the-fades-frozen-ticks)—; if
   the theme that is playing and the new package don't fit together, the
   theme wins: [the playing theme wins and the effects
   wait](../decisions/the-playing-track-wins-and-the-sound-effects-wait.md).

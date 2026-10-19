@@ -291,3 +291,19 @@ overwrites far more and comes back by its own, longer way.
   `runtime/enter_map.s`; `SLOT_VRAM` and `SLOT_MAP`, which the converter
   checks against every layout in `vram.rs` of `rm2k-snes/mapdata/`.
 - **More**: the comments of those two routines.
+
+## The window and the tint are filled in the fade's black ticks
+
+Inside a teleport's fade, the load leaves for the black ticks after it
+what only the screen needs: clearing the tilemaps, the window's 64
+columns, the panorama's ring and the painted slots, and the tint. Each
+black tick does what fits before the vblank, with the screen in forced
+blanking, which with the brightness at zero is the same black; the tint
+goes to CGRAM in the next vblank, as an event's does. Whatever is left is
+done on the last black tick, so the ramp up shows the whole map as before.
+
+- **Saves**: four to eight frames of every load inside a fade, when the
+  package does not need the black ticks.
+- **Where**: `tail_pump` and `LOAD_DEFER` in `runtime/enter_map.s`;
+  `window_start` and `fill_columns` in `runtime/map_window.s`.
+- **More**: the comment on `tail_pump`.

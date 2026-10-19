@@ -28,6 +28,7 @@ One page per part of the port:
 * [A cell's passability is worked out when the cartridge is built](lossless/the-map.md#a-cells-passability-is-worked-out-when-the-cartridge-is-built)
 * [The load buffer is lent while the map is played](lossless/the-map.md#the-load-buffer-is-lent-while-the-map-is-played)
 * [Coming back from a screen reloads only what it overwrote](lossless/the-map.md#coming-back-from-a-screen-reloads-only-what-it-overwrote)
+* [The window and the tint are filled in the fade's black ticks](lossless/the-map.md#the-window-and-the-tint-are-filled-in-the-fades-black-ticks)
 
 ## [Characters and sprites](lossless/characters-and-sprites.md)
 
@@ -114,6 +115,7 @@ One page per part of the port:
 * [A package uploads only what the ARAM lacks](lossless/audio.md#a-package-uploads-only-what-the-aram-lacks)
 * [Samples go up three bytes per handshake](lossless/audio.md#samples-go-up-three-bytes-per-handshake)
 * [A note goes to the voice its channel last held](lossless/audio.md#a-note-goes-to-the-voice-its-channel-last-held)
+* [A teleport's package goes up in the fade's frozen ticks](lossless/audio.md#a-teleports-package-goes-up-in-the-fades-frozen-ticks)
 
 ## [CPU time in the frame](lossless/cpu-time-in-the-frame.md)
 
