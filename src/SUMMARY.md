@@ -132,6 +132,7 @@
         - [What message escapes do not model](divergences/what-message-escapes-do-not-model.md)
         - [Letters the font does not have](divergences/letters-the-font-does-not-have.md)
         - [What faces do not model](divergences/what-faces-do-not-model.md)
+        - [What the inn's gold window does not model](divergences/what-the-inn-s-gold-window-does-not-model.md)
     - [Battle]()
         - [The way into battle, in mosaic](divergences/the-way-into-battle-in-mosaic.md)
         - [What the battle menu does not model](divergences/what-the-battle-menu-does-not-model.md)

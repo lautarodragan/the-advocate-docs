@@ -192,6 +192,15 @@ the arrow in the window's cells. The console copies the window's own arrow
 tiles there when the window appears: `arrow_obj` in rm2k-snes-mapdata and
 `arrow_obj_load` in `runtime/message_arrow.s`, in the-advocate.
 
+**An inn's gold window goes right after them**, since 2026-10-19: its 44
+8x8 tiles —88x32—, when the layout's sprite tiles reach them too, which
+bit 14 of the map's `arrow_objs` word says. The console uploads them a row
+per line the message composer uploads, the two middle rows with the
+party's gold composed into them; a map without the room opens its inn
+without the window, and the build says so. See [What the inn's gold window
+does not model](../divergences/what-the-inn-s-gold-window-does-not-model.md)
+and `runtime/gold_window.s`, in the-advocate.
+
 ## A big picture doesn't use the layout
 
 A `ShowPicture` picture that covers the screen goes in BG1, in mode 1, with

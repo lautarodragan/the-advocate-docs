@@ -25,11 +25,10 @@ in the [divergences](../../divergences/README.md), not here.
   seconds is missing**: common event `Raining` runs, but its `Rain1` is not
   in the map's sound package. Draft:
   [`parallel-common-events-sound-only-where-the-map-carries-it`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/parallel-common-events-sound-only-where-the-map-carries-it.md).
-* **A paid inn shows no gold window, and "Yes" can be picked without the
-  credits**: the greeting comes alone, and with too little "Yes" does
-  nothing, where the original shows the party's credits and greys "Yes"
-  out. Draft:
-  [`an-inn-has-no-gold-window`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/an-inn-has-no-gold-window.md).
+* **The inn of map 200 shows no gold window**: its greeting comes without
+  the party's credits at the top right, where the other inns and the
+  original show them; "Yes" is still greyed without the price. Draft:
+  [`map-200-has-no-room-for-the-gold-window`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/map-200-has-no-room-for-the-gold-window.md).
 * **Without MSU-1 the opening rain dips almost to silence every four
   seconds**: each new rain cuts the one still sounding instead of
   overlapping it. With MSU-1 it overlaps as in RM2k. Draft:
