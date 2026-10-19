@@ -43,6 +43,12 @@ as text.
   converter's log names ("the common events' pictures … aren't drawn
   here"). Draft:
   [`frozen-world-the-b-menu-is-blind-on-the-maps-without-room`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/frozen-world-the-b-menu-is-blind-on-the-maps-without-room.md).
+* **A fight's backdrop is the one the battle screen picks, not the
+  place's**: the encounters name the backdrop after jumping to the battle
+  screen (map 1), and the console keeps the one there is on those; the
+  battle screen's own switches pick among its 17, and the caves'
+  `CavePanTest` is not among them (read in the build, not played). Draft:
+  [`a-changepbg-after-a-teleport-keeps-the-picture`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-changepbg-after-a-teleport-keeps-the-picture.md).
 
 ## What it leaves out (2026-10-11)
 

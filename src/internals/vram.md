@@ -260,6 +260,40 @@ In both, the panorama tiles that fall after BG1's come back with
 `load_above` —`pano_load`— just as BG1 does with `load_map`, so the screens
 can overwrite them. The details, in `LAYOUT_PANORAMA_MODE*` in `vram.rs`.
 
+### A `ChangePBG` to another picture swaps it in the same tiles
+
+Since 2026-10-19, the pictures a map's own pages name with `ChangePBG`
+travel with it, if its panorama goes on a layer of its own —mode 3,
+flattened or mode 1—: each one converted for the same layout and **in the
+same VRAM tiles**, so the layout is the first that holds the biggest of
+them. In mode 3 they also share **the same colour-memory entries**: each
+goes in as many palettes as it needs, all of them from the first of the
+most any takes, and the background stops before that. A map that has no
+panorama of its own and names some —Zounds' `DownLoad Room`— gets the layer
+too, and starts with none, as RM2k shows it.
+
+The cartridge carries one `pano_table` record per picture, one after the
+other, each with its tiles, its tilemap and its colours —see `panorama.rs`
+in rm2k-snes-mapdata—, and `OP_PANORAMA` carries which one. `pano_image`
+uploads it with the screen off for the rest of the frame —its tiles, its
+colours, the backdrop in mode 1 and the whole ring of its tilemap—, and the
+tint goes over its colours with the map's. What the screen stays black for
+is mostly the ring —its 32 rows built one cell at a time, as a load builds
+them—, not the tiles' DMA; on the maps that swap today it happens behind
+the fade of entering them, where the screen is black anyway.
+
+What does not fit leaves the map as before: if with all its pictures the
+background does not fit the layout, the map goes with its own alone, and a
+picture that does not convert is left out. The `ChangePBG`s to those keep
+the picture there is, as `panorama-not-changed` in the degradations, and
+the converter log says why, map by map. A map whose panorama is never seen
+—the layer behind the hero covers it everywhere— loses nothing by that, and
+its `ChangePBG`s are not listed. Three more keep the picture there is: a
+painted map, which keeps its first —see below—; a map whose pictures are
+drawn into its own panorama, which a swap would take away; and a
+`ChangePBG` after a `Teleport` to another map in its page, which is that
+map's panorama and is not counted among this one's.
+
 ## A painted map keeps only what the screen shows
 
 Since 2026-10-11, a map whose panorama *is* the map —fixed to it, with

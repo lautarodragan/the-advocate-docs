@@ -29,6 +29,9 @@ mode 1 at 4 bits and the panorama on a third layer. And a map whose
 panorama *is* the map —a painting, as in Sunset Over Imdahl— can go in mode
 1 with the painting in BG1, a tile per cell, uploaded as the camera moves:
 see [the VRAM split](vram.md#a-painted-map-keeps-only-what-the-screen-shows).
+On a layer of its own, the other pictures the map's `ChangePBG`s name go
+with it, in the same tiles: see [the VRAM
+split](vram.md#a-changepbg-to-another-picture-swaps-it-in-the-same-tiles).
 
 The choice is `Way` in `rm2k-snes/wally/src/background/panorama.rs`, and
 the runtime side is `runtime/pano.s`, both in the-advocate; what was
