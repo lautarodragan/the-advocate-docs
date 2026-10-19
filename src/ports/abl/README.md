@@ -17,6 +17,10 @@ in the [divergences](../../divergences/README.md), not here.
   original takes you to Radin's and Sern's menus. Emily's Change Tape
   asks which tape, as in the original; Radin's Field/Battery Repair runs
   its common event, which was not played through. Draft: [`radin-s-and-sern-s-menus-do-not-compile`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/radin-s-and-sern-s-menus-do-not-compile.md).
+* **Forem is missing from a scene at the factory** (map 83): the scene
+  places Forem and its lines go on, but Forem is not drawn —drawn, the
+  pump's tile would lose its colours—. Draft:
+  [`characters-a-route-dresses-left-out-where-they-cost-the-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/characters-a-route-dresses-left-out-where-they-cost-the-map.md).
 * **In the Lashe City rain the rain sound that repeats every three
   seconds is missing**: common event `Raining` runs, but its `Rain1` is not
   in the map's sound package. Draft:
@@ -30,6 +34,12 @@ in the [divergences](../../divergences/README.md), not here.
   seconds**: each new rain cuts the one still sounding instead of
   overlapping it. With MSU-1 it overlaps as in RM2k. Draft:
   [`abl-rain-cuts-itself-without-msu-1`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-rain-cuts-itself-without-msu-1.md).
+* **Without MSU-1 some drums and instruments sound duller** in every
+  song that uses them: since the story's battles play their own themes,
+  one of those themes, `T_AVGFighter_KyaraSelect`, has to fit next to the
+  battle's sounds, and thirteen samples it shares went down to about
+  9.5 kHz. With MSU-1 it is not heard. Draft:
+  [`a-battle-song-with-many-instruments-squeezes-shared-samples`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-battle-song-with-many-instruments-squeezes-shared-samples.md).
 
 ## The port
 

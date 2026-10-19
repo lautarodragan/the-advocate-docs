@@ -28,32 +28,22 @@ end under Wine (see "Its walkthrough"):
   converter leaves out one the scene only shows and takes away; the one
   that stays to be fought is there, and the battle plays to its end. See
   [A battle holds eight enemies](../../divergences/a-battle-holds-eight-enemies.md).
-* **Characters that walk into a scene are missing**: whoever a scene places
-  and dresses with a move route, on an event with no graphic of its own,
-  is never drawn, though their lines and moves go on. It shows around
-  Gurgi (map 21), at the river (22), before the ambush (26), in the cell
-  (32), at the way out of the Tylwyth Teg (83) and on about ten more maps.
-  Draft:
-  [`characters-a-route-gives-a-graphic-are-not-drawn`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/characters-a-route-gives-a-graphic-are-not-drawn.md).
-* **The story's battles all play the default battle theme**: the original
-  sets each scripted fight's own music and victory music. Draft:
-  [`book-of-three-story-battles-play-the-default-theme`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-story-battles-play-the-default-theme.md).
+* **Eilonwy and Gurgi are missing from the rescue in the lava tunnels**
+  (map 46): the scene places them and its lines go on, but they are not
+  drawn —with them the map's own tiles would lose their colours—; the
+  rest of the characters that walk into a scene are there. Draft:
+  [`characters-a-route-dresses-left-out-where-they-cost-the-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/characters-a-route-dresses-left-out-where-they-cost-the-map.md).
+* **In the lava tunnels a black block covers the message window's lower
+  right corner** (map 46), while Taran and Fflewddur talk. Draft:
+  [`book-of-three-a-black-block-over-the-window-in-the-lava-tunnels`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-a-black-block-over-the-window-in-the-lava-tunnels.md).
 * **Fades are cuts**: where a scene fades the screen to black, to night or
   back to day, the port jumps to the end of the fade and waits its time.
   Draft:
   [`tint-screen-snaps-instead-of-fading`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/tint-screen-snaps-instead-of-fading.md).
-* **The closing pictures are not drawn** (maps 69 and 72): those moments of
-  the ending are a plain or black screen for as long as they last. Draft:
-  [`book-of-three-the-last-pictures-are-not-drawn`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-the-last-pictures-are-not-drawn.md).
-* **Looking at the map shows nothing**: its sound plays and it waits for a
-  key, over the screen as it was. Draft:
-  [`book-of-three-the-map-item-shows-nothing`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-the-map-item-shows-nothing.md).
-* **Some places' music plays louder than in the original**: the South
-  Mountains and the northern map ask for their song at 70%, the hills and
-  the Eagle Mountains at 50%, and the port plays it at full volume. Draft:
-  [`a-maps-own-music-ignores-its-volume-and-tempo`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-maps-own-music-ignores-its-volume-and-tempo.md).
-* **One song starts at full volume** instead of fading in (map 21). Draft:
-  [`playbgm-fade-in-is-dropped`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/playbgm-fade-in-is-dropped.md).
+* **The map's place names are dimmer**: the map item shows the whole land,
+  but its place names, white and already blurred in the original, come out
+  grey and are harder to read. Draft:
+  [`book-of-three-the-maps-place-names-are-hard-to-read`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-the-maps-place-names-are-hard-to-read.md).
 
 ## Its walkthrough
 
