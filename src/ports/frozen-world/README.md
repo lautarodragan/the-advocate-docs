@@ -7,6 +7,10 @@ current: whoever fixes one removes its line in the same change. The work
 behind each one is a draft or a task in the tasks repository, named here
 as text.
 
+* **The Dark Wizard and Borto are missing from their scene in Cliff
+  Swamp 3** (map 88): it places them and its lines go on, but they are not
+  drawn —with them the map's menu pictures would not fit—. Draft:
+  [`characters-a-route-dresses-left-out-where-they-cost-the-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/characters-a-route-dresses-left-out-where-they-cost-the-map.md).
 * **In a fight the music starts after a pause, and most of the battle
   screen's sound effects are silent.** Map 1 ("Battle Screen") is in the
   cartridge since 2026-10-15, but its music does not fit in the sound

@@ -140,7 +140,7 @@ of its routine.
 | Diagonals, and which way they leave the character facing: an event's and, since 2026-10-14, the hero's | `cell_allowed_diag`, `face_diagonal`, `try_diagonal` | — |
 | The relative turns (16 to 20) and moving forward (11), from where the character faces | `turn_relative`, `facing_now`, `forward` and `relative` in `step_route` | — |
 | On the hero, what looks at the hero looks at himself: toward is down and away is up | — | `route::on_hero`, in the compiler |
-| Changing the graphic in the middle of a route (order 34) | `load_route_graphics`, `refresh_npc` | `Graphics`, in the compiler |
+| Changing the graphic in the middle of a route (order 34); an event no page draws gets a hidden row if a route dresses it —unless that costs the map something of its own—, a new page hides it again and coming back from a battle does not | `load_route_graphics`, `change_graphic`, `page_graphic`, `applied_again` | `Graphics` and the scan's `route_graphics`, in the compiler; `dressed_by_routes` and `loses_more`, in `wally` |
 | Collision with events | `cell_blocked`, `event_crossable` | — |
 | The graphic follows the page, and the tile rules over the terrain | `page_graphic`, `pass_with_event`, `fit_npc` | `drawable_npcs`, in `wally` |
 | Events drawn with a chipset tile | `load_npcs` | `drawable_npcs`, in `wally`; the sheet is drawn by `rm2k-render`, as a library of `wally` |
