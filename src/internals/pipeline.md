@@ -89,7 +89,8 @@ into the ROM. The fingerprint looks at contents, never at dates:
 
 - the whole `runtime/`, and the binaries that build: `ca65`, `ld65`, the
   converter and the stages it runs, and `rm2k-snes-assemble`;
-- the game's dump, `data/`, whole, and its hand-made patches, its project
+- the game's dump, `data/`, whole, and its hand-made patches —with each
+  name, for the files of `patches/manual/files/`, below—, its project
   file and the files that file names —custom menus, its own font—;
 - **the original game's resources**: every file below `--game-dir` with an
   extension the stages read —`.png`, `.bmp`, `.xyz`, `.mid`, `.wav`—, with
@@ -135,3 +136,21 @@ Whoever reads the game and is not a tool of the suite —Ditto in a game's
 
 A `.zip` is what keeps the original game untouched: what the port changes
 goes in its patches, not in the game.
+
+## A port's own files, in front of the game's
+
+`patches/manual/files/`, in the game's project, is RM2k's own tree, and a
+file there replaces the game's with the same folder and name without
+extension, without regard to case —see [A port's own files replace the
+game's, by name](../decisions/a-ports-own-files-replace-the-games-by-name.md)—.
+`Environment::unpack` does it too, right after the `.zip`: it builds the
+game with ours on top in `own-files/` in the project's cache —links to the
+game's files, ours copied—, named by the game's identity and by our files'
+names and contents, and from there on `--game-dir` is that directory, also
+for the tools it runs. A copy is never half of two versions: it is written
+aside and renamed, like the `.zip`'s.
+
+The directory carries `.rm2k-own-files.json`, what it replaced: a tool that
+receives one already built keeps it, and the converter prints it in
+`converter.log`. `rm2k-snes-project --unpacked game_dir` answers the same
+directory, so a game's tests and Ditto see the port's files too.

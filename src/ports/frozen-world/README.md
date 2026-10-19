@@ -37,11 +37,6 @@ as text.
   Draft:
   [`changemaptileset-is-not-done`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/changemaptileset-is-not-done.md).
 
-* **The B menu's lit option is a pale bar without its text**: the three
-  pictures of the menu share fifteen colours, and the white letters on the
-  white-to-blue bar come out the bar's colour. You still see which option
-  is lit. Draft:
-  [`frozen-world-the-menu-s-lit-option-loses-its-text`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/frozen-world-the-menu-s-lit-option-loses-its-text.md).
 * **On some maps the B menu still opens without being drawn**: the ones
   with no room left in their sprites for its pictures, which the
   converter's log names ("the common events' pictures … aren't drawn
@@ -53,6 +48,20 @@ as text.
   battle screen's own switches pick among its 17, and the caves'
   `CavePanTest` is not among them (read in the build, not played). Draft:
   [`a-changepbg-after-a-teleport-keeps-the-picture`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-changepbg-after-a-teleport-keeps-the-picture.md).
+
+## Its own files
+
+Since 2026-10-19 the B menu's three pictures —`MenuEquipPlates`,
+`MenuItemManage`, `MenuPartyStats`— are the port's, in
+`frozen-world/patches/manual/files/Picture/` of the-advocate-ports: the
+same window and the same text where the original has them, redrawn flat in
+the original's colours with the console's font, at the console's
+resolution, and shown unscaled (`[graphics] console_pictures`). The
+original's gradient and anti-aliased text came out of the scaling and the
+sprite palette blurred, and the lit row's text vanished into its bar. Why
+and how: [A port's own files replace the game's, by
+name](../../decisions/a-ports-own-files-replace-the-games-by-name.md), and
+`patches/manual/README.md` in the port.
 
 ## What it leaves out (2026-10-11)
 

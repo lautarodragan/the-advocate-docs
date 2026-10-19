@@ -43,7 +43,10 @@ not do everything they do in RM2k:
   from before. In RM2k the window covers the pictures.
 * **The ones tied to the screen are scaled to 256x224, the map's are not**:
   on the console the map is not shrunk, so a picture attached to it keeps
-  its pixels and only its zoom is applied.
+  its pixels and only its zoom is applied. Nor are a port's own pictures
+  drawn for the console, which its project names in `[graphics]
+  console_pictures`: see [A port's own files replace the game's, by
+  name](../decisions/a-ports-own-files-replace-the-games-by-name.md).
 * **The screen shake** moves the map's pictures —`screen_x` is subtracted
   from them, as from the characters— but not the screen's.
 * **A page that goes on after a `Teleport`** and shows a picture uses the
