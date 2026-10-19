@@ -89,3 +89,9 @@ it, because the tint and the flash upload the map's sprite palettes only
 —`M_SPRITE_CGRAM` entries from 128—, the same as RM2k leaves the window out
 of the screen's tone. A map with the eight taken keeps the arrow in the
 window's cells. See `arrow_obj` in rm2k-snes-mapdata.
+
+An inn's gold window goes in the same palette, since 2026-10-19, and fills
+its fifteen entries: the window's own from entry 1, as the arrow's, and
+after them the colours the window does not have —the gold term's, in text
+colour 1—, the most used first; one that does not fit is drawn with the
+nearest. See `gold` in rm2k-snes-screens' `message_window.rs`.
