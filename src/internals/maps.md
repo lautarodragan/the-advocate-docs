@@ -82,3 +82,50 @@ exception: a map whose code does not fit keeps it in the cartridge (see
 What is left in VRAM and WRAM after loading is compared by
 `tests/rpgmaker/test_decompressed_load.py` in the ABL port against what
 the converter leaves uncompressed in ABL's `build/<cartridge>/crudos/`.
+
+#### A map that loops
+
+A map with RM2k's `scroll_type` loops on that axis —a torus: the hero,
+the events and the camera go across its edge to the other side—, and since
+2026-10-19 the console does it too, in `runtime/wrap.s` of the-advocate.
+What RM2k does and which maps of the ports use it:
+[Maps that wrap around](../research/2026-10-19-maps-that-wrap.md).
+
+**The record says which axes** in the fourth byte of its last pointer, the
+ChipSet animation's (`M_WRAP`: bit 0 across, bit 1 down), as the grid's
+says whether it is narrow; the converter decides it (`wrap_axes` in
+`emit.rs` of rm2k-snes-convert). An axis does not loop on a map narrower
+than 20 cells across or 15 down, nor on a painted map —none of the ports'
+is either—, and such a map says `map-does-not-wrap` in
+`degradations.json`.
+
+**The camera becomes a continuous view.** The window keeps cell (x, y) in
+slot (x mod 64, y mod 32), and a map's width is not a multiple of 64, so a
+camera that jumped by a lap at the seam would move every slot with it. On a
+looping axis `camera_x` —what the window and the scroll registers follow—
+moves by the change of the camera on the map, the short way round, and is
+kept between 2048 and 10240 by jumps of 4096, a multiple of the window,
+with `win_col` moved the same. Whatever subtracts the camera from a
+position —the characters in OAM, the battle animation over one, the
+message that dodges the hero, the walkers' "in sight"— folds the result
+into one lap of the map around the screen. That is also why a looping axis
+needs 20 cells by 15: a lap wider than the screen by a character on each
+side never shows one on both sides, so RM2k's clones are not needed.
+
+**The strips read the map modulo its size**: on a looping map
+`build_column` and `build_row` are `wrap.s`'s, which compute the map's
+column of a window column from the view and point into the grid again at
+the seam. The pointer that moves with the hero is computed again when his
+step crosses a seam —his straight step across goes through `cell_allowed`,
+as his diagonal does—, and so is the one a step checks for an event.
+
+**All of it is assembled only into a cartridge with a map that loops**, in
+`FAR3`, called with `jsl` from hooks in bank 0, and a cartridge without one
+—A Blurred Line's, The Book of Three's— comes out byte for byte as before.
+The hooks that do the whole of a routine return from it without a branch
+of their own (`RTS0` in `wrap.s`), which is what bank 0 can afford.
+
+What it does not do, because no map of the ports needs it: clones of a
+character on both sides of a seam, the panorama's rule on a looping axis, a
+jump across a seam, the action key and an event's bump on the hero across a
+seam, and the order of the characters across a horizontal seam.
