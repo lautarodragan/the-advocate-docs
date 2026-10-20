@@ -54,6 +54,25 @@ line is what commercial games wrote to CGRAM in the horizontal blank; what
 the console can take was measured in section 2 of [The windows, made
 cheaper](../research/2026-10-11-the-windows-made-cheaper.md).
 
+## A box's colour takes the window's last entry
+
+Since 2026-10-20, in a game whose message boxes type a colour other than
+0 —`\c[n]`—, the window's last entry is **the box's ink**: the first such
+colour a box types writes its one shade there in the next vblank —the mean
+of the System's colour block, row by row, weighted by how many of the
+font's pixels each row has— and its letters are recoloured to it as they
+are composed. The window gives up one of its own colours for it, so the
+entries it takes, and with them every map's background, stay where they
+were: the converter asks the screens for the window with `--text-ink`,
+and Adeleine merges whichever of the window's colours costs least. The
+ink is not in `cgram_shadow`, so the tint leaves it alone, as it does the
+rest of the window; a map's load or a `ChangeSystemGraphics` writes the
+window's palette again and zeroes it, and the next coloured box writes it
+back. What it does not model is in [What message escapes do not
+model](../divergences/what-message-escapes-do-not-model.md#the-colour).
+See `inks` in rm2k-snes-screens' `message_window.rs` and `colour` in
+`runtime/message_pace.s`, in the-advocate.
+
 ## The small pictures take sprite palettes from the top
 
 A `ShowPicture` picture that goes in sprites draws with a whole sprite

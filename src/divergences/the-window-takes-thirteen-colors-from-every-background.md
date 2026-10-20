@@ -26,6 +26,12 @@ and the colours the background brought go with it. *A Blurred Line* gives
 `ablskin` its black, and loses the near-black of the stroke along two edges
 of the System's background: one entry less, and every map gets it back.
 
+Since 2026-10-20 a game whose message boxes type a colour —`\c[n]`— keeps
+the window's last entry for the box's ink, and the window gives up one of
+its own colours for it rather than take one more from the maps: see [A
+box's colour takes the window's last
+entry](../internals/cgram.md#a-boxs-colour-takes-the-windows-last-entry).
+
 ## Why
 
 The window is BG2 at 4 bits and the arrow and the bar go in its tiles, so
