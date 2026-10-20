@@ -4,7 +4,7 @@
 
 **A game can replace what fills its windows under the frame with a colour
 or a vertical gradient of its own, one per System**, in its
-`rm2k-snes.toml`. Since 2026-10-12, taro's:
+`advocate.toml`. Since 2026-10-12, taro's:
 
 ```toml
 [windows.background]

@@ -4,7 +4,7 @@ RPG Maker 2000 games —and one of 2003— taken to the Super Nintendo with the
 tools. They live in the the-advocate-ports repository, **one directory per
 game, and each one is a whole project**:
 
-- **`rm2k-snes.toml`**: what the game decides —its name and title, which
+- **`advocate.toml`**: what the game decides —its name and title, which
   maps go in which cartridge, the starting map, the knobs (see [What a game
   can choose](../optimizations/lossy.md#what-a-game-can-choose))—. The tools find the
   project by looking for this file upwards from where they run, the way
@@ -53,7 +53,7 @@ MSU-1 and without tests**, with the minimal recipes: `datos` and
 for byte), `cartuchos`, `espacio` and `culpables` (which commands keep
 which pages out). Each has `cases/`, with the empty case for page 0, and
 the values the survey had to choose say "relevamiento" (survey) in their
-comment in `rm2k-snes.toml`. What the survey sidestepped to get to a
+comment in `advocate.toml`. What the survey sidestepped to get to a
 cartridge —a reduced System graphic, BMPs turned into PNGs, maps
 excluded, no title screen— is in the study, with the cause of each. Until
 2026-10-10 each one was a repository of its own; that day they joined

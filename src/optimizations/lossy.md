@@ -19,7 +19,7 @@ game that doesn't build can only be guessed about.
 ## What a game can choose
 
 Some of those choices belong to the game, not the tools, and are knobs in
-its `rm2k-snes.toml`:
+its `advocate.toml`:
 
 - **Another System graphic**, when the game's own is not the one the port
   should show, or costs what the cartridge doesn't have: one from the

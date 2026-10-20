@@ -28,7 +28,7 @@ RPG Maker 2000 project
 4. **ca65 and ld65**, from the cc65 project, assemble the runtime together
    with those files and pack everything into banks.
 
-Each game is a directory with an `rm2k-snes.toml`, which the tools look for
+Each game is a directory with an `advocate.toml`, which the tools look for
 from where they run upwards, the way cargo finds its `Cargo.toml`. Where
 the original game, the RTP and the SoundFont live is passed to them as
 flags.

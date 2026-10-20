@@ -31,7 +31,7 @@ the port's project is `zounds/` in the-advocate-ports, built on 2026-10-15,
   And the 2000 battle writes a line for each hit —`Kazar ataca.` over
   `Pez Shark 7 HP perdidos.`—, which the 2003 one never did, so the game's
   database holds the editor's Japanese in those terms: the port's own
-  Spanish ones are in `[battle.terms]` of its `rm2k-snes.toml`, since
+  Spanish ones are in `[battle.terms]` of its `advocate.toml`, since
   2026-10-19. See
   [A 2003 game's battle writes the 2000 lines](../../divergences/a-2003-game-s-battle-writes-the-2000-lines.md).
   Task:
@@ -104,7 +104,7 @@ does not have him yet take him out.
 **The man in the room levels Uname and Kazar up**, one level or five at
 a time, as many times as wanted.
 
-`[debug] debug_map = false` in `rm2k-snes.toml` takes the room out for a
+`[debug] debug_map = false` in `advocate.toml` takes the room out for a
 clean delivery: "New Game" starts on map 1, and the ROM comes out byte for
 byte as without the room. Task:
 [`zounds-a-debug-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-a-debug-map.md).

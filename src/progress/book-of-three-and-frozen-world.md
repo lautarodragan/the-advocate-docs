@@ -451,7 +451,7 @@ a teleport to an excluded map is in `build/release/converter.log` ("because
 of a teleport to a map that didn't make it into the ROM").
 
 To see whether map 1 or map 2 of Frozen World still stops, remove one at a
-time from `excluded` in `frozen-world/rm2k-snes.toml` of the ports and run
+time from `excluded` in `frozen-world/advocate.toml` of the ports and run
 `just cartridges release` there (about forty seconds).
 
 The troop pages: for each troop in `data/db/troops.json`, a page with no

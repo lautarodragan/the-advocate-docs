@@ -6,7 +6,7 @@
 Paradise leads to.** The defender's job (150, event 4) starts a
 five-minute timer; Talan can walk out of the job to 108, and there the
 timer is on screen, as in the original. It is
-`timer_stays_in = [108]` in ABL's `rm2k-snes.toml`: the converter gives
+`timer_stays_in = [108]` in ABL's `advocate.toml`: the converter gives
 the digits to 108, and its walk does not carry them on from there.
 
 On 108, with every map of the game in the cartridge, the eight sprite

@@ -7,7 +7,7 @@ The project lives in four repositories:
   know only one side —the console's formats, or RPG Maker's—. The tools are
   installed on the PATH and know nothing about any particular game.
 - **the-advocate-ports**: the ported games, one directory per game. Each one
-  is a whole project —its `rm2k-snes.toml`, its `justfile`, its `data/`—;
+  is a whole project —its `advocate.toml`, its `justfile`, its `data/`—;
   see [Ports](../ports/README.md). A Blurred Line's directory also holds the
   test suite and its goldens, which for now are almost all the ROM tests of
   the engine; the root has the few that run the other games (see

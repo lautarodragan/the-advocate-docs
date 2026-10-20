@@ -33,7 +33,7 @@ the-advocate-ports has a `justfile` of its own for that:
     just boot            # every port but A Blurred Line
     just boot -k sunset  # one of them
 
-For each game it builds the cartridge from its `rm2k-snes.toml` —only if
+For each game it builds the cartridge from its `advocate.toml` —only if
 it is stale— and plays it in snes9x and in bsnes until the player has
 control: it presses A every few ticks while an event page runs, which goes
 through the title screen, the intro, the messages and any question by its

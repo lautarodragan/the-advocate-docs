@@ -472,7 +472,7 @@ rule of RPG Maker is `rm2k-rules`', a format of the console is
 Two libraries the rest is built with.
 
 **`rm2k-project`** answers which game is being built and what it decided:
-a game declares itself with an `rm2k-snes.toml` at its root, and the tools
+a game declares itself with an `advocate.toml` at its root, and the tools
 find it from where they run upwards, the way cargo finds its `Cargo.toml`.
 **A missing key is an error that names the key, never a default**, since a
 default would be one game's value, and another game would be built with

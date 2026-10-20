@@ -21,7 +21,7 @@ game can benefit from".
 - **A feature RM2k doesn't have belongs to the engine**, even if ABL asks
   for it: the speed-up with L and R (which `--no-speed-keys` turns off), the
   custom menu from the wishlist, a font for high resolution. A game turns it
-  on or off from its `rm2k-snes.toml`; it doesn't write it.
+  on or off from its `advocate.toml`; it doesn't write it.
 - **What belongs to a game** stays in its project: its patches, its test
   cases, its goldens, which maps it carries.
 - **Adding a feature is adding opcodes** to the event bytecode, not

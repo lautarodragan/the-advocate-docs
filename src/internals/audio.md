@@ -102,7 +102,7 @@ writes            --dsp_music-->        the SPC700 driver
   they last, the ones the voice assignment fills first with percussion:
   `runtime/sound_effects.s` and `effects.rs`. The ones that go whole
   and at a higher rate —`[sound_effects.whole]` in the project file,
-  `rm2k-snes.toml`— are fitted into what the music leaves free in each
+  `advocate.toml`— are fitted into what the music leaves free in each
   package, so they don't lower the rate of any instrument. The ones in
   `paid_by_music` —the thunder of the opening and the ones taro chose whole
   even if they cost— are paid for by the music of their package: [the

@@ -50,7 +50,7 @@ that is ported for real: the others are measured against it (see
 It lives in `abl/` in the-advocate-ports. That directory is **the game**: its
 dump into a format that can be looked at (`data/`), what was decided about
 it while porting it (`patches/`), which cartridges are built and with which
-knobs (`rm2k-snes.toml`), its tests with their goldens (`tests/`) and the
+knobs (`advocate.toml`), its tests with their goldens (`tests/`) and the
 test ROMs that were built to decide something (`experiments/`).
 
 What sets it apart from the other ports:
@@ -146,12 +146,12 @@ nothing in this repository names the path of the other one —
 
 - **The executables**, by name: `rm2k-snes-cartridges`, `ditto`,
   `rm2k-snes-patches`… They find this project by looking for
-  `rm2k-snes.toml` from where they run, and what belongs to the machine
+  `advocate.toml` from where they run, and what belongs to the machine
   reaches them through flags, which the `justfile` sets.
 - **The runtime** is built by `rm2k-snes-cartridges` from the checkout of
   the tools it was installed from.
 - **What the tools know about the project** —where each folder is, where
-  the runtime is, what `rm2k-snes.toml` says— the harness asks
+  the runtime is, what `advocate.toml` says— the harness asks
   `rm2k-snes-project`, another executable of the suite: see
   `tests/harness/project.py`. The harness imports nothing from the tools:
   the emulator, `tests/harness/emulator/`, has been its own since

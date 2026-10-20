@@ -113,7 +113,7 @@ gradient's average colour.
 > the same day, kept as it was.
 
 - **The project builds the release as committed**: `excluded` in
-  `vampires-dawn/rm2k-snes.toml` lists 23 maps, each with what stops it,
+  `vampires-dawn/advocate.toml` lists 23 maps, each with what stops it,
   and `start_map` is 3, the game's own: its boot fits now. 417 of the 440
   maps go in; 2,227 pieces, 6.5 MB, travel in the `.msu`.
 - It boots in snes9x with its `.msu` on map 3's "Skip Intro ?", and
