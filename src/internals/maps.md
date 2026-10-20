@@ -123,7 +123,11 @@ as his diagonal does—, and so is the one a step checks for an event.
 `FAR3`, called with `jsl` from hooks in bank 0, and a cartridge without one
 —A Blurred Line's, The Book of Three's— comes out byte for byte as before.
 The hooks that do the whole of a routine return from it without a branch
-of their own (`RTS0` in `wrap.s`), which is what bank 0 can afford.
+of their own, which is what bank 0 can afford: `RTS0` in `wrap.s` takes the
+`jsl`'s three bytes off and jumps to an `rts` in bank 0. The other way,
+`CALL0` calls a bank 0 routine that ends in `rts` by pushing where that
+`rts` goes —an `rtl` in bank 0— and where the `rtl` comes back to, and
+jumping. Both are plain `jml`s, and Goombario follows both paths.
 
 What it does not do, because no map of the ports needs it: clones of a
 character on both sides of a seam, the panorama's rule on a looping axis, a

@@ -321,8 +321,15 @@ put it and nothing is disassembled by guessing.
   N and Z from what came off the stack, the bug that bit the runtime four
   times—; a routine entered with `jsl` that returns with `rts`; a path that
   leaves something on the stack; an instruction run at a width other than
-  the one the source declares.
-- **Exceptions**: an `--allow` file, with the why of each one.
+  the one the source declares. The walk knows two ways out of a routine
+  that are not its own return: an `rts` or `rtl` over a return address the
+  routine pushed itself (`phk`, `pea`, `per`) is a jump, and taking off
+  exactly its own return address and then returning returns from its
+  caller, which is checked at the caller's call.
+- **Exceptions**: a `; goombario: <check>: <why>` comment on the line it
+  allows. One that allows nothing is a finding too, except on a line of code
+  that put no bytes in this cartridge —an `.if` left it out—: that one is
+  judged in the cartridges that assemble it.
 
 It runs over every built cartridge in a game's suite: [How it is
 tested](testing.md).
