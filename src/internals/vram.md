@@ -178,6 +178,33 @@ layout is converted again without them; since 2026-10-19 the ones it shows
 **over a black screen** go to the big pictures' layer instead —see
 below—.
 
+## The common events' small pictures go up when shown
+
+A common event compiled without a map —an automatic one with the bodies it
+calls, a parallel one— has no sprite bank of its own, so its small pictures
+are **the cartridge's, in sets**: what one common event shows with every
+body it calls, cut once as a map's pictures are, from tile 0 and palette 0.
+The cartridge carries each set's tiles once; its pictures have entries in a
+table every map shares, after the maps' own in `picture_data`, which the
+bytecode names with bit 7 of the image set. When one of them is shown, the
+console **uploads its set past the loaded map's bank** —after its message
+arrow's and its gold window's tiles, rounded to a row of blocks—, a few
+blocks per vblank out of the poses' budget, and draws its pictures once it
+is all there; their palettes go under the map's pictures' and the arrow's,
+from the top. One set at a time: showing another's takes down the pictures
+of the one that was. The pause menu's full screens, a battle and a big
+picture reload the map's bank, and the set goes up again after them.
+
+**Whether a set fits is each map's**, judged for the set alone —the
+emission measures its tiles against what the map's layout leaves past all
+that, and its palettes against what the characters and the pictures
+leave— and kept as a bit per set in `picture_common_maps`: a picture whose
+set does not fit the loaded map is not shown, as a map's own that does not
+fit its bank. The converter's log says on how many maps each set fits, and
+a set that fits on none carries no tiles. See `common_pictures` in
+rm2k-snes-convert, `picture_common_section` in rm2k-snes-mapdata and
+`runtime/picture_common.s`, in the-advocate.
+
 ## The message arrow goes past the sprite bank
 
 A window without its background draws the arrow of a message waiting for a
@@ -223,7 +250,9 @@ things follow from that, both since 2026-10-19:
 * **A common event without a map shows it.** An automatic or parallel
   common event is compiled once, without a map, and runs on whatever map
   its switch is turned on in; without a map it has no sprite bank, so its
-  small pictures are still not shown, but its big ones are: the converter
+  small pictures go up when shown —see [The common events' small pictures
+  go up when shown](#the-common-events-small-pictures-go-up-when-shown)—,
+  and its big ones are here: the converter
   makes their layers after every map's and the event compiler compiles
   those bodies with them —`common_pictures` in rm2k-snes-events—. The Book
   of Three's map item is one. **Only a common event whose big pictures

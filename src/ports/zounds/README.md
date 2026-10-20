@@ -163,15 +163,17 @@ byte as without the room. Task:
 What playing the port shows today that the original does not. It is kept
 current: whoever fixes one removes its line in the same change.
 
-* **Most picture-made screens do not show**: the notes and the pick-axe
-  screen (common events 21, 27, 29, 40 and 41), which are common events
-  compiled apart from the maps and so without their small pictures —the
-  notebook (29) shows its background alone, over a hidden map—; the menu on map
+* **Most picture-made screens do not show**: the pick-axe screen and the
+  notebook (common events 21, 27, 29, 30 and 41), common events compiled
+  apart from the maps whose small pictures no map leaves room for beside
+  its characters —the notebook (29) shows its background alone, over a
+  hidden map—; the notes (40) and the permit (6) show only on the maps that
+  leave room for theirs; the menu on map
   136, whose two faces and bar do not fit the sprite tiles; and the skill
   screen on map 190, whose box and list are big pictures that hide the
   small ones over them. The race's score board on map 75 shows all its
   numbers since 2026-10-16. Drafts:
-  [`pictures-in-common-events-compiled-apart-are-not-shown`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/pictures-in-common-events-compiled-apart-are-not-shown.md),
+  [`zounds-pick-axe-and-notebook-fit-beside-no-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-pick-axe-and-notebook-fit-beside-no-map.md),
   [`zounds-menu-pictures-on-map-136-need-512-tiles`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-menu-pictures-on-map-136-need-512-tiles.md),
   [`small-pictures-under-a-big-one-are-hidden`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/small-pictures-under-a-big-one-are-hidden.md).
   The intro itself goes by: the credits on map 106 for five seconds,
