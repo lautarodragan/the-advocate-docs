@@ -8,6 +8,9 @@ behind each one is a draft or a task in the tasks repository, named here
 as text. Where the ROM does what RM2k does in another way, on purpose, is
 in the [divergences](../../divergences/README.md), not here.
 
+* **The save slots show no HP**: each saved game says its leader's name
+  and level, and the original also says its hit points ("HP 40") after the
+  level. Draft: [`the-slot-screen-shows-no-hp`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-slot-screen-shows-no-hp.md).
 * **Radin's Mix Formula and Sern's Weapon Forging do nothing**: chosen
   from Tech Skill they close the menu and nothing happens, where the
   original takes you to Radin's and Sern's menus. Emily's Change Tape
