@@ -128,8 +128,9 @@ The message window's text is composed by the main loop into a buffer of one
 line, at most five letters a frame. A box is typed in its window already
 up, as RM2k types it: what a frame typed goes up in the next vblank as the
 cells its letters touched —two small DMAs, one per cell row—, and a line
-that ends goes up whole, as one DMA. A box's four lines are blanked first
-through the same buffer, a line a vblank, before its window opens.
+that ends goes up whole, as one DMA. Either one waits for the vblank after
+if what went up before it left no room. A box's four lines are blanked
+first through the same buffer, a line a vblank, before its window opens.
 
 - **Saves**: frame time and vblank time while a box is typed —a few tiles a
   vblank and not the line's 1,920 bytes—, and bank 0's RAM: one line's

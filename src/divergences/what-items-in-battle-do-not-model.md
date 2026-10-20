@@ -22,17 +22,18 @@ the battle tests predict the exact HP with; the console's side is
   one with `occasion_battle`. Giving or taking conditions, absorbing and
   reviving are not done, as with any skill; RM2k3's `subskill` is not
   offered.
-* **Its message is the item's line alone** —"Kersh Carbon Battery
-  used"—: RM2k's next lines, the result on each target, are not written,
-  as with any skill here. Nor is the skill's battle animation played, which
-  no skill plays.
-* **An item with more than one use** —`uses` above 1, Bag of Volatile
-  Shells' five— is spent whole on the first one, in battle and on the map:
-  RM2k counts its uses in the save (`item_usage`), which this port does not
-  carry. One with `uses` 0 is never spent, as in RM2k.
+* **Its message is the item's line**, "Kersh Carbon Battery used", with
+  the skill's result on each target under it since 2026-10-20, as any
+  skill's —see
+  [What a skill's result lines do not model](what-a-skill-s-result-lines-do-not-model.md)—.
+  The skill's battle animation is not played, which no skill plays.
 * **The item is spent on choosing it**, not when its turn comes: otherwise
   the last one could be handed out to two actors in the same turn. A failed
-  escape gives it back.
+  escape gives it back. Spending it is RM2k's `ConsumeItemUse` all the
+  same: an item with `uses` above 1 —the Bag of Volatile Shells' five—
+  counts its uses in the save, as RM2k's `item_usage`, and loses one of the
+  count when they reach `uses`; one with `uses` 0 is never spent. So
+  choosing it counts a use, and the failed escape gives that use back.
 * **Equipment that casts a skill** —a weapon or an accessory with
   `use_skill`, which RM2k adds to the list of the actor wearing it— is not
   offered.
@@ -46,16 +47,15 @@ Line's `test_battle_special_items.py`, in the-advocate-ports, throws a
 Carbon Battery at a Junkbot and gives a Cloudy Potion to an ally, against
 the model and against easyrpg's arithmetic; the ports'
 `test_zounds_special_items.py` has Kazar throw Zounds' Piedra at a Pez
-Shark, with the same two checks.
+Shark, with the same two checks. The uses, on 2026-10-20 against
+`Game_Party::ConsumeItemUse` and `AddItem`: the ports'
+`test_book_of_three_item_uses.py` throws the Bag of Volatile Shells five
+times and gives a throw back with a failed escape.
 
 ## When it stops being enough
 
 When a game leans on what a special item's skill does beyond its damage:
 Vampires Dawn's Itching Powder and The Book of Three's Runes only give
-conditions, so in battle they are spent and do nothing. And the bags with
-several uses of The Book of Three. The drafts, in `tasks/` in
-the-advocate-work:
-[`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md),
-[`an-item-with-several-uses-is-spent-whole`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/an-item-with-several-uses-is-spent-whole.md)
-and
-[`a-skill-in-battle-writes-no-result-line`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-skill-in-battle-writes-no-result-line.md).
+conditions, so in battle they are spent and do nothing. The draft, in
+`tasks/` in the-advocate-work:
+[`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md).

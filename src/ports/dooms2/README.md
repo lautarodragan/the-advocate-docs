@@ -7,14 +7,16 @@ current: whoever fixes one removes its line in the same change. The work
 behind each one is a draft or a task in the tasks repository, named here
 as text.
 
-* **Three characters have no face in the pause menu and in the save
-  slots**: Will (actor 9) and the two Junes (10 and 11), the candidates
-  the story unlocks last. With map 1 in the cartridge the party can hold
-  eleven actors, and their ten faces plus the screens' text ask for more
-  tiles than the bank has, so the converter leaves faces out, the last
-  actors' first, instead of stopping —`faces-left-out` in
-  `degradations.json`—. Since 2026-10-16; until then map 1 was out and the
-  game started on map 2 with Will always in the party. Task:
+* **Two characters have no face in the pause menu and in the save
+  slots**: the two Junes (actors 10 and 11), the candidates the story
+  unlocks last. With map 1 in the cartridge the party can hold eleven
+  actors, and their ten faces plus the screens' text ask for more tiles
+  than the bank has, so the converter leaves faces out, the last actors'
+  first, instead of stopping —`faces-left-out` in `degradations.json`—.
+  Since 2026-10-16; until then map 1 was out and the game started on map
+  2 with Will always in the party. Will (9) got his face back on
+  2026-10-20, when the slot screen started composing its names over the
+  menu's text. Task:
   [`dooms-2-slots-and-menu-dont-fit-in-their-bank`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/dooms-2-slots-and-menu-dont-fit-in-their-bank.md).
 * **Losing after the game changes the Game Over song plays the default
   one**: one `ChangeSystemBGM` gives it "Everlasting battle with Jack". Task:

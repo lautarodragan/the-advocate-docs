@@ -105,6 +105,28 @@ fix too:
   OpenGameArt's "40 CC0 water / splash / slime SFX", credited in the
   game's `CC0-sounds/`. It is not the sound the game had. Task:
   [`zounds-map-60s-water-sounds-like-a-door`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-map-60s-water-sounds-like-a-door.md).
+* **Three messages whose control codes were broken.** The farmer's job
+  offer on map 139 opened with `\c[6]Trabajo\[4]`, a colour code without
+  its letter, where the same question on his other page says
+  `\c[6]Trabajo\c[4]`; Madamme Lessier's laugh on map 161 began with
+  `\v[20]`, which writes a variable's value in front of it, where every
+  other slowed laugh or silence in the game is `\s[20]`; and Unamë's
+  `¿No nos vas a pagar?\` on map 24 ended in a lone backslash, where the
+  game's pause, `\|`, closes hundreds of lines. Since 2026-10-20 they say
+  `\c[4]`, `\s[20]` and `\|`. Task:
+  [`zounds-three-messages-with-broken-control-codes`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-three-messages-with-broken-control-codes.md).
+* **Three messages name their item as the database does.** Unamë stole
+  *Grasa de Camello*, the chef's menu offered *Puré con Papas* and the
+  fishing score counted *Kinshi*, for the item Grasa de Camaro, the item
+  Puré de Papas and the fish Kinsh. taro decided the item's name wins;
+  since 2026-10-20 the messages say it. Task:
+  [`zounds-three-messages-name-an-item-otherwise`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-three-messages-name-an-item-otherwise.md).
+* **Two secret chests shared a switch.** The secret chest on MiniCave 177
+  is a copy of MiniCave 89's and kept its switch, Secret- Cofre 1, so
+  opening either showed the other open, without its items. Since
+  2026-10-20 177's chest has a switch of its own, Secret- Cofre 4, one the
+  game never used. Task:
+  [`zounds-two-chests-share-a-switch`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-two-chests-share-a-switch.md).
 
 ## The debug map
 
@@ -194,12 +216,10 @@ current: whoever fixes one removes its line in the same change.
   2026-10-19 the battle offers the special items —Kazar throws the
   Piedra—, and Veneno, Paralizador, Pétalo Violeta, Ácido, Ala Eléctrica
   and Bola de Fuego do their damage and give no condition, which no skill
-  does in battle yet. The battle writes only the item's line, without the
-  damage. See
+  does in battle yet. See
   [What items in battle do not model](../../divergences/what-items-in-battle-do-not-model.md).
-  Tasks:
-  [`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md),
-  [`a-skill-in-battle-writes-no-result-line`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-skill-in-battle-writes-no-result-line.md).
+  Task:
+  [`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md).
 * **Teleport is not in the battle's skill list**: once the party learns
   it, RPG Maker lists it in battle, grey, and the port leaves it out.
   Draft:

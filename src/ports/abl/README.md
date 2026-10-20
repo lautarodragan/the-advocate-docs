@@ -8,31 +8,31 @@ behind each one is a draft or a task in the tasks repository, named here
 as text. Where the ROM does what RM2k does in another way, on purpose, is
 in the [divergences](../../divergences/README.md), not here.
 
-* **Some names are cut in the save slots**: a save whose leader is
-  Advocate, Royal Dalia or the ABL 2.0 save shows "Advocat", "Royal D" or
-  "ABL 2.0" where the original shows the whole name: the slot's name field
-  is seven letters. Draft: [`abl-the-last-leaders-names-are-cut-in-the-slot-screen`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-the-last-leaders-names-are-cut-in-the-slot-screen.md).
+* **The save slots show no HP**: each saved game says its leader's name
+  and level, and the original also says its hit points ("HP 40") after the
+  level. Draft: [`the-slot-screen-shows-no-hp`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-slot-screen-shows-no-hp.md).
+* **A missed attack says the target avoids taking damage**: where the
+  original writes "Junkbot maneuvers out of the way!", the port writes
+  "Junkbot avoids taking damage.", and a hit of nothing says "0 health
+  lost.". Draft: [`the-attack-says-undamaged-for-a-miss`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-attack-says-undamaged-for-a-miss.md).
 * **Radin's Mix Formula and Sern's Weapon Forging do nothing**: chosen
   from Tech Skill they close the menu and nothing happens, where the
   original takes you to Radin's and Sern's menus. Emily's Change Tape
   asks which tape, as in the original; Radin's Field/Battery Repair runs
   its common event, which was not played through. Draft: [`radin-s-and-sern-s-menus-do-not-compile`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/radin-s-and-sern-s-menus-do-not-compile.md).
-* **Forem is missing from a scene at the factory** (map 83): the scene
-  places Forem and its lines go on, but Forem is not drawn —drawn, the
-  pump's tile would lose its colours—. Draft:
+* **The factory's pump has a grey light** (map 83), where the original's
+  is red: Forem, whom a scene there places, takes the map's last palette,
+  and the pump's tile is drawn with the nearest one, which has no red.
+  Task:
   [`characters-a-route-dresses-left-out-where-they-cost-the-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/characters-a-route-dresses-left-out-where-they-cost-the-map.md).
-* **In the Lashe City rain the rain sound that repeats every three
-  seconds is missing**: common event `Raining` runs, but its `Rain1` is not
-  in the map's sound package. Draft:
-  [`parallel-common-events-sound-only-where-the-map-carries-it`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/parallel-common-events-sound-only-where-the-map-carries-it.md).
+* **Paradise and Emily are missing from a scene at the Northern Surl
+  Camp** (map 246): the scene places them and its lines go on, but they
+  are not drawn —drawn, the rain would lose its colours—. Draft:
+  [`abl-paradise-and-emily-left-out-at-the-northern-surl-camp`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-paradise-and-emily-left-out-at-the-northern-surl-camp.md).
 * **The inn of map 200 shows no gold window**: its greeting comes without
   the party's credits at the top right, where the other inns and the
   original show them; "Yes" is still greyed without the price. Draft:
   [`map-200-has-no-room-for-the-gold-window`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/map-200-has-no-room-for-the-gold-window.md).
-* **Without MSU-1 the opening rain dips almost to silence every four
-  seconds**: each new rain cuts the one still sounding instead of
-  overlapping it. With MSU-1 it overlaps as in RM2k. Draft:
-  [`abl-rain-cuts-itself-without-msu-1`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-rain-cuts-itself-without-msu-1.md).
 * **Without MSU-1 some drums and instruments sound duller** in every
   song that uses them: since the story's battles play their own themes,
   one of those themes, `T_AVGFighter_KyaraSelect`, has to fit next to the
