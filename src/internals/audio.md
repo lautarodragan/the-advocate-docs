@@ -116,8 +116,10 @@ writes            --dsp_music-->        the SPC700 driver
   map those whose switch a switch item or skill, or a parallel or
   automatic common event, can. A common event is compiled once without a
   map, so this is where its effects get a package: `turned_on` in the event
-  compiler's `commons.rs`. A map the party only reaches with the switch
-  already on doesn't carry them, and there they are silent.
+  compiler's `commons.rs`. A switch turned on right before a `Teleport`
+  counts for the destination, since RM2k moves the party in that same
+  frame. A map the party only reaches with the switch already on doesn't
+  carry them, and there they are silent.
 - **`FadeOutBGM` lowers the theme and nothing else**: the volume of each
   music voice, or that of the MSU-1 track, and never the DSP's master
   volume, which is also the effects'. `bgm_fade_tick`, in
