@@ -121,6 +121,20 @@ fix too:
   Puré de Papas and the fish Kinsh. taro decided the item's name wins;
   since 2026-10-20 the messages say it. Task:
   [`zounds-three-messages-name-an-item-otherwise`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-three-messages-name-an-item-otherwise.md).
+* **Two secret chests shared a switch.** The secret chest on MiniCave 177
+  is a copy of MiniCave 89's and kept its switch, Secret- Cofre 1, so
+  opening either showed the other open, without its items. Since
+  2026-10-20 177's chest has a switch of its own, Secret- Cofre 4, one the
+  game never used. Task:
+  [`zounds-two-chests-share-a-switch`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-two-chests-share-a-switch.md).
+* **Map 81 leads back to the crack.** The crack at the top of map 79
+  lands the party on map 81 above a flight of stairs, and the map's only
+  exit was on the left, to 189: nothing went back to 79, so the shortcut
+  led nowhere from the cave's side. Since 2026-10-20 two touch events
+  halfway down the stairs, one per cell of their width, take the party
+  back to 79 just below the crack, facing away from it, with the cave's
+  tint and song, as 79's own exit does the other way. Task:
+  [`zounds-no-way-back-from-map-81`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-no-way-back-from-map-81.md).
 
 ## The debug map
 
