@@ -52,9 +52,11 @@ by name in a public MIDI archive, for a private build only; twenty are the 2000 
 own files, found through EasyRPG's RTP table; 35 of the RPG Maker 2003
 RTP's are EasyRPG's free RTP (CC BY 4.0) under the game's names, since
 2026-10-16 —EasyRPG has 35 of the 95 the game uses: six charsets, two
-chipsets, two facesets, a panorama, the System2 and 23 sounds—; the other
-136 are a copy of some file of the game from the same folder, so a missing
-chipset is some chipset and a missing sound some sound. The debug
+chipsets, two facesets, a panorama, the System2 and 23 sounds—; one,
+`NAU_Splash`, is a CC0 splash from OpenGameArt, since 2026-10-20 (see
+below); the other 135 are a copy of some file of the game from the same
+folder, so a missing chipset is some chipset and a missing sound some
+sound. The debug
 enemy's numbers were
 brought within sixteen bits. Task:
 [`zounds-the-repository-lacks-197-assets`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-the-repository-lacks-197-assets.md).
@@ -94,6 +96,15 @@ fix too:
   invented languages, the names. What looked like it could be on purpose
   was left as it was, and listed for taro. Task:
   [`zounds-spelling`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-spelling.md).
+* **The water Kazar hears in the cave is a splash.** On map 60, under the
+  crack, a parallel event plays `NAU_Splash` in pairs and Kazar says he
+  heard water; map 71 plays it too. The repository never had the file,
+  and its stand-in was `Close1`, a door. Nothing was found by that name,
+  and Don Miguel's RTP `Water` sounds carry no free license, so since
+  2026-10-20 it is a CC0 splash, rubberduck's `splash_02` from
+  OpenGameArt's "40 CC0 water / splash / slime SFX", credited in the
+  game's `CC0-sounds/`. It is not the sound the game had. Task:
+  [`zounds-map-60s-water-sounds-like-a-door`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-map-60s-water-sounds-like-a-door.md).
 
 ## The debug map
 
@@ -159,13 +170,10 @@ current: whoever fixes one removes its line in the same change.
   "Líquido" is "Liquido". The message boxes draw them. See
   [Letters the font does not have](../../divergences/letters-the-font-does-not-have.md).
 * **The stand-in assets**: wrong chipsets on the maps that asked for the
-  RTP's or the lost ones, one sound for 90 missing sounds, one song for
+  RTP's or the lost ones, one sound for 89 missing sounds, one song for
   the three songs still missing (`waltz`, `boat1`, `boat2`); and the
   EasyRPG RTP's charsets, faces and sounds look and sound unlike RPG Maker
-  2003's. See above. The water Kazar hears on map 60, in the cave under
-  the crack, sounds like a door: `NAU_Splash`, like every `NAU_` sound, is
-  a copy of `Close1`. Draft:
-  [`zounds-map-60s-water-sounds-like-a-door`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-map-60s-water-sounds-like-a-door.md).
+  2003's. See above.
 * **The dream has no fog**: on map 30, after sleeping in Uname's bed, the
   reddish fog the dream shows over the screen is missing, because it is
   shown at 110% and the console only shrinks pictures. The dream itself
