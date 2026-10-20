@@ -85,6 +85,15 @@ fix too:
   map and passage under the dungeon (81 and 189) keep Mountains' song, and
   so do 51 to 53, outside the crack. Task:
   [`zounds-the-cave-plays-the-mountains-song`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-the-cave-plays-the-mountains-song.md).
+* **The spelling of its Spanish text.** What the player reads —messages,
+  choices, the database's names, descriptions and terms— carried hundreds
+  of spelling mistakes: *save* for *sabe*, *deve* for *debe*, *vever* for
+  *beber*, missing accents and opening `¿` and `¡`, *Hay* for *Ay*. Since
+  2026-10-20 they are fixed in the game's data, and the author's voice
+  stays: voseo, slang, the guards' parody of Spanish from Spain, the
+  invented languages, the names. What looked like it could be on purpose
+  was left as it was, and listed for taro. Task:
+  [`zounds-spelling`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-spelling.md).
 
 ## The debug map
 
