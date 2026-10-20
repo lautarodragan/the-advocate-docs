@@ -59,7 +59,7 @@ enemy's numbers were
 brought within sixteen bits. Task:
 [`zounds-the-repository-lacks-197-assets`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-the-repository-lacks-197-assets.md).
 
-## What the game's branch fixes in the game
+## What is fixed in the game itself
 
 The game is taro's and its repository can be retouched, so a bug that is
 the game's and not the port's is fixed there, and RPG Maker 2003 plays the
