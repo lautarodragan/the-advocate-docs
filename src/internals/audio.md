@@ -110,6 +110,16 @@ writes            --dsp_music-->        the SPC700 driver
   it](../ports/abl/decisions/the-thunder-plays-whole-and-pays-for-the-rain.md). One that
   sounds with another sample in one map is an alias: `per_map`. All three
   belong to the game, and each entry carries its reason in the file.
+- **A package carries the effects of its map's pages**, and also those of
+  the parallel common events its map can start: the ones whose switch the
+  map's pages —or the common events they call— can turn on, and in every
+  map those whose switch a switch item or skill, or a parallel or
+  automatic common event, can. A common event is compiled once without a
+  map, so this is where its effects get a package: `turned_on` in the event
+  compiler's `commons.rs`. A switch turned on right before a `Teleport`
+  counts for the destination, since RM2k moves the party in that same
+  frame. A map the party only reaches with the switch already on doesn't
+  carry them, and there they are silent.
 - **`FadeOutBGM` lowers the theme and nothing else**: the volume of each
   music voice, or that of the MSU-1 track, and never the DSP's master
   volume, which is also the effects'. `bgm_fade_tick`, in
@@ -148,7 +158,9 @@ writes            --dsp_music-->        the SPC700 driver
   —a new copy of a sound still playing too, so copies overlap as in RM2k—
   and only steals, from the one with the fewest frames left, when all eight
   are busy (`se_msu_choose`). With the SPC700 playing music there are two
-  voices, and a new copy of the same sound restarts the old one's voice.
+  voices: a new copy takes the free one and overlaps the old, and only
+  when both are busy does it restart the voice already playing its sample,
+  so it doesn't cut a different sound (`sound_play`).
   And if the `.msu` is this cartridge's, each package's effects are
   uploaded from there, whole and each at the rate the package allows now
   that the music isn't in ARAM —one version per package—: if they don't all

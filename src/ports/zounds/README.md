@@ -206,12 +206,10 @@ current: whoever fixes one removes its line in the same change.
   2026-10-19 the battle offers the special items —Kazar throws the
   Piedra—, and Veneno, Paralizador, Pétalo Violeta, Ácido, Ala Eléctrica
   and Bola de Fuego do their damage and give no condition, which no skill
-  does in battle yet. The battle writes only the item's line, without the
-  damage. See
+  does in battle yet. See
   [What items in battle do not model](../../divergences/what-items-in-battle-do-not-model.md).
-  Tasks:
-  [`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md),
-  [`a-skill-in-battle-writes-no-result-line`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-skill-in-battle-writes-no-result-line.md).
+  Task:
+  [`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md).
 * **Teleport is not in the battle's skill list**: once the party learns
   it, RPG Maker lists it in battle, grey, and the port leaves it out.
   Draft:
