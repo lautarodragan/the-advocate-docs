@@ -28,6 +28,14 @@ the port's project is `zounds/` in the-advocate-ports, built on 2026-10-15,
   never run here and the built-in Escape stands in —with RPG Maker 2000's
   chance of failing, which the game's own never had—. Task:
   [`the-2003-battle-commands-callcommonevent-and-forceflee`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-2003-battle-commands-callcommonevent-and-forceflee.md).
+  And the 2000 battle writes a line for each hit —`Kazar ataca.` over
+  `Pez Shark 7 HP perdidos.`—, which the 2003 one never did, so the game's
+  database holds the editor's Japanese in those terms: the port's own
+  Spanish ones are in `[battle.terms]` of its `rm2k-snes.toml`, since
+  2026-10-19. See
+  [A 2003 game's battle writes the 2000 lines](../../divergences/a-2003-game-s-battle-writes-the-2000-lines.md).
+  Task:
+  [`zounds-battle-messages-cannot-be-read`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-battle-messages-cannot-be-read.md).
 * **Its images were XYZ**, RPG Maker 2003's own format, which the tools do
   not read on purpose: the port builds from a branch of the game's
   repository where they are PNG, converted once with EasyRPG's `xyz2png`.
