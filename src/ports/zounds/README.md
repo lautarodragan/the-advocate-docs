@@ -174,7 +174,7 @@ current: whoever fixes one removes its line in the same change.
   does in battle yet. The battle writes only the item's line, without the
   damage. See
   [What items in battle do not model](../../divergences/what-items-in-battle-do-not-model.md).
-  Drafts:
+  A draft and a task:
   [`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md),
   [`a-skill-in-battle-writes-no-result-line`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-skill-in-battle-writes-no-result-line.md).
 * **Without MSU-1 four `.wav` songs are silent**: the battle and victory
@@ -187,7 +187,7 @@ current: whoever fixes one removes its line in the same change.
   followed by a choice that fits under it —Kazar's "¿Has entendido?" the
   first time in the desert—, RPG Maker draws both in one box; here the
   message comes first, alone, and the options open in a box of their own.
-  Draft:
+  Task:
   [`a-message-and-the-choice-after-it-share-a-box-in-rm2k`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-message-and-the-choice-after-it-share-a-box-in-rm2k.md).
 * **No boat**: the fishing game's vehicle. Draft:
   [`vehicles-enterexitvehicle-and-the-boat`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vehicles-enterexitvehicle-and-the-boat.md).
