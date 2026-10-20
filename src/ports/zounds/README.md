@@ -166,3 +166,12 @@ current: whoever fixes one removes its line in the same change.
   [`a-message-and-the-choice-after-it-share-a-box-in-rm2k`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-message-and-the-choice-after-it-share-a-box-in-rm2k.md).
 * **No boat**: the fishing game's vehicle. Draft:
   [`vehicles-enterexitvehicle-and-the-boat`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vehicles-enterexitvehicle-and-the-boat.md).
+* **The maps that wrap around stop at their edges**: on Passage 1, map
+  70, the corridors that go on across the map's edges end there, and
+  the door to Cuarto 2 (103), reached only that way, cannot be reached
+  walking; on Scape Way (150) the hero takes one step instead of
+  walking up forever while the party talks —that one also needs his
+  route to repeat—. The dream
+  (30) and the Secret Entrance (137) also wrap. See [Maps that wrap
+  around](../../research/2026-10-19-maps-that-wrap.md). Task:
+  [`maps-that-wrap-around`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/maps-that-wrap-around.md).
