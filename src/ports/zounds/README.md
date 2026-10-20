@@ -28,6 +28,14 @@ the port's project is `zounds/` in the-advocate-ports, built on 2026-10-15,
   never run here and the built-in Escape stands in —with RPG Maker 2000's
   chance of failing, which the game's own never had—. Task:
   [`the-2003-battle-commands-callcommonevent-and-forceflee`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-2003-battle-commands-callcommonevent-and-forceflee.md).
+  And the 2000 battle writes a line for each hit —`Kazar ataca.` over
+  `Pez Shark 7 HP perdidos.`—, which the 2003 one never did, so the game's
+  database holds the editor's Japanese in those terms: the port's own
+  Spanish ones are in `[battle.terms]` of its `rm2k-snes.toml`, since
+  2026-10-19. See
+  [A 2003 game's battle writes the 2000 lines](../../divergences/a-2003-game-s-battle-writes-the-2000-lines.md).
+  Task:
+  [`zounds-battle-messages-cannot-be-read`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-battle-messages-cannot-be-read.md).
 * **Its images were XYZ**, RPG Maker 2003's own format, which the tools do
   not read on purpose: the port builds from a branch of the game's
   repository where they are PNG, converted once with EasyRPG's `xyz2png`.
@@ -101,6 +109,16 @@ clean delivery: "New Game" starts on map 1, and the ROM comes out byte for
 byte as without the room. Task:
 [`zounds-a-debug-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-a-debug-map.md).
 
+## The cave plays the Mountains' song, as in RPG Maker
+
+Past map 59, where the fall leaves the party and a `PlayBGM` plays
+`Zounds_Dungeon_01`, the cave plays `18 - Desert flower`, and so do maps
+51 to 53 outside the crack. It is the game's: none of those maps names a
+song, they all say "the parent's" up to map 33, Mountains, and RPG Maker
+climbs the tree on every map change. Measured with the game's own RPG
+Maker 2003 runtime, which does the same. Draft:
+[`zounds-the-cave-plays-the-mountains-song`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-the-cave-plays-the-mountains-song.md).
+
 ## Known issues
 
 What playing the port shows today that the original does not. It is kept
@@ -132,7 +150,10 @@ current: whoever fixes one removes its line in the same change.
   RTP's or the lost ones, one sound for 90 missing sounds, one song for
   the three songs still missing (`waltz`, `boat1`, `boat2`); and the
   EasyRPG RTP's charsets, faces and sounds look and sound unlike RPG Maker
-  2003's. See above.
+  2003's. See above. The water Kazar hears on map 60, in the cave under
+  the crack, sounds like a door: `NAU_Splash`, like every `NAU_` sound, is
+  a copy of `Close1`. Draft:
+  [`zounds-map-60s-water-sounds-like-a-door`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-map-60s-water-sounds-like-a-door.md).
 * **The dream has no fog**: on map 30, after sleeping in Uname's bed, the
   reddish fog the dream shows over the screen is missing, because it is
   shown at 110% and the console only shrinks pictures. The dream itself
@@ -167,12 +188,8 @@ current: whoever fixes one removes its line in the same change.
   [`a-message-and-the-choice-after-it-share-a-box-in-rm2k`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-message-and-the-choice-after-it-share-a-box-in-rm2k.md).
 * **No boat**: the fishing game's vehicle. Draft:
   [`vehicles-enterexitvehicle-and-the-boat`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vehicles-enterexitvehicle-and-the-boat.md).
-* **The maps that wrap around stop at their edges**: on Passage 1, map
-  70, the corridors that go on across the map's edges end there, and
-  the door to Cuarto 2 (103), reached only that way, cannot be reached
-  walking; on Scape Way (150) the hero takes one step instead of
-  walking up forever while the party talks —that one also needs his
-  route to repeat—. The dream
-  (30) and the Secret Entrance (137) also wrap. See [Maps that wrap
-  around](../../research/2026-10-19-maps-that-wrap.md). Task:
-  [`maps-that-wrap-around`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/maps-that-wrap-around.md).
+* **On Scape Way (150) the hero takes one step** instead of walking up
+  forever while the party talks: the map wraps around, which the console
+  does since 2026-10-19, but his walk is a route that repeats, run once.
+  Task:
+  [`a-forced-routes-repeat-flag-is-dropped`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-forced-routes-repeat-flag-is-dropped.md).
