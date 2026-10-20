@@ -17,10 +17,10 @@ in the [divergences](../../divergences/README.md), not here.
   original takes you to Radin's and Sern's menus. Emily's Change Tape
   asks which tape, as in the original; Radin's Field/Battery Repair runs
   its common event, which was not played through. Draft: [`radin-s-and-sern-s-menus-do-not-compile`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/radin-s-and-sern-s-menus-do-not-compile.md).
-* **Forem is missing from a scene at the factory** (map 83): the scene
-  places Forem and its lines go on, but Forem is not drawn —drawn, the
-  pump's tile would lose its colours—. Draft:
-  [`characters-a-route-dresses-left-out-where-they-cost-the-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/characters-a-route-dresses-left-out-where-they-cost-the-map.md).
+* **Paradise and Emily are missing from a scene at the Northern Surl
+  Camp** (map 246): the scene places them and its lines go on, but they
+  are not drawn —drawn, the rain would lose its colours—. Draft:
+  [`abl-paradise-and-emily-left-out-at-the-northern-surl-camp`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-paradise-and-emily-left-out-at-the-northern-surl-camp.md).
 * **In the Lashe City rain the rain sound that repeats every three
   seconds is missing**: common event `Raining` runs, but its `Rain1` is not
   in the map's sound package. Draft:
