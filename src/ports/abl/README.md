@@ -8,10 +8,9 @@ behind each one is a draft or a task in the tasks repository, named here
 as text. Where the ROM does what RM2k does in another way, on purpose, is
 in the [divergences](../../divergences/README.md), not here.
 
-* **Some names are cut in the save slots**: a save whose leader is
-  Advocate, Royal Dalia or the ABL 2.0 save shows "Advocat", "Royal D" or
-  "ABL 2.0" where the original shows the whole name: the slot's name field
-  is seven letters. Draft: [`abl-the-last-leaders-names-are-cut-in-the-slot-screen`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-the-last-leaders-names-are-cut-in-the-slot-screen.md).
+* **The save slots show no HP**: each saved game says its leader's name
+  and level, and the original also says its hit points ("HP 40") after the
+  level. Draft: [`the-slot-screen-shows-no-hp`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-slot-screen-shows-no-hp.md).
 * **A missed attack says the target avoids taking damage**: where the
   original writes "Junkbot maneuvers out of the way!", the port writes
   "Junkbot avoids taking damage.", and a hit of nothing says "0 health
