@@ -76,6 +76,14 @@ waiting. See `share_palettes` in `rm2k-snes/convert/src/pictures.rs` and
 `pic_palette` in `runtime/picture.s`, in the-advocate. Until that day each
 of the two slots the console had took a palette of its own, 7 and 6.
 
+**A common event's small pictures** —see [The common events' small
+pictures go up when
+shown](vram.md#the-common-events-small-pictures-go-up-when-shown)— take
+theirs under the map's pictures' and the message arrow's, also from the
+top, when they are shown: their entries count them from their set's first,
+and the console adds the map's. A set whose palettes the map's characters
+and pictures do not leave is not shown on that map.
+
 ## The message arrow takes the palette under the pictures'
 
 Since 2026-10-18 a window without its background draws its arrow as two

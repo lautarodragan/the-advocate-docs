@@ -176,7 +176,37 @@ Each object of a picture says its tile and its size in the map's
 `runtime/picture_far.s`, in the-advocate. A map whose pictures do not fit any
 layout is converted again without them; since 2026-10-19 the ones it shows
 **over a black screen** go to the big pictures' layer instead —see
-below—.
+below—. Since 2026-10-20 a thin block —up to eight cells in no more than
+two of its rows, not two whole rows side by side— goes as 8x8 objects too:
+a 32x32 costs four of the line's 34 slivers on each of its lines, drawn or
+not. See `as_cells` in `pictures.rs` of rm2k-snes-convert.
+
+## The common events' small pictures go up when shown
+
+A common event compiled without a map —an automatic one with the bodies it
+calls, a parallel one— has no sprite bank of its own, so its small pictures
+are **the cartridge's, in sets**: what one common event shows with every
+body it calls, cut once as a map's pictures are, from tile 0 and palette 0.
+The cartridge carries each set's tiles once; its pictures have entries in a
+table every map shares, after the maps' own in `picture_data`, which the
+bytecode names with bit 7 of the image set. When one of them is shown, the
+console **uploads its set past the loaded map's bank** —after its message
+arrow's and its gold window's tiles, rounded to a row of blocks—, a few
+blocks per vblank out of the poses' budget, and draws its pictures once it
+is all there; their palettes go under the map's pictures' and the arrow's,
+from the top. One set at a time: showing another's takes down the pictures
+of the one that was. The pause menu's full screens, a battle and a big
+picture reload the map's bank, and the set goes up again after them.
+
+**Whether a set fits is each map's**, judged for the set alone —the
+emission measures its tiles against what the map's layout leaves past all
+that, and its palettes against what the characters and the pictures
+leave— and kept as a bit per set in `picture_common_maps`: a picture whose
+set does not fit the loaded map is not shown, as a map's own that does not
+fit its bank. The converter's log says on how many maps each set fits, and
+a set that fits on none carries no tiles. See `common_pictures` in
+rm2k-snes-convert, `picture_common_section` in rm2k-snes-mapdata and
+`runtime/picture_common.s`, in the-advocate.
 
 ## The message arrow goes past the sprite bank
 
@@ -223,7 +253,9 @@ things follow from that, both since 2026-10-19:
 * **A common event without a map shows it.** An automatic or parallel
   common event is compiled once, without a map, and runs on whatever map
   its switch is turned on in; without a map it has no sprite bank, so its
-  small pictures are still not shown, but its big ones are: the converter
+  small pictures go up when shown —see [The common events' small pictures
+  go up when shown](#the-common-events-small-pictures-go-up-when-shown)—,
+  and its big ones are here: the converter
   makes their layers after every map's and the event compiler compiles
   those bodies with them —`common_pictures` in rm2k-snes-events—. The Book
   of Three's map item is one. **Only a common event whose big pictures
@@ -241,6 +273,26 @@ things follow from that, both since 2026-10-19:
   The rule only looks at the tint in the picture's own page. See
   `over_black` in `pictures.rs` of rm2k-snes-convert. The Book of Three's
   ending is one: its credits and quotes on maps 69 and 72.
+
+### One over a map's panorama keeps the small pictures
+
+Since 2026-10-20, a big picture with holes —a quarter of it transparent or
+more— shown still —by a constant, with the screen, at its size, opaque,
+untoned, never moved— on a map of one RM2k screen whose panorama does not
+scroll is drawn **over that panorama** when
+the cartridge is built: the layer is what RM2k shows there, its holes
+filled. And if it takes 512 tiles or fewer it **keeps the small pictures
+over it**: its tiles go from word `$2000` to its tilemap at `$4000`,
+past the 512 object tiles OAM names, BG1's base says so, and the sprites
+stay on the main screen. The map's sprite bank is then whole, and its
+pictures were uploaded with it; the OAM carries only them —`pic_oam`
+leaves `build_oam` with nothing of the map's to walk—, since the
+characters are the map's and stay hidden like it. The entry says it with
+bit 7 of its `BG1SC` byte, `BIG_KEEPS`. See `still_over` and
+`keep_objects` in `pictures.rs` of rm2k-snes-convert, and `big_load` in
+`runtime/big_picture.s`. Zounds' skill screen, map 190, is one: a frame
+that clips the skill list, cut out of the panorama, and the list, the
+selector and the face over it.
 
 ## A big picture with zoom uses the other half
 

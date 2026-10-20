@@ -166,9 +166,13 @@ free when they are enough, instead of starting a row of its own.
 A `ShowPicture` picture in sprites is cut into 32x32 objects, but a block
 with four of its sixteen 8x8 cells drawn or fewer goes as 8x8 objects
 whose tiles fill what the last row of blocks leaves free, and the same
-pixels take their tiles once, whether in one picture or in two.
+pixels take their tiles once, whether in one picture or in two. Since
+2026-10-20 a thin block —up to eight cells in at most two of its rows, not
+two whole rows side by side— goes as cells too: it saves its tiles, and the
+slivers a 32x32 costs on the lines where it draws nothing.
 
 - **Saves**: sprite VRAM.
-- **Where**: `picture_tables` in `rm2k-snes/mapdata/src/emit.rs`;
-  `pic_draw` in `runtime/picture_far.s`.
+- **Where**: `Bank::cut` and `as_cells` in
+  `rm2k-snes/convert/src/pictures.rs`; `picture_tables` in
+  `rm2k-snes/mapdata/src/emit.rs`; `pic_draw` in `runtime/picture_far.s`.
 - **More**: [The VRAM split](../../internals/vram.md#the-small-pictures-go-at-the-end-of-the-sprite-bank).
