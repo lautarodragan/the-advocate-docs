@@ -31,14 +31,24 @@ not do everything they do in RM2k:
   nearest one the palette has, two steps of 31 away at most —the blends a
   digit's scaling leaves at its edges—. A number the map tones does not
   share: the console tones a picture by toning its palette.
-* **They count against the line's objects**: a block of a picture with four
-  of its sixteen cells drawn or fewer goes as 8x8 objects, and the console
-  shows 32 objects on a line. A picture over many characters on the same
-  lines can lose some of its pieces, or theirs.
-* **No rotation or waving, no enlarging, no saturation**, and nothing larger
-  than 256x128: those belong to the BG1 plane (phase 3).
+* **They count against the line's objects and slivers**: the console shows
+  32 objects on a line and 34 slivers of eight pixels. A block of a picture
+  with four of its sixteen cells drawn or fewer goes as 8x8 objects, and
+  since 2026-10-20 so does one with up to eight in no more than two of its
+  four rows —a frame's edges, a line of text—, unless they are two whole
+  rows side by side; a 32x32 costs four slivers on each of its 32 lines,
+  drawn or not. Pictures over many characters, or several wide ones on the
+  same lines, can still lose some of their pieces: what a line holds is
+  272 pixels of objects. Zounds' skill screen goes in only without its
+  selector's fill, which its port leaves out —see its
+  `patches/manual/README.md` in the-advocate-ports—.
+* **No rotation or waving, no enlarging, no saturation**, and nothing wider
+  than 256 —nor taller than 128 if it is placed by a constant with the
+  screen, which is then a big one; one placed by variables, or with the map,
+  goes up to 256 tall since 2026-10-20—: those belong to the BG1 plane.
 * **Fifteen colors**, those of one sprite palette, counted by use: gradients
-  get banded.
+  get banded, and a colour few pixels use can go —the title of Zounds'
+  record-player bar comes out the bar's blue—.
 * **They go above the message window**: object priority 3, which is the one
   from before. In RM2k the window covers the pictures.
 * **The ones tied to the screen are scaled to 256x224, the map's are not**:
@@ -49,6 +59,17 @@ not do everything they do in RM2k:
   name](../decisions/a-ports-own-files-replace-the-games-by-name.md).
 * **The screen shake** moves the map's pictures —`screen_x` is subtracted
   from them, as from the characters— but not the screen's.
+* **A common event's pictures show only where their set fits beside the
+  map**: a common event compiled without a map —automatic, parallel, or a
+  body one of those calls— shows its small pictures from a table the
+  cartridge shares, and their tiles go up past the loaded map's bank when
+  one is shown, if the map leaves room for all that the common event and
+  the bodies it calls show; the converter's log says on how many maps each
+  one fits. One set at a time: showing another common event's takes
+  down what the first had up. And they take their slots from the top, so a
+  map that shows sixteen numbers between its own and theirs loses some.
+  See [The common events' small pictures go up when
+  shown](../internals/vram.md#the-common-events-small-pictures-go-up-when-shown).
 * **A page that goes on after a `Teleport`** and shows a picture uses the
   table of the map it was compiled in: the destination's may be another.
   Measured over the game's maps: only one page does it, the one on 288, and
@@ -68,13 +89,20 @@ the same place on the map as in RPG_RT under Wine: its box gives
 `ABLrec` on 45 is not drawn because the map uses seven character palettes
 and the battle animation's box the eighth.
 
+On Zounds' `release`, on 2026-10-20, with the-advocate's branch
+`carpintero-ce-pictures`: the record player's bar —common event 36— slides
+down over the debug room and comes back after the debug screen, in
+`test_zounds_common_pictures.py` of the ports. The permit fits on 53 of the
+189 maps, the notes on 96, the record player on 128 and the music bar on
+145; the pick-axe screen —400 tiles and seven palettes, most of the tiles
+the 320x80 box under its messages— and the notebook —704 tiles— on none.
+
 ## When it stops being enough
 
 When 207 gets into the cartridge —the smoke is the only translucent one
-that is looked at up close— or the pictures of a common event compiled
-apart from the maps, which today are not shown at all: A Blurred Line's
-portable console, which shows nine at once, Zounds' pick-axe and notebook,
-Vampires Dawn's menus. See [More pictures at
+that is looked at up close— or a common event's screen that no map leaves
+room for: Zounds' pick-axe and notebook, which would need the characters to
+give up the plane while they are up. See [More pictures at
 once](../research/2026-10-16-more-pictures-at-once.md).
 
 ## As an optimization

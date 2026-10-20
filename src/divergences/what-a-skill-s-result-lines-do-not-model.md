@@ -25,6 +25,13 @@ recovery line writes the points with `health_points` and `spirit_points`
 since the same day, as RM2k does, and not with the party window's short
 `hp_short` and `sp_short` —they differ in The Book of Three—.
 
+And where `vExecute` returns early, everything stops, as in RM2k: once the
+damage kills, and when a skill against enemies missed the HP or the SP it
+touches. From there nothing is rolled, applied or written —a killing or
+missed skill that also lowers a parameter does not lower it—, since
+2026-10-20:
+[`a-skill-rolls-past-where-vexecute-returns`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-skill-rolls-past-where-vexecute-returns.md).
+
 What is not the same yet:
 
 * **No line for a condition or an attribute rank**: no skill gives or takes
@@ -47,11 +54,6 @@ What is not the same yet:
 * **The window shows the first four rows**: RM2k scrolls its message
   window to the last line. A skill whose two using lines take more than
   three rows leaves its result out.
-* **What comes after `vExecute` returns is still rolled and applied**:
-  RM2k stops once the damage kills, and when a skill against enemies
-  missed the HP or the SP it touches. The lines stop there here too, but the
-  rolls and the parameters after them do not —the draft
-  [`a-skill-rolls-past-where-vexecute-returns`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-skill-rolls-past-where-vexecute-returns.md)—.
 
 ## Measured
 

@@ -121,6 +121,20 @@ fix too:
   Puré de Papas and the fish Kinsh. taro decided the item's name wins;
   since 2026-10-20 the messages say it. Task:
   [`zounds-three-messages-name-an-item-otherwise`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-three-messages-name-an-item-otherwise.md).
+* **Two secret chests shared a switch.** The secret chest on MiniCave 177
+  is a copy of MiniCave 89's and kept its switch, Secret- Cofre 1, so
+  opening either showed the other open, without its items. Since
+  2026-10-20 177's chest has a switch of its own, Secret- Cofre 4, one the
+  game never used. Task:
+  [`zounds-two-chests-share-a-switch`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-two-chests-share-a-switch.md).
+* **Map 81 leads back to the crack.** The crack at the top of map 79
+  lands the party on map 81 above a flight of stairs, and the map's only
+  exit was on the left, to 189: nothing went back to 79, so the shortcut
+  led nowhere from the cave's side. Since 2026-10-20 two touch events
+  halfway down the stairs, one per cell of their width, take the party
+  back to 79 just below the crack, facing away from it, with the cave's
+  tint and song, as 79's own exit does the other way. Task:
+  [`zounds-no-way-back-from-map-81`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-no-way-back-from-map-81.md).
 
 ## The debug map
 
@@ -163,17 +177,19 @@ byte as without the room. Task:
 What playing the port shows today that the original does not. It is kept
 current: whoever fixes one removes its line in the same change.
 
-* **Most picture-made screens do not show**: the notes and the pick-axe
-  screen (common events 21, 27, 29, 40 and 41), which are common events
-  compiled apart from the maps and so without their small pictures —the
-  notebook (29) shows its background alone, over a hidden map—; the menu on map
-  136, whose two faces and bar do not fit the sprite tiles; and the skill
-  screen on map 190, whose box and list are big pictures that hide the
-  small ones over them. The race's score board on map 75 shows all its
-  numbers since 2026-10-16. Drafts:
-  [`pictures-in-common-events-compiled-apart-are-not-shown`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/pictures-in-common-events-compiled-apart-are-not-shown.md),
-  [`zounds-menu-pictures-on-map-136-need-512-tiles`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-menu-pictures-on-map-136-need-512-tiles.md),
-  [`small-pictures-under-a-big-one-are-hidden`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/small-pictures-under-a-big-one-are-hidden.md).
+* **Most picture-made screens do not show**: the pick-axe screen and the
+  notebook (common events 21, 27, 29, 30 and 41), common events compiled
+  apart from the maps whose small pictures no map leaves room for beside
+  its characters —the notebook (29) shows its background alone, over a
+  hidden map—; the notes (40) and the permit (6) show only on the maps that
+  leave room for theirs; and the menu on map 136, whose two faces and bar
+  do not fit the sprite tiles. The race's score board on map 75 shows all
+  its numbers since 2026-10-16, and the skill screen on map 190 its panels,
+  list, selector and face since 2026-10-20 —without the selector's
+  half-transparent fill, which the port leaves out: see its
+  `patches/manual/README.md`—. Drafts:
+  [`zounds-pick-axe-and-notebook-fit-beside-no-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-pick-axe-and-notebook-fit-beside-no-map.md),
+  [`zounds-menu-pictures-on-map-136-need-512-tiles`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-menu-pictures-on-map-136-need-512-tiles.md).
   The intro itself goes by: the credits on map 106 for five seconds,
   then the action key takes it to the continent (107) and the cutscenes on
   maps 1, 4, 5 and 6, until the player walks on map 7, since 2026-10-16;
@@ -181,6 +197,10 @@ current: whoever fixes one removes its line in the same change.
   back, and the talk with the two guards there on to map 9, since the same
   day. Task:
   [`zounds-pictures-and-the-picture-made-screens`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-pictures-and-the-picture-made-screens.md).
+* **Unamë's face on the skill screen has orange hair**, not green: a face
+  shown as a picture keeps its fifteen most used colours, and they are all
+  her skin's. Draft:
+  [`a-small-picture-s-fifteen-colours-lose-a-whole-hue`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-small-picture-s-fifteen-colours-lose-a-whole-hue.md).
 * **In the menu, the shops and the battle the accents are lost**: the text
   screens draw ASCII, so the hero is "Uname" there and an item's
   "Líquido" is "Liquido". The message boxes draw them. See
