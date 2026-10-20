@@ -60,6 +60,12 @@ as text.
   "Talk / Suck Blood / Convert / Leave" choice does not compile, on 210
   pages of 48 maps. Read in the data, not played. Draft:
   [`vampires-dawn-the-victims-choice-does-not-compile`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vampires-dawn-the-victims-choice-does-not-compile.md).
+* **The free fall stops** (map 254): the map wraps around in the
+  original, and here the hero stops at its bottom and the stones at
+  its top after a few steps. Asgar's forest (91) ends at its edges
+  instead of going on. Read in the data, not played. See [Maps that
+  wrap around](../../research/2026-10-19-maps-that-wrap.md). Task:
+  [`maps-that-wrap-around`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/maps-that-wrap-around.md).
 
 ## Its own System again (2026-10-12)
 
