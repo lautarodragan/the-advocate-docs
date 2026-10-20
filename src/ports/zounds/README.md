@@ -95,6 +95,16 @@ clean delivery: "New Game" starts on map 1, and the ROM comes out byte for
 byte as without the room. Task:
 [`zounds-a-debug-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-a-debug-map.md).
 
+## The cave plays the Mountains' song, as in RPG Maker
+
+Past map 59, where the fall leaves the party and a `PlayBGM` plays
+`Zounds_Dungeon_01`, the cave plays `18 - Desert flower`, and so do maps
+51 to 53 outside the crack. It is the game's: none of those maps names a
+song, they all say "the parent's" up to map 33, Mountains, and RPG Maker
+climbs the tree on every map change. Measured with the game's own RPG
+Maker 2003 runtime, which does the same. Draft:
+[`zounds-the-cave-plays-the-mountains-song`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-the-cave-plays-the-mountains-song.md).
+
 ## Known issues
 
 What playing the port shows today that the original does not. It is kept
@@ -126,7 +136,10 @@ current: whoever fixes one removes its line in the same change.
   RTP's or the lost ones, one sound for 90 missing sounds, one song for
   the three songs still missing (`waltz`, `boat1`, `boat2`); and the
   EasyRPG RTP's charsets, faces and sounds look and sound unlike RPG Maker
-  2003's. See above.
+  2003's. See above. The water Kazar hears on map 60, in the cave under
+  the crack, sounds like a door: `NAU_Splash`, like every `NAU_` sound, is
+  a copy of `Close1`. Draft:
+  [`zounds-map-60s-water-sounds-like-a-door`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-map-60s-water-sounds-like-a-door.md).
 * **The dream has no fog**: on map 30, after sleeping in Uname's bed, the
   reddish fog the dream shows over the screen is missing, because it is
   shown at 110% and the console only shrinks pictures. The dream itself
@@ -161,3 +174,12 @@ current: whoever fixes one removes its line in the same change.
   [`a-message-and-the-choice-after-it-share-a-box-in-rm2k`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-message-and-the-choice-after-it-share-a-box-in-rm2k.md).
 * **No boat**: the fishing game's vehicle. Draft:
   [`vehicles-enterexitvehicle-and-the-boat`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vehicles-enterexitvehicle-and-the-boat.md).
+* **The maps that wrap around stop at their edges**: on Passage 1, map
+  70, the corridors that go on across the map's edges end there, and
+  the door to Cuarto 2 (103), reached only that way, cannot be reached
+  walking; on Scape Way (150) the hero takes one step instead of
+  walking up forever while the party talks —that one also needs his
+  route to repeat—. The dream
+  (30) and the Secret Entrance (137) also wrap. See [Maps that wrap
+  around](../../research/2026-10-19-maps-that-wrap.md). Task:
+  [`maps-that-wrap-around`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/maps-that-wrap-around.md).
