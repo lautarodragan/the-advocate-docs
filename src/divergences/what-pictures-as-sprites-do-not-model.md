@@ -31,12 +31,21 @@ not do everything they do in RM2k:
   nearest one the palette has, two steps of 31 away at most —the blends a
   digit's scaling leaves at its edges—. A number the map tones does not
   share: the console tones a picture by toning its palette.
-* **They count against the line's objects**: a block of a picture with four
-  of its sixteen cells drawn or fewer goes as 8x8 objects, and the console
-  shows 32 objects on a line. A picture over many characters on the same
-  lines can lose some of its pieces, or theirs.
-* **No rotation or waving, no enlarging, no saturation**, and nothing larger
-  than 256x128: those belong to the BG1 plane (phase 3).
+* **They count against the line's objects and slivers**: the console shows
+  32 objects on a line and 34 slivers of eight pixels. A block of a picture
+  with four of its sixteen cells drawn or fewer goes as 8x8 objects, and
+  since 2026-10-20 so does one with up to eight in no more than two of its
+  four rows —a frame's edges, a line of text—, unless they are two whole
+  rows side by side; a 32x32 costs four slivers on each of its 32 lines,
+  drawn or not. Pictures over many characters, or several wide ones on the
+  same lines, can still lose some of their pieces: what a line holds is
+  272 pixels of objects. Zounds' skill screen goes in only without its
+  selector's fill, which its port leaves out —see its
+  `patches/manual/README.md` in the-advocate-ports—.
+* **No rotation or waving, no enlarging, no saturation**, and nothing wider
+  than 256 —nor taller than 128 if it is placed by a constant with the
+  screen, which is then a big one; one placed by variables, or with the map,
+  goes up to 256 tall since 2026-10-20—: those belong to the BG1 plane.
 * **Fifteen colors**, those of one sprite palette, counted by use: gradients
   get banded.
 * **They go above the message window**: object priority 3, which is the one

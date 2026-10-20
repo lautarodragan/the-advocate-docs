@@ -38,7 +38,17 @@ and they do not do everything they do in RM2k:
 * **The map is not visible while it is there**: not its layers, not the
   characters, not the timer, not the small pictures. The instructions on
   285, which in RM2k go over the map with the map around them, here go over
-  black. And the menu does not open.
+  black. And the menu does not open. **Except over a map's panorama**,
+  since 2026-10-20: on a map of one screen whose panorama does not scroll,
+  a big picture with holes shown still is drawn over that panorama when
+  the cartridge is built, and the small pictures stay up over it —see [the VRAM
+  split](../internals/vram.md#one-over-a-maps-panorama-keeps-the-small-pictures)—.
+  There, the map's tiles are not under it, only its panorama; a
+  `ChangePBG` or a move of the picture leaves the rule out; and every small
+  picture goes in front of it, also the ones RM2k draws under its number:
+  where they overlap its own pixels, RM2k hides them and the console does
+  not. Zounds' skill screen is one: its frame hides the skill list only
+  when the list scrolls, which takes seven skills.
 * **A picture that goes over the map hides it.** Sunset Over Imdahl draws
   its roofs, ceilings, lights, shadows and mists as screen-sized pictures
   over the map —about 140 of them, most with the transparent colour
