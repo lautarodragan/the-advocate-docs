@@ -38,6 +38,20 @@ painted into the background and stops being an event.
 - **Where**: `rm2k-snes/wally/src/decor.rs`.
 - **More**: [Baked decorative events](../../divergences/baked-decorative-events.md).
 
+## A still wall left out is the map's passability
+
+A map over the console's `EV_MAX` events leaves some out, and an invisible
+wall that never stops being one —every page on the hero's layer, none that
+walks, one without conditions, nobody names it— goes first: its cell is
+closed in the map's passability, so the hero is still stopped there.
+
+- **Loses**: an event below or above the hero that walks into the cell is
+  stopped too, which RM2k does not do; a drawn one loses its drawing.
+- **Saves**: a row of the RAM's event tables per wall.
+- **Where**: `still_wall` in `rm2k-snes/convert/src/trim.rs`; the
+  request's `walls`, which `rm2k-snes/wally/src/layers.rs` closes.
+- **More**: [Events that do not fit in the RAM](../../divergences/events-that-do-not-fit-in-the-ram.md).
+
 ## Still events that animate past the sprite bank
 
 A still event that animates changes pose on the fly, so it needs a VRAM

@@ -13,9 +13,10 @@ as text.
 * **The start menu ("With Intro / No Intro / Quit") shows over a pattern of
   garbage** instead of the burning face behind it. Draft:
   [`desert-nightmare-start-menu-over-garbage`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-start-menu-over-garbage.md).
-* **The hero walks through some walls.** On eight maps —2, 4, 5, 14, 61,
-  62, 66 and 172— more events than the console holds are left out, and
-  among them are invisible walls. Draft: [`invisible-walls-lost-when-trimming-events`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/invisible-walls-lost-when-trimming-events.md).
+* **White rectangles where the buildings' roofs go** around the workshop
+  (map 4): the roofs are events, more than the console holds, and the
+  ones left out leave the panorama's holes showing. Maps 14, 61 and 66
+  leave out as many drawn events. Draft: [`desert-nightmare-roofs-left-out-show-white`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-roofs-left-out-show-white.md).
 * **The characters are not shaded by the lights.** Sandra stays at her
   full colours in the WC's darkness and in every lit interior: the masks
   are drawn into the map, not over her. See [Pictures drawn into the map](../../divergences/pictures-drawn-into-the-map.md).
