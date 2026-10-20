@@ -194,6 +194,10 @@ current: whoever fixes one removes its line in the same change.
   Tasks:
   [`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md),
   [`a-skill-in-battle-writes-no-result-line`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-skill-in-battle-writes-no-result-line.md).
+* **Teleport is not in the battle's skill list**: once the party learns
+  it, RPG Maker lists it in battle, grey, and the port leaves it out.
+  Draft:
+  [`the-battle-leaves-teleport-and-escape-skills-out-of-the-list`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-battle-leaves-teleport-and-escape-skills-out-of-the-list.md).
 * **Without MSU-1 four `.wav` songs are silent**: the battle and victory
   themes, the mountains' (map 33) and the small caves' (maps 89, 91, 92
   and 177), which the map tree sets; no MIDI of them was found. The title
