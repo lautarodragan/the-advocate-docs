@@ -168,8 +168,7 @@ current: whoever fixes one removes its line in the same change.
   apart from the maps whose small pictures no map leaves room for beside
   its characters —the notebook (29) shows its background alone, over a
   hidden map—; the notes (40) and the permit (6) show only on the maps that
-  leave room for theirs; the menu on map
-  136, whose two faces and bar do not fit the sprite tiles; and the skill
+  leave room for theirs; the menu on map 136, whose two faces and bar do not fit the sprite tiles; and the skill
   screen on map 190, whose box and list are big pictures that hide the
   small ones over them. The race's score board on map 75 shows all its
   numbers since 2026-10-16. Drafts:
