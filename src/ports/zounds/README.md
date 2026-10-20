@@ -166,14 +166,14 @@ current: whoever fixes one removes its line in the same change.
 * **Most picture-made screens do not show**: the notes and the pick-axe
   screen (common events 21, 27, 29, 40 and 41), which are common events
   compiled apart from the maps and so without their small pictures —the
-  notebook (29) shows its background alone, over a hidden map—; the menu on map
-  136, whose two faces and bar do not fit the sprite tiles; and the skill
-  screen on map 190, whose box and list are big pictures that hide the
-  small ones over them. The race's score board on map 75 shows all its
-  numbers since 2026-10-16. Drafts:
+  notebook (29) shows its background alone, over a hidden map—; and the menu
+  on map 136, whose two faces and bar do not fit the sprite tiles. The
+  race's score board on map 75 shows all its numbers since 2026-10-16, and
+  the skill screen on map 190 its panels, list, selector and face since
+  2026-10-20 —without the selector's half-transparent fill, which the port
+  leaves out: see its `patches/manual/README.md`—. Drafts:
   [`pictures-in-common-events-compiled-apart-are-not-shown`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/pictures-in-common-events-compiled-apart-are-not-shown.md),
-  [`zounds-menu-pictures-on-map-136-need-512-tiles`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-menu-pictures-on-map-136-need-512-tiles.md),
-  [`small-pictures-under-a-big-one-are-hidden`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/small-pictures-under-a-big-one-are-hidden.md).
+  [`zounds-menu-pictures-on-map-136-need-512-tiles`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-menu-pictures-on-map-136-need-512-tiles.md).
   The intro itself goes by: the credits on map 106 for five seconds,
   then the action key takes it to the continent (107) and the cutscenes on
   maps 1, 4, 5 and 6, until the player walks on map 7, since 2026-10-16;
@@ -181,6 +181,10 @@ current: whoever fixes one removes its line in the same change.
   back, and the talk with the two guards there on to map 9, since the same
   day. Task:
   [`zounds-pictures-and-the-picture-made-screens`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-pictures-and-the-picture-made-screens.md).
+* **Unamë's face on the skill screen has orange hair**, not green: a face
+  shown as a picture keeps its fifteen most used colours, and they are all
+  her skin's. Draft:
+  [`a-small-picture-s-fifteen-colours-lose-a-whole-hue`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-small-picture-s-fifteen-colours-lose-a-whole-hue.md).
 * **In the menu, the shops and the battle the accents are lost**: the text
   screens draw ASCII, so the hero is "Uname" there and an item's
   "Líquido" is "Liquido". The message boxes draw them. See

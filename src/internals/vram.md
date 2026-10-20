@@ -176,7 +176,10 @@ Each object of a picture says its tile and its size in the map's
 `runtime/picture_far.s`, in the-advocate. A map whose pictures do not fit any
 layout is converted again without them; since 2026-10-19 the ones it shows
 **over a black screen** go to the big pictures' layer instead —see
-below—.
+below—. Since 2026-10-20 a thin block —up to eight cells in no more than
+two of its rows, not two whole rows side by side— goes as 8x8 objects too:
+a 32x32 costs four of the line's 34 slivers on each of its lines, drawn or
+not. See `as_cells` in `pictures.rs` of rm2k-snes-convert.
 
 ## The message arrow goes past the sprite bank
 
@@ -241,6 +244,26 @@ things follow from that, both since 2026-10-19:
   The rule only looks at the tint in the picture's own page. See
   `over_black` in `pictures.rs` of rm2k-snes-convert. The Book of Three's
   ending is one: its credits and quotes on maps 69 and 72.
+
+### One over a map's panorama keeps the small pictures
+
+Since 2026-10-20, a big picture with holes —a quarter of it transparent or
+more— shown still —by a constant, with the screen, at its size, opaque,
+untoned, never moved— on a map of one RM2k screen whose panorama does not
+scroll is drawn **over that panorama** when
+the cartridge is built: the layer is what RM2k shows there, its holes
+filled. And if it takes 512 tiles or fewer it **keeps the small pictures
+over it**: its tiles go from word `$2000` to its tilemap at `$4000`,
+past the 512 object tiles OAM names, BG1's base says so, and the sprites
+stay on the main screen. The map's sprite bank is then whole, and its
+pictures were uploaded with it; the OAM carries only them —`pic_oam`
+leaves `build_oam` with nothing of the map's to walk—, since the
+characters are the map's and stay hidden like it. The entry says it with
+bit 7 of its `BG1SC` byte, `BIG_KEEPS`. See `still_over` and
+`keep_objects` in `pictures.rs` of rm2k-snes-convert, and `big_load` in
+`runtime/big_picture.s`. Zounds' skill screen, map 190, is one: a frame
+that clips the skill list, cut out of the panorama, and the list, the
+selector and the face over it.
 
 ## A big picture with zoom uses the other half
 
