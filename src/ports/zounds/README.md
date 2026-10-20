@@ -105,6 +105,22 @@ fix too:
   OpenGameArt's "40 CC0 water / splash / slime SFX", credited in the
   game's `CC0-sounds/`. It is not the sound the game had. Task:
   [`zounds-map-60s-water-sounds-like-a-door`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-map-60s-water-sounds-like-a-door.md).
+* **Three messages whose control codes were broken.** The farmer's job
+  offer on map 139 opened with `\c[6]Trabajo\[4]`, a colour code without
+  its letter, where the same question on his other page says
+  `\c[6]Trabajo\c[4]`; Madamme Lessier's laugh on map 161 began with
+  `\v[20]`, which writes a variable's value in front of it, where every
+  other slowed laugh or silence in the game is `\s[20]`; and Unamë's
+  `¿No nos vas a pagar?\` on map 24 ended in a lone backslash, where the
+  game's pause, `\|`, closes hundreds of lines. Since 2026-10-20 they say
+  `\c[4]`, `\s[20]` and `\|`. Task:
+  [`zounds-three-messages-with-broken-control-codes`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-three-messages-with-broken-control-codes.md).
+* **Three messages name their item as the database does.** Unamë stole
+  *Grasa de Camello*, the chef's menu offered *Puré con Papas* and the
+  fishing score counted *Kinshi*, for the item Grasa de Camaro, the item
+  Puré de Papas and the fish Kinsh. taro decided the item's name wins;
+  since 2026-10-20 the messages say it. Task:
+  [`zounds-three-messages-name-an-item-otherwise`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-three-messages-name-an-item-otherwise.md).
 
 ## The debug map
 
