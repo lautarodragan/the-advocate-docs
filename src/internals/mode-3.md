@@ -33,6 +33,10 @@ On a layer of its own, the other pictures the map's `ChangePBG`s name go
 with it, in the same tiles: see [the VRAM
 split](vram.md#a-changepbg-to-another-picture-swaps-it-in-the-same-tiles).
 
+Of the screens, only the pause menu's debug screen leaves mode 3: it runs
+in mode 5, 512 wide, so that the switches' names fit —see [the pause
+menu](the-pause-menu.md#the-debug-screen)—.
+
 The choice is `Way` in `rm2k-snes/wally/src/background/panorama.rs`, and
 the runtime side is `runtime/pano.s`, both in the-advocate; what was
 measured is in [Panoramas](../research/2026-10-05-panoramas.md). How VRAM

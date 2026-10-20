@@ -53,10 +53,40 @@ parallel common events run again when the menu closes. Where it differs
 from RPG_RT is in [What the debug screen does not
 model](../divergences/what-the-debug-screen-does-not-model.md).
 
-The names go in a block of their own in a far bank, by reference, cut to
-what fits; the code is in `FAR3`. A cartridge that does not ask for the
-screen carries none of it: the code is inside an `.if DEBUG_SCREEN`, and the
-converter writes only `DEBUG_SCREEN = 0`.
+**It runs in the console's 512-wide mode**, mode 5, since 2026-10-20
+—taro's: at 256 wide a third of A Blurred Line's switch names were cut—.
+The letters are the font's same pixels, each half as wide on screen, so a
+line holds twice as many; the windows are drawn at 256 wide like every
+other screen's and go up with each pixel twice, so they look as they did.
+In mode 5 a tilemap word is a cell 16 pixels wide, two tiles side by side:
+
+* **the text is BG1, at 4bpp**, with the text layer in its wide mode
+  —`tl_hires` in `runtime/text_layer.s`—: a column of the layer is four
+  tiles, a *quad*, where elsewhere it is a pair, and its inks are the
+  items' white and grey, moved to palettes 2 and 3;
+* **the windows are BG2, at 2bpp**: eight palettes of three colours in
+  the first 32 entries of the colour memory, which Adeleine's
+  `reduce_colors` fills from the System —one with more colours, or more
+  than three in a cell, loses some; A Blurred Line's has three—;
+* **the main screen and the subscreen show both layers**, which is what
+  mode 5 needs to show every pixel of the 512; no objects.
+
+When B leaves, mode 3 and no subscreen again, which is what the pause menu
+draws in. The VRAM, in [VRAM](vram.md#the-debug-screen-is-512-wide).
+
+The converter measures the screen with that width: the ranges' window is
+as wide as its widest label, and a name is cut only if it does not fit in
+what is left —none of A Blurred Line's—. The names go in a block of their
+own in a far bank, by reference; the code is in `FAR3`. A cartridge that
+does not ask for the screen carries none of it: the code is inside an `.if
+DEBUG_SCREEN`, and the converter writes only `DEBUG_SCREEN = 0`.
+
+**A row of the list is the screen's whole row** for the text layer —the
+range's label beside it is the same record—, so a step that changes the
+list would compose the ranges again. The layer keeps a record's head when
+it did not change and the rest starts further right —`tl_split`—, so
+within a page the ranges are never composed again, and a step asks the
+pool only for the list's columns.
 
 ## The `[debug]` knobs
 
