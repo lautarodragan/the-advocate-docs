@@ -51,6 +51,20 @@ enemy's numbers were
 brought within sixteen bits. Task:
 [`zounds-the-repository-lacks-197-assets`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-the-repository-lacks-197-assets.md).
 
+## What the game's branch fixes in the game
+
+The game is taro's and its repository can be retouched, so a bug that is
+the game's and not the port's is fixed there, and RPG Maker 2003 plays the
+fix too:
+
+* **The doorways of the cave's Arriba, 2 and 3** (maps 79 and 80), into
+  their little rooms, were touch events on the layer below the hero,
+  standing on the doorway's tile, which closes its cell: walking into them
+  did nothing, in RPG Maker 2003 and EasyRPG as on the console. They are on
+  the hero's layer since 2026-10-19, as the same doorway on map 63 always
+  was. Task:
+  [`zounds-two-events-in-the-cave-do-nothing`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-two-events-in-the-cave-do-nothing.md).
+
 ## The debug map
 
 **"New Game" starts in a room of the port's own**, map 1000 of
