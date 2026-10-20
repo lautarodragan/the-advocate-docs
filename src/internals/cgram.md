@@ -41,8 +41,10 @@ them on the window's first fifteen lines, one colour a line, before the face
 starts on line 16, and writes the map's own back —from `cgram_shadow`,
 tinted as they are on screen— on the fifteen lines after the face ends on
 63. Over a window with its background no pixel of the map is on those lines,
-so the swap shows nowhere; what shows in a bare window is in [What faces do
-not model](../divergences/what-faces-do-not-model.md). The channel runs
+so the swap shows nowhere; and a box with a face always has its background,
+even if `MessageOptions` asked for none, because without it the map took
+the face's colours across the screen —see [What faces do not
+model](../divergences/what-faces-do-not-model.md)—. The channel runs
 in indirect mode: its tables are in ROM, one per window position, and what
 one of the vblanks of the box's first lines fills is the 120 bytes of
 colours they point at, in far RAM —`runtime/message_face.s`; a table with
