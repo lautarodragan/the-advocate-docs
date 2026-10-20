@@ -72,6 +72,19 @@ fix too:
   the hero's layer since 2026-10-19, as the same doorway on map 63 always
   was. Task:
   [`zounds-two-events-in-the-cave-do-nothing`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-two-events-in-the-cave-do-nothing.md).
+* **The dungeon under the crack plays its own song.** None of its maps
+  named one: they all said "the parent's" up to map 33, Mountains, and
+  RPG Maker climbs the tree on every map change, also over a song an event
+  started, so past map 59, whose autostart page plays `Zounds_Dungeon_01`,
+  the cave played `18 - Desert flower` —in RPG Maker 2003's own runtime as
+  on the console—. Since 2026-10-20 the four folders that hold the dungeon
+  under map 58 (Caída) —68, 69, 98 and 100— name `Zounds_Dungeon_01`, and
+  every map under them inherits it; 59, where the fall lands, says "the
+  event's", so the fall's `ff3boss` goes on until 59's page fades it and
+  plays the dungeon's song. 58 itself, the way out (105) and the outdoor
+  map and passage under the dungeon (81 and 189) keep Mountains' song, and
+  so do 51 to 53, outside the crack. Task:
+  [`zounds-the-cave-plays-the-mountains-song`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-the-cave-plays-the-mountains-song.md).
 
 ## The debug map
 
@@ -108,19 +121,6 @@ a time, as many times as wanted.
 clean delivery: "New Game" starts on map 1, and the ROM comes out byte for
 byte as without the room. Task:
 [`zounds-a-debug-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-a-debug-map.md).
-
-## The cave plays the Mountains' song, as in RPG Maker
-
-Past map 59, where the fall leaves the party and a `PlayBGM` plays
-`Zounds_Dungeon_01`, the cave plays `18 - Desert flower`, and so do maps
-51 to 53 outside the crack. It is the game's: none of those maps names a
-song, they all say "the parent's" up to map 33, Mountains, and RPG Maker
-climbs the tree on every map change, also over a song an event started.
-Measured with the game's own RPG Maker 2003 runtime walking the game's way
-down —51's stairs, 58's fall, 59, 60—: it plays Mountains' song on landing
-on 59, over the fall's, until 59's autostart page plays the dungeon's, and
-again from 60 on, as the port does. Draft:
-[`zounds-the-cave-plays-the-mountains-song`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-the-cave-plays-the-mountains-song.md).
 
 ## Known issues
 
