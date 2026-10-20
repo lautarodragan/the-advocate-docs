@@ -121,6 +121,12 @@ fix too:
   Puré de Papas and the fish Kinsh. taro decided the item's name wins;
   since 2026-10-20 the messages say it. Task:
   [`zounds-three-messages-name-an-item-otherwise`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-three-messages-name-an-item-otherwise.md).
+* **Two secret chests shared a switch.** The secret chest on MiniCave 177
+  is a copy of MiniCave 89's and kept its switch, Secret- Cofre 1, so
+  opening either showed the other open, without its items. Since
+  2026-10-20 177's chest has a switch of its own, Secret- Cofre 4, one the
+  game never used. Task:
+  [`zounds-two-chests-share-a-switch`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-two-chests-share-a-switch.md).
 
 ## The debug map
 
