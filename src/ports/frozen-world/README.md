@@ -38,7 +38,7 @@ as text.
   place's**: the encounters name the backdrop after jumping to the battle
   screen (map 1), and the console keeps the one there is on those; the
   battle screen's own switches pick among its 17, and the caves'
-  `CavePanTest` is not among them (read in the build, not played). Draft:
+  `CavePanTest` is not among them (read in the build, not played). Task:
   [`a-changepbg-after-a-teleport-keeps-the-picture`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-changepbg-after-a-teleport-keeps-the-picture.md).
 
 ## Its own files
