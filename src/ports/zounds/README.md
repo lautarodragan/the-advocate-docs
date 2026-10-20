@@ -51,6 +51,42 @@ enemy's numbers were
 brought within sixteen bits. Task:
 [`zounds-the-repository-lacks-197-assets`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-the-repository-lacks-197-assets.md).
 
+## The debug map
+
+**"New Game" starts in a room of the port's own**, map 1000 of
+`zounds/patches/manual/maps/`, so the parts being tested are reached
+without replaying the way there: it costs one menu option and nothing
+else. "Continue" is untouched. Its four doors are the gaps in the bottom
+wall, and each asks before jumping:
+
+* **The game**: map 1, from its start, as the game without the room.
+* **The ship, right after the intro**: Uname's room, map 17, where the
+  first dream leaves her, in the guard's uniform and with the intro's gold
+  and permit.
+* **The desert, the first time**: map 34, where Kazar's talk in the
+  download room leaves her, with everything the ship sets on the way —the
+  boss taking the gold, the talk at the cafeteria, Yôzar's amulet, the
+  desert's explanation, the second dream—. Kazar joins there, through the
+  game's own scene.
+* **The desert with the pickaxe**: the same place, with Kazar, after
+  Bandurion's explanation and his pickaxe.
+
+Each door sets what the game's pages set on the way to that point, in
+their order, with the constants of map 1's settings page; the comments of
+the door's page say which page each thing comes from. What the player may
+or may not do on the way —chests, shops, Iman's flashback— is not done,
+except Yôzar's amulet, which the game stops offering once Kazar joins.
+The room puts Kazar in the party; the doors to a place where the game
+does not have him yet take him out.
+
+**The man in the room levels Uname and Kazar up**, one level or five at
+a time, as many times as wanted.
+
+`[debug] debug_map = false` in `rm2k-snes.toml` takes the room out for a
+clean delivery: "New Game" starts on map 1, and the ROM comes out byte for
+byte as without the room. Task:
+[`zounds-a-debug-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-a-debug-map.md).
+
 ## Known issues
 
 What playing the port shows today that the original does not. It is kept
@@ -109,5 +145,11 @@ current: whoever fixes one removes its line in the same change.
   theme plays a fan MIDI of it. With MSU-1 all five play from their
   tracks. Draft:
   [`zounds-four-wav-songs-without-a-midi`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-four-wav-songs-without-a-midi.md).
+* **A question waits for A before its options show**: when a message is
+  followed by a choice that fits under it —Kazar's "¿Has entendido?" the
+  first time in the desert—, RPG Maker draws both in one box; here the
+  message comes first, alone, and the options open in a box of their own.
+  Draft:
+  [`a-message-and-the-choice-after-it-share-a-box-in-rm2k`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-message-and-the-choice-after-it-share-a-box-in-rm2k.md).
 * **No boat**: the fishing game's vehicle. Draft:
   [`vehicles-enterexitvehicle-and-the-boat`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vehicles-enterexitvehicle-and-the-boat.md).
