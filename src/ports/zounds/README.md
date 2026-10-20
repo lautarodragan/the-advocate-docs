@@ -101,8 +101,11 @@ Past map 59, where the fall leaves the party and a `PlayBGM` plays
 `Zounds_Dungeon_01`, the cave plays `18 - Desert flower`, and so do maps
 51 to 53 outside the crack. It is the game's: none of those maps names a
 song, they all say "the parent's" up to map 33, Mountains, and RPG Maker
-climbs the tree on every map change. Measured with the game's own RPG
-Maker 2003 runtime, which does the same. Draft:
+climbs the tree on every map change, also over a song an event started.
+Measured with the game's own RPG Maker 2003 runtime walking the game's way
+down —51's stairs, 58's fall, 59, 60—: it plays Mountains' song on landing
+on 59, over the fall's, until 59's autostart page plays the dungeon's, and
+again from 60 on, as the port does. Draft:
 [`zounds-the-cave-plays-the-mountains-song`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-the-cave-plays-the-mountains-song.md).
 
 ## Known issues
