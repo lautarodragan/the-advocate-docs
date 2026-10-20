@@ -32,18 +32,25 @@ event that set it ends. Since
 
 What does not come out as in RM2k:
 
-* **A face in a window without its background recolours the map under
-  it.** With a background, nothing of the map shows on the window's lines
-  and the palette swap shows nowhere. Without one the map is visible on
-  those lines, and whatever pixels of it use colour entries 17 to 31 take
-  the face's colours for the 80 lines of the window. Desert Nightmare asks
-  for 7 bare windows in all, Dooms 2 for 3, Vampires Dawn for 37.
+* **A box with a face draws the window's background even if
+  `MessageOptions` asked for none.** With a background, nothing of the map
+  shows on the window's lines and the palette swap shows nowhere. Without
+  one the map is visible on those lines, and whatever pixels of it use
+  colour entries 17 to 31 took the face's colours for the 80 lines of the
+  window, across the whole screen. On Zounds' ship, map 21, that was the
+  whole floor and walls under the boss's speech, in bands: taro saw it on
+  2026-10-20 (the task
+  [`zounds-the-ship-s-transparent-messages-come-out-broken`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-the-ship-s-transparent-messages-come-out-broken.md)).
+  Since that day `msg_face_begin`, in the runtime's `message_face.s`, takes
+  the bare bit off the window when the box opens with a face. Walking each
+  page in order, the boxes that ask for a face in a bare window are 123 in
+  Vampires Dawn, 34 in Zounds and 15 in Desert Nightmare; the other games,
+  none. A bare box without a face is still bare.
 * **The face's transparent pixels do not show the window behind them.** A
   4bpp cell is one palette, and the face's cells are palette 1: a
   transparent pixel takes the colour the window's background has where
-  RM2k draws the face, and is then one of the fifteen. Over a window with a
-  background it looks the same; over a bare one it is a square of the
-  background's colour instead of the map.
+  RM2k draws the face, and is then one of the fifteen. Since a face always
+  has the window's background behind it, it looks the same.
 * **A face has fifteen colours**, and a FaceSet face can have a hundred:
   Adeleine merges them, the least visible first, as for the slot screen.
   The RTP's faces have 125 to 150 colours each, and lose their finest
