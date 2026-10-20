@@ -41,6 +41,11 @@ as text.
 * **Three painted maps keep their first painting**: the door on 26 and
   36 stays as it starts, and the grass field on 34 does not change. Draft:
   [`a-painted-map-keeps-its-first-painting`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-painted-map-keeps-its-first-painting.md).
+* **On the town wall at night (map 63) the bats stop at the left
+  edge**: the map wraps around in the original, and they come back in
+  from the right. Read in the data, not played. See [Maps that wrap
+  around](../../research/2026-10-19-maps-that-wrap.md). Task:
+  [`maps-that-wrap-around`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/maps-that-wrap-around.md).
 
 ## The painted maps, in mode 1 (2026-10-11)
 
