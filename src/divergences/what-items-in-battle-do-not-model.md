@@ -22,10 +22,11 @@ the battle tests predict the exact HP with; the console's side is
   one with `occasion_battle`. Giving or taking conditions, absorbing and
   reviving are not done, as with any skill; RM2k3's `subskill` is not
   offered.
-* **Its message is the item's line alone** —"Kersh Carbon Battery
-  used"—: RM2k's next lines, the result on each target, are not written,
-  as with any skill here. Nor is the skill's battle animation played, which
-  no skill plays.
+* **Its message is the item's line**, "Kersh Carbon Battery used", with
+  the skill's result on each target under it since 2026-10-20, as any
+  skill's —see
+  [What a skill's result lines do not model](what-a-skill-s-result-lines-do-not-model.md)—.
+  The skill's battle animation is not played, which no skill plays.
 * **The item is spent on choosing it**, not when its turn comes: otherwise
   the last one could be handed out to two actors in the same turn. A failed
   escape gives it back. Spending it is RM2k's `ConsumeItemUse` all the
@@ -55,8 +56,6 @@ times and gives a throw back with a failed escape.
 
 When a game leans on what a special item's skill does beyond its damage:
 Vampires Dawn's Itching Powder and The Book of Three's Runes only give
-conditions, so in battle they are spent and do nothing. The drafts, in
+conditions, so in battle they are spent and do nothing. The draft, in
 `tasks/` in the-advocate-work:
-[`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md)
-and
-[`a-skill-in-battle-writes-no-result-line`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-skill-in-battle-writes-no-result-line.md).
+[`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md).

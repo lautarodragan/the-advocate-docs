@@ -12,6 +12,10 @@ in the [divergences](../../divergences/README.md), not here.
   Advocate, Royal Dalia or the ABL 2.0 save shows "Advocat", "Royal D" or
   "ABL 2.0" where the original shows the whole name: the slot's name field
   is seven letters. Draft: [`abl-the-last-leaders-names-are-cut-in-the-slot-screen`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-the-last-leaders-names-are-cut-in-the-slot-screen.md).
+* **A missed attack says the target avoids taking damage**: where the
+  original writes "Junkbot maneuvers out of the way!", the port writes
+  "Junkbot avoids taking damage.", and a hit of nothing says "0 health
+  lost.". Draft: [`the-attack-says-undamaged-for-a-miss`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-attack-says-undamaged-for-a-miss.md).
 * **Radin's Mix Formula and Sern's Weapon Forging do nothing**: chosen
   from Tech Skill they close the menu and nothing happens, where the
   original takes you to Radin's and Sern's menus. Emily's Change Tape

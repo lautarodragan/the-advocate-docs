@@ -7,9 +7,11 @@ Maker 2000's: a hit is told by two lines in the message window,
 `<attacker> attacks!` over `<target> 7 HP lost.`, and an item, a defence or
 a miss by theirs. RPG Maker 2003's battle never writes those: it tells a
 hit by a number that floats over the target, and only names the skill or
-the item. So the nine terms of those lines —`attacking`, `defending`,
+the item. So the terms of those lines —`attacking`, `defending`,
 `actor_critical`, `enemy_damaged`, `enemy_undamaged`, `actor_damaged`,
-`actor_undamaged`, `use_item` and `hp_recovery`— were never seen by a 2003
+`actor_undamaged`, `use_item` and `hp_recovery`, and since 2026-10-20 the
+ones under a skill's using lines, `skill_failure_a` to `_c`, `dodge`,
+`parameter_increase` and `parameter_decrease`— were never seen by a 2003
 game's author, and what its database holds in them is not the game's
 words: in Zounds, the editor's Japanese defaults, which the console wrote
 as `Kazar 3'I?_???[?W…` until 2026-10-19.
