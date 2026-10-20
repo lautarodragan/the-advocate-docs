@@ -22,10 +22,11 @@ the battle tests predict the exact HP with; the console's side is
   one with `occasion_battle`. Giving or taking conditions, absorbing and
   reviving are not done, as with any skill; RM2k3's `subskill` is not
   offered.
-* **Its message is the item's line alone** —"Kersh Carbon Battery
-  used"—: RM2k's next lines, the result on each target, are not written,
-  as with any skill here. Nor is the skill's battle animation played, which
-  no skill plays.
+* **Its message is the item's line**, "Kersh Carbon Battery used", with
+  the skill's result on each target under it since 2026-10-20, as any
+  skill's —see
+  [What a skill's result lines do not model](what-a-skill-s-result-lines-do-not-model.md)—.
+  The skill's battle animation is not played, which no skill plays.
 * **An item with more than one use** —`uses` above 1, Bag of Volatile
   Shells' five— is spent whole on the first one, in battle and on the map:
   RM2k counts its uses in the save (`item_usage`), which this port does not
@@ -55,7 +56,6 @@ Vampires Dawn's Itching Powder and The Book of Three's Runes only give
 conditions, so in battle they are spent and do nothing. And the bags with
 several uses of The Book of Three. The drafts, in `tasks/` in
 the-advocate-work:
-[`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md),
-[`an-item-with-several-uses-is-spent-whole`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/an-item-with-several-uses-is-spent-whole.md)
+[`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md)
 and
-[`a-skill-in-battle-writes-no-result-line`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-skill-in-battle-writes-no-result-line.md).
+[`an-item-with-several-uses-is-spent-whole`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/an-item-with-several-uses-is-spent-whole.md).
