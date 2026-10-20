@@ -42,7 +42,7 @@ end under Wine (see "Its walkthrough"):
   [`tint-screen-snaps-instead-of-fading`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/tint-screen-snaps-instead-of-fading.md).
 * **The map's place names are dimmer**: the map item shows the whole land,
   but its place names, white and already blurred in the original, come out
-  grey and are harder to read. Draft:
+  grey and are harder to read. Task:
   [`book-of-three-the-maps-place-names-are-hard-to-read`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-the-maps-place-names-are-hard-to-read.md).
 
 ## Its walkthrough
