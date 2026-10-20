@@ -183,14 +183,14 @@ current: whoever fixes one removes its line in the same change.
   does in battle yet. The battle writes only the item's line, without the
   damage. See
   [What items in battle do not model](../../divergences/what-items-in-battle-do-not-model.md).
-  A draft and a task:
+  Tasks:
   [`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md),
   [`a-skill-in-battle-writes-no-result-line`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-skill-in-battle-writes-no-result-line.md).
 * **Without MSU-1 four `.wav` songs are silent**: the battle and victory
   themes, the mountains' (map 33) and the small caves' (maps 89, 91, 92
   and 177), which the map tree sets; no MIDI of them was found. The title
   theme plays a fan MIDI of it. With MSU-1 all five play from their
-  tracks. Draft:
+  tracks. Wishlist:
   [`zounds-four-wav-songs-without-a-midi`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-four-wav-songs-without-a-midi.md).
 * **A question waits for A before its options show**: when a message is
   followed by a choice that fits under it —Kazar's "¿Has entendido?" the

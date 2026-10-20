@@ -57,9 +57,10 @@ as text.
   —Limm (141) has fifty-six, Thessa (164) thirty-six—, and the rest stay
   at their cell. See [What walking by a movement type does not model](../../divergences/what-walking-by-a-movement-type-does-not-model.md).
 * **Talking to the people the vampire can bite does nothing**: their
-  "Talk / Suck Blood / Convert / Leave" choice does not compile, on 210
-  pages of 48 maps. Read in the data, not played. Draft:
-  [`vampires-dawn-the-victims-choice-does-not-compile`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vampires-dawn-the-victims-choice-does-not-compile.md).
+  "Talk / Suck Blood / Convert / Leave" choice compiles, but its pages
+  are still left out, most for variables past the 256 the cartridge
+  keeps. Read in the data, not played. Task:
+  [`variables-are-capped-at-256-slots`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/variables-are-capped-at-256-slots.md).
 
 ## Its own System again (2026-10-12)
 
