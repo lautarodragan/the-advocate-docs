@@ -126,9 +126,9 @@ battle.
 
 The message window's text is composed by the main loop a handful of
 letters per frame into a buffer of one line, and that line goes up in the
-next vblank as one DMA; the window turns on when the box is whole. No
-frame carries more than its share of composing, and no vblank more than a
-line.
+next vblank as one DMA —or in the one after, if what went up before it left
+no room—; the window turns on when the box is whole. No frame carries more
+than its share of composing, and no vblank more than a line.
 
 - **Saves**: frame time and vblank time while a box is built, and bank 0's
   RAM —one line's buffer, not the window's—.

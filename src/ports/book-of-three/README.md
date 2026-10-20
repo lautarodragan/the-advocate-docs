@@ -28,14 +28,6 @@ end under Wine (see "Its walkthrough"):
   converter leaves out one the scene only shows and takes away; the one
   that stays to be fought is there, and the battle plays to its end. See
   [A battle holds eight enemies](../../divergences/a-battle-holds-eight-enemies.md).
-* **Eilonwy and Gurgi are missing from the rescue in the lava tunnels**
-  (map 46): the scene places them and its lines go on, but they are not
-  drawn —with them the map's own tiles would lose their colours—; the
-  rest of the characters that walk into a scene are there. Draft:
-  [`characters-a-route-dresses-left-out-where-they-cost-the-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/characters-a-route-dresses-left-out-where-they-cost-the-map.md).
-* **In the lava tunnels a black block covers the message window's lower
-  right corner** (map 46), while Taran and Fflewddur talk. Draft:
-  [`book-of-three-a-black-block-over-the-window-in-the-lava-tunnels`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-a-black-block-over-the-window-in-the-lava-tunnels.md).
 * **Fades are cuts**: where a scene fades the screen to black, to night or
   back to day, the port jumps to the end of the fade and waits its time.
   Draft:
