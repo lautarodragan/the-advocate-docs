@@ -114,14 +114,25 @@ They are of three kinds:
    down a 25-row map by a repeating route, the stones rise by theirs—,
    Sunset 63 —the bats walk left with walk-through on, by repeating
    routes— and Zounds 150 —the hero walks up by a repeating route while
-   the party talks—. Without wrapping, the hero stops at the edge after a
-   dozen or two steps and the stones and the bats pile up at theirs: the
+   the party talks—. Without wrapping, the falling hero of 254 stops at
+   the bottom after some twenty steps, and the stones and the bats pile
+   up at their edges: the
    minigame and the scene stop looking like themselves. It is the kind
    that most needs the events, not only the hero, to wrap.
+
+   Two of them need a second thing: the hero's walk on Zounds 150 and
+   on Vampires Dawn 254 is a `MoveEvent` with "repeat", which the
+   console runs once —the loss `route-repeat-dropped` in
+   `degradations.json`, task
+   [`a-forced-routes-repeat-flag-is-dropped`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-forced-routes-repeat-flag-is-dropped.md)—.
+   On 254 the parallel page that gives it issues it again every few
+   frames, which hides it; on 150 an automatic page gives it once and
+   erases itself, so today the hero takes **one** step —read in the
+   data, not played—, and wrapping alone would not change that.
 3. **Only the camera.** Zounds 26 and 27 and Vampires Dawn 249 are
    cutscenes whose routes do not reach a seam, and Zounds 103 has no
-   open seam; Vampires Dawn 1 is not in the cartridge. What changes there is that RM2k's camera does not stop
-   at the edge: Vampires Dawn 249 starts with the hero on row 98 of 100,
+   open seam; Vampires Dawn 1 is not in the cartridge. What changes
+   there is that RM2k's camera does not stop at the edge: Vampires Dawn 249 starts with the hero on row 98 of 100,
    and RM2k shows the map's top rows below him.
 
 The sizes matter for one detail: every wrapping map is at least 20
