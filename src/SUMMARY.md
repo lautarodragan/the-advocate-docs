@@ -143,6 +143,7 @@
         - [What a skill's result lines do not model](divergences/what-a-skill-s-result-lines-do-not-model.md)
         - [Escape is the fifth command](divergences/escape-is-the-fifth-command.md)
         - [A 2003 game's battle writes the 2000 lines](divergences/a-2003-game-s-battle-writes-the-2000-lines.md)
+        - [A 2003 game's battle commands](divergences/a-2003-game-s-battle-commands.md)
         - [What the enemies' AI does not model](divergences/what-the-enemies-ai-does-not-model.md)
         - [What troop pages do not model](divergences/what-troop-pages-do-not-model.md)
         - [A battle holds eight enemies](divergences/a-battle-holds-eight-enemies.md)

@@ -19,7 +19,14 @@ the port's project is `zounds/` in the-advocate-ports, built on 2026-10-15,
   [`ditto-drops-the-2003-flag-bits`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/ditto-drops-the-2003-flag-bits.md).
 * **Its battles are fought with the 2000 battle**: turns ordered by
   agility instead of the ATB, the front view instead of its RTP side-view
-  battlers, Attack, Skill, Defend, Item and Escape for everyone. The two
+  battlers, and the same five commands in the same order for everyone,
+  named since 2026-10-20 by each actor's own battle commands —Atacar,
+  Técnica, Defender, Objeto or Kazar's Tirar-Usar, Escapar—; until then
+  they were the 2000 terms, two of them the editor's Japanese. See
+  [A 2003 game's battle commands](../../divergences/a-2003-game-s-battle-commands.md).
+  Task:
+  [`a-2003-game-s-battle-commands-are-its-own`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-2003-game-s-battle-commands-are-its-own.md).
+  The two
   2003 commands its troop pages carry are compiled for it:
   `CallCommonEvent`, the steal mechanic, as the called body pasted into the
   page; and `ForceFlee`, the game's own Escape command, as an escape that
@@ -232,6 +239,12 @@ current: whoever fixes one removes its line in the same change.
   it, RPG Maker lists it in battle, grey, and the port leaves it out.
   Draft:
   [`the-battle-leaves-teleport-and-escape-skills-out-of-the-list`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-battle-leaves-teleport-and-escape-skills-out-of-the-list.md).
+* **The battle's commands go in another order**: Unamë's and Kazar's
+  window puts Defender before their Objeto or Tirar-Usar, Bandurion has an
+  Escapar he does not have in RPG Maker, and Escapar is RPG Maker 2000's,
+  which can work at once or fail, where the game's counts its tries
+  —"Escapando... 1/3"— and never fails. Draft:
+  [`a-2003-actor-s-command-window-is-the-2000-one`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-2003-actor-s-command-window-is-the-2000-one.md).
 * **Without MSU-1 four `.wav` songs are silent**: the battle and victory
   themes, the mountains' (map 33) and the small caves' (maps 89, 91, 92
   and 177), which the map tree sets; no MIDI of them was found. The title
