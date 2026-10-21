@@ -7,9 +7,9 @@ current: whoever fixes one removes its line in the same change. The work
 behind each one is a draft or a task in the tasks repository, named here
 as text.
 
-* **Coloured words in messages come out in the plain colour**: the console
-  drops RM2k's `\c[n]`. Task: [`message-colours-and-speed`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/message-colours-and-speed.md);
-  see [What message escapes do not model](../../divergences/what-message-escapes-do-not-model.md).
+* **The speakers' names and the other coloured words have fewer shades**
+  than RM2k's gradient, and the message window one colour less: its last
+  entry is the box's ink. See [What message escapes do not model](../../divergences/what-message-escapes-do-not-model.md#the-colour).
 * **On a painted map, an event "above the hero" is drawn over the roofs.**
   The guard at (13,23) on the square, map 2, shows over the roof that
   should hide him. Draft: [`events-above-the-hero-over-the-painted-roofs`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/events-above-the-hero-over-the-painted-roofs.md).
@@ -36,8 +36,6 @@ as text.
   opening scene (map 11) switches to `SaveMeny`, and only the message
   window follows: the dialogue comes out in its white text, the menu in
   `System`'s white windows. See [What `ChangeSystemGraphics` does not model](../../divergences/what-changesystemgraphics-does-not-model.md).
-* **Coloured words in messages come out in the plain colour.** Task:
-  [`message-colours-and-speed`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/message-colours-and-speed.md).
 * **Three painted maps keep their first painting**: the door on 26 and
   36 stays as it starts, and the grass field on 34 does not change. Task:
   [`a-painted-map-keeps-its-first-painting`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-painted-map-keeps-its-first-painting.md).

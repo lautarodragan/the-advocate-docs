@@ -44,8 +44,11 @@ as text.
   screens draw ASCII, so "Rüstung" is "Rustung" and the gold is
   "Goldmunzen" there, and an `ß` is `ss`. The message boxes draw them. See
   [Letters the font does not have](../../divergences/letters-the-font-does-not-have.md).
-* **Coloured words come out in the plain colour.** Task:
-  [`message-colours-and-speed`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/message-colours-and-speed.md).
+* **Coloured words have fewer shades than RM2k's gradient, and a second
+  colour in the same box comes out in the window's own shades** —"Valnar
+  is a young warrior from Limm" with the town in another colour than the
+  rest—; and the message window has one colour less: its last entry is the
+  box's ink. See [What message escapes do not model](../../divergences/what-message-escapes-do-not-model.md#the-colour).
 * **Where a message has a half space, the words on both sides of it come
   together**: the console drops RM2k's `\_`. See [What message escapes do not model](../../divergences/what-message-escapes-do-not-model.md).
 * **An icon in a message shows as `$` and a letter**: a sign reads "$s

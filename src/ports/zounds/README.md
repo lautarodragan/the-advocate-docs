@@ -212,6 +212,12 @@ current: whoever fixes one removes its line in the same change.
   screens draw ASCII, so the hero is "Uname" there and an item's
   "Líquido" is "Liquido". The message boxes draw them. See
   [Letters the font does not have](../../divergences/letters-the-font-does-not-have.md).
+* **The speakers' names and the other coloured words have fewer shades
+  than RM2k's gradient, and a second colour in the same box comes out in
+  the window's own blues** —"¡Energía y Magia totalmente recuperados!",
+  with Magia not in its green—; and the message window has one colour
+  less: its last entry is the box's ink. See [What message escapes do not
+  model](../../divergences/what-message-escapes-do-not-model.md#the-colour).
 * **The stand-in assets**: wrong chipsets on the maps that asked for the
   RTP's or the lost ones, one sound for 89 missing sounds, one song for
   the three songs still missing (`waltz`, `boat1`, `boat2`); and the

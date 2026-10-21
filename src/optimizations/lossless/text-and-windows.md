@@ -122,35 +122,39 @@ battle.
 - **More**: the header of `runtime/window_system.s` and the comment on
   `tl_glyph`.
 
-## A message is composed a few letters a frame, a line a vblank
+## A message is composed into one line's buffer, and typed by its cells
 
-The message window's text is composed by the main loop a handful of
-letters per frame into a buffer of one line, and that line goes up in the
-next vblank as one DMA —or in the one after, if what went up before it left
-no room—; the window turns on when the box is whole. No frame carries more
-than its share of composing, and no vblank more than a line.
+The message window's text is composed by the main loop into a buffer of one
+line, at most five letters a frame. A box is typed in its window already
+up, as RM2k types it: what a frame typed goes up in the next vblank as the
+cells its letters touched —two small DMAs, one per cell row—, and a line
+that ends goes up whole, as one DMA. Either one waits for the vblank after
+if what went up before it left no room. A box's four lines are blanked
+first through the same buffer, a line a vblank, before its window opens.
 
-- **Saves**: frame time and vblank time while a box is built, and bank 0's
-  RAM —one line's buffer, not the window's—.
-- **Costs**: a box takes some frames to appear, more the more letters it
-  has; RM2k opens its window with an animation.
+- **Saves**: frame time and vblank time while a box is typed —a few tiles a
+  vblank and not the line's 1,920 bytes—, and bank 0's RAM: one line's
+  buffer, not the window's.
+- **Costs**: four frames of blanking before a box's window opens, where
+  RM2k opens it with an animation; and the instant text, `\>`, goes at five
+  letters a frame instead of a stretch at once.
 - **Where**: `MSG_CHARS`, `message_tick` and `upload_line` in
-  `runtime/messages.s`.
-- **More**: the comment on `MSG_CHARS`, with what was measured.
+  `runtime/messages.s`; `msg_next`, `typed_up` and `ink_dirty` in
+  `runtime/message_pace.s`.
+- **More**: the comment on `MSG_CHARS`, with what was measured, and the
+  header of `runtime/message_pace.s`.
 
-## A wait in the middle of a box draws its line again
+## A wait in the middle of a box is a stop in its typing
 
-A box with `\.`, `\|` or `\!` is cut at the wait: the window shows what
-there is, the wait runs, and the box is composed again from the start of
-the line that was cut, over what was already there. Keeping the half-drawn
-line while blanking the ones below would need a second line buffer.
+A box with `\.`, `\|` or `\!` stops typing there, with what it typed on
+screen, and goes on from the same letter when the wait is over. Until
+2026-10-20, when the console did not type, a box was cut at the wait and
+composed again from the start of the cut line.
 
-- **Saves**: bank 0's RAM —a second buffer of a line—.
-- **Costs**: a few frames of the composer after each wait.
-- **Where**: `msg_wait_mark`, `msg_hold_tick` and `msg_line_start` in
-  `runtime/message_waits.s`.
-- **More**: the header of `runtime/message_waits.s`.
-
+- **Saves**: the composer's frames that composing the cut line again took.
+- **Costs**: nothing beyond the typing.
+- **Where**: `msg_control` and `msg_pace_tick` in `runtime/message_pace.s`.
+- **More**: the header of `runtime/message_pace.s`.
 ## The party panel is one block for every row and every actor
 
 The pause menu's and the actor choice's party rows share one fixed block
