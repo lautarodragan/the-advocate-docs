@@ -520,6 +520,31 @@ custom menu's does: `CM_DIRTY`, and `big_back_far` when the pause menu
 closes, which is the only way out of these two screens. See `items_pool`
 in `runtime/screen_bank.s`.
 
+## The debug screen is 512 wide
+
+The pause menu's debug screen —see [the pause
+menu](the-pause-menu.md#the-debug-screen)— is the only one in mode 5,
+where a tilemap word is a cell 16 pixels wide, tiles N and N + 1 side by
+side:
+
+```text
+word 0 .. CM_BG1_MAP      the text's quads, 4bpp, BG1: four tiles each, the
+                          top two and the bottom two of a 16-pixel column
+CM_BG1_MAP ..             BG2's tilemap, the windows
+SLOT_MAP ..               BG1's tilemap, the text
+CM_BG1_VRAM ..            the windows' tiles, 2bpp, two per cell
+```
+
+With `CM_BG1_MAP` at `$3800`, as in A Blurred Line, the pool is 223 quads,
+892 tiles, below the 1024 a tilemap word names: not enough to hold a page
+of the list and the next one whole, so a step that changes the list shows
+in two or three goes —see `tl_split` and `tl_step`—. The text layer composes a
+row into a stage twice as wide as its usual one, which is not in far RAM
+but in `LZ2_BUFFER`, `$7F0000`: the screen decompresses nothing while it
+is open, and the map that comes back reloads it. See `tl_hires` and what
+follows it in `runtime/text_layer.s`, and `dbg_upload` in
+`runtime/debug_screen.s`, in the-advocate.
+
 ## The title screen doesn't use the layout
 
 While the title is shown there is no map loaded, so its addresses are

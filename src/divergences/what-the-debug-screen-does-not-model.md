@@ -20,12 +20,20 @@ differs from it in:
   maps names, and nothing would read the others. RPG_RT shows every one.
   The same with a switch past the cartridge's table —the highest the game
   names—, which shows a grey `[OFF]`.
-* **The names are cut** to what fits at 256 wide, about fourteen letters
-  with the default font, and a letter the screens' font does not have goes
+* **It is 512 pixels wide**, the console's high-resolution mode, so that
+  the names fit: the letters are RPG_RT's pixels at half the width, and
+  the windows keep their look but, in that mode, only three colours a
+  cell, which a System with more pays. A name is cut only past what the
+  list's window holds, twice as many letters as at 256 wide —none of
+  A Blurred Line's is—, and a letter the screens' font does not have goes
   as its plain stand-in or a `?`.
-* **The text takes about half a second** to show after a step that changes
-  the whole list: the screens' text layer composes it a few rows per frame,
-  and for a moment the rows not composed yet are blank. RPG_RT redraws it
+* **The list takes about half a second** to show after a step that
+  changes it whole: the screens' text layer composes it a few rows per
+  frame, and its tiles do not hold two pages, so the rows composed so far
+  show and the others keep what they said until their turn —never blank:
+  until 2026-10-20 they went blank, ranges included; see
+  [the task](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-debug-screen-redraws-and-goes-wide.md)—.
+  The ranges beside the list are not composed again. RPG_RT redraws it
   at once.
 * **Its sounds** —RPG_RT's cursor, decision and cancel— are not played.
 
