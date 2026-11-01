@@ -21,9 +21,11 @@ under Wine and easyrpg-player's `Game_Party::UseSkill` and
 * **No sound.** RPG_RT plays the first sound of the skill's animation on a
   heal that was of use, and its buzzer when it was not; the port plays
   neither, as its menus play no system sound at all.
-* **The party's rows show HP and not SP**: the choice is the medicine's,
-  over the pause menu's party panel, which has no SP line. The SP the skill
-  spent are seen back in the list's status line.
+* **The party's rows are the console's**: the choice is the medicine's,
+  over the pause menu's party panel, with the SP on its fourth line, under
+  the HP —see [What the party panel does not model](what-the-party-panel-does-not-model.md)—.
+  Until 2026-11-01 it had no SP line, and the SP the skill spent were only
+  seen back in the list's status line.
 * **States other than death are not kept outside battle**, so a skill that
   only cures them —Antidote, Medicine, Blessing— is of no use: nothing
   happens and no SP go, where RPG_RT cures a state that lasted past the
