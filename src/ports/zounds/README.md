@@ -263,6 +263,11 @@ current: whoever fixes one removes its line in the same change.
   message comes first, alone, and the options open in a box of their own.
   Task:
   [`a-message-and-the-choice-after-it-share-a-box-in-rm2k`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-message-and-the-choice-after-it-share-a-box-in-rm2k.md).
+* **The desert's hot stones hurt in silence**: since 2026-11-01 each step
+  onto one takes its HP and flashes red, as in RPG Maker, but without the
+  fire sound it plays; and the rocky ground of the mountains (maps 33, 47,
+  55 to 57, 81, 87 and 94) has no footsteps. Task:
+  [`terrains-do-what-rm2k-does`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/terrains-do-what-rm2k-does.md).
 * **No boat**: the fishing game's vehicle. Draft:
   [`vehicles-enterexitvehicle-and-the-boat`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vehicles-enterexitvehicle-and-the-boat.md).
 * **On Scape Way (150) the hero takes one step** instead of walking up
