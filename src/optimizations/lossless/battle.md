@@ -33,13 +33,14 @@ are decompressed when the battle starts.
 ## Encounters and experience, precomputed
 
 The encounter odds are integer arithmetic the converter prepares: the
-reciprocal of each map's `encounter_steps`, in 1/65536, and the step at
-which each row of the table is crossed; the ROM does not divide. And a
-victory's experience comes summed per troop, since every enemy in a
-victory is dead.
+reciprocal of each map's `encounter_steps`, in 1/65536, the accumulated
+terrain rate at which each row of the table is crossed, and each
+terrain's rate as a factor in 1/256; the ROM does not divide, and
+multiplies once per step. And a victory's experience comes summed per
+troop, since every enemy in a victory is dead.
 
 - **Saves**: CPU —no division on the console—.
-- **Where**: `base` and `step_thresholds` in
+- **Where**: `base`, `rate_thresholds` and `factor` in
   `rm2k-snes/battle/src/encounters.rs`, read by `runtime/encounters.s`;
   `troop_exp` in `rm2k-snes/battle/src/rules.rs`, read by `ba_exp_allocate`
   in `runtime/battle_loop.s`.
