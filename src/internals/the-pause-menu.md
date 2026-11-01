@@ -55,15 +55,32 @@ model](../divergences/what-the-debug-screen-does-not-model.md).
 
 **It runs in the console's 512-wide mode**, mode 5, since 2026-10-20
 —taro's: at 256 wide a third of A Blurred Line's switch names were cut—.
-The letters are the font's same pixels, each half as wide on screen, so a
-line holds twice as many; the windows are drawn at 256 wide like every
-other screen's and go up with each pixel twice, so they look as they did.
+Its pixels are half as wide on screen, so a line holds twice as many; the
+windows are drawn at 256 wide like every other screen's and go up with
+each pixel twice, so they look as they did.
+
+**It writes with a font of its own**, since 2026-11-01, in every game and
+whatever the game's: `hires-wide`, in `rm2k-snes/text/fonts/` —its
+README says how it is drawn—. Until then it wrote with the game's font,
+whose pixels at half width left every vertical stroke one pixel of the
+512, and on a CRT taro found it "practically unreadable"; this one has
+them two pixels wide, and is about 1.4 times as wide as the game's at 256.
+It is not a knob: no game can use it as its font —a letter moves the line
+up to ten pixels, more than a cell of the other screens— and there is no
+second one to choose. The cartridge carries its tables apart, which only
+the 512-wide mode reads, and of its Latin-1 the letters the database's
+names use, so `Händler` is written as such. See
+[the task](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-wider-font-for-the-512-wide-debug-screen.md).
+
 In mode 5 a tilemap word is a cell 16 pixels wide, two tiles side by side:
 
 * **the text is BG1, at 4bpp**, with the text layer in its wide mode
   —`tl_hires` in `runtime/text_layer.s`—: a column of the layer is four
   tiles, a *quad*, where elsewhere it is a pair, and its inks are the
-  items' white and grey, moved to palettes 2 and 3;
+  items' white and grey, moved to palettes 2 and 3; the screen's upper
+  half and its lower half take their quads from two pools, each its own
+  1024 tiles of the VRAM, which an HDMA switches at line 112 —see
+  [VRAM](vram.md#the-debug-screen-is-512-wide)—;
 * **the windows are BG2, at 2bpp**: eight palettes of three colours in
   the first 32 entries of the colour memory, which Adeleine's
   `reduce_colors` fills from the System —one with more colours, or more
