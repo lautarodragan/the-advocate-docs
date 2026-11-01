@@ -18,13 +18,15 @@ asks for two, both from Talan's systems: `Control` (22), from
 `rm2k-snes/battle/src/simulate.rs`, the model that rolls the same dice in
 the same order. What is not the same:
 
-* **Only enemies have conditions, and only a troop page gives them.** No
-  skill, attack or item gives or takes one, on either side: a skill whose
-  only effect is a condition does nothing, and the enemies' AI discards it
+* **In battle, only a troop page gives or takes a condition.** No skill,
+  attack or item gives or takes one, on either side: a skill whose only
+  effect is a condition does nothing, and the enemies' AI discards it
   —see [What the enemies' AI does not model](what-the-enemies-ai-does-not-model.md)—;
-  an item that only cures conditions is not in the battle's list. The actors
-  never have one in battle: a troop page's `ChangeCondition` that adds one
-  does not compile, and their status says `normal_status` or the dead one.
+  an item that only cures conditions is not in the battle's list. The
+  actors hold conditions since 2026-11-01 —on the map, in the save and
+  across the battle, see below— and a troop page's `ChangeCondition` gives
+  and takes them, but the command menu still asks one that cannot act for
+  its command, and its status says `normal_status` or the dead one.
 * **No HP or SP each turn.** `hp_change_*` and `sp_change_*` —poison,
   regeneration— are not applied (`ApplyConditions`), and a condition does
   not seal skills (`restrict_skill`, `restrict_magic`). The game's two do
@@ -48,6 +50,31 @@ the same order. What is not the same:
 The randomness is the battle's own, as everywhere else in it: see
 [What the enemies' AI does not model](what-the-enemies-ai-does-not-model.md).
 
+## Outside battle
+
+Since 2026-11-01 the actors hold the database's conditions as
+`Game_Actor`'s `states`, in four places like an enemy's —see
+`runtime/party_states.s` in the-advocate—: `ChangeCondition` gives and
+takes them on an actor or the party, `IsActorConditioned` asks for them,
+`FullHeal` and the inn clear them, a fall purges them as death's priority
+says, they travel in the save, the battle takes them in and gives them
+back, and its end drops the `battle_only` ones and the persistent ones that
+wear off on their own. Each pad step, `Game_Party::ApplyStateDamage`: the
+HP and SP a condition changes every so many of the party's steps, never
+below 1 HP, with the red flash. What is not the same:
+
+* **Equipment that gives or prevents a condition** —RM2k's
+  `PermanentStates`, and an armor's resistance— is not looked at. No game
+  of the nine equips one that gives one.
+* **The step's changes go actor by actor**, each one's conditions in
+  order; RM2k goes condition by condition, each one's holders in order.
+  The HP come out the same unless one actor holds a condition that heals
+  walking and another that hurts on the same step: no game has one that
+  heals.
+* **The menus do not show them** yet: the main menu's status line and the
+  status screen say nothing, and a medicine or a skill that only cures a
+  condition cures nothing on the map.
+
 ## Measured
 
 On 2026-10-12, against the model, turn by turn —the HP of everyone, each
@@ -65,5 +92,5 @@ with `BarkWall` (troop 128).
 ## When it stops being enough
 
 When a game's battles rely on skills, weapons or items that give
-conditions, or on poison: then conditions go to the actors too, with their
-status window, and stay after the battle when their `type` says so.
+conditions, or on poison in battle: the party's half outside battle is
+there, the battle's is [`the-partys-conditions`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-partys-conditions.md).
