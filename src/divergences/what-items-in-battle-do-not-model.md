@@ -14,14 +14,15 @@ the battle tests predict the exact HP with; the console's side is
   whole inventory and greys out what cannot be used; here the rest does not
   show. A special item does not show either for an actor its `actor_set`
   leaves out, which RM2k greys out per actor.
-* **The medicines that only remove conditions do not go in**: the actors
-  carry no conditions in battle —see
+* **The medicines that only remove conditions do not go in**, and a
+  medicine's `state_set` takes nothing away: since 2026-11-01 the actors
+  carry conditions in battle, but the medicine does not look at them —see
   [What battle conditions do not model](what-battle-conditions-do-not-model.md)—.
 * **A special item casts only what a skill does in this battle**: a
   `normal` skill —its HP, SP, parameters and attribute ranks— or a `switch`
-  one with `occasion_battle`. Giving or taking conditions, absorbing and
-  reviving are not done, as with any skill; RM2k3's `subskill` is not
-  offered.
+  one with `occasion_battle`, and since 2026-11-01 the conditions it gives
+  or takes. Absorbing and reviving are not done, as with any skill; RM2k3's
+  `subskill` is not offered.
 * **Its message is the item's line**, "Kersh Carbon Battery used", with
   the skill's result on each target under it since 2026-10-20, as any
   skill's —see
@@ -54,8 +55,8 @@ times and gives a throw back with a failed escape.
 
 ## When it stops being enough
 
-When a game leans on what a special item's skill does beyond its damage:
-Vampires Dawn's Itching Powder and The Book of Three's Runes only give
-conditions, so in battle they are spent and do nothing. The draft, in
-`tasks/` in the-advocate-work:
+When a game leans on what a special item's skill does beyond its damage
+and its conditions —absorbing, reviving—, or on a medicine that cures one
+in battle. Vampires Dawn's Itching Powder and The Book of Three's Runes,
+which only give conditions, do since 2026-11-01:
 [`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md).

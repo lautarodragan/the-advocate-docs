@@ -233,14 +233,6 @@ current: whoever fixes one removes its line in the same change.
   events than the console's 120, and the coins with the highest ids are
   left out. Draft:
   [`zounds-kuak-man-loses-its-coins`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-kuak-man-loses-its-coins.md).
-* **The throwing items that poison, paralyze or burn only hurt**: since
-  2026-10-19 the battle offers the special items —Kazar throws the
-  Piedra—, and Veneno, Paralizador, Pétalo Violeta, Ácido, Ala Eléctrica
-  and Bola de Fuego do their damage and give no condition, which no skill
-  does in battle yet. See
-  [What items in battle do not model](../../divergences/what-items-in-battle-do-not-model.md).
-  Task:
-  [`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md).
 * **Teleport is not in the battle's skill list**: once the party learns
   it, RPG Maker lists it in battle, grey, and the port leaves it out.
   Draft:
