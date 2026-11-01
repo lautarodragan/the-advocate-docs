@@ -39,6 +39,10 @@ in the [divergences](../../divergences/README.md), not here.
   battle's sounds, and thirteen samples it shares went down to about
   9.5 kHz. With MSU-1 it is not heard. Draft:
   [`a-battle-song-with-many-instruments-squeezes-shared-samples`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-battle-song-with-many-instruments-squeezes-shared-samples.md).
+* **In the forest of Core Retrospective (map 5) the hero's feet are drawn
+  whole**: in the original the lowest third of the hero is half
+  transparent. Draft:
+  [`a-bush-on-a-map-with-more-than-four-character-palettes`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-bush-on-a-map-with-more-than-four-character-palettes.md).
 
 ## The port
 

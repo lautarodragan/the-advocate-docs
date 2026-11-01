@@ -36,6 +36,10 @@ end under Wine (see "Its walkthrough"):
   but its place names, white and already blurred in the original, come out
   grey and are harder to read. Task:
   [`book-of-three-the-maps-place-names-are-hard-to-read`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-the-maps-place-names-are-hard-to-read.md).
+* **In the water of Tylwyth Teg (map 56) the hero is drawn whole**: in
+  the original its lower half is half transparent, as it is in the
+  Flooded Cell (map 84) in the port. Draft:
+  [`a-bush-on-a-map-with-more-than-four-character-palettes`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-bush-on-a-map-with-more-than-four-character-palettes.md).
 
 ## Its walkthrough
 

@@ -92,6 +92,7 @@
         - [Baked decorative events](divergences/baked-decorative-events.md)
         - [Translucent events end up opaque](divergences/translucent-events-end-up-opaque.md)
         - [Seven palettes on a map with animations](divergences/seven-palettes-on-a-map-with-animations.md)
+        - [What a bush does not model](divergences/what-a-bush-does-not-model.md)
         - [The shrunk battle animation](divergences/the-shrunk-battle-animation.md)
         - [A flash on someone else's palette](divergences/a-flash-on-someone-elses-palette.md)
         - [The flash does not reach pictures](divergences/the-flash-does-not-reach-pictures.md)
