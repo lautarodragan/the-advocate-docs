@@ -528,21 +528,36 @@ where a tilemap word is a cell 16 pixels wide, tiles N and N + 1 side by
 side:
 
 ```text
-word 0 .. CM_BG1_MAP      the text's quads, 4bpp, BG1: four tiles each, the
-                          top two and the bottom two of a 16-pixel column
-CM_BG1_MAP ..             BG2's tilemap, the windows
-SLOT_MAP ..               BG1's tilemap, the text
-CM_BG1_VRAM ..            the windows' tiles, 2bpp, two per cell
+$0000 .. $3FFF        the upper half's text: quads 1 to 255, 4bpp, BG1 —four
+                      tiles each, the top two and the bottom two of a
+                      16-pixel column—; quad 0 is the blank one
+$4000 .. $6FFF        the lower half's: quads 257 to 447, and 256 the blank
+$7000 .. $77FF        the windows' tiles, 2bpp, two per cell, BG2
+$7800 .. $7BFF        BG2's tilemap, the windows
+$7C00 .. $7FFF        BG1's tilemap, the text
 ```
 
-With `CM_BG1_MAP` at `$3800`, as in A Blurred Line, the pool is 223 quads,
-892 tiles, below the 1024 a tilemap word names: not enough to hold a page
-of the list and the next one whole, so a step that changes the list shows
-in two or three goes —see `tl_split` and `tl_step`—. The text layer composes a
-row into a stage twice as wide as its usual one, which is not in far RAM
-but in `LZ2_BUFFER`, `$7F0000`: the screen decompresses nothing while it
-is open, and the map that comes back reloads it. See `tl_hires` and what
-follows it in `runtime/text_layer.s`, and `dbg_upload` in
+**A tilemap word names 1024 tiles**, 255 quads and the blank one, and
+since 2026-11-01 that is not enough: the screen writes with a font of its
+own, wider than the games', and a step between two dense pages of The
+Book of Three asked one pool of 255 for more —measured, with
+`test_debug_screen_room.py` in the ports—. So **an HDMA moves BG1's tiles
+at line 112**, from word 0 to `$4000`, and the screen's upper half and
+lower half are each 1024 tiles of their own: the text layer keeps a pool
+of quads per half, and a row takes, gives back and shares only in its
+own. A half is five lines of the list, and what it can ask for at once is
+those and a sixth one changing; a line inks 30 columns at most, so each
+pool holds 180, whatever the names —an `.assert` in
+`runtime/text_layer.s`—. Before, with the game's font at half width, the
+one pool was 223 quads, from word 0 up to the windows' tilemap.
+
+A step that changes the list composes it a few rows per frame, and the
+rows composed so far show and the others keep what they said until their
+turn —see `tl_split` and `tl_step`—. The text layer composes a row into a
+stage twice as wide as its usual one, which is not in far RAM but in
+`LZ2_BUFFER`, `$7F0000`: the screen decompresses nothing while it is open,
+and the map that comes back reloads it. See `tl_hires` and what follows it
+in `runtime/text_layer.s`, and `dbg_upload` and `dbg_hdma` in
 `runtime/debug_screen.s`, in the-advocate.
 
 ## The title screen doesn't use the layout
