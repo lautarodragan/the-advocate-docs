@@ -7,6 +7,11 @@ current: whoever fixes one removes its line in the same change. The work
 behind each one is a draft or a task in the tasks repository, named here
 as text.
 
+* **A medicine does not cure a condition**: a Sick caught in battle stays
+  after it and takes HP while walking, and the Painkiller, the Serum and the
+  Vampire Stone do nothing to it, from the menu or in battle; an inn takes
+  it away. Draft:
+  [`a-medicine-does-not-cure-a-condition`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-medicine-does-not-cure-a-condition.md).
 * **A door keeps the screen black for one to three and a half seconds**:
   the original changes map at once. It is the map's sound effects, which
   come from the `.msu` and go up to the SPC700 inside the black. Draft:
