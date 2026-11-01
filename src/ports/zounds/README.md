@@ -148,7 +148,7 @@ fix too:
 **"New Game" starts in a room of the port's own**, map 1000 of
 `zounds/patches/manual/maps/`, so the parts being tested are reached
 without replaying the way there: it costs one menu option and nothing
-else. "Continue" is untouched. Its four doors are the gaps in the bottom
+else. "Continue" is untouched. Its five doors are the gaps in the bottom
 wall, and each asks before jumping:
 
 * **The game**: map 1, from its start, as the game without the room.
@@ -162,6 +162,11 @@ wall, and each asks before jumping:
   game's own scene.
 * **The desert with the pickaxe**: the same place, with Kazar, after
   Bandurion's explanation and his pickaxe.
+* **The first dungeon**: the cave under the crack, at the top of the
+  stairs down from its entrance (map 58), with everything on the way from
+  the pickaxe —the rock into the crack broken with it, Kazar's notebook
+  and its eight notes, Bandurion's "be careful"—. A few steps down, the
+  game's own fall drops the party into the cave.
 
 Each door sets what the game's pages set on the way to that point, in
 their order, with the constants of map 1's settings page; the comments of
@@ -176,8 +181,10 @@ a time, as many times as wanted.
 
 `[debug] debug_map = false` in `advocate.toml` takes the room out for a
 clean delivery: "New Game" starts on map 1, and the ROM comes out byte for
-byte as without the room. Task:
-[`zounds-a-debug-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-a-debug-map.md).
+byte as without the room. Tasks:
+[`zounds-a-debug-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-a-debug-map.md)
+and
+[`zounds-a-debug-door-to-the-first-dungeon`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-a-debug-door-to-the-first-dungeon.md).
 
 ## Known issues
 
