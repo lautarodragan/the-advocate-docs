@@ -69,6 +69,10 @@ as text.
   are still left out, most for variables past the 256 the cartridge
   keeps. Read in the data, not played. Task:
   [`variables-are-capped-at-256-slots`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/variables-are-capped-at-256-slots.md).
+* **In the Giftwasser of maps 201, 236 and 240 the hero's feet are drawn
+  whole**: in the original they are half transparent, as they are on map
+  435 in the port. Draft:
+  [`a-bush-on-a-map-with-more-than-four-character-palettes`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-bush-on-a-map-with-more-than-four-character-palettes.md).
 
 ## Its own System again (2026-10-12)
 

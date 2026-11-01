@@ -84,6 +84,15 @@ can blend, which is what a half-transparent picture uses. How many the map
 leaves is Wally's, which leaves the pictures out as a whole when they do not
 fit.
 
+The hero's feet in a bush use one of 4 to 7 too, from the bottom, while
+nothing else does: on a map whose characters fit in 0 to 3, with no picture
+up and no battle animation, the first of 4 to 7 that the timer, the rain
+and the window's objects do not take gets a copy of the hero's palette in
+each vblank —from `cgram_shadow`, or from `pal_buf` under a flash—, and
+the hero's lower tile rows go again in it. See [What a bush does not
+model](../divergences/what-a-bush-does-not-model.md) and `bush_blend` in
+`runtime/terrain_steps.s`, in the-advocate.
+
 Since 2026-10-16 **the pictures of a map share palettes**: the converter
 puts a picture in the first palette that takes its colours —the ones it
 has, the ones that fit in what is left of fifteen, and the rest within two
