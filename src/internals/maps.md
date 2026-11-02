@@ -105,6 +105,14 @@ cell of its own, 8-bit, and on 2026-11-02 that took A Blurred Line past
 its cartridge. It is also where it shows: over nothing the window leaves
 the cell black, over grass it leaves grass.
 
+**And only if the map loses nothing for it.** The tiles move to the
+background with their colours, and a background that was full would pay
+for them elsewhere —merging colours, or fusing cells to fit its layout—:
+on 2026-11-02 that was 36 of Vampires Dawn's maps. So Wally converts the
+map both ways and keeps the lowered one only if its panorama goes the same
+way, neither layer merges more colours and no more cells are fused
+(`lowering_costs` in `map.rs`); if not, the log says why they stay above.
+
 **A project asks for it**, with `[graphics] unreachable_above_below =
 true` in its `advocate.toml`: what goes below moves from the 4-bit layer
 above to the 8-bit background, a few more bytes per map, and a cartridge
