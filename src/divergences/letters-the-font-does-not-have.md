@@ -9,10 +9,12 @@ the message boxes:
 
 * **A message box draws the Latin-1 letters its game uses**, with their own
   glyphs —an accented letter is the font's letter with the accent on top—.
-  The cartridge carries only the ones its boxes use, at most 32 —how many,
-  its `MESSAGE_PAIR_FIRST` in the build's `mapdata.inc` says, minus 96—; a
-  game in English carries none, and its cartridge is the same as before
-  there were any.
+  The cartridge carries only the ones its boxes use, at most 64 together
+  with the halves of the ExFont icons they draw —see [What ExFont icons do
+  not model](what-exfont-icons-do-not-model.md)—; how many, its
+  `MESSAGE_PAIR_FIRST` in the build's `mapdata.inc` says, minus 96. A game
+  in English carries none, and its cartridge is the same as before there
+  were any.
 * **Any other letter is shown as its plain ASCII stand-in**, the one a
   reader would write without the key: `é` as `e`, `ß` as `ss`, `¿` as `?`,
   `…` as `...`, `Œ` as `OE`. That is every letter in a box past the 32, in a
@@ -45,11 +47,13 @@ and it was where Zounds' intro stopped, on a talk with `é`, `¿`, `¡` and
 its hero's `ë`. taro's rule for the ports is to unblock the whole game
 first, so the stand-ins came first, and the glyphs after, the same day.
 
-The cap of 32 is the composer's: a letter's index has to stay below 128,
-because the second letter of a pair waits in `FAR_MSG_SECOND` with bit 7
-set. Each letter carried takes one value
-of the pair table, so a game with letters writes its text with a few pairs
-fewer, and its window's tables grow by the letters' glyphs.
+Each letter carried takes one value of the pair table, so a game with
+letters writes its text with a few pairs fewer, and its window's tables
+grow by the letters' glyphs; the cap of 64 leaves the pairs most of their
+values. Until 2026-11-02 it was 32, the composer's: a letter's index had
+to stay below 128, because the second letter of a pair waited in
+`FAR_MSG_SECOND` with bit 7 set, and Zounds' 18 letters and the halves of
+its icons did not fit. It waits plus one now.
 
 ## How it applies
 
