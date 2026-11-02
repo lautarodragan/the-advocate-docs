@@ -162,7 +162,7 @@ fix too:
 **"New Game" starts in a room of the port's own**, map 1000 of
 `zounds/patches/manual/maps/`, so the parts being tested are reached
 without replaying the way there: it costs one menu option and nothing
-else. "Continue" is untouched. Its five doors are the gaps in the bottom
+else. "Continue" is untouched. Its six doors are the gaps in the bottom
 wall, and each asks before jumping:
 
 * **The game**: map 1, from its start, as the game without the room.
@@ -181,6 +181,11 @@ wall, and each asks before jumping:
   the pickaxe —the rock into the crack broken with it, Kazar's notebook
   and its eight notes, Bandurion's "be careful"—. A few steps down, the
   game's own fall drops the party into the cave.
+* **The end of the Death Desert's maze**: map 113, where the maze's last
+  jump leaves the party, by the mouth of the desert's cave, with everything
+  from the first dungeon's door on —the crack's girl and her fossil, the
+  ship gone, the fossil traded to Bandurion for the Talisman the desert
+  asks for—.
 
 Each door sets what the game's pages set on the way to that point, in
 their order, with the constants of map 1's settings page; the comments of
@@ -196,9 +201,10 @@ a time, as many times as wanted.
 `[debug] debug_map = false` in `advocate.toml` takes the room out for a
 clean delivery: "New Game" starts on map 1, and the ROM comes out byte for
 byte as without the room. Tasks:
-[`zounds-a-debug-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-a-debug-map.md)
+[`zounds-a-debug-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-a-debug-map.md),
+[`zounds-a-debug-door-to-the-first-dungeon`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-a-debug-door-to-the-first-dungeon.md)
 and
-[`zounds-a-debug-door-to-the-first-dungeon`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-a-debug-door-to-the-first-dungeon.md).
+[`zounds-a-debug-door-to-the-desert-jail`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-a-debug-door-to-the-desert-jail.md).
 
 ## Known issues
 
@@ -249,6 +255,10 @@ current: whoever fixes one removes its line in the same change.
   the three songs still missing (`waltz`, `boat1`, `boat2`); and the
   EasyRPG RTP's charsets, faces and sounds look and sound unlike RPG Maker
   2003's. See above.
+* **The Death Desert has no sandstorm**: from map 34 north, maps 50, 14,
+  111, 112 and 113 show clear sand where RM2k blows sand over the screen;
+  the console draws only the rain. Draft:
+  [`zounds-the-death-desert-has-no-sandstorm`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-the-death-desert-has-no-sandstorm.md).
 * **The dream has no fog**: on map 30, after sleeping in Uname's bed, the
   reddish fog the dream shows over the screen is missing, because it is
   shown at 110% and the console only shrinks pictures. The dream itself
