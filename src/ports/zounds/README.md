@@ -255,10 +255,6 @@ current: whoever fixes one removes its line in the same change.
   the three songs still missing (`waltz`, `boat1`, `boat2`); and the
   EasyRPG RTP's charsets, faces and sounds look and sound unlike RPG Maker
   2003's. See above.
-* **The Death Desert has no sandstorm**: from map 34 north, maps 50, 14,
-  111, 112 and 113 show clear sand where RM2k blows sand over the screen;
-  the console draws only the rain. Draft:
-  [`zounds-the-death-desert-has-no-sandstorm`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-the-death-desert-has-no-sandstorm.md).
 * **The dream has no fog**: on map 30, after sleeping in Uname's bed, the
   reddish fog the dream shows over the screen is missing, because it is
   shown at 110% and the console only shrinks pictures. The dream itself
