@@ -31,6 +31,16 @@ same layer as the one above the map, and mode 3 does not have a third.
   turn **black** on the window's lines: Zounds' signs on maps 86 and 96,
   measured on 2026-11-02.
 
+  **Only what a character can pass under is in that layer**, since
+  2026-11-02: a tile above the hero over nothing —the black those cells
+  turned— on a cell no sprite can ever cover —no character can stand
+  beside it or reach it, by walking, by a route, a jump or a door— is
+  drawn into the background, where it looks the same and the window does
+  not take it. The cave's ceiling far from the floor
+  stays; its edge by the floor, and anything a character can walk behind,
+  still goes. Which cells, and what the analysis cannot prove and so keeps
+  above, is in [Maps](../internals/maps.md#what-goes-in-the-layer-above).
+
 **Which lines the window draws on**, out of its 80: they go in bands —the
 frame's top row, its four lines of text and its bottom row—, and the
 window takes BG2 only on its own bands:
@@ -162,7 +172,13 @@ text over it, without a background— stand in caves whose dark edges are
 the layer above, and taro saw them go black on the text's lines on
 2026-11-02. There RM2k draws the board under the text, which the console
 leaves out of those maps for lack of VRAM; drawn, it would hide the
-bands, but as objects it would also go over the text.
+bands, but as objects it would also go over the text. On map 86 the same
+day the ceiling that nobody can reach went into the background, and of
+the black band on the right of the screen only the cave's edge by the
+floor is left; on map 96 nothing changed: a statue there is pushed
+through walls when its coordinates say so, which the analysis does not
+follow, so every ceiling the hero can stand beside may have the statue
+under it.
 
 The one path not ruled out above is **carrying the layer above inside
 the window's own plane** on its lines: the plane without a frame gets,

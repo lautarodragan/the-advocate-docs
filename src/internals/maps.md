@@ -83,6 +83,71 @@ What is left in VRAM and WRAM after loading is compared by
 `tests/rpgmaker/test_decompressed_load.py` in the ABL port against what
 the converter leaves uncompressed in ABL's `build/<cartridge>/crudos/`.
 
+#### What goes in the layer above
+
+A tile RM2k draws above the hero —a lower tile with the "above" or wall
+bit, an upper tile with "above"— goes to the layer above, BG2, so the hero
+and the events walk behind it. **Unless no character can ever be drawn
+under it**: since 2026-11-02 the tiles above the hero of a cell no sprite
+can cover are drawn into the background, over the cell's own tiles below,
+as RM2k stacks them. The map looks the same, pixel for pixel; what changes
+is that the window without a background, which takes BG2 on its lines,
+no longer blacks those cells out —see [The window without a background
+does not cover the characters](../divergences/the-window-without-a-background-does-not-cover-the-characters.md)—,
+and that BG2 carries less.
+
+**Only over nothing**: a cell goes below only if what shows through its
+tile above is black or the panorama's hole —a cave's ceiling, a wall
+drawn only on top—. There the background's new cell is the tile above
+alone, so there are as many as the layer above had, and as many blocks.
+Over something drawn —a roof's edge over grass— every pair would be a
+cell of its own, 8-bit, and on 2026-11-02 that took A Blurred Line past
+its cartridge. It is also where it shows: over nothing the window leaves
+the cell black, over grass it leaves grass.
+
+**A project asks for it**, with `[graphics] unreachable_above_below =
+true` in its `advocate.toml`: what goes below moves from the 4-bit layer
+above to the 8-bit background, a few more bytes per map, and a cartridge
+with no bank left —A Blurred Line's release, that day— does not take them.
+Without the key the converter sends Wally no `reach` and every tile above
+the hero goes above, as before.
+
+**Which cells** is RM2k's question, and rm2k-rules answers it,
+`reach::covered` in the-advocate: a character's 24x32 frame on cell (x, y)
+covers 4 px of x−1 and x+1 and all of y−1, so the cells to keep above are
+those beside or above a cell where some character can be, at some moment.
+Where a character can be is a fixed point over everything that can move
+one on the map: the hero walks every cell passable from some side from
+wherever he arrives; an event walks wherever its movement type takes it;
+and every move route that can run there —a page's own, a `MoveEvent` of a
+page, of a common event or of a test page— is walked from every cell its
+character can be on, through walls if it turns that on, jumping where it
+jumps —a jump lands on a cell passable from some side, and rises a row
+more—. A page that starts by the action key or a touch walks the hero from
+beside its event, which is what keeps a door that walks him through a wall
+from walking him through every wall.
+
+**Where the hero arrives** only the whole cartridge knows: the converter
+gathers it once (`reach.rs` in rm2k-snes-convert) —the game's start, every
+`Teleport`, teleport and escape target into the map, the vehicles— and
+sends it in each map's Wally request as `reach`. Wally's background half
+draws the cells (`layers::below` and `lower_cells`); the characters half
+knows nothing of it.
+
+**What cannot be proved stays above**, and some things put a character
+anywhere, which keeps the whole map above: a `ChangeEventLocation` by
+variables, a route that leaves walking through walls on for someone who
+then walks on his own, an airship. A cell with a tile a `TileSubstitution`
+names stays above too, because its block is swapped by tile. **The one
+thing taken on trust** is a `RecallToLocation` to a place the game works
+out —ABL recalls the hero's cell five rows up—: it is taken to be a cell
+one can step on, of any map.
+
+The converter's log says, map by map, `N cells draw their tiles above the
+hero below`. What it does not follow is variables: Zounds' map 96 keeps
+its whole ceiling above because a statue there is pushed through walls
+only when its own coordinates, copied to two variables, say so.
+
 #### A map that loops
 
 A map with RM2k's `scroll_type` loops on that axis —a torus: the hero,
