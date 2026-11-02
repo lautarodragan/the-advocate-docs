@@ -156,6 +156,29 @@ hero below`. What it does not follow is variables: Zounds' map 96 keeps
 its whole ceiling above because a statue there is pushed through walls
 only when its own coordinates, copied to two variables, say so.
 
+#### The grid changes under the events drawn into it
+
+A still event that changes pose can be drawn into the background instead
+of as an object, in a game that asks for it —see [Still events drawn into
+the background](../divergences/still-events-drawn-into-the-background.md)—.
+Its cell gets one block per pose, built as the substitutions' are, in
+rows drawn below the map and cut off once the blocks exist; the grid
+starts with the pose its row starts with. **The grid is written while
+the map runs**: when the row's page or a route's turn changes the pose,
+`posed_row` in `runtime/posed.s` of the-advocate puts the pose's block in
+the event's cell of the grid, through the WRAM port, and the cell's four
+tilemap words in two runs —its top row and its bottom row, joined with the
+cells beside it— that go up by DMA in the next vblank, if the window
+holds the cell. The strips read the grid, so a cell the window builds
+later comes out right; a battle, which overwrites the grid, gets each
+cell written again before the window is rebuilt (`posed_sync`).
+
+The record the console reads, map by map: `posed.rs` in
+rm2k-snes-mapdata. The row is still a row of the table: the priority bits
+of its attributes say 3 —no character's object has it—, its palette bits
+which of its characters it shows, and its tile byte its number in the
+record.
+
 #### A map that loops
 
 A map with RM2k's `scroll_type` loops on that axis —a torus: the hero,
