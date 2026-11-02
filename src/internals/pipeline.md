@@ -91,7 +91,8 @@ into the ROM. The fingerprint looks at contents, never at dates:
   converter and the stages it runs, and `rm2k-snes-assemble`;
 - the game's dump, `data/`, whole, and its hand-made patches —with each
   name, for the files of `patches/manual/`'s RM2k folders, below—, its project
-  file and the files that file names —custom menus, its own font—;
+  file and the files that file names —custom menus, its own font, its
+  ExFont's sheet—;
 - **the original game's resources**: every file below `--game-dir` with an
   extension the stages read —`.png`, `.bmp`, `.xyz`, `.mid`, `.wav`—, with
   its name. Not the `.lmu`, `.ldb` and `.lmt`, which reach the ROM through
