@@ -90,6 +90,7 @@
         - [The ChipSet skips a frame every 18 minutes](divergences/the-chipset-skips-a-frame-every-18-minutes.md)
         - [A ChipSet animation that does not fit in WRAM](divergences/a-chipset-animation-that-does-not-fit-in-wram.md)
         - [Baked decorative events](divergences/baked-decorative-events.md)
+        - [Still events drawn into the background](divergences/still-events-drawn-into-the-background.md)
         - [Translucent events end up opaque](divergences/translucent-events-end-up-opaque.md)
         - [Seven palettes on a map with animations](divergences/seven-palettes-on-a-map-with-animations.md)
         - [What a bush does not model](divergences/what-a-bush-does-not-model.md)

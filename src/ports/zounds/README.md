@@ -221,14 +221,6 @@ current: whoever fixes one removes its line in the same change.
   back, and the talk with the two guards there on to map 9, since the same
   day. Task:
   [`zounds-pictures-and-the-picture-made-screens`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-pictures-and-the-picture-made-screens.md).
-* **Map 96, *Arriba del Cuartito*, runs at half speed and cuts its
-  floor switches**: two rows of seventeen, and more in columns, are one
-  32x32 object each, so where the camera shows them the frame takes two
-  and the console drops what goes over eight and a half characters on a
-  line —the lower row, the ninth switch of the upper one by half, and a
-  character beside them—. See [Too many characters on one
-  line](../../divergences/too-many-characters-on-one-line.md). Draft:
-  [`still-events-that-change-pose-painted-into-the-background`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/still-events-that-change-pose-painted-into-the-background.md).
 * **Unamë's face on the skill screen has orange hair**, not green: a face
   shown as a picture keeps its fifteen most used colours, and they are all
   her skin's. Draft:
