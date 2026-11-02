@@ -86,9 +86,10 @@ below 1 HP, with the red flash. What is not the same:
   The HP come out the same unless one actor holds a condition that heals
   walking and another that hurts on the same step: no game has one that
   heals.
-* **The menus do not show them** yet: the main menu's status line and the
-  status screen say nothing. A medicine or a skill that cures one does
-  cure it on the map, since 2026-11-01.
+* **The party panel shows a condition in one colour**, not RM2k's gradient,
+  since 2026-11-01: see [What the party panel does not
+  model](what-the-party-panel-does-not-model.md). A medicine or a skill
+  that cures one does cure it on the map, since the same day.
 
 ## Measured
 
