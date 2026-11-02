@@ -534,6 +534,16 @@ custom menu's does: `CM_DIRTY`, and `big_back_far` when the pause menu
 closes, which is the only way out of these two screens. See `items_pool`
 in `runtime/screen_bank.s`.
 
+**The converter counts both stretches**, since 2026-11-02: what the
+busiest item list asks —the ten widest names, at 99, and the widest
+description— is measured against the pairs below the windows plus the
+192 from `$4000`, and the item and equipment windows are redrawn with
+fewer tiles only for what does not fit in those 192. Until that day it
+counted the bank alone: it warned that A Blurred Line's list did not fit
+when it did, and redrew Zounds' windows for nothing. The cartridge checks
+the two agree: the converter emits `ITEM_TEXT_MORE`, and `screen_bank.s`
+asserts it is what `items_pool` gives.
+
 ## The debug screen is 512 wide
 
 The pause menu's debug screen —see [the pause
