@@ -168,6 +168,7 @@
     - [Controls]()
         - [Autofire of A with X](divergences/autofire-of-a-with-x.md)
         - [The hero's speed with L and R](divergences/the-heros-speed-with-l-and-r.md)
+        - [Phasing is a toggle on Select](divergences/phasing-is-a-toggle-on-select.md)
         - [One counter for all four arrows](divergences/one-counter-for-all-four-arrows.md)
         - [A held arrow waits for the text](divergences/a-held-arrow-waits-for-the-text.md)
 - [Research](research/README.md)
