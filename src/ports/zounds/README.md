@@ -267,6 +267,10 @@ current: whoever fixes one removes its line in the same change.
   fire sound it plays; and the rocky ground of the mountains (maps 33, 47,
   55 to 57, 81, 87 and 94) has no footsteps. Task:
   [`terrains-do-what-rm2k-does`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/terrains-do-what-rm2k-does.md).
+* **The dice man on map 156 does not answer**: his game asks for the
+  die's number in a box that comes after a label, which the port does not
+  draw yet. Draft:
+  [`an-input-number-after-a-label-has-no-message`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/an-input-number-after-a-label-has-no-message.md).
 * **No boat**: the fishing game's vehicle. Draft:
   [`vehicles-enterexitvehicle-and-the-boat`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vehicles-enterexitvehicle-and-the-boat.md).
 * **On Scape Way (150) the hero takes one step** instead of walking up
