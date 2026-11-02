@@ -12,6 +12,10 @@ as text.
   Vampire Stone do nothing to it, from the menu or in battle; an inn takes
   it away. Draft:
   [`a-medicine-does-not-cure-a-condition`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-medicine-does-not-cure-a-condition.md).
+* **The Healing Powder and the Vampire Stone heal one member from the
+  menu**: the original heals the whole party with them, and puts the bar
+  over everyone. Draft:
+  [`a-medicine-on-the-whole-party-heals-one`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-medicine-on-the-whole-party-heals-one.md).
 * **A door keeps the screen black for one to three and a half seconds**:
   the original changes map at once. It is the map's sound effects, which
   come from the `.msu` and go up to the SPC700 inside the black. Draft:
