@@ -28,7 +28,12 @@ from the game's own ExFont:
 * **Past the 64 letters of the boxes**, and a box's icon the font does not
   draw.
 * **Every code, in a game without an ExFont**: one with no `RPG_RT.exe`
-  and no sheet of its own, like the test game.
+  and no sheet of its own, like the test game; and in one whose project
+  file says `[text] exfont = false`, for a cartridge with no room for
+  their glyphs —each half of an icon a box draws is 1,248 bytes of the
+  window's tables—. None says it yet; ABL's release, which draws two in a
+  sign's glitched text and has no bank left, is the closest —its gaps,
+  `just space` in its port—.
 
 Each box that drops an icon is a `letter-plain` loss in the build's
 `degradations.json`, "the icon $X as nothing", next to the letters it
