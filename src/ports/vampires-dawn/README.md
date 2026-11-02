@@ -55,9 +55,6 @@ as text.
   box's ink. See [What message escapes do not model](../../divergences/what-message-escapes-do-not-model.md#the-colour).
 * **Where a message has a half space, the words on both sides of it come
   together**: the console drops RM2k's `\_`. See [What message escapes do not model](../../divergences/what-message-escapes-do-not-model.md).
-* **An icon in a message shows as `$` and a letter**: a sign reads "$s
-  Graveyard" where RM2k draws one of the ExFont's symbols. Draft:
-  [`exfont-glyphs-in-messages`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/exfont-glyphs-in-messages.md).
 
 * **In the busiest towns part of the people stand still**: a map whose
   people walk around on their own takes at most eight of them walking
