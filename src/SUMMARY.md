@@ -120,7 +120,7 @@
         - [A teleport to a map not carried](divergences/a-teleport-to-a-map-not-carried.md)
         - [Variables saturate at sixteen bits](divergences/variables-saturate-at-16-bits.md)
         - [The pure parallel common events run only when what they read changes](divergences/pure-parallel-common-events-run-only-when-what-they-read-changes.md)
-        - [A loop that never waits does not compile](divergences/a-loop-that-never-waits-does-not-compile.md)
+        - [A loop that never waits nor ends does not compile](divergences/a-loop-that-never-waits-does-not-compile.md)
         - [What ChangeExp and ChangeLevel do not model](divergences/what-changeexp-and-changelevel-do-not-model.md)
         - [The save does not keep the events](divergences/the-save-does-not-keep-the-events.md)
         - [The camera lock does not travel in the save](divergences/the-camera-lock-does-not-travel-in-the-save.md)
