@@ -52,6 +52,24 @@ asking waits without being drawn until someone leaves the screen.
   in `rm2k-snes/mapdata/`, `runtime/cache_slots.s`.
 - **More**: [The VRAM split](../../internals/vram.md#when-not-even-taking-turns-is-enough-a-slot-cache).
 
+## In a cache, the still ones that routes only turn stay still
+
+A still event whose routes only turn it —a face, a turn, a wait, a switch,
+a sound; no step, no jump, no graphic— and whose pages draw a CharSet that
+stands is not taken as one that walks on a map with a slot cache: it asks
+for the still pose it shows, which its twins share, and a turn moves it to
+another still pose of the same character, all twelve of which the cache
+carries. Zounds' map 96 has fifty-six floor switches that each turn
+themselves when pressed: they wanted a slot each from a cache of 28, and
+now two poses serve all of them.
+
+- **Saves**: slots of the cache —on that map, the ones the switches and a
+  chest waited for, never drawn—.
+- **Where**: `turners` in `rm2k-snes/wally/src/moves.rs`, `route_turns`
+  in `rm2k-snes/events/src/pages.rs`, `still_turn` in
+  `runtime/cache_slots.s`.
+- **More**: [The VRAM split](../../internals/vram.md#when-not-even-taking-turns-is-enough-a-slot-cache).
+
 ## The possible leaders share one CGRAM slot
 
 Only one leads at a time, so giving each possible leader a palette of

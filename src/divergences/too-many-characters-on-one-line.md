@@ -1,0 +1,47 @@
+# Too many characters on one line
+
+## What
+
+Every character on the map —an event drawn from a CharSet, the hero— is
+one 32x32 object, and the console draws at most 32 objects and 34
+slivers of eight pixels on each line. A 32x32 costs four slivers on each
+of its 32 lines, drawn or not, so **eight and a half characters side by
+side fill a line**. Past that the console drops slivers, and the ones it
+drops are the frontmost objects' —the lowest in the OAM—: the OAM goes
+from front to back, so what goes missing is what is in front, which on a
+row of equal events is the row further down and, beside them, the hero.
+RM2k draws them all.
+
+It is seen where a map lines many events up: Zounds' map 96, *Arriba del
+Cuartito*, has two rows of seventeen floor switches one above the other,
+and on screen sixteen of each. The first row shows eight switches and the
+ninth cut in half, the row below shows none on the lines it shares with
+the first, and a character standing beside them loses what goes over.
+
+## Measured
+
+On Zounds' map 96 in snes9x, which drops slivers as the console does,
+counting the objects of the OAM the ROM builds, on 2026-11-02 with
+the-advocate at `0ba09da4` plus the branch `cardon-map-96`: with the
+camera on the switch column at x 8, up to 84 slivers on one line and 48
+lines over 34; with it on the two rows, up to 128 slivers, 34 objects on
+16 lines and 48 lines over.
+
+## Why
+
+The console's sprites are what they are. Drawing a 16x16 event as four
+8x8 objects would halve its slivers, but it takes four of the 128 objects
+the whole screen has, and that screen of map 96 shows more than forty
+switches. What would fix it is **not drawing them as objects**: painting
+the still ones into the background, as the [decorative
+events](baked-decorative-events.md) are, and writing their cell again when
+a page or a route changes their pose. The background has no per-cell
+change today —a `TileSubstitution` replaces a block everywhere—. Draft:
+[`still-events-that-change-pose-painted-into-the-background`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/still-events-that-change-pose-painted-into-the-background.md).
+
+## How to reproduce it
+
+Jump to Zounds' map 96 at cell (8, 16), on the column of switches: the
+row at the bottom of the screen is cut. `tests/test_zounds_map_96_switches.py`,
+in the ports, goes there the same way and looks at the OAM, which has
+every switch.
