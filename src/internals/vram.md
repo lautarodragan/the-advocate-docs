@@ -157,6 +157,15 @@ cache —which gets as many slots as fit after the extras— the rain cost up
 to four: Vampires Dawn's 51 went from 30 to 26 when its rain came back.
 Now it costs a slot only where the slots would fill the last row exactly.
 
+The sandstorm's grains go there too, on the maps it can blow on: four
+tiles in a 2x2 square, one per colour, in the two rows of the timer's or
+the drops' strip when they leave two columns —after the timer's eleven
+glyphs, at column 11— or in a strip of their own (`sand_grains` in Wally's
+`sprites/extras.rs`). Their colours go new and in a row in a sprite
+palette, because the runtime writes them again after the tint without the
+sandstorm's overlay: see [What the sandstorm does not
+model](../divergences/what-the-sandstorm-does-not-model.md).
+
 What is seen at once in map 127 can't be counted by the converter: the
 celebration and the dance that follows are never together, but by where
 the events start they add up to 33 on one screen, and `wally` warns about
