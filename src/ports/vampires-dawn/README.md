@@ -7,11 +7,6 @@ current: whoever fixes one removes its line in the same change. The work
 behind each one is a draft or a task in the tasks repository, named here
 as text.
 
-* **A medicine does not cure a condition**: a Sick caught in battle stays
-  after it and takes HP while walking, and the Painkiller, the Serum and the
-  Vampire Stone do nothing to it, from the menu or in battle; an inn takes
-  it away. Draft:
-  [`a-medicine-does-not-cure-a-condition`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-medicine-does-not-cure-a-condition.md).
 * **The Healing Powder and the Vampire Stone heal one member from the
   menu**: the original heals the whole party with them, and puts the bar
   over everyone. Draft:

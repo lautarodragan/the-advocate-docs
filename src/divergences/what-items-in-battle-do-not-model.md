@@ -14,10 +14,12 @@ the battle tests predict the exact HP with; the console's side is
   whole inventory and greys out what cannot be used; here the rest does not
   show. A special item does not show either for an actor its `actor_set`
   leaves out, which RM2k greys out per actor.
-* **The medicines that only remove conditions do not go in**, and a
-  medicine's `state_set` takes nothing away: since 2026-11-01 the actors
-  carry conditions in battle, but the medicine does not look at them —see
-  [What battle conditions do not model](what-battle-conditions-do-not-model.md)—.
+* **A medicine that does nothing does not go in**: one with no HP, no SP
+  and no condition to remove, or a `ko_only` one that does not revive. RM2k
+  lists it and spends it for nothing. Nor does one that only revives, with
+  no HP, which RM2k raises to 1. One that removes conditions goes in
+  since 2026-11-01, and removes them after its HP and SP lines, each with
+  its `message_recovery`, as `ProcessBattleActionStateEffects` does.
 * **A special item casts only what a skill does in this battle**: a
   `normal` skill —its HP, SP, parameters and attribute ranks— or a `switch`
   one with `occasion_battle`, and since 2026-11-01 the conditions it gives
@@ -51,12 +53,16 @@ the model and against easyrpg's arithmetic; the ports'
 Shark, with the same two checks. The uses, on 2026-10-20 against
 `Game_Party::ConsumeItemUse` and `AddItem`: the ports'
 `test_book_of_three_item_uses.py` throws the Bag of Volatile Shells five
-times and gives a throw back with a failed escape.
+times and gives a throw back with a failed escape. The conditions a
+medicine removes, on 2026-11-01 against `Item::vExecute` and the order of
+`Scene_Battle_Rpg2k::ProcessBattleAction`: A Blurred Line's
+`test_medicine_conditions.py` has Kersh cure his Poison with an Antidote
+and Talan his Blind with an OmniAntidote, each line under the item's.
 
 ## When it stops being enough
 
 When a game leans on what a special item's skill does beyond its damage
-and its conditions —absorbing, reviving—, or on a medicine that cures one
-in battle. Vampires Dawn's Itching Powder and The Book of Three's Runes,
-which only give conditions, do since 2026-11-01:
+and its conditions —absorbing, reviving—. Vampires Dawn's Itching Powder
+and The Book of Three's Runes, which only give conditions, do since
+2026-11-01:
 [`items-that-give-a-condition-in-battle-only-hurt`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/items-that-give-a-condition-in-battle-only-hurt.md).
