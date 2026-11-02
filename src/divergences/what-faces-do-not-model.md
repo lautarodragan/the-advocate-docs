@@ -87,11 +87,12 @@ What does not come out as in RM2k:
   box opened.** A tint that changes while a box with a face is up —a
   parallel event's— reaches the map above and below the window at once, and
   the window's lines at the next box.
-* **A choice's highlighted bar runs under the face**, since the bar is the
-  line's background and the face is copied over it: with a face on the
-  left, the bar shows in the cell before the face and from the text on. RM2k
-  starts the cursor after the face. `InputNumber`'s digits do not move for a
-  face either.
+* **`InputNumber`'s digits do not move for a face.** RM2k puts the number
+  window past a face on the left (`LeftMargin + FaceSize +
+  RightFaceMargin`); here the digits stay where they go without one. A
+  choice's bar does follow the face since 2026-11-02: until then it ran
+  under it (see
+  [the task](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-choices-cursor-runs-behind-the-face.md)).
 * **`ChangeActorFace` changes nothing**: it is accepted as a debt, so its
   page runs —Frozen World's 7 pages, Vampires Dawn's 5, Dooms 2's 1—, and
   the slot screen and the menu keep showing the database's face, which they
