@@ -273,6 +273,16 @@ current: whoever fixes one removes its line in the same change.
   [`an-input-number-after-a-label-has-no-message`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/an-input-number-after-a-label-has-no-message.md).
 * **No boat**: the fishing game's vehicle. Draft:
   [`vehicles-enterexitvehicle-and-the-boat`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vehicles-enterexitvehicle-and-the-boat.md).
+* **A sign's text blacks out the cave's edges beside it**: on maps 86 and
+  96, while the sign's message is up, the dark tiles on the map's upper
+  layer —the edges and walls past the floor— go black on the scanlines
+  of its lines of text, across the whole screen, and come back when it
+  closes; and the wooden board RM2k draws under the text is not there. A
+  message without a background shares its layer with the map's layer
+  above: see the divergence [The window without a background does not
+  cover the characters](../../divergences/the-window-without-a-background-does-not-cover-the-characters.md).
+  Task:
+  [`a-transparent-message-blacks-out-tiles-on-its-lines`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-transparent-message-blacks-out-tiles-on-its-lines.md).
 * **On Scape Way (150) the hero takes one step** instead of walking up
   forever while the party talks: the map wraps around, which the console
   does since 2026-10-19, but his walk is a route that repeats, run once.
