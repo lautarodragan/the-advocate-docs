@@ -33,8 +33,9 @@ draws that one from the turn slot—; no substitution swaps its cell; and
 it is not translucent. Routes that only turn it are allowed: the turn is
 a pose. The map shows no panorama, draws no pictures into itself and
 does not loop. And it stays an object if, with its poses, the background
-merges colours of the ground or spends more tiles than the layouts leave:
-all of them, or CharSet by CharSet, the most numerous first. The
+merges a single colour more —the event would come out a shade off— or
+spends more tiles than the layouts leave: all of them, or CharSet by
+CharSet, the most numerous first. The
 converter's log says, map by map, which went in and why each of the rest
 did not.
 
@@ -63,7 +64,8 @@ go into the background.
 The frames from the change to the pose on screen, as objects and in the
 background, measured on the pixels: rubble that a switch takes away on
 map 114, 2 and 2; the 55 switches that switch 139 turns on map 96, 7 and
-7, but one of 17 looked at, 8.
+7, but one of 17 looked at, 8. Map 96's chest, which stays an object,
+opens in 6 frames where it took 8: the map no longer lags.
 
 ## When it stops being enough
 
