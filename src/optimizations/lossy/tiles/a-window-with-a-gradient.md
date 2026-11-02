@@ -32,7 +32,9 @@ Each kind of screen gives way where it shows the least:
   `merge_least_visible_tiles`, mirrors included— until the bank holds
   them. Two rows of the gradient one step apart melt first; a letter, which
   is far from everything, last. The item and equipment windows also leave
-  room below them for the text of the busiest item list.
+  room below them for the text of the busiest item list, what of it does
+  not fit in the pairs those screens take from the map's VRAM —see
+  [VRAM](../../../internals/vram.md#the-items-and-equipment-screens-take-the-maps-vram-too)—.
 * **End Game**, whose overflow is colours and not tiles: its pairs of
   colours are merged with `merge_until` until they fit its palette, black
   kept as the backdrop.
