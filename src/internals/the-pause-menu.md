@@ -119,6 +119,14 @@ the rest of the file:
 * **`debug_screen`**: the pause menu's last option opens the debug screen,
   above; the converter's `--debug-screen`. Off, the ROM is the same byte for
   byte as one built before the screen existed.
+* **`phasing`**: Select turns on and off the hero walking through walls and
+  events, which RPG_RT's test play does while Ctrl is held, and the hero
+  blinks while it is on; the converter's `--phasing`, and
+  `runtime/phasing.s` in the-advocate. Off, the ROM is the same byte for
+  byte as one built before it existed. It is its own key and not the debug
+  screen's because every port has that one on, and this one changes how
+  the hero walks: see [Phasing is a toggle on
+  Select](../divergences/phasing-is-a-toggle-on-select.md).
 
-`rm2k-snes-cartridges` reads the three and passes the flags to every
+`rm2k-snes-cartridges` reads the four and passes the flags to every
 cartridge of the project.

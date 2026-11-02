@@ -206,6 +206,16 @@ byte as without the room. Tasks:
 and
 [`zounds-a-debug-door-to-the-desert-jail`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-a-debug-door-to-the-desert-jail.md).
 
+## Walking through everything
+
+**Select walks the hero through walls and events**, and again stops it:
+RPG_RT's test play does it while Ctrl is held. While it is on the hero
+blinks, and there are no random encounters. It is a debug knob,
+`[debug] phasing` in `advocate.toml`, and off the ROM comes out byte for
+byte as without it. How it differs from RPG_RT: [Phasing is a toggle on
+Select](../../divergences/phasing-is-a-toggle-on-select.md). Task:
+[`a-debug-toggle-to-walk-through-everything`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-debug-toggle-to-walk-through-everything.md).
+
 ## Known issues
 
 What playing the port shows today that the original does not. It is kept
