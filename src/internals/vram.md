@@ -132,7 +132,12 @@ pose, and a slot that has gone two frames without being drawn can be taken
 by someone else. The still ones that show the same pose share theirs, as
 always; the one that walks has its own while it is seen, and so does a
 still one that animates, which its twins —the same look at the same speed—
-ask for too. `wally` decides it
+ask for too. A still one that routes only turn —no step, no jump, no
+graphic— stays still: the cache carries all twelve poses of its
+character among the still ones, sorted, so a turn only moves the key its
+row asks for (`still_turn`); Zounds' map 96 has fifty-six floor switches
+that turn when pressed, and until 2026-11-02 each wanted a slot of its
+own. `wally` decides it
 —`Mode::Cache` in its `map.rs`, with the count in `sprites::cache`—, and
 gives the cache all the blocks that fit in the best layout for its
 background, after the extras; the table is emitted by `cache_table` in `rm2k-snes-mapdata`,

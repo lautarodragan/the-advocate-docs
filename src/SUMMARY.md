@@ -107,6 +107,7 @@
         - [The phase of still events that animate](divergences/the-phase-of-still-events-that-animate.md)
         - [Still events that animate past the sprite bank](divergences/still-events-that-animate-past-the-sprite-bank.md)
         - [Drawn events that do not fit in the table](divergences/drawn-events-that-do-not-fit-in-the-table.md)
+        - [Too many characters on one line](divergences/too-many-characters-on-one-line.md)
         - [Events that do not fit in the RAM](divergences/events-that-do-not-fit-in-the-ram.md)
         - [What turning toward the hero does not model](divergences/what-turning-toward-the-hero-does-not-model.md)
         - [What collision with events does not model](divergences/what-collision-with-events-does-not-model.md)
