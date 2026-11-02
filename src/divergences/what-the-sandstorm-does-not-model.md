@@ -61,7 +61,7 @@ What is lost:
 On 2026-11-02, with Zounds at the-advocate's `tijereta-sandstorm`: the
 grains go on maps 14, 50, 88, 111, 112 and 113, all with room, and no
 other map of the game lost anything to them. In the release cartridge they
-cost 20 bytes of bank 0, 1,600 of `$C1` and 527 of far RAM. On 113, after the
+cost 24 bytes of bank 0, 1,668 of `$C1` and 527 of far RAM. On 113, after the
 debug room's maze door, the ROM keeps 36 grains on screen on average over
 400 frames, and RM2k's rule, simulated, 38.
 
