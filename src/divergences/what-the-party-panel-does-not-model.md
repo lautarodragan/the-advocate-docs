@@ -35,6 +35,20 @@ the text beside it. What does not fit is laid out differently:
   under it. RPG_RT's window keeps its frame below the last row.
 * **The menu does not show the actor's title.** The skills screen shows
   the SP of the one it is opened for.
+* **A condition is written in one shade**, where the row says "Normal"
+  otherwise: RPG_RT draws its name with the System colour's gradient, some
+  eight shades from top to bottom. The rows' colours are in palette 0,
+  which in some games is full, and the faces take the others: so each
+  condition colour gets **one entry of palette 1**, the disabled commands',
+  the mean of its gradient weighted by how much of the font each row
+  covers, and each row of the letters goes to that entry or to the
+  palette's nearest, whichever is nearer. When the free entries run out,
+  a colour gets none and its rows take the nearest ones: they go first to
+  the dead condition, then to the ones that outlive a battle, then by
+  number. The skills screen's status line has a palette free, and there
+  the condition keeps its gradient.
+* **A condition's name is cut at the screen's edge**, 62 pixels from where
+  it starts. RPG_RT writes it whole, over the HP if it is long.
 
 ## Why
 
@@ -48,6 +62,10 @@ tasks.
 
 ## How it applies
 
+The condition is `MENU_STATE_COL` and `StateInks` in `slots.rs` of
+`rm2k-snes-screens`, and `runtime/menu_states.s` on the console, with
+`tests/rpgmaker/test_menu_conditions.py` of A Blurred Line and the task
+[`the-menu-shows-the-partys-conditions`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-menu-shows-the-partys-conditions.md).
 The geometry is `MENU_LIST_ROWS`, `MENU_SHOWN`, `MENU_ARROW_Y`,
 `MENU_BAR`, `TARGET_BAR`, `MENU_EXP_X` and `MENU_SP_X` in `layout.rs` of
 `rm2k-snes-screens` in the-advocate, whose `render` draws both screens;

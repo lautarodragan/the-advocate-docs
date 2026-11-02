@@ -88,9 +88,9 @@ below 1 HP, with the red flash. What is not the same:
   The HP come out the same unless one actor holds a condition that heals
   walking and another that hurts on the same step: no game has one that
   heals.
-* **The menus do not show them** yet: the main menu's status line and the
-  status screen say nothing, and a medicine or a skill that only cures a
-  condition cures nothing on the map.
+* **A medicine or a skill that only cures a condition** cures nothing on
+  the map. The menus show the condition since 2026-11-01: see
+  [What the party panel does not model](what-the-party-panel-does-not-model.md).
 
 ## Measured
 
