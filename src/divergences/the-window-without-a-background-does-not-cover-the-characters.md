@@ -25,7 +25,11 @@ same layer as the one above the map, and mode 3 does not have a third.
   panorama goes in mode 3 the panorama is that BG2, so it is the panorama
   that disappears from those lines: Vampires Dawn's intro, which is all
   panorama, asks "Skip Intro ?" without a background, and the ROM shows it
-  over a black band where RM2k shows the picture.
+  over a black band where RM2k shows the picture. And where the lower
+  layer has nothing under the layer above —the dark edge of a cave, a
+  wall drawn only on top— what is left is the backdrop, so those cells
+  turn **black** on the window's lines: Zounds' signs on maps 86 and 96,
+  measured on 2026-11-02.
 
 **Which lines the window draws on**, out of its 80: they go in bands —the
 frame's top row, its four lines of text and its bottom row—, and the
@@ -152,3 +156,22 @@ beside the text, or with characters walking through it. Fixing it means
 drawing the text with something other than BG2: with objects it does not
 fit —a line of text is 30 tiles wide and the PPU draws 34 per line among
 all of them—, and mode 3 has no more layers.
+
+Zounds is such a game: its signs —a picture of a wooden board with the
+text over it, without a background— stand in caves whose dark edges are
+the layer above, and taro saw them go black on the text's lines on
+2026-11-02. There RM2k draws the board under the text, which the console
+leaves out of those maps for lack of VRAM; drawn, it would hide the
+bands, but as objects it would also go over the text.
+
+The one path not ruled out above is **carrying the layer above inside
+the window's own plane** on its lines: the plane without a frame gets,
+in its cells without letters, the layer above's tilemap entries of the
+screen cells they cover —same tile base, so they are valid as they
+are—, and the window's scroll keeps the camera's fine part so they land
+on the map's. Its price: the text moves up to seven pixels from RM2k's
+place, or the composer draws it shifted, which vertically means three
+cell rows per line instead of two; the cells with letters still lose the
+layer above, because one cell has one palette; and it is rebuilt if the
+camera moves under the message. It was not tried: see the draft
+[`a-window-without-a-background-could-copy-the-layer-above`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-window-without-a-background-could-copy-the-layer-above.md).
