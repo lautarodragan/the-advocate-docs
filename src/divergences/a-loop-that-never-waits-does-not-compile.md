@@ -1,4 +1,4 @@
-# A loop that never waits does not compile
+# A loop that never waits nor ends does not compile
 
 ## What
 
@@ -9,11 +9,15 @@ back to after the first `Loop` at its own indentation, and `BreakLoop` to
 after the first `EndLoop` that follows it, whatever its indentation, which
 is RPG_RT's bug and easyrpg copies it.
 
-**A `Loop` whose body has nothing that lets a frame go by does not
-compile** —a `Wait`, a message, a choice, a number to input, a
-`KeyInputProc` that waits for a key, a `MovePicture` that waits for its
-move—, and the page it is in is left out like any page with a command the
-ROM does not do.
+**A `Loop` whose body has nothing that lets a frame go by and no way out
+does not compile**, and the page it is in is left out like any page with a
+command the ROM does not do. What lets a frame go by is a `Wait`, a
+message, a choice, a number to input, a `KeyInputProc` that waits for a
+key or a `MovePicture` that waits for its move. A way out is a `BreakLoop`
+that lands past the loop's own `EndLoop` —one inside an inner loop ends
+only that one— or a `JumpToLabel` to a label outside it: since 2026-11-01
+a loop with one of those compiles without waiting, and runs all its turns
+in one frame, as RPG_RT does with fewer than ten thousand commands.
 
 **The wait counts even when what comes with it is not done.** A
 `MovePicture` the console cannot do —a picture the map does not carry, a
@@ -35,23 +39,28 @@ would never return, and the console would hang.
 
 ## How it looks today
 
-Only Vampires Dawn has loops among the ported games, and almost all of
-them wait: the rain, day and night, the mines, the clock, its menus. The
-few that do not are left out, and the ones seen are loops whose every
-branch ends in a `BreakLoop`, which never go round: a few custom-menu
-common events and one map's page. A loop that waits only on some of its
-branches compiles, and hangs if it takes the others forever.
+Vampires Dawn's loops almost all wait: the rain, day and night, the mines,
+the clock, its menus. Zounds' do not: its mining pay (map 134), the
+smelting oven (map 133), the mining merchant's scene (map 57) and its
+next-level experience (common events 51, 52 and 54) count items or
+variables down and break, and they were left out until 2026-11-01. A loop
+that waits only on some of its branches compiles, and hangs if it takes
+the others forever; so does one that breaks only on a condition that is
+never met, where RPG_RT would go on drawing.
 
 ## When it stops being enough
 
-A game with a loop that does its work without waiting —counting through a
-variable, walking a list— would need a cap on the interpreter's commands
-per frame, like RPG_RT's.
+A game with a loop that neither waits nor can break —one that ends only
+when a parallel page or the player changes something— would need a cap on
+the interpreter's commands per frame, like RPG_RT's.
 
 ## Measured
 
-`a_loop_that_never_waits_does_not_compile`, with the two others on loops,
-and `a_move_not_done_still_waits`, in `rm2k-snes/events/src/compile.rs` in
-the-advocate. The one ROM test that runs a loop is
-`tests/test_vampires_dawn_tradan.py` in the-advocate-ports: Tradan's
-parallel loop, whose move is not done, ticking for 900 frames.
+`a_loop_that_never_waits_does_not_compile`,
+`a_loop_that_can_break_compiles_without_waiting`, with the two others on
+loops, and `a_move_not_done_still_waits`, in
+`rm2k-snes/events/src/compile.rs` in the-advocate. The ROM tests that run
+a loop are `tests/test_vampires_dawn_tradan.py` in the-advocate-ports,
+Tradan's parallel loop, whose move is not done, ticking for 900 frames;
+and `test_the_mining_is_paid` in `tests/test_zounds.py`, four loops that
+break without waiting.

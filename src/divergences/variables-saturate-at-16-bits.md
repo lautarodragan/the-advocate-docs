@@ -36,7 +36,14 @@ cost of every operation for one sentinel.
   Frozen World's HP percentages are the HP times 100 divided by the
   maximum, and with more than 327 HP the product stays at 32,767, so the
   percentage comes out low. That is the combat, which is not in the
-  cartridge yet. The compiler is the same `ControlVars`; the ROM,
+  cartridge yet. Dividing or taking the modulo **by** a constant past the
+  word compiles since 2026-11-01, and exactly for a word: the quotient is
+  0 and the remainder the variable itself, as C's `/` and `%`, which RPG_RT
+  uses, give for any dividend smaller than the divisor —except dividing
+  by 32,768, since -32,768 / 32,768 is -1, which does not compile—.
+  Nothing is lost there beyond the word itself: Zounds splits its money
+  and its experience in digits with `mod 100000` and `/ 100000` (common
+  events 26, 62 and 63), and a word never holds a sixth digit. The compiler is the same `ControlVars`; the ROM,
   `var_arith` in `runtime/variable_arithmetic.s`; the test,
   `test_multiply_divide_and_modulo_are_rm2ks`.
 * An actor's experience copied into a variable —`ControlVars` from an
