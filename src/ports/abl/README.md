@@ -8,10 +8,6 @@ behind each one is a draft or a task in the tasks repository, named here
 as text. Where the ROM does what RM2k does in another way, on purpose, is
 in the [divergences](../../divergences/README.md), not here.
 
-* **A medicine does not cure a condition**: a poison caught in battle stays
-  after it and takes HP while walking, and the Antidote and the OmniAntidote
-  do nothing to it, from the menu or in battle; a full heal cures it. Draft:
-  [`a-medicine-does-not-cure-a-condition`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-medicine-does-not-cure-a-condition.md).
 * **The save slots show no HP**: each saved game says its leader's name
   and level, and the original also says its hit points ("HP 40") after the
   level. Draft: [`the-slot-screen-shows-no-hp`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-slot-screen-shows-no-hp.md).

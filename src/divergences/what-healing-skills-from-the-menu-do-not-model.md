@@ -26,10 +26,6 @@ under Wine and easyrpg-player's `Game_Party::UseSkill` and
   the HP —see [What the party panel does not model](what-the-party-panel-does-not-model.md)—.
   Until 2026-11-01 it had no SP line, and the SP the skill spent were only
   seen back in the list's status line.
-* **States other than death are not kept outside battle**, so a skill that
-  only cures them —Antidote, Medicine, Blessing— is of no use: nothing
-  happens and no SP go, where RPG_RT cures a state that lasted past the
-  battle.
 * **The name goes in two lines** of eleven cells, as a medicine's, cut at a
   space where it fits, or in the middle of a word that does not
   ("LifeFromDec" and "ay"); RPG_RT writes it whole in one. **The cost has two

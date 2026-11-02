@@ -34,8 +34,6 @@ right after the releases, a condition changes its HP and SP by
 
 * **A weapon's `state_set` gives nothing**: an attack does not roll its
   `state_chance`. Vampires Dawn has twenty such weapons, ABL three.
-* **An item that only cures conditions is not in the battle's list**, and
-  a medicine's `state_set` takes nothing away in battle.
 * **An actor that cannot act is still asked for its command**, and then
   does nothing —or attacks, with Berserk and Chaos— when its turn comes,
   as RM2k; RM2k skips it in the command menu. Its status line says
@@ -89,8 +87,8 @@ below 1 HP, with the red flash. What is not the same:
   walking and another that hurts on the same step: no game has one that
   heals.
 * **The menus do not show them** yet: the main menu's status line and the
-  status screen say nothing, and a medicine or a skill that only cures a
-  condition cures nothing on the map.
+  status screen say nothing. A medicine or a skill that cures one does
+  cure it on the map, since 2026-11-01.
 
 ## Measured
 
