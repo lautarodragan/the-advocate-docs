@@ -68,15 +68,19 @@ enemy's numbers were
 brought within sixteen bits. Task:
 [`zounds-the-repository-lacks-197-assets`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-the-repository-lacks-197-assets.md).
 
-## Its icons are in `RPG_RT_a.exe`
+## Its icons come from `RPG_RT_a.exe`
 
 The items' and skills' names start with an ExFont icon —`$NPoción Roja`—
 and their descriptions count on them: "+35$N" is "+35 HP". Those icons
 —HP, MP, attack, defense and the items' own pictures— are the ExFont of the
-`RPG_RT_a.exe` that came with the repository; its `RPG_RT.exe` carries
-RPG Maker's stock one, the zodiac. So the project file names the first,
-`[text] exfont = "RPG_RT_a.exe"`, since 2026-11-02. See [What ExFont icons
-do not model](../../divergences/what-exfont-icons-do-not-model.md).
+`RPG_RT_a.exe` that came with the repository, a Spanish-translated RPG
+Maker 2003 runtime that does not load the game: it looks for other
+signatures in the data files. Its `RPG_RT.exe`, the one that runs the
+game, carries RPG Maker's stock one, the zodiac. The port keeps the first
+as a sheet, `exfont.png`, extracted once on 2026-11-02, and the project
+file names it, `[text] exfont = "exfont.png"`: the tools do not read a
+game's executable. See [What ExFont icons do not
+model](../../divergences/what-exfont-icons-do-not-model.md).
 
 ## What is fixed in the game itself
 
