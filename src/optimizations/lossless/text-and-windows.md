@@ -160,9 +160,9 @@ composed again from the start of the cut line.
 The pause menu's and the actor choice's party rows share one fixed block
 —the level and HP terms, the status— whoever is in the row; the name, the
 level and the maximum go over it, the name composed into tiles of its own
-and the numbers with the bank's glyphs. The last line —the experience on
-the menu, the SP on the choice— is objects over the same glyphs, so it
-takes no tiles but its term's; the menu's SP are cells of those glyphs.
+and the numbers with the bank's glyphs. The menu's last line, the
+experience, is objects over the same glyphs, so it takes no tiles but its
+term's; the SP are cells of those glyphs on both screens.
 
 And since 2026-11-01 the menu, which shows three of its four rows and
 scrolls, paints each row **once** when it opens and keeps its cells in
@@ -172,8 +172,8 @@ are composed once per actor, as before.
 - **Saves**: VRAM and ROM —the menu's tile bank does not grow with the
   number of actors—, and the scroll's black frame. The slot screen does the
   same with its leader's name and level.
-- **Where**: `menu_row_paint`, `menu_list_paint` and `menu_list_show` in
-  `runtime/menu_list.s`; `menu_exp_build` and `menu_sp_build` in
+- **Where**: `menu_row_paint`, `menu_list_paint`, `menu_list_show` and
+  `menu_sp_cells` in `runtime/menu_list.s`; `menu_exp_build` in
   `runtime/menu_experience.s`; `slot_party_paint` and "the text that
   depends on the actor" in `runtime/slots.s`; `tl_strip` and
   `tl_slot_name` in `runtime/text_layer.s`.

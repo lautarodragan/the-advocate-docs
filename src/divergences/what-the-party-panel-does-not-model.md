@@ -8,10 +8,11 @@ item or a healing skill used from the menu opens— are RM2k's
 tall, where RPG_RT has 320 by 240. Each row has the face on the left and
 the text beside it. What does not fit is laid out differently:
 
-* **One column of text.** RPG_RT puts the HP to the right of the level
-  and the SP to the right of the experience; in 104 pixels there is room
-  for one column, so the HP go on a line of their own under the level and
-  its state, and the SP on another under the HP, in the same columns.
+* **One column of text on the pause menu.** RPG_RT puts the HP to the
+  right of the level and the SP to the right of the experience; in 104
+  pixels there is room for one column, so the HP go on a line of their own
+  under the level and its state, and the SP on another under the HP, in
+  the same columns.
 * **The pause menu shows three actors, not four, and scrolls.** Its rows
   have five lines —name, level, HP, SP and experience—, 72 lines each, and
   four of them would be 288. RPG_RT's window shows the four at once; here
@@ -21,18 +22,13 @@ the text beside it. What does not fit is laid out differently:
   someone is below, the up one if someone is above. It does not blink, as
   RPG_RT's does every twenty frames, and both go at the bottom, centred
   on the panel: at the top the up one would cover the first name.
-* **The actor choice shows the four**, with four lines each, 56 lines a
-  row: `Window_ActorTarget` has no experience, so the SP are its fourth
-  line and the four rows are the whole screen.
-* **The last line of a row is sprites**, not tiles: the experience on the
-  menu and the SP on the choice. The other lines are on the cell grid, two
-  cells each, and only an object can sit eleven lines under another. The
-  menu's SP are tiles: in sprites, with the experience, three rows would
-  need 144 objects, and there are 128.
-* **The bar reaches the screen's last line** on the actor choice's fourth
-  row, over the bottom of the party window's frame: the row's text goes
-  down to there, and the bar covers it with a line of red over it and two
-  under it. RPG_RT's window keeps its frame below the last row.
+* **The actor choice shows the four**, the whole width under the item's
+  line, with three lines each and the SP beside the HP: see [The actor
+  choice's layout](the-actor-choice-layout.md).
+* **The menu's last line is sprites**, not tiles: the experience. The
+  other lines are on the cell grid, two cells each, and only an object can
+  sit eleven lines under another. The menu's SP are tiles: in sprites, with
+  the experience, three rows would need 144 objects, and there are 128.
 * **The menu does not show the actor's title.** The skills screen shows
   the SP of the one it is opened for.
 * **A condition is written in one shade**, where the row says "Normal"
@@ -71,8 +67,8 @@ The geometry is `MENU_LIST_ROWS`, `MENU_SHOWN`, `MENU_ARROW_Y`,
 `rm2k-snes-screens` in the-advocate, whose `render` draws both screens;
 the console's side is `runtime/menu_list.s` —the rows, painted once each
 when the menu opens and kept in WRAM, so a scroll is one vblank's
-upload— and `menu_exp_build` and `menu_sp_build` in
-`runtime/menu_experience.s`. The tests are
+upload, and the SP line in cells, `menu_sp_cells`— and `menu_exp_build`
+in `runtime/menu_experience.s`. The tests are
 `tests/rpgmaker/test_menu_party_scroll.py` and
 `tests/rpgmaker/test_menu_heal_drawing.py` of A Blurred Line, on the debug
 map's full party. The tasks are
