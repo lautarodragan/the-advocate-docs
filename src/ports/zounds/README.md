@@ -336,8 +336,3 @@ current: whoever fixes one removes its line in the same change.
   does since 2026-10-19, but his walk is a route that repeats, run once.
   Task:
   [`a-forced-routes-repeat-flag-is-dropped`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-forced-routes-repeat-flag-is-dropped.md).
-* **After a jump the hero faces the way he walked into it**: RPG Maker
-  2003 turns him the way the jump asks —up onto Delmar's path from the
-  debug room, right onto map 113 from the maze's door—, and 104 of the
-  game's jumps ask for one. Draft:
-  [`a-teleport-s-facing-is-not-applied`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-teleport-s-facing-is-not-applied.md).
