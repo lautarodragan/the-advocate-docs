@@ -162,7 +162,7 @@ fix too:
 **"New Game" starts in a room of the port's own**, map 1000 of
 `zounds/patches/manual/maps/`, so the parts being tested are reached
 without replaying the way there: it costs one menu option and nothing
-else. "Continue" is untouched. Its six doors are the gaps in the bottom
+else. "Continue" is untouched. Its eight doors are the gaps in the bottom
 wall, and each asks before jumping:
 
 * **The game**: map 1, from its start, as the game without the room.
@@ -186,6 +186,10 @@ wall, and each asks before jumping:
   from the first dungeon's door on —the crack's girl and her fossil, the
   ship gone, the fossil traded to Bandurion for the Talisman the desert
   asks for—.
+* **Delmar** and **the town of Itân**: maps 183 and 157, which the story
+  does not reach —only the developer's test map leads there—, where that
+  map's jumps land. Nothing there reads the story, so these two doors set
+  only the game's settings and keep the room's party.
 
 Each door sets what the game's pages set on the way to that point, in
 their order, with the constants of map 1's settings page; the comments of
@@ -328,3 +332,8 @@ current: whoever fixes one removes its line in the same change.
   does since 2026-10-19, but his walk is a route that repeats, run once.
   Task:
   [`a-forced-routes-repeat-flag-is-dropped`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-forced-routes-repeat-flag-is-dropped.md).
+* **After a jump the hero faces the way he walked into it**: RPG Maker
+  2003 turns him the way the jump asks —up onto Delmar's path from the
+  debug room, right onto map 113 from the maze's door—, and 104 of the
+  game's jumps ask for one. Draft:
+  [`a-teleport-s-facing-is-not-applied`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-teleport-s-facing-is-not-applied.md).
