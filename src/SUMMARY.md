@@ -164,6 +164,7 @@
         - [What healing skills from the menu do not model](divergences/what-healing-skills-from-the-menu-do-not-model.md)
         - [What special items from the menu do not model](divergences/what-special-items-from-the-menu-do-not-model.md)
         - [What the party panel does not model](divergences/what-the-party-panel-does-not-model.md)
+        - [The actor choice's layout](divergences/the-actor-choice-layout.md)
         - [What the debug screen does not model](divergences/what-the-debug-screen-does-not-model.md)
     - [Controls]()
         - [Autofire of A with X](divergences/autofire-of-a-with-x.md)

@@ -253,6 +253,10 @@ current: whoever fixes one removes its line in the same change.
   screens draw ASCII, so the hero is "Uname" there and an item's
   "Líquido" is "Liquido". The message boxes draw them. See
   [Letters the font does not have](../../divergences/letters-the-font-does-not-have.md).
+* **A skill's name with an accent carries a `?` in the battle's text**:
+  "L?tigo de Seda", "P?talo Violeta", where the items read "Pocion" —found
+  in the cartridge's text, not looked at on the screen yet—. Draft:
+  [`zounds-skill-names-show-a-question-mark-for-an-accent`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-skill-names-show-a-question-mark-for-an-accent.md).
 * **The boxes shown in battle have no icons**: an item's icon in a box a
   troop page shows —the prize's "Objeto Especial Veneno"— is left out, as
   its accents are. Everywhere else they show. See [What ExFont icons do not
