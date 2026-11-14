@@ -153,6 +153,18 @@ writes            --dsp_music-->        the SPC700 driver
   music without MSU-1. With MSU-1, a package doesn't upload the samples of the
   themes that have a track, unless the track was missing from the card:
   `song_per_msu`, in `runtime/audio_package.s`.
+- **How a track loops**: the ROM plays it with the MSU-1's repeat bit
+  (`msu_start`, in `runtime/msu1.s`), so the hardware goes back to the
+  loop point in the `.pcm`'s header. A track from a MIDI loops like
+  RPG_RT, as easyrpg-player reads it: it ends at the MIDI's last event
+  —the end-of-track, not the last note, nor the two seconds fluidsynth
+  renders after it—, the loop point is the last CC111 or the start, and
+  the first pass skips the silence before the first note, but for a
+  quarter note over 2.1. A song without CC111 whose start was skipped
+  carries that silence at the end of the track, and loops to 0
+  (`rm2k_cut` in `tracks.rs`, `Midi::rm2k_loop` in `midi.rs`). What still
+  sounds at the end is cut there; RPG_RT lets it ring over the next pass.
+  A track from an audio file loops at 0.
 - **Effects with MSU-1**: while the SPC700 plays no music, the effects also
   get voices 0 to 5, and each `PlaySound` takes a free voice of the eight
   —a new copy of a sound still playing too, so copies overlap as in RM2k—
