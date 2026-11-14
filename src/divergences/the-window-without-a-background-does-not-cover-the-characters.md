@@ -16,19 +16,32 @@ same layer as the one above the map, and mode 3 does not have a third.
   cannot be hidden, because they have to be seen. The arrow of a message
   waiting for a key does go over them, in a map with room for it: see
   [The arrow, as objects](#the-arrow-as-objects).
-* **The layer above the map is not visible on the lines the window draws
-  on.** On those lines BG2 shows the window's tilemap —the plane without a
-  frame, with the cells that are not text left blank—, so roofs, treetops
-  and everything the chipset puts on top disappear from them while the
-  message lasts, **across the whole width of the screen**, beside the text
-  too. The lower layer and the characters are visible. In a map whose
-  panorama goes in mode 3 the panorama is that BG2, so it is the panorama
-  that disappears from those lines: Vampires Dawn's intro, which is all
+* **The layer above the map, on the lines the window draws on, is the
+  window's copy of it.** On those lines BG2 shows the window's tilemap
+  —the plane without a frame—, and BG2 is the layer above too. Since
+  2026-11-14 the plane carries the layer there: the cells without letters
+  take the layer's own tilemap entries, and the cells with letters are
+  composed from the layer's pixels with the glyph over them, so roofs,
+  treetops and fences show beside the text and under it, as in RM2k —see
+  [The layer above, carried](#the-layer-above-carried)—. **Only with the
+  camera still**, which is when it is on the 8-pixel grid the window's
+  cells are on: a window that opens while the camera moves takes the
+  layer off its lines across the whole screen, as before that day, and
+  one under which the camera moves keeps the layer as it was when it
+  opened. So does a window with a face, a choice or a number's digits,
+  and one in a game whose boxes type colours (`\c[n]`).
+
+  Where the window does not carry the layer the old look holds: on those
+  lines BG2 shows the window's cells, so the layer above disappears from
+  them **across the whole width of the screen**, beside the text too, and
+  the lower layer and the characters are visible. In a map whose panorama
+  goes in mode 3 the panorama is that BG2, so it is the panorama that
+  disappears from those lines: Vampires Dawn's intro, which is all
   panorama, asks "Skip Intro ?" without a background, and the ROM shows it
   over a black band where RM2k shows the picture. And where the lower
-  layer has nothing under the layer above —the dark edge of a cave, a
-  wall drawn only on top— what is left is the backdrop, so those cells
-  turn **black** on the window's lines: Zounds' signs on maps 86 and 96,
+  layer has nothing under the layer above —the dark edge of a cave, a wall
+  drawn only on top— what is left is the backdrop, so those cells turn
+  **black** on the window's lines: Zounds' signs on maps 86 and 96,
   measured on 2026-11-02.
 
   **Only what a character can pass under is in that layer**, since
@@ -117,11 +130,63 @@ objects of priority 2, so the hero and the events on his layer or below go
 there, and it still goes over it. The second one stays: the edges of the
 roofs that go exact in BG2 are not visible on those lines.
 
+## The layer above, carried
+
+A line of text the window draws on is two rows of its plane, and the
+console fills them from the map's layer above when the line starts —see
+`runtime/message_layer.s` in the-advocate—: it reads the layer's tilemap
+entries for the screen cells the two rows cover, out of VRAM in a vblank,
+and the cells the text area leaves without a tile of the layer keep the
+window's own. A cell of the text area that has one is read too, its 8x8
+pixels into the composer's buffer, and the letters are composed over them
+as over the window's transparent. The cell shows the layer's entry until a
+letter inks it, and from then the composed tile. The window's bottom row,
+the arrow's band in a map that keeps the arrow in the window's cells,
+takes the layer's entries too, and the arrow's two cells give them back
+when it blinks off.
+
+**The camera at rest is always on the 8-pixel grid**: `follow_camera`
+puts the centre of the hero's cell —8 mod 16— at the middle of the screen,
+128 and 112, and its clamps are 0 and the map's size in cells times 16
+minus the screen's. So with the camera still the screen's cells are the
+map's, and the window's cells land on them without the text moving a
+pixel from where RM2k draws it. A window that opens with the camera
+between two cells keeps the old look; carrying the layer there would move
+the text up to seven pixels, or the composer would draw it shifted, three
+cell rows a line.
+
+**The colours.** The composer's glyphs carry the window's palette
+entries, and the composed cell is drawn in a palette of the layer's, so
+that palette has to hold the text's colours at the window's entries —the
+glyph's rows' and the shadow's, five in A Blurred Line—, and in entries no
+pixel of the layer uses: under a tint, an entry the layer and the text
+shared would be tinted for both or for neither. The converter decides it
+map by map, in a game with a `MessageOptions` without the background
+—`layer_text` in rm2k-snes-mapdata—:
+
+* if the layer's palettes have room, its colours move off the text's
+  entries, and nothing changes;
+* if not, and the background leaves the BG palettes under the layer's, the
+  text goes in **copies** of the layer's palettes there, used only by the
+  cells with letters; the layer's colours nearest the text's are moved to
+  the text's entries, so inside those cells they show as the text's —taro's
+  rule of 2026-10-19: the text keeps its exact colours and the nearest of
+  the background give way—;
+* if neither, the layer's least visible colours are merged into their
+  nearest until its palettes have room, **only if they are near** —no two
+  more than some two steps of 31 apart, and none losing its tint—: the
+  layer above loses those shades on that map, with or without a message.
+  Otherwise the map keeps the old look, and the converter's log says why.
+
+The text's entries are written again after every tint with the window's
+colours, untinted, so the letters are not toned and the layer is, as RM2k
+tones the map and not the window.
+
 ## The limit: beside the text
 
-The cells to the left and right of the text, on a line that has text,
-cannot be given back, and that is a property of the PPU and not of how far
-this went:
+Where the window does not carry the layer —see above—, the cells to the
+left and right of the text, on a line that has text, cannot be given back
+by the PPU alone, and why is what led to carrying it:
 
 * **BG2 has one tilemap and one scroll per scanline.** `BG2SC`,
   `BG2HOFS` and `BG2VOFS` are written by HDMA in the horizontal blank, so a
@@ -159,35 +224,31 @@ columns, where it is up some frames and not others. The arrow as objects
 lands on the same pixels as it did in the cells, measured against the
 cells on 2026-10-18.
 
+The layer carried on the lines with text, since 2026-11-14:
+`test_message_layer_above.py`, in ABL, looks at taro's two scenes of the
+memory —map 5's "I can tell." over a treetop, map 6's first box over the
+fence at the screen's left edge—, and at map 5's under the memory's sepia
+tone: with the box up, every pixel of its lines is the map's as it was
+before it opened or one of the text's untinted greys, and the bottom row
+is the map's but for the arrow's two cells. Before that day 243 pixels of
+the tree and 1237 of the fence were neither.
+
 ## When it stops being enough
 
 In a game that talks without a background over a map with roofs or trees
-beside the text, or with characters walking through it. Fixing it means
-drawing the text with something other than BG2: with objects it does not
-fit —a line of text is 30 tiles wide and the PPU draws 34 per line among
-all of them—, and mode 3 has no more layers.
+beside the text **while the camera moves** —a parallel route walking the
+hero, a pan—, or with characters walking through the text: they still go
+over the letters, because the text is BG2 and they are objects in front of
+it. Drawing the text with something other than BG2 does not fit: with
+objects a line of text is 30 tiles wide and the PPU draws 34 per line
+among all of them, and mode 3 has no more layers.
 
-Zounds is such a game: its signs —a picture of a wooden board with the
-text over it, without a background— stand in caves whose dark edges are
-the layer above, and taro saw them go black on the text's lines on
-2026-11-02. There RM2k draws the board under the text, which the console
-leaves out of those maps for lack of VRAM; drawn, it would hide the
-bands, but as objects it would also go over the text. On map 86 the same
-day the ceiling that nobody can reach went into the background, and of
-the black band on the right of the screen only the cave's edge by the
-floor is left; on map 96 nothing changed: a statue there is pushed
-through walls when its coordinates say so, which the analysis does not
-follow, so every ceiling the hero can stand beside may have the statue
-under it.
+Zounds is such a game in another way: its signs —a picture of a wooden
+board with the text over it, without a background— stand in caves whose
+dark edges are the layer above, and RM2k draws the board under the text,
+which the console leaves out of those maps for lack of VRAM; drawn, it
+would hide the bands, but as objects it would also go over the text. Its
+boxes type colours, so its windows do not carry the layer.
 
-The one path not ruled out above is **carrying the layer above inside
-the window's own plane** on its lines: the plane without a frame gets,
-in its cells without letters, the layer above's tilemap entries of the
-screen cells they cover —same tile base, so they are valid as they
-are—, and the window's scroll keeps the camera's fine part so they land
-on the map's. Its price: the text moves up to seven pixels from RM2k's
-place, or the composer draws it shifted, which vertically means three
-cell rows per line instead of two; the cells with letters still lose the
-layer above, because one cell has one palette; and it is rebuilt if the
-camera moves under the message. It was not tried: see the draft
-[`a-window-without-a-background-could-copy-the-layer-above`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-window-without-a-background-could-copy-the-layer-above.md).
+The camera moving under a message is its own task, in the wishlist:
+[`a-transparent-message-under-a-moving-camera`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-transparent-message-under-a-moving-camera.md).
