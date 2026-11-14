@@ -75,6 +75,32 @@ model](../divergences/what-message-escapes-do-not-model.md#the-colour).
 See `inks` in rm2k-snes-screens' `message_window.rs` and `colour` in
 `runtime/message_pace.s`, in the-advocate.
 
+## A message without its background puts the text in the layer's palettes
+
+Since 2026-11-14, in a game with a `MessageOptions` without the background
+and whose boxes type no colour, a window without its background carries
+the map's layer above on its lines, and its cells with letters are drawn
+in a palette of the layer's —see [The layer above,
+carried](../divergences/the-window-without-a-background-does-not-cover-the-characters.md#the-layer-above-carried)—.
+So the text's colours —the glyph's rows' and the shadow's, at the
+window's own entries— have to be in that palette at the same entries, and
+in entries no pixel of the layer uses. The converter arranges each map's,
+in this order: the layer's colours moved off those entries if its palettes
+have room; or **copies** of the layer's palettes right under them, in BG
+palettes the background does not reach, used only by the cells with
+letters; or, if they are near enough, the layer's least visible colours
+merged until its palettes have room —otherwise the map keeps the window's
+old look—. Each map's choice is a byte of `layer_texts`, and the
+converter's log says which maps merge and how many colours. See
+`layer_text` in rm2k-snes-mapdata and `runtime/message_layer.s`, in
+the-advocate.
+
+The text's entries are written after every tint, in `cgram_shadow`, with
+the window's colours untinted —`layer_text_tint`—, and the copies are
+uploaded with the layer's from there, never from the flash's `pal_buf`:
+the letters are neither toned nor flashed, as RM2k leaves the window out
+of both.
+
 ## The small pictures take sprite palettes from the top
 
 A `ShowPicture` picture that goes in sprites draws with a whole sprite
