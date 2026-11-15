@@ -8,3 +8,4 @@ included.
 - [The camera offset after the gate is the game's](the-camera-offset-after-the-gate-is-the-games.md)
 - [The thunder plays whole, and pays for the rain](the-thunder-plays-whole-and-pays-for-the-rain.md)
 - [The quarry's timer stays in Paradise](the-quarry-timer-stays-in-paradise.md)
+- [The chasing guard follows Talan's row](the-chasing-guard-follows-talans-row.md)

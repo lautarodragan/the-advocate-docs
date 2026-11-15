@@ -112,6 +112,11 @@ redistribute either: see [its RTP](rtp.md).
 The game's starting map is 4, an empty room that only teleports. The first
 real map is 1.
 
+**The port changes one thing the game does, on purpose**: a bug of the
+original on Mountain Path, where the guard that chases Talan never changes
+his route when Talan goes down to the planks. See [The chasing guard
+follows Talan's row](decisions/the-chasing-guard-follows-talans-row.md).
+
 ## The data in a versionable format
 
 ```sh
