@@ -96,8 +96,10 @@ animation's box. Into them go the window's own arrow tiles and the window's
 colours, so the System is not redrawn nor loses a colour, and the screen's
 tint does not reach it, which is what RM2k does with the window. The
 converter decides it —`arrow_obj` in rm2k-snes-mapdata, a word per map in
-`arrow_objs`— and the console uploads both when the window appears
-—`arrow_obj_choose` in `message_arrow.s`, in the-advocate—.
+`arrow_objs`— and the console uploads both after the window appears, in
+the first vblank with room for them —`arrow_obj_choose` and `msg_arrow`
+in `message_arrow.s`, in the-advocate—: written past the vblank's end,
+the colours landed on the map's palettes on the console.
 
 **A map without that room keeps the arrow in the window's cells**, and the
 bottom row's band with it. The converter's log says which, map by map:
