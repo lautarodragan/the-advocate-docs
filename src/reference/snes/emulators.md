@@ -83,6 +83,30 @@ like the cartridge does. Measured with the test ROM in A Blurred Line's
 `mednafen -force_module snes_faust` is still the one to play with: it is the
 one with the MSU-1.
 
+## Writes past the vblank
+
+With the display on, the console drops a VRAM write, gives garbage for a
+VRAM read and puts a CGRAM write on the palette entry it is drawing. A ROM
+whose vblank work runs into the screen's first lines breaks there and
+nowhere else, unless the emulator does the same. Measured on 2026-11-15
+with A Blurred Line's memory, on the build before the fix that
+[`a-transparent-message-keeps-the-layer-above`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-transparent-message-keeps-the-layer-above.md)
+made:
+
+- **ares with "Pixel Accuracy Mode"** (Settings > Video; off by default)
+  and **bsnes with its fast PPU off** (the libretro core's
+  `bsnes_ppu_fast` at `OFF`; it defaults on) break the map's palettes and
+  lose letter tops, as the console did.
+- **ares's and bsnes's default PPUs** drop the VRAM writes but put every
+  misplaced CGRAM write on entry 0, which the next upload rewrites: the
+  palettes look right.
+- **snes9x** and **Mesen-S**, measured, and **Mesen2** and **Mednafen**, as
+  taro played them, take the writes where they are told.
+
+So to look for this by hand, ares with Pixel Accuracy. See
+[`an-emulator-that-shows-vblank-overruns`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/an-emulator-that-shows-vblank-overruns.md)
+for how it was measured.
+
 ## Debugging with Mesen2
 
 Mesen2's debugger can show our routine names and, next to the
