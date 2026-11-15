@@ -107,6 +107,23 @@ So to look for this by hand, ares with Pixel Accuracy. See
 [`an-emulator-that-shows-vblank-overruns`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/an-emulator-that-shows-vblank-overruns.md)
 for how it was measured.
 
+**The suite does not look: it counts.** A Blurred Line's suite runs a few
+heavy scenes —that memory among them— on bsnes with its accurate PPU and a
+patch of ours that counts every VRAM, CGRAM and OAM access the PPU refused
+or misplaced because the screen was being drawn, and asks for none on every
+frame. No pixel is compared, so it is red whether or not the screen shows
+the damage. The patched core is installed under its own name, next to the
+plain bsnes the other tests run. The same count over every case of the
+cartridge is a recipe run on demand, not part of every run. The test, the
+patch and the recipes that build the core and run the sweep are in
+A Blurred Line's tests in the-advocate-ports (`test_display_accesses.py`,
+`tests/harness/emulator/`, `just audit-core` and `just display-sweep`).
+
+What it does not replace: the count is in that emulator's timing, and the
+console with an FX Pak's in-game hooks runs code of its own in the NMI, so
+the runtime's vblank budgets keep their margin and the probe that checks it
+stays.
+
 ## Debugging with Mesen2
 
 Mesen2's debugger can show our routine names and, next to the
