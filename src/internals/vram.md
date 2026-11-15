@@ -233,8 +233,9 @@ the bank —the slots, the cache's, the battle animation's box, a picture's
 8x8 objects— is inside its length, so nobody else touches them; they take
 nothing from the bank either, and a map whose bank fills its layout keeps
 the arrow in the window's cells. The console copies the window's own arrow
-tiles there when the window appears: `arrow_obj` in rm2k-snes-mapdata and
-`arrow_obj_load` in `runtime/message_arrow.s`, in the-advocate.
+tiles there after the window appears, in the first vblank with room for
+them: `arrow_obj` in rm2k-snes-mapdata and `arrow_obj_load` in
+`runtime/message_arrow.s`, in the-advocate.
 
 **An inn's gold window goes right after them**, since 2026-10-19: its 44
 8x8 tiles —88x32—, when the layout's sprite tiles reach them too, which
