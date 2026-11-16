@@ -212,6 +212,7 @@
             - [Fitting the whole game in 8 MB (2026-10-14)](ports/abl/research/2026-10-14-fitting-the-whole-game-in-8-mb.md)
             - [The limits ABL is close to (2026-10-14)](ports/abl/research/2026-10-14-the-limits-abl-is-close-to.md)
             - [The chests' colours (2026-10-16)](ports/abl/research/2026-10-16-the-chests-colours.md)
+            - [Is there a better palette grouping? (2026-11-16)](ports/abl/research/2026-11-16-the-palette-grouping.md)
     - [The Book of Three](ports/book-of-three/README.md)
     - [Desert Nightmare](ports/desert-nightmare/README.md)
     - [Dooms 2](ports/dooms2/README.md)
