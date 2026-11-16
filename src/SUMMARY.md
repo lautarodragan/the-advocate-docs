@@ -92,6 +92,7 @@
         - [Baked decorative events](divergences/baked-decorative-events.md)
         - [Still events drawn into the background](divergences/still-events-drawn-into-the-background.md)
         - [Translucent events end up opaque](divergences/translucent-events-end-up-opaque.md)
+        - [A route's transparency is all or nothing](divergences/a-routes-transparency-is-all-or-nothing.md)
         - [Seven palettes on a map with animations](divergences/seven-palettes-on-a-map-with-animations.md)
         - [What a bush does not model](divergences/what-a-bush-does-not-model.md)
         - [The shrunk battle animation](divergences/the-shrunk-battle-animation.md)
