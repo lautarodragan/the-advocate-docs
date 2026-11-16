@@ -84,6 +84,10 @@ tests.
   reaches the screen while it is drawn; and two goldens. The first of the
   engine's timing tests that lives here. The task is
   [`the-test-game-a-transparent-box-over-a-scrolling-panorama`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-test-game-a-transparent-box-over-a-scrolling-panorama.md).
+  The same day the scene went on in the rain, which that map has on too:
+  an event at the hero's side starts it, strong, when talked to, and four
+  boxes more are measured the same way under it, with two goldens more
+  —[`the-test-game-s-terrace-in-the-rain`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-test-game-s-terrace-in-the-rain.md)—.
 
 Of the seven assumptions about A Blurred Line the research found in the
 tools when it first wrote a game from scratch, four are gone —a debug map

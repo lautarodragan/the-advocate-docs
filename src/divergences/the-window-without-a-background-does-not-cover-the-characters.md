@@ -13,7 +13,9 @@ same layer as the one above the map, and mode 3 does not have a third.
   objects with priority 2, which in mode 3 go in front. With a background it
   does not show because HDMA hides the objects on the window's lines
   —`mask_*`, in `message_place.s` in the-advocate—; without a background they
-  cannot be hidden, because they have to be seen. The arrow of a message
+  cannot be hidden, because they have to be seen. The rain's drops are
+  objects with priority 2 too, so they also fall over the text, where in
+  RM2k the window is above the weather —`Priority_Weather` is 80—. The arrow of a message
   waiting for a key does go over them, in a map with room for it: see
   [The arrow, as objects](#the-arrow-as-objects).
 * **The layer above the map, on the lines the window draws on, is the
