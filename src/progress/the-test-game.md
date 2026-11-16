@@ -73,6 +73,17 @@ tests.
   Line has the knob off, and Sunset Over Imdahl's maps are paintings, so
   the ChipSet side of the rule runs only here. The task is
   [`pictures-that-go-over-the-map-outside-sunset`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/pictures-that-go-over-the-map-outside-sunset.md).
+* **And on 2026-11-16, the vblank's budget**: the terrace, map 9, a slab of
+  grass in a night sky of ours, `Panorama/Stars`, that scrolls on its own,
+  with walkers under a transparent box in the middle of the screen
+  —`test_terrace.py`, the case `terrace`—: a stress case of A Blurred
+  Line's map 1 that there would have moved the text block and the goldens.
+  It asks, on a second cartridge built with the vblank's probe, on which
+  line each of the box's lines goes up and that none waits two vblanks;
+  on bsnes's accurate PPU with the display-access audit, that nothing
+  reaches the screen while it is drawn; and two goldens. The first of the
+  engine's timing tests that lives here. The task is
+  [`the-test-game-a-transparent-box-over-a-scrolling-panorama`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-test-game-a-transparent-box-over-a-scrolling-panorama.md).
 
 Of the seven assumptions about A Blurred Line the research found in the
 tools when it first wrote a game from scratch, four are gone —a debug map
