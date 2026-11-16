@@ -204,6 +204,7 @@
             - [The thunder plays whole, and pays for the rain](ports/abl/decisions/the-thunder-plays-whole-and-pays-for-the-rain.md)
             - [The quarry's timer stays in Paradise](ports/abl/decisions/the-quarry-timer-stays-in-paradise.md)
             - [The chasing guard follows Talan's row](ports/abl/decisions/the-chasing-guard-follows-talans-row.md)
+            - [Core's blood is red](ports/abl/decisions/core-s-blood-is-red.md)
         - [Research]()
             - [A full inspection of the repository (2026-09-28)](ports/abl/research/a-full-inspection-of-the-repository.md)
             - [The maps through the MSU-1 (2026-10-01)](ports/abl/research/2026-10-01-the-maps-through-the-msu-1.md)
