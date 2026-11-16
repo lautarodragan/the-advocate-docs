@@ -2,7 +2,9 @@
 
 ## What
 
-With `[graphics] posed_events = true`, a still event that only changes
+With `[graphics] posed_events = true` —or a list of map ids, only on
+those: each map that takes it spends background tiles, and a cartridge
+with no room left can pay for some maps and not all—, a still event that only changes
 pose —a floor switch, a lever, rubble that a page takes away— is not an
 object: its cell gets one block of the background per pose it can show,
 and the console writes the cell's place in the grid and its four tilemap
@@ -31,8 +33,8 @@ still or puts it above the hero; nothing moves it —a route that steps,
 gives it another graphic; it does not turn toward the hero —the console
 draws that one from the turn slot—; no substitution swaps its cell; and
 it is not translucent. Routes that only turn it are allowed: the turn is
-a pose. The map shows no panorama, draws no pictures into itself and
-does not loop. And it stays an object if, with its poses, the background
+a pose. The map shows no panorama —one it covers everywhere, which goes
+hidden, is no panorama—, draws no pictures into itself and does not loop. And it stays an object if, with its poses, the background
 merges a single colour more —the event would come out a shade off— or
 spends more tiles than the layouts leave: all of them, or CharSet by
 CharSet, the most numerous first. The
