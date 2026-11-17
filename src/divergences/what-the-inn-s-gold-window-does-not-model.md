@@ -11,11 +11,6 @@ That is easyrpg's `CommandShowInn`, with `SetShowGoldWindow(true)` and
 `PushChoice(accept, can_afford)`, and since 2026-10-19 the console does it.
 What it does differently:
 
-* **The greeting is its own box and the choice another**, as with every
-  `ShowMessage` before a `ShowChoice` on the console: the greeting waits for
-  a key, and the gold window closes with it and opens again with the
-  choice, a few frames later. In RM2k the greeting and its two options are
-  one window, and the gold window stays.
 * **The grey is the window palette's nearest colours to System colour 3**,
   row by row of the glyph: in A Blurred Line, lighter at the top and darker
   below than the original's gradient. The window's letters come composed
