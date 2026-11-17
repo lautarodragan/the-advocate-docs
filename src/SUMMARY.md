@@ -40,6 +40,7 @@
     - [Maps](internals/maps.md)
     - [The CGRAM split](internals/cgram.md)
     - [The VRAM split](internals/vram.md)
+    - [The WRAM map](internals/wram.md)
     - [The pause menu and its options](internals/the-pause-menu.md)
     - [Events](internals/events.md)
     - [Audio](internals/audio.md)

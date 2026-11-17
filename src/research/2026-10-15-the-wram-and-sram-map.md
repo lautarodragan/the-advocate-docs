@@ -5,7 +5,7 @@
 > each of the eight games and ABL's eight test cartridges, built with those
 > tools. It is a snapshot: the numbers are from that day and this file is
 > not updated. How each number was obtained is at the end, in "How it was
-> measured".
+> measured". The map as it is today: [The WRAM map](../internals/wram.md).
 
 taro's question, on 2026-10-14, in the task
 [`the-wram-and-sram-map-measured`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-wram-and-sram-map-measured.md):

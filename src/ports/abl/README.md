@@ -48,12 +48,6 @@ in the [divergences](../../divergences/README.md), not here.
   whole**: in the original the lowest third of the hero is half
   transparent. Draft:
   [`a-bush-on-a-map-with-more-than-four-character-palettes`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-bush-on-a-map-with-more-than-four-character-palettes.md).
-* **The signs of Lashe City's map 8 have a grey screen**, where the
-  original's is green: the monitor events drawn with the ChipSet's tile
-  53 (EV0006, EV0007, EV0018, EV0027, EV0031) have no palette of their
-  own on a map of 28 characters, and the one they borrow has no green.
-  Draft:
-  [`abl-map-8-s-signs-lose-their-green`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-map-8-s-signs-lose-their-green.md).
 
 ## The port
 

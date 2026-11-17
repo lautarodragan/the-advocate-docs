@@ -174,9 +174,11 @@ the map runs**: when the row's page or a route's turn changes the pose,
 the event's cell of the grid, through the WRAM port, and the cell's four
 tilemap words in two runs —its top row and its bottom row, joined with the
 cells beside it— that go up by DMA in the next vblank, if the window
-holds the cell. The strips read the grid, so a cell the window builds
-later comes out right; a battle, which overwrites the grid, gets each
-cell written again before the window is rebuilt (`posed_sync`).
+holds the cell. The runs live at the top of `$7F`'s upper half, in
+`GRID_TOP` —see [The WRAM map](wram.md)—. The strips read the grid, so a
+cell the window builds later comes out right; a battle, which overwrites
+the grid and the runs, gets each cell written again and the runs emptied
+before the window is rebuilt (`posed_sync`).
 
 The record the console reads, map by map: `posed.rs` in
 rm2k-snes-mapdata. The row is still a row of the table: the priority bits
