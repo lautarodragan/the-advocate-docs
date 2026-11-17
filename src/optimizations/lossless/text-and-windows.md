@@ -79,11 +79,16 @@ scrolls by one row composes one row.
 The text layer typesets its rows in the frame's idle time, called from
 `wait_vblank` until the line it is on reaches a limit, and the tilemap
 goes up once everything is typeset, in a vblank that carries no tiles, so
-a screen switches in one frame. The row is composed in the 2 KB buffer
-the battle animation uses on the map, which no screen needs.
+a screen switches in one frame. The rows are composed in the 2 KB buffer
+the battle animation uses on the map, which no screen needs, as a ring of
+32 columns: each column a row inks takes the next free one, and a row
+starts while the last ones' tiles wait for the vblank. Until 2026-11-17 the
+buffer was one row at its columns' places, and a screen showed one more
+changed row per frame at most.
 
 - **Saves**: frame time on the screens, and far RAM.
-- **Costs**: the text arrives some frames after the cursor.
+- **Costs**: the text arrives some frames after the cursor, and the
+  equipment screen's bar waits for it —`tl_settled`—.
 - **Where**: `tl_idle` in `runtime/text_layer.s`, from `wait_vblank` in
   `runtime/boot.s`; `scr_upload` in `runtime/text_screens.s`; `TL_STAGE`.
 - **More**: the header of `runtime/text_layer.s`.
@@ -91,12 +96,15 @@ the battle animation uses on the map, which no screen needs.
 ## The window's arrow and the shop's windows go up only when they change
 
 The message window's arrow writes its cells in the vblank only on the
-frame it appears or goes away, and the shop's windows and bar only when
-the mode, the greeting, the cursor or the list changed, not every frame.
+frame it appears or goes away, the shop's windows and bar only when the
+mode, the greeting, the cursor or the list changed, and the equipment
+screen's bar only when it moves, not every frame; the equipment's vblanks
+with text tiles take eight pairs more for it.
 
 - **Saves**: vblank time, the tightest budget there is.
 - **Where**: `msg_arrow` in `runtime/message_arrow.s`; `ti_windows` in
-  `runtime/shop.s`.
+  `runtime/shop.s`; `eq_bar` in `runtime/equipment_screen.s`, and
+  `TL_PAIR_CAP`.
 - **More**: the comments of those routines.
 
 ## The composed glyphs carry palette entries, not colours
