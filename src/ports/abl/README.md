@@ -28,8 +28,8 @@ in the [divergences](../../divergences/README.md), not here.
 * **The factory's pump has a grey light** (map 83), where the original's
   is red: Forem, whom a scene there places, takes the map's last palette,
   and the pump's tile is drawn with the nearest one, which has no red.
-  Task:
-  [`characters-a-route-dresses-left-out-where-they-cost-the-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/characters-a-route-dresses-left-out-where-they-cost-the-map.md).
+  Draft:
+  [`abl-the-factory-pump-s-light-is-grey`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-the-factory-pump-s-light-is-grey.md).
 * **Paradise and Emily are missing from a scene at the Northern Surl
   Camp** (map 246): the scene places them and its lines go on, but they
   are not drawn —drawn, the rain would lose its colours—. Draft:
