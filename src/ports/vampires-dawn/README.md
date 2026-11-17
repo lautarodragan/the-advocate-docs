@@ -20,7 +20,7 @@ as text.
   [`switch-skills-from-the-menu-play-no-sound`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/switch-skills-from-the-menu-play-no-sound.md).
 * **Ten maps are not in the cartridge**, the world map (1) among them, and
   an event page that would take the hero to one of them is left out
-  whole. Drafts: [`map-streams-that-dont-fit-in-wram`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/map-streams-that-dont-fit-in-wram.md) (map 1)
+  whole. Drafts: [`vampires-dawn-s-world-grid-does-not-fit-in-wram`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vampires-dawn-s-world-grid-does-not-fit-in-wram.md) (map 1)
   and [`vampires-dawn-maps-that-dont-fit-in-vram`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vampires-dawn-maps-that-dont-fit-in-vram.md) (15, 57, 99,
   150, 165, 225, 399, 402 and 403).
 * **Only the message window follows the game's switches between its
