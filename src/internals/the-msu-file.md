@@ -227,10 +227,11 @@ the map's LZ2 streams      tiles, upper layer, sprites, the ChipSet
                            animation, the grid and the bytecode
 the battle's LZ2 streams   the battlers and the light backdrops
 a big picture's tilemap    LZ2
-                                  all three through `lz2_decompress`,
+a panorama's tiles         LZ2, since 2026-11-16
+                                  all four through `lz2_decompress`,
                                   which sends them to `lz2_msu`
-a panorama's tiles         one DMA each, with the screen off, through
-a big picture's tiles      `msu_dma0`
+a big picture's tiles      one DMA, with the screen off, through
+                           `msu_dma0`
 the samples                `upload_sample`, which uploads them to ARAM
                            like the `.msu`'s effects: `msu_sample_l`
 ```
