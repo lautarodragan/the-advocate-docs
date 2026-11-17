@@ -105,6 +105,43 @@ own in a far bank, by reference; the code is in `FAR3`. A cartridge that
 does not ask for the screen carries none of it: the code is inside an `.if
 DEBUG_SCREEN`, and the converter writes only `DEBUG_SCREEN = 0`.
 
+### The state's switches
+
+**After the variables' pages comes one that is not RPG_RT's**, since
+2026-11-17: `D[0001-0003]`, three rows —`Tint`, `Timer` and `Weather`—,
+each `[ON]` while the game has its way and `[OFF]` once A forced it off.
+Left from the first page goes round to it. They are for bisecting lag and
+other bugs in a game as it is played, on its own save: the state the game
+leaves on across maps, which a test's jump clears and a played game keeps.
+taro asked for them after the opening's tint in A Blurred Line —saturation
+40, kept through every door— turned out to be most of the frames each stone
+lost in the Lazer Teeth HQ, and the timer on screen three more —see [the
+task](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/debug-switches-for-the-global-state.md)—.
+
+* **`Tint`** forced off leaves the screen neutral, so the palettes and the
+  flashes take their untinted paths.
+* **`Timer`** forced off hides its digits; the count runs on, and still
+  fires the pages that ask for it.
+* **`Weather`** forced off is no weather: no raindrops, no sand grains and
+  no sand overlay.
+
+**Forcing one off keeps what the game wants** and gives it back when the
+switch goes on again, so turning a switch off and on changes nothing the
+game sees: what the game asks for meanwhile —a `TintScreen`, a timer that
+starts, a `WeatherEffects`— is kept, not shown, and a save made meanwhile
+saves the game's tint and timer, not the forced ones. A reset turns them
+all on again. The map takes a change when the pause menu closes, as it
+takes a switch's.
+
+**They cost nothing per frame**: the forced state is the game's own off
+state, so the main loop asks nothing; the three commands look at the
+switches when a page runs them, a `jsl` each in bank 0. It is
+`runtime/debug_switches.s` in the-advocate, which says why the screen's
+flash and shake, the pictures, the panorama, the counter and the parallel
+common events are not among them. It is part of the screen, so it comes
+and goes with `[debug] debug_screen`, and needs the MSU-1 like the rest of
+it.
+
 **A row of the list is the screen's whole row** for the text layer —the
 range's label beside it is the same record—, so a step that changes the
 list would compose the ranges again. The layer keeps a record's head when
@@ -124,7 +161,8 @@ the rest of the file:
 * **`enemy_hp`**: the battle writes the enemies' HP, which RM2k never shows;
   the converter's `--enemy-hp`.
 * **`debug_screen`**: the pause menu's last option opens the debug screen,
-  above, when the MSU-1 is there; the converter's `--debug-screen`. Off,
+  above, when the MSU-1 is there —its state's switches included—; the
+  converter's `--debug-screen`. Off,
   the ROM is the same byte for byte as one built before the screen existed,
   and the `.msu` carries nothing of it.
 * **`phasing`**: Select turns on and off the hero walking through walls and
