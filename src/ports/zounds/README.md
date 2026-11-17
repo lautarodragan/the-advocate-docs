@@ -283,6 +283,10 @@ current: whoever fixes one removes its line in the same change.
   events than the console's 120, and the coins with the highest ids are
   left out. Draft:
   [`zounds-kuak-man-loses-its-coins`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-kuak-man-loses-its-coins.md).
+* **The chest in the cave north of Misërenia (map 134) is a dark square**,
+  closed and opened, where RPG Maker draws it red: on that map its graphic
+  is lent another one's palette. Draft:
+  [`zounds-map-134-s-chest-is-a-dark-square`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-map-134-s-chest-is-a-dark-square.md).
 * **Teleport is not in the battle's skill list**: once the party learns
   it, RPG Maker lists it in battle, grey, and the port leaves it out.
   Draft:
