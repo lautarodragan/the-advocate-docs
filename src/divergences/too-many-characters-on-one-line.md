@@ -37,7 +37,7 @@ The console's sprites are what they are. Drawing a 16x16 event as four
 8x8 objects would halve its slivers, but it takes four of the 128 objects
 the whole screen has, and that screen of map 96 shows more than forty
 switches. What fixes it is **not drawing them as objects**: a game with
-`[graphics] posed_events` paints the still ones into the background and
+`[graphics] baked_events` paints the still ones into the background and
 writes their cell again when a page or a route changes their pose —see
 [Still events drawn into the background](still-events-drawn-into-the-background.md)—.
 What it leaves as objects —one that walks, animates, goes above the hero
