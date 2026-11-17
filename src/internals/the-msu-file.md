@@ -184,6 +184,29 @@ they share neither colors nor tiles: `scene_upload` notices and redoes the
 whole backdrop from the ROM. No emulator takes long enough to cut the wait,
 so that path **is not run by any test**.
 
+## After a save: a seek nobody reads
+
+With a `.msu` the FX Pak writes the SRAM to its card only while no MSU-1
+track plays: at a data seek, at a track change, once a second while idle,
+or on a reset —`msu_savecheck` in its firmware's `src/msu1.c`—. Turning the
+console off writes nothing, so a game saved while its song played from a
+track was lost at power-off
+([the task](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-save-on-the-fx-pak-waits-for-a-silent-seek.md)).
+Since 2026-11-17 `save_game` ends in `msu_save_flush`, in `runtime/msu1.s`:
+with a track playing it fades it out, pauses it, waits for `$2000` to say it
+stopped, seeks to 0 and waits for the data busy bit —the firmware clears it
+after writing the `.srm`—, plays the track again where it was and fades it
+back in; with none playing, the seek alone. Nothing reads what that seek
+points at, and nothing reads the port as a stream across a save: every
+reader above seeks before it reads.
+
+What it costs on the FX Pak was measured with the SRAM test ROM, not with
+the game: with a track playing a seek takes about 2 ms, and with none about
+1.5 ms per KB of the declared SRAM to checksum it and 2.6 ms per KB more to
+write it when it changed. The routine's comment has the reasons for each
+step; the order is checked on bsnes's MSU-1 log, by the save tests of
+ABL's `test_msu.py`.
+
 ## The effects
 
 Behind the backdrops go the sound effects of each audio package, whole and
