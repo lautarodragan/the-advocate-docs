@@ -21,7 +21,8 @@ until then was a map of addresses written by hand, it is a new segment,
 `FARBSS`, in an area of the `.cfg` that `rm2k-snes-assemble` writes
 (`FAR_POOL_START` in `rm2k-snes/cartridge/src/banks.rs`).
 
-What was already declared stays where it is. Decided on 2026-10-11, in
+What was already declared stays where it is; how the 128 KB are laid out
+today, [The WRAM map](../internals/wram.md). Decided on 2026-10-11, in
 the task
 [`global-variables-collide`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/global-variables-collide.md).
 

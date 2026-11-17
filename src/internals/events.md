@@ -39,6 +39,17 @@ those maps and not all: the others' code would cost more ROM
 uncompressed —A Blurred Line's, about 68 KB more— to save a decompression
 of a few KB per load.
 
+**The page table lives behind the bytecode**, since 2026-11-16: 32 bytes
+a page, with its code pointer already a WRAM address, in a second LZ2
+stream of the bytecode's block that `lz2_grid` decompresses after it.
+The record's `pages` points there and `page_ptr` is loaded from it, so
+whoever walks the table does not know. `code_carry_after` decompresses
+only the first stream: the table of the map being left is not read on
+the new one. A map whose bytecode stays in the cartridge keeps its table
+there too —its pointers are labels the linker sets—, and so does one
+whose table does not fit in what the grid leaves of `$7F`
+(`pages_in_wram` in `rm2k-snes-mapdata`).
+
 **A map's block is laid out by the converter**: each page's bytecode and,
 behind it, its own route's commands, and the page table points at each
 with 24 bits. Since 2026-10-15 **two pages with the same bytes point at the

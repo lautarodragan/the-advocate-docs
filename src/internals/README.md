@@ -16,6 +16,8 @@ go one level down, close to the code.
 - [The CGRAM split](cgram.md): the converter decides it, map by map.
 - [The VRAM split](vram.md): the layouts, where the ceiling is, and what
   happens when nothing fits.
+- [The WRAM map](wram.md): who places each part of the 128 KB, what lives
+  behind the grid, and what a battle borrows.
 - [Events](events.md): the bytecode, who declares, emits and runs it, and
   the mechanics around it.
 - [Audio](audio.md): which piece does what, and where its reason is.

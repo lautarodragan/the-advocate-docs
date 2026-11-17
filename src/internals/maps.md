@@ -70,14 +70,19 @@ uploaded to VRAM but live in WRAM **right behind the grid**, in the `$7F`
 half. The blocks travel as a third stream stuck to the two of the grid, and
 the bytecode in one of its own, which the `map_code` table names;
 `lz2_grid` decompresses each where the previous one ended, and they come
-back with it after a battle. What happens to a page that keeps running in
+back with it after a battle. Since 2026-11-16 **the event page table** goes
+last, right behind the bytecode, as the second stream of the bytecode's
+block, and the record's `pages` points there (`pages_in_wram` in
+`record.rs`). What happens to a page that keeps running in
 another map: see [Events](events.md). The address is not computed by the
 ROM: the converter puts it in the map's record (`map_ram_pointers` in
 `record.rs`), and the test below checks that it matches where things ended
 up. The converter stops if a map doesn't fit: what the grid takes of `$7F`
-plus what goes behind it can't exceed its 32 KB. The bytecode is the
-exception: a map whose code does not fit keeps it in the cartridge (see
-[Events](events.md)).
+plus what goes behind it can't exceed its 32 KB. The bytecode and the page
+table are the exceptions: a map whose code does not fit keeps it in the
+cartridge (see [Events](events.md)), and its page table with it, whose
+pointers are then labels the linker sets; and a page table that does not
+fit behind the bytecode stays in the cartridge on its own.
 
 What is left in VRAM and WRAM after loading is compared by
 `tests/rpgmaker/test_decompressed_load.py` in the ABL port against what
@@ -169,9 +174,11 @@ the map runs**: when the row's page or a route's turn changes the pose,
 the event's cell of the grid, through the WRAM port, and the cell's four
 tilemap words in two runs —its top row and its bottom row, joined with the
 cells beside it— that go up by DMA in the next vblank, if the window
-holds the cell. The strips read the grid, so a cell the window builds
-later comes out right; a battle, which overwrites the grid, gets each
-cell written again before the window is rebuilt (`posed_sync`).
+holds the cell. The runs live at the top of `$7F`'s upper half, in
+`GRID_TOP` —see [The WRAM map](wram.md)—. The strips read the grid, so a
+cell the window builds later comes out right; a battle, which overwrites
+the grid and the runs, gets each cell written again and the runs emptied
+before the window is rebuilt (`posed_sync`).
 
 The record the console reads, map by map: `posed.rs` in
 rm2k-snes-mapdata. The row is still a row of the table: the priority bits
