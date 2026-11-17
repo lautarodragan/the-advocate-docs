@@ -8,6 +8,14 @@ behind each one is a draft or a task in the tasks repository, named here
 as text. Where the ROM does what RM2k does in another way, on purpose, is
 in the [divergences](../../divergences/README.md), not here.
 
+* **The Lazer Teeth's stones still hitch when they hit** (map 11): a
+  stone at a lamp or at the PC loses a few frames —the animation on the
+  lamp, the lamp's page sending its cone away, and each switch it turns
+  on—, where the original stays at 60. Drafts:
+  [`change-event-location-shifts-the-npc-table-per-event`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/change-event-location-shifts-the-npc-table-per-event.md),
+  [`a-refresh-costs-frames-on-maps-of-many-pages`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-refresh-costs-frames-on-maps-of-many-pages.md)
+  and
+  [`build-oam-costs-a-third-of-the-frame-on-busy-maps`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/build-oam-costs-a-third-of-the-frame-on-busy-maps.md).
 * **An actor raised in battle gets up with its conditions**: one that fell
   poisoned and is raised with a Phoenix Down in the same battle is still
   poisoned, and its turns take HP; in the original the fall takes the
