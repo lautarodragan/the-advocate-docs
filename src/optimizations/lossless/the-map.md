@@ -52,11 +52,18 @@ readers did not change.
 The tiles of the background, of the layer above, of the sprite bank and
 the drawings of the ChipSet animation travel as LZ2, are decompressed into
 a WRAM buffer and uploaded with the same DMA as before. A background too
-big for the buffer goes in two streams.
+big for the buffer goes in two streams. So do a panorama's tiles, since
+2026-11-16, also when a `ChangePBG` swaps the picture with the map up; its
+tilemap stays raw, because the streaming reads it a row at a time.
 
 - **Saves**: ROM.
+- **Costs**: decompressing, on every load —a few frames for the
+  largest panorama—, and on a swap the buffer's tenants rebuilt (see
+  below).
 - **Where**: `materials.rs` in `rm2k-snes/mapdata/`; the format and the
-  compressor, `snes/lz2/`; `lz2_backdrop` in `runtime/decompress.s`.
+  compressor, `snes/lz2/`; `lz2_backdrop` in `runtime/decompress.s`;
+  `panorama.rs` there and `pano_load` in `runtime/pano.s` for the
+  panorama.
 - **More**: [Maps](../../internals/maps.md), [The VRAM split](../../internals/vram.md).
 
 ## Only the tiles the map draws go to VRAM
@@ -273,7 +280,9 @@ decompresses them again.
 
 - **Saves**: far RAM —none of them has a buffer of its own—.
 - **Costs**: what borrows it is rebuilt after a load, a screen or a
-  battle: `back_to_map` decompresses the carried bytecode again.
+  battle: `back_to_map` decompresses the carried bytecode again. And
+  after a `ChangePBG` that swaps the panorama, whose tiles go through the
+  buffer with the map up: `pano_image` does the same.
 - **Where**: `LZ2_BUFFER`, `CODE_CARRY` and `ANIM_DRAWINGS` in
   `runtime/far_ram.s`, with the asserts at the end of
   `runtime/decompress.s`; `code_carry_after` there.
