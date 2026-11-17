@@ -26,21 +26,23 @@ from scratch, even though the grid crosses banks.
   the grid crosses a bank.
 - **More**: [Maps](../../internals/maps.md).
 
-## The grid, its blocks and the bytecode, in LZ2 and decompressed into WRAM
+## The grid, its blocks, the bytecode and the page table, in LZ2 and decompressed into WRAM
 
 The grid travels in the cartridge as LZ2 and is decompressed whole into
 the upper halves of the two WRAM banks when the map loads; the block
-table, its passability and the event bytecode go right behind it, in the
-same load. The upper half of two consecutive WRAM banks has the shape of
-two LoROM banks, so the readers did not change.
+table, its passability, the event bytecode and, since 2026-11-16, the
+event page table go right behind it, in the same load. The upper half of
+two consecutive WRAM banks has the shape of two LoROM banks, so the
+readers did not change.
 
 - **Saves**: ROM, most of the grids' weight, keeping direct access cell
-  by cell.
+  by cell. The page tables alone were 186 KB raw in A Blurred Line, 66 KB
+  in LZ2.
 - **Costs**: 32 KB of far RAM in `$7E`, and the decompression on every map
   load and on returning from a battle.
 - **Where**: `GRID` in `runtime/far_ram.s`, `lz2_grid` in
-  `runtime/decompress.s`, `map_ram_pointers` in `record.rs` of
-  `rm2k-snes/mapdata/`.
+  `runtime/decompress.s`, `map_ram_pointers` and `pages_in_wram` in
+  `record.rs` of `rm2k-snes/mapdata/`.
 - **More**: [The grid lives in WRAM](the-map/the-grid-in-wram.md), with what it
   costs, how to know it needs reverting and how;
   [Maps](../../internals/maps.md).

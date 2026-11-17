@@ -98,7 +98,10 @@ cartridge, uncompressed: in `rm2k-snes-mapdata`, take `map_ram` and
 `map_code` out of `COMPRESSED_KINDS` and store them again as standalone
 blocks with their labels in the register and in the page table; and in the
 ROM, remove `code_carry_before` and `code_carry_after`, which only exist
-because the bytecode moves.
+because the bytecode moves. **Since 2026-11-16 the page table too**: it goes
+behind the bytecode, as `map_pages` (`pages_in_wram` in `record.rs`), and
+returning it is making `pages_in_wram` answer no, which leaves it in the
+cartridge as before.
 
 **And the battle borrows half of `$7E`**, also since 2026-10-01: that is
 where it decompresses the troop's battlers (`SCN_BATTLERS` in

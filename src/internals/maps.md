@@ -70,14 +70,19 @@ uploaded to VRAM but live in WRAM **right behind the grid**, in the `$7F`
 half. The blocks travel as a third stream stuck to the two of the grid, and
 the bytecode in one of its own, which the `map_code` table names;
 `lz2_grid` decompresses each where the previous one ended, and they come
-back with it after a battle. What happens to a page that keeps running in
+back with it after a battle. Since 2026-11-16 **the event page table** goes
+last, right behind the bytecode, as the second stream of the bytecode's
+block, and the record's `pages` points there (`pages_in_wram` in
+`record.rs`). What happens to a page that keeps running in
 another map: see [Events](events.md). The address is not computed by the
 ROM: the converter puts it in the map's record (`map_ram_pointers` in
 `record.rs`), and the test below checks that it matches where things ended
 up. The converter stops if a map doesn't fit: what the grid takes of `$7F`
-plus what goes behind it can't exceed its 32 KB. The bytecode is the
-exception: a map whose code does not fit keeps it in the cartridge (see
-[Events](events.md)).
+plus what goes behind it can't exceed its 32 KB. The bytecode and the page
+table are the exceptions: a map whose code does not fit keeps it in the
+cartridge (see [Events](events.md)), and its page table with it, whose
+pointers are then labels the linker sets; and a page table that does not
+fit behind the bytecode stays in the cartridge on its own.
 
 What is left in VRAM and WRAM after loading is compared by
 `tests/rpgmaker/test_decompressed_load.py` in the ABL port against what
