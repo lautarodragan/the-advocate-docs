@@ -9,7 +9,9 @@ differs from it in:
 * **How it is reached**: the pause menu's last option, Debug, and not F9,
   which the console does not have. RPG_RT opens it from the map only in a
   test play; here it is in any cartridge built with `[debug]
-  debug_screen`.
+  debug_screen`, **and only with the MSU-1**: its font and names travel in
+  the `.msu` —see [the `.msu` file](../internals/the-msu-file.md#the-debug-screen)—,
+  so without it the option is not there.
 * **A variable is changed by steps**: left and right by one, L and R by ten.
   RPG_RT opens a number input over the list, a sign and seven digits.
 * **A variable is sixteen bits**, as everywhere in the port —see [Variables
@@ -35,7 +37,8 @@ differs from it in:
   until 2026-10-20 they went blank, ranges included; see
   [the task](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-debug-screen-redraws-and-goes-wide.md)—.
   The ranges beside the list are not composed again. RPG_RT redraws it
-  at once.
+  at once. And a page flip waits for the text on screen to be whole before
+  it starts, because it reads the new page's names from the `.msu`.
 * **Its sounds** —RPG_RT's cursor, decision and cancel— are not played.
 
 ## Why
