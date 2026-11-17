@@ -230,7 +230,9 @@ of their own, which is what bank 0 can afford: `RTS0` in `wrap.s` takes the
 `jsl`'s three bytes off and jumps to an `rts` in bank 0. The other way,
 `CALL0` calls a bank 0 routine that ends in `rts` by pushing where that
 `rts` goes —an `rtl` in bank 0— and where the `rtl` comes back to, and
-jumping. Both are plain `jml`s, and Goombario follows both paths.
+jumping. Both are plain `jml`s, and Goombario follows both paths. `CALL0`
+was born here and lives in `runtime/registers.s` since 2026-11-17, when
+the screens and the reset's init used it to leave bank 0.
 
 What it does not do, because no map of the ports needs it: clones of a
 character on both sides of a seam, the panorama's rule on a looping axis, a
