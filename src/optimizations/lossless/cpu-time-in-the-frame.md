@@ -15,27 +15,32 @@ time.
 
 ## The tint's tables are copied, not rebuilt
 
-While a flash lasts, the palette is rebuilt every frame; the tint's three
-channel tables —products and divisions— are kept in a pristine copy and
-restored by copying it, and the flash's own table saves the tint's
-computation per entry. A picture's tint reuses the same tables and
-restores them the same way.
+The tint's three channel tables —products and divisions— are kept in a
+pristine copy, `pure`: what blends on top of the working tables, like a
+picture's tint, restores them by copying it, and a character's flash
+looks the tint up there instead of computing it.
 
 - **Saves**: CPU on every frame of a flash or a tinted picture.
-- **Where**: `tint_tables`, `restore_tables` and `flash_channel_table` in
+- **Where**: `tint_tables` and `restore_tables` in
   `runtime/character_flash.s`; `pic_palette` in `runtime/picture.s`.
 - **More**: the comments of those routines.
 
-## A character flash divides once per channel
+## A character flash blends only its sixteen colours, saturated once
 
-A flash blends each of a channel's 32 values toward its colour, and from
-one value to the next the blend's numerator grows by the same amount, so
-the division is done once, for the first, and the rest carry its
-remainder: an addition per entry instead of two products and a division.
+A flash blends the character's sixteen colours toward its own on every
+frame, and only those: each of the 48 channels with the console's
+multiplier and divider, looked up in the tint's `pure`, without building
+blended tables for all 32 values of each channel and running the palette
+through them. With the screen's saturation off neutral the colours are
+saturated first, which is the expensive part, so they are saturated once
+per palette and saturation and kept.
 
-- **Saves**: CPU on every frame of a flash —most of what one cost—.
-- **Where**: `flash_channel_table` in `runtime/character_flash.s`.
-- **More**: the comment at its top.
+- **Saves**: CPU on every frame of a flash, and most of what one cost
+  when the screen is desaturated, as the opening of A Blurred Line leaves
+  it.
+- **Where**: `flash_direct` and `saturated_colors` in
+  `runtime/character_flash.s`.
+- **More**: the comment at the top of `flash_direct`.
 
 ## An NPC off screen is discarded before its row is built
 
