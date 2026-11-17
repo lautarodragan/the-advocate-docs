@@ -378,16 +378,25 @@ too, and starts with none, as RM2k shows it.
 The cartridge carries one `pano_table` record per picture, one after the
 other, each with its tiles, its tilemap and its colours —see `panorama.rs`
 in rm2k-snes-mapdata—, and `OP_PANORAMA` carries which one. `pano_image`
-uploads it with the screen off for the rest of the frame —its tiles, its
-colours, the backdrop in mode 1 and the whole ring of its tilemap—, and the
-tint goes over its colours with the map's. Since 2026-11-16 the tiles are
-an LZ2 stream decompressed into `LZ2_BUFFER`, which with the map up holds
-the bytecode of a page carried from another map and the battle
-animation's frames: `pano_image` rebuilds both afterwards, as coming back
-from a screen does. What the screen stays black for
-is mostly the ring —its 32 rows built one cell at a time, as a load builds
-them—, not the tiles' DMA; on the maps that swap today it happens behind
-the fade of entering them, where the screen is black anyway.
+uploads it —its tiles, its colours, the backdrop in mode 1 and the whole
+ring of its tilemap— and the tint goes over its colours with the map's.
+Since 2026-11-16 the tiles are an LZ2 stream decompressed into
+`LZ2_BUFFER`, which with the map up holds the bytecode of a page carried
+from another map and the battle animation's frames: `pano_image` rebuilds
+both afterwards, as coming back from a screen does.
+
+**With the screen black** —the fade's black ticks— it all goes up at once
+in forced blank. **With the screen on** —an autostart's swap, which RM2k
+runs only once the fade-in is over— the screen stays on: `pano_live` does
+the work that is RAM only first —the ring's 32 rows into `LZ2_BUFFER`, its
+tiles decompressed after them— while the screen keeps showing the frame
+before, and then takes the panorama's layer off the main screen and
+uploads it a piece at a time in the vblanks, since a picture's tiles and
+ring are up to 28 KB and a vblank takes about 6. The new tiles go over
+the old ones, so the layer is off while they change: the backdrop shows
+through for those frames. Measured on Zounds' map 31 on 2026-11-17: four
+vblanks with the layer off, the main loop held about thirteen frames,
+where until then the screen went black for ten.
 
 What does not fit leaves the map as before: if with all its pictures the
 background does not fit the layout, the map goes with its own alone, and a
