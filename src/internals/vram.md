@@ -133,9 +133,12 @@ by someone else. The still ones that show the same pose share theirs, as
 always; the one that walks has its own while it is seen, and so does a
 still one that animates, which its twins —the same look at the same speed—
 ask for too. A still one that routes only turn —no step, no jump, no
-graphic— stays still: the cache carries all twelve poses of its
+graphic— stays still: the cache names all twelve poses of its
 character among the still ones, sorted, so a turn only moves the key its
-row asks for (`still_turn`); Zounds' map 96 has fifty-six floor switches
+row asks for (`still_turn`), and the cartridge carries only the facings
+it can turn to —the rest of the twelve point at one of those: see
+[the poses some map can show](../optimizations/lossless/characters-and-sprites.md#the-cartridge-carries-only-the-poses-some-map-can-show)—;
+Zounds' map 96 has fifty-six floor switches
 that turn when pressed, and until 2026-11-02 each wanted a slot of its
 own. `wally` decides it
 —`Mode::Cache` in its `map.rs`, with the count in `sprites::cache`—, and
