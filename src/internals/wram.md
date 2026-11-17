@@ -79,7 +79,8 @@ map, whose grid is small, keeps its queue of DMAs at the end of that bank
   map is loaded, in that same place, the bytecode a page carries across
   a teleport (`CODE_CARRY`, see [Events](events.md)), the battle
   animation's frames, a big picture's tilemap, the wide text stage, the
-  menu's rows, and the image of a full screen (`SCREEN_BUFFER`) —each one
+  menu's rows, the debug screen's caches while it is open, and the image
+  of a full screen (`SCREEN_BUFFER`) —each one
   `.assert`s it does not reach the next—.
 * `ANIM_DRAWINGS`, at `$7F6000`, the ChipSet animation's drawings, which
   stay for as long as the map lasts because they go up every time the
