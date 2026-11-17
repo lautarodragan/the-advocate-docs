@@ -40,6 +40,9 @@ differs from it in:
   at once. And a page flip waits for the text on screen to be whole before
   it starts, because it reads the new page's names from the `.msu`.
 * **Its sounds** —RPG_RT's cursor, decision and cancel— are not played.
+* **It has one page RPG_RT does not**, the last: switches that force off
+  the tint, the timer and the weather the game keeps across maps —see
+  [The state's switches](../internals/the-pause-menu.md#the-states-switches)—.
 
 ## Why
 
