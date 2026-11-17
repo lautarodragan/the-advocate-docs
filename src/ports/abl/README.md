@@ -48,6 +48,10 @@ in the [divergences](../../divergences/README.md), not here.
   whole**: in the original the lowest third of the hero is half
   transparent. Draft:
   [`a-bush-on-a-map-with-more-than-four-character-palettes`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-bush-on-a-map-with-more-than-four-character-palettes.md).
+* **On the items screen the bar gets to an item before its description**:
+  for two frames after a press the bar is on the new item and the
+  description is still the old one's. Draft:
+  [`the-items-screen-s-bar-runs-ahead-of-its-text`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-items-screen-s-bar-runs-ahead-of-its-text.md).
 
 ## The port
 
