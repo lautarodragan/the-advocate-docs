@@ -581,7 +581,10 @@ rows composed so far show and the others keep what they said until their
 turn —see `tl_split` and `tl_step`—. The text layer composes a row into a
 stage twice as wide as its usual one, which is not in far RAM but in
 `LZ2_BUFFER`, `$7F0000`: the screen decompresses nothing while it is open,
-and the map that comes back reloads it. See `tl_hires` and what follows it
+and the map that comes back reloads it. The rest of that buffer, up to
+`$7F8000`, holds what the screen reads from the `.msu` —its windows, a
+page's names and a cache of its letters: see [the `.msu`
+file](the-msu-file.md#the-debug-screen)—. See `tl_hires` and what follows it
 in `runtime/text_layer.s`, and `dbg_upload` and `dbg_hdma` in
 `runtime/debug_screen.s`, in the-advocate.
 
