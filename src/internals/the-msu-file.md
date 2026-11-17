@@ -10,7 +10,9 @@ cartridge's maps: see "The backdrops" below. And since 2026-09-26, behind
 them, **the quality sound effects** of each audio package: see "The
 effects" below. And since 2026-10-11, only in a game whose ROM does not
 reach, behind everything, **what does not fit in the ROM**: see "What does
-not fit in the ROM" below.
+not fit in the ROM" below. And since 2026-11-16, in the same region and in
+every game that has it, **the debug screen's font, names and windows**: see
+"The debug screen" below.
 
 The ROM carries the backdrops the cartridge's battles ask for, and **light
 ones**: 128x64 at 4bpp and 16 colors, which the ROM doubles in size,
@@ -32,7 +34,9 @@ doesn't finish seeking in time, the ROM uses its own.
 **The one exception is a game whose ROM does not reach**, and it is the
 project's decision, not the converter's: see [the MSU-1 is required only
 when the ROM does not reach](../decisions/the-msu-1-is-required-only-when-the-rom-does-not-reach.md)
-and "What does not fit in the ROM" below.
+and "What does not fit in the ROM" below. **And the other is the debug
+screen**, which is not the game: without the MSU-1 the pause menu does not
+offer it, and the rest is the same game. See "The debug screen" below.
 
 ## The port, from the console's side
 
@@ -296,6 +300,67 @@ and with a region from another build. **Not run by the suite**: a big
 picture from the `.msu` —no map of `test-msu` shows one—, a light backdrop
 from it —with the MSU-1 the battle uses the quality one—, the seeks'
 wait, and the console.
+
+## The debug screen
+
+The pause menu's debug screen —see [the pause
+menu](the-pause-menu.md#the-debug-screen)— is a tool for testing the port,
+and taro tests with the `.msu`; it is not needed to enjoy the game. So
+since 2026-11-16 **its bulk travels only in the `.msu`**: its font
+precomposed —eight phases of each letter, 121,056 bytes in A Blurred
+Line—, the switches' and variables' names, and the windows' tilemap,
+bars, tiles and colours. The ROM keeps the code, the geometry, each
+letter's advance and reach, and where each piece is.
+
+**They go in the region of what does not fit in the ROM**, above, in any
+game: the converter marks them `.msu_only` instead of `.msu`, and the
+packing sends those always, whether the game needs the MSU-1 or not —see
+`msu_only_block` in `rm2k-snes-mapdata` and `pack_with_msu` in
+`rm2k-snes-cartridge`—. In a game that does not need it, the region holds
+only those; in Vampires Dawn, those and what did not fit.
+
+**The pause menu asks each time it is drawn** —`dbg_available`, in
+`runtime/debug_screen.s`—: whether there is an MSU-1, whether the `.msu`
+is this cartridge's and whether the region is this build's, the same three
+questions the boot of a game that needs it asks. If any fails, the Debug
+row is not there and End Game is the last. Two seeks each time: nothing
+without an MSU-1, and one or two frames each in Mednafen.
+
+**What the screen reads, and when**, into `LZ2_BUFFER`, which is free
+while it is open —the map reloads it when the pause menu closes—:
+
+```text
+when it opens       the windows' tilemap and bars, and their tiles and
+                    colours, which go to VRAM
+when a page shows   its names: a hundred switches or variables, their
+                    table and their strings, into one of two buffers
+when a letter       that letter at that phase, 156 bytes, into a cache of
+is composed         them —about a hundred and fifty— taken in turn
+```
+
+The names go to the buffer the screen does not show, and a page flip waits
+until the text on screen is the last one written: the text layer keeps a
+name as the address of its letters, so the page shown must not change
+under it. The font cannot go whole —121 KB is almost all the WRAM—, so a
+letter is read when the text layer composes it and it is not in the cache:
+a seek and a DMA each, in the frame's idle time. **How long that takes on
+the FX Pak, where a seek outside its buffer reads the SD card, is not
+measured**; in snes9x and bsnes seeking is instant.
+
+Every seek here has the cap `msu_data_seek` has, not the uncapped one of
+"What does not fit in the ROM": a page that does not arrive in time shows
+no names, a letter that does not shows blank and is asked for again next
+time, and the windows go without their tiles. No emulator of the suite
+seeks slowly enough to run any of that.
+
+**How it is tested**: the debug screen's tests run with the `.msu` next to
+the ROM —`test_debug_screen_golden.py` in the ABL port and
+`test_debug_screen_room.py` at the ports' root—, and the walk over every
+range compares each page's names and every letter the cache holds with the
+`.msu`'s bytes. `test_without_the_msu_1_the_menu_does_not_offer_it` opens
+the pause menu without the MSU-1 and with a region from another build.
+The rest of the suite runs without the MSU-1, so its pause menu has no
+Debug row.
 
 ## How it is tested
 

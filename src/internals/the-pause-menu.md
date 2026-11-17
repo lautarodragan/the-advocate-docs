@@ -19,7 +19,7 @@ knowing. In order:
 | RM2k's first three | Items, Skills, Equipment | the item screen, and the skills and equipment screens after choosing whom on the menu itself; grey with the party empty |
 | one per custom menu | the game's custom menus | a full-screen menu the game describes as data, while its condition holds —the console in A Blurred Line; see [the custom menu](../research/2026-10-04-the-custom-menu.md)— |
 | RM2k's last two | Save, End Game | the slot screen, grey while `ChangeSaveAccess` forbids it; the End Game screen |
-| the last one | Debug | the debug screen, only with `[debug] debug_screen` (below) |
+| the last one | Debug | the debug screen, only with `[debug] debug_screen` and the MSU-1 (below) |
 
 RM2k's five are commands 0 to 4, the custom menus 5 and on, and the debug
 screen the one after the last custom menu. The labels are drawn by
@@ -52,6 +52,13 @@ or a variable that changes asks for the pages' refresh, and the pure
 parallel common events run again when the menu closes. Where it differs
 from RPG_RT is in [What the debug screen does not
 model](../divergences/what-the-debug-screen-does-not-model.md).
+
+**It is there only with the MSU-1**, since 2026-11-16: its font, its
+names and its windows travel only in the `.msu` —taro tests with it, and
+the screen is not needed to enjoy the game—, so without the MSU-1, or with
+another build's `.msu`, the pause menu does not offer it and End Game is
+its last row. What it reads from there and when, in [the `.msu`
+file](the-msu-file.md#the-debug-screen).
 
 **It runs in the console's 512-wide mode**, mode 5, since 2026-10-20
 —taro's: at 256 wide a third of A Blurred Line's switch names were cut—.
@@ -117,8 +124,9 @@ the rest of the file:
 * **`enemy_hp`**: the battle writes the enemies' HP, which RM2k never shows;
   the converter's `--enemy-hp`.
 * **`debug_screen`**: the pause menu's last option opens the debug screen,
-  above; the converter's `--debug-screen`. Off, the ROM is the same byte for
-  byte as one built before the screen existed.
+  above, when the MSU-1 is there; the converter's `--debug-screen`. Off,
+  the ROM is the same byte for byte as one built before the screen existed,
+  and the `.msu` carries nothing of it.
 * **`phasing`**: Select turns on and off the hero walking through walls and
   events, which RPG_RT's test play does while Ctrl is held, and the hero
   blinks while it is on; the converter's `--phasing`, and
