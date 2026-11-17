@@ -2,10 +2,10 @@
 
 ## Poses are uploaded on the fly
 
-One pose per character lives in VRAM; the twelve poses of each one that
-changes pose live in the cartridge, and the current one goes up by DMA in
-vblank, as FF5 does. Still characters share a slot per (CharSet, index,
-pose). An RM2k character is 192 object tiles with every pose resident,
+One pose per character lives in VRAM; the poses of each one that
+changes pose live in the cartridge —the ones some map can show, see
+below—, and the current one goes up by DMA in vblank, as FF5 does. Still
+characters share a slot per (CharSet, index, pose). An RM2k character is 192 object tiles with every pose resident,
 and the PPU addresses 512.
 
 - **Saves**: VRAM.
@@ -28,6 +28,32 @@ one does not.
 - **Where**: `vram_drain` in `runtime/load_graphics.s`; `pose_record` in
   `rm2k-snes/mapdata/`.
 - **More**: [Poses are uploaded on the fly](characters-and-sprites/poses-on-the-fly.md#and-a-pose-goes-up-without-its-empty-tiles).
+
+## The cartridge carries only the poses some map can show
+
+Of a character that changes pose, the cartridge carries the poses some map
+can show, and not always the twelve. A still event that only turns —toward
+the hero, or by a route on a map with a slot cache— shows the four facings
+of its page's column: a turn changes the direction and keeps the frame,
+and the console builds the turned pose the same way. One that animates
+standing still shows the three frames of its row; the hero, one that
+walks and a graphic of move route command 34, all twelve. Since
+2026-11-17.
+
+The pose table keeps twelve pointers per character, so the console does
+not know: the pointer of a pose no map shows aims at one that is there.
+And the build checks it from the other side: it reads from each map's
+tables every pose the console can ask for —the rows, the pages, the
+leaders, the shared slots, the cache's still poses— and stops if its bank
+left one out.
+
+- **Saves**: ROM: mostly the eight poses of each character that only turns
+  toward the hero.
+- **Where**: `map_poses` and `pose_facings` in
+  `rm2k-snes/wally/src/sprites/npc.rs`, `cartridge_poses` in its `map.rs`;
+  `poses`, `stand_in` and `requested` in `rm2k-snes/mapdata/src/record.rs`.
+- **More**: the task, [`poses-only-when-an-event-can-show-them`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/poses-only-when-an-event-can-show-them.md),
+  with what it saves in each game.
 
 ## Distant still characters take turns on one slot
 
