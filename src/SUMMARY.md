@@ -195,6 +195,7 @@
     - [More pictures at once](research/2026-10-16-more-pictures-at-once.md)
     - [The palette a character is lent](research/2026-10-17-the-palette-a-character-is-lent.md)
     - [Maps that wrap around](research/2026-10-19-maps-that-wrap.md)
+    - [The SRAM as slow WRAM](research/2026-11-16-the-sram-as-slow-wram.md)
 
 - [Ports](ports/README.md)
     - [A Blurred Line](ports/abl/README.md)
