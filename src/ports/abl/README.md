@@ -10,8 +10,13 @@ in the [divergences](../../divergences/README.md), not here.
 
 * **Where nine or more characters stand on one line, the ones further
   back are cut** —a column missing, or gone—: the console draws 34
-  slivers of 8 pixels a line and each character takes four. On maps 267, 318, 3, 52, 54, 199 and 20, besides the Hover-Tram (13).
+  slivers of 8 pixels a line and each character takes four. On maps 267, 318, 3, 52, 54, 199 and 20.
   Draft: [`abl-characters-cut-on-crowded-lines`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-characters-cut-on-crowded-lines.md).
+* **Some characters stand mid-step** where the original shows them with
+  their feet together: a character whose page picks a side pattern and
+  whose graphic is not fixed stands on the middle one in RM2k, and on the
+  page's in the port. 78 pages, on 46 maps.
+  Draft: [`a-character-stands-on-its-middle-pattern`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-character-stands-on-its-middle-pattern.md).
 * **The Lazer Teeth's stones still hitch when they hit** (map 11): a
   stone at a lamp or at the PC loses a few frames —the animation on the
   lamp, the lamp's page sending its cone away, and each switch it turns
