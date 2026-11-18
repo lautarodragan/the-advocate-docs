@@ -16,7 +16,11 @@ drawing moves to BG1. What changes with respect to RM2k:
   stands above it on screen. RM2k sorts the events by y. An event on the
   hero's layer goes into the background only if every pose it shows stays
   inside its 16x16 cell, so the only character that overlaps it is one in
-  front of it, who covers it in RM2k too.
+  front of it, who covers it in RM2k too —or if what it draws past its
+  cell lands where nobody RM2k would draw under it can ever be: see
+  [Drawn past its cell](#drawn-past-its-cell)—. One beside it on its row,
+  to its left, draws its 4 px side over it, where RM2k draws the event
+  over that side.
 * **A message without its background does not take it off its lines**,
   as it takes the layer above (see [The window without a background does
   not cover the characters](the-window-without-a-background-does-not-cover-the-characters.md)):
@@ -46,13 +50,75 @@ still or puts it above the hero; nothing moves it —a route that steps,
 gives it another graphic; it does not turn toward the hero —the console
 draws that one from the turn slot—; no substitution swaps its cell; and
 it is not translucent. Routes that only turn it are allowed: the turn is
-a pose. The map shows no panorama —one it covers everywhere, which goes
-hidden, is no panorama—, draws no pictures into itself and does not loop. And it stays an object if, with its poses, the background
+a pose. The map draws no pictures into itself and does not loop; if it
+shows a panorama —one it covers everywhere, which goes hidden, is no
+panorama—, the panorama goes in mode 3 or flattened, the ways that draw
+the poses' cells, and every cell the event is drawn on hides it whole, in
+every drawing of the map's animation. And it stays an object if, with its poses, the background
 merges a single colour more —the event would come out a shade off— or
 spends more tiles than the layouts leave: all of them, or CharSet by
 CharSet, the most numerous first. The
 converter's log says, map by map, which went in and why each of the rest
 did not.
+
+## Drawn past its cell
+
+A person is 24x32 on a 16x16 cell: RM2k draws its head on the cell above
+and its sides 4 px into the cells beside it. Since 2026-11-18 such an
+event goes into the background too when:
+
+* **what it draws past its cell is the same in every pose and never goes
+  away**: every page draws it, the first asks for nothing —so some page
+  always holds—, none erases it or calls a common event that may, and it
+  stays on one layer. The console writes only the event's own cell when
+  its pose changes; what falls on the cells around it is drawn into the
+  map once, back to front in RM2k's order —layer, row, column, id—, and
+  each pose's cell carries under it what the events behind it draw onto
+  it and over it what the ones in front draw;
+* **nobody RM2k would draw under it can be where that is drawn**. Where
+  every character's feet can ever be is `standing` in rm2k-rules' `reach`
+  —the same walk that says which tiles above the hero nobody can cover:
+  the hero, every event, every route that can run, phasing included—. RM2k
+  draws a character on the row above under the event, one on its own row
+  to its left too, one on its own cell with a lower id —the hero, always—
+  too, and one on the layer below always. If any of those can stand where
+  its sprite covers a pixel of the spill, the event stays an object.
+  **The one to its left is let through**: it already draws its 4 px side
+  over every event drawn into its cell, as said above, and the spill adds
+  the same 4 px, over the head too;
+* **a still event behind it that stays an object** would be drawn over the
+  spill: that one has to go into the background too, or this one goes out;
+* the spill does not fall on a cell a `TileSubstitution` swaps, nor past
+  the map's edge.
+
+For a set with spills, the background may take more entries of colour
+memory, and the layer above fewer palettes, if neither merges anything
+more: A Blurred Line's Hover-Tram had a background of 35 entries, and its
+seated people bring 48 colours.
+
+What `reach` had to learn for it, each of which covers fewer cells than
+before and never more —so a game with `unreachable_above_below` lowers
+more too—: a page in the foreground that takes the hero off the map
+before it can end only *holds* him where its routes leave him; a common
+event that walks him while he is held leaves him held; only an event
+drawn with a tile opens its cell to the others; a route that is not
+skippable waits at a step it cannot take; an autostart page that asks
+for nothing, under pages that ask only for switches nothing on the map
+turns off, starts where the hero arrives; the hero and the events walk on
+their own in four directions; and a scene walks the hero through walls
+only from where it left him phasing. The converter, for its part, takes a
+recall whose map variable is only set to numbers to those maps only.
+
+Measured on 2026-11-18 with the-advocate's `cardon-hover-tram`, on A
+Blurred Line's `release`: 478 events in the background before, 612
+after —110 of them drawn past their cells, on 20 maps, and the rest
+inside their cells on maps whose panorama shows—, for one more half bank
+of 32 KB. On the Hover-Tram only one of the seven seated people goes in:
+`reach` lets a scene seat the hero on any seat, since a recall can put him
+anywhere on the aisle, and the colours of the others would take the
+panorama's. Zounds: 427 before, 457 after, 22 of them past their cells
+on 9 maps, about 12 KB of its gaps and no whole bank. The other games
+do not turn `baked_events` on.
 
 ## Why the background and not the layer above
 
@@ -125,10 +191,14 @@ of the shifted ones against where RM2k draws them are in the task
 
 ## When it stops being enough
 
-* A chest that turns toward the hero when opened, or whose drawing
-  stands past its cell by more than the nudge, stays an object: none of
-  Zounds' chests goes in. A drawing taller or wider than 16 pixels —a
-  person— never fits, whatever the nudge.
+* A chest that turns toward the hero when opened stays an object: none
+  of Zounds' chests goes in.
+* A person whose head falls where someone walks behind it —a crowd
+  standing on an aisle, whose heads are over the aisle— stays an object.
+  So does one wherever a scene may seat the hero on its row or walk him
+  behind it: `reach` does not know a scene runs once, nor which of the
+  places a game recalls the hero to it really uses. See the task
+  [`abl-the-hover-tram-s-crowd-is-cut`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-the-hover-tram-s-crowd-is-cut.md).
 * A whole map's switches turning together: past sixteen runs a vblank
   the last ones wait a frame.
 * A map with no room for the poses' tiles or colours keeps them as

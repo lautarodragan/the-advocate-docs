@@ -180,6 +180,12 @@ cell the window builds later comes out right; a battle, which overwrites
 the grid and the runs, gets each cell written again and the runs emptied
 before the window is rebuilt (`posed_sync`).
 
+One that is drawn past its cell —a person, whose head is on the cell
+above— has only what falls inside its cell in each pose's block; what
+falls on the cells around it is the same in every pose, so it is drawn
+into those cells' own blocks once, and the console never writes them:
+see `spill` in `posed.rs` of Wally.
+
 The record the console reads, map by map: `posed.rs` in
 rm2k-snes-mapdata. The row is still a row of the table: the priority bits
 of its attributes say 3 —no character's object has it—, its palette bits
