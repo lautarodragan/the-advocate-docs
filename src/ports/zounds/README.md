@@ -156,6 +156,14 @@ fix too:
   back to 79 just below the crack, facing away from it, with the cave's
   tint and song, as 79's own exit does the other way. Task:
   [`zounds-no-way-back-from-map-81`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-no-way-back-from-map-81.md).
+* **Nine chests changed colour when opened.** `Zounds_Chest_04` has its
+  closed chests in many colours but only brown and grey opened ones, so
+  the red and orange chests drawn with it turned brown when opened —in
+  the desert (map 34) and on map 88—, and map 84's orange one turned red.
+  Since 2026-11-17 they open into `Zounds_Chest_03`'s opened chest of
+  their colour; that sheet has no orange, so the orange ones open gold,
+  its chest with orange bands. Task:
+  [`zounds-some-chests-change-when-opened`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-some-chests-change-when-opened.md).
 
 ## The debug map
 
