@@ -7,6 +7,10 @@ current: whoever fixes one removes its line in the same change. The work
 behind each one is a draft or a task in the tasks repository, named here
 as text.
 
+* **Where nine or more characters stand on one line, the ones further
+  back are cut** —a column missing, or gone—: the console draws 34
+  slivers of 8 pixels a line and each character takes four. On 53 maps, the worst 3, 5, 62, 12 and 64.
+  Draft: [`desert-nightmare-characters-cut-on-crowded-lines`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-characters-cut-on-crowded-lines.md).
 * **Sandra's name and the other coloured words have fewer shades** than
   RM2k's gradient, and the message window one colour less: its last entry
   is the box's ink. See [What message escapes do not model](../../divergences/what-message-escapes-do-not-model.md#the-colour).
