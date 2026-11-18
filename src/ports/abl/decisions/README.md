@@ -10,3 +10,4 @@ included.
 - [The quarry's timer stays in Paradise](the-quarry-timer-stays-in-paradise.md)
 - [The chasing guard follows Talan's row](the-chasing-guard-follows-talans-row.md)
 - [Core's blood is red](core-s-blood-is-red.md)
+- [The Hover-Tram's crowd is part of the map](the-hover-tram-s-crowd-is-part-of-the-map.md)
