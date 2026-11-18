@@ -8,6 +8,10 @@ behind each one is a draft or a task in the tasks repository, named here
 as text. Where the ROM does what RM2k does in another way, on purpose, is
 in the [divergences](../../divergences/README.md), not here.
 
+* **Where nine or more characters stand on one line, the ones further
+  back are cut** —a column missing, or gone—: the console draws 34
+  slivers of 8 pixels a line and each character takes four. On maps 267, 318, 3, 52, 54, 199 and 20, besides the Hover-Tram (13).
+  Draft: [`abl-characters-cut-on-crowded-lines`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-characters-cut-on-crowded-lines.md).
 * **The Lazer Teeth's stones still hitch when they hit** (map 11): a
   stone at a lamp or at the PC loses a few frames —the animation on the
   lamp, the lamp's page sending its cone away, and each switch it turns

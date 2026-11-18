@@ -7,6 +7,10 @@ current: whoever fixes one removes its line in the same change. The work
 behind each one is a draft or a task in the tasks repository, named here
 as text.
 
+* **Where nine or more characters stand on one line, the ones further
+  back are cut** —a column missing, or gone—: the console draws 34
+  slivers of 8 pixels a line and each character takes four. On map 79.
+  Draft: [`book-of-three-characters-cut-on-crowded-lines`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-characters-cut-on-crowded-lines.md).
 * **A skill that turns a switch on, used from the pause menu, is
   silent**: the original plays its sound effect. Draft:
   [`switch-skills-from-the-menu-play-no-sound`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/switch-skills-from-the-menu-play-no-sound.md).

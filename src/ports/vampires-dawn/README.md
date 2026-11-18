@@ -7,6 +7,10 @@ current: whoever fixes one removes its line in the same change. The work
 behind each one is a draft or a task in the tasks repository, named here
 as text.
 
+* **Where nine or more characters stand on one line, the ones further
+  back are cut** —a column missing, or gone—: the console draws 34
+  slivers of 8 pixels a line and each character takes four. On 58 maps, the worst 347, 429, 341, 350 and 228.
+  Draft: [`vampires-dawn-characters-cut-on-crowded-lines`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vampires-dawn-characters-cut-on-crowded-lines.md).
 * **The Healing Powder and the Vampire Stone heal one member from the
   menu**: the original heals the whole party with them, and puts the bar
   over everyone. Draft:
