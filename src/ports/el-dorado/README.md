@@ -7,6 +7,10 @@ current: whoever fixes one removes its line in the same change. The work
 behind each one is a draft or a task in the tasks repository, named here
 as text.
 
+* **Where nine or more characters stand on one line, the ones further
+  back are cut** —a column missing, or gone—: the console draws 34
+  slivers of 8 pixels a line and each character takes four. On map 4.
+  Draft: [`el-dorado-characters-cut-on-crowded-lines`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/el-dorado-characters-cut-on-crowded-lines.md).
 
 ## As of 2026-10-10
 

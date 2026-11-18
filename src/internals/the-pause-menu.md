@@ -108,7 +108,7 @@ DEBUG_SCREEN`, and the converter writes only `DEBUG_SCREEN = 0`.
 ### The state's switches
 
 **After the variables' pages comes one that is not RPG_RT's**, since
-2026-11-17: `D[0001-0003]`, three rows —`Tint`, `Timer` and `Weather`—,
+2026-11-17: three switches —`Tint`, `Timer` and `Weather`—,
 each `[ON]` while the game has its way and `[OFF]` once A forced it off.
 Left from the first page goes round to it. They are for bisecting lag and
 other bugs in a game as it is played, on its own save: the state the game
@@ -141,6 +141,32 @@ flash and shake, the pictures, the panorama, the counter and the parallel
 common events are not among them. It is part of the screen, so it comes
 and goes with `[debug] debug_screen`, and needs the MSU-1 like the rest of
 it.
+
+### The PPU's counts
+
+**Under the three switches go two counts**, since 2026-11-17, and with them
+the page is `D[0001-0005]`: `Range over` and `Time over`, the frames on
+which the console dropped objects on some line —more than 32 objects on it,
+or more than 34 slivers of 8 pixels—, since the map was entered or since A
+on the row zeroed it. Every character is a 32x32 object, four slivers, so
+it is time over that comes first: nine characters on a line. taro found the
+first case playing, the Hover-Tram's crowd in A Blurred Line —see [the
+task](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/maps-with-more-objects-on-a-line-than-the-ppu-draws.md)—.
+
+The NMI reads `STAT77` once a frame: the PPU clears its two flags at the
+end of the vblank and sets them while it draws, so at the start of the next
+one they hold the whole frame. It costs a read, a mask and a branch a frame
+in bank 0, and a `jsl` to bank 1 only on a frame that went over; the counts
+are two words of far RAM, which the tests read, zeroed on entering a map
+—not at the boot: the title screen draws with an OAM nobody uploaded, which
+never shows but is in range, and counted every frame—. On the console a
+forced blank keeps the last frame's flags, so a load right after a frame
+that went over counts its black frames too; bsnes and snes9x clear them
+anyway.
+
+The counts are for what a played game meets, a scene that brings people in.
+Each map as it is entered is counted without the ROM by the ports' `just
+objects-per-line`, which enters every map of every game.
 
 **A row of the list is the screen's whole row** for the text layer —the
 range's label beside it is the same record—, so a step that changes the

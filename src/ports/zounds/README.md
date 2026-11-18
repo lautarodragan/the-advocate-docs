@@ -233,6 +233,10 @@ Select](../../divergences/phasing-is-a-toggle-on-select.md). Task:
 What playing the port shows today that the original does not. It is kept
 current: whoever fixes one removes its line in the same change.
 
+* **Where nine or more characters stand on one line, the ones further
+  back are cut** —a column missing, or gone—: the console draws 34
+  slivers of 8 pixels a line and each character takes four. On maps 183, 75 and 65.
+  Draft: [`zounds-characters-cut-on-crowded-lines`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-characters-cut-on-crowded-lines.md).
 * **Most picture-made screens do not show**: the pick-axe screen and the
   notebook (common events 21, 27, 29, 30 and 41), common events compiled
   apart from the maps whose small pictures no map leaves room for beside
