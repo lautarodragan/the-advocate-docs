@@ -224,6 +224,7 @@
     - [Desert Nightmare](ports/desert-nightmare/README.md)
         - [Research]()
             - [What it takes to be playable (2026-11-19)](ports/desert-nightmare/research/2026-11-19-what-it-takes-to-be-playable.md)
+            - [Can the towns be baked? (2026-11-19)](ports/desert-nightmare/research/2026-11-19-can-the-towns-be-baked.md)
     - [Dooms 2](ports/dooms2/README.md)
     - [El Dorado](ports/el-dorado/README.md)
     - [The Frozen World](ports/frozen-world/README.md)
