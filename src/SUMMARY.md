@@ -222,6 +222,8 @@
             - [Room for still events in the background (2026-11-16)](ports/abl/research/2026-11-16-room-for-still-events-in-the-background.md)
     - [The Book of Three](ports/book-of-three/README.md)
     - [Desert Nightmare](ports/desert-nightmare/README.md)
+        - [Research]()
+            - [What it takes to be playable (2026-11-19)](ports/desert-nightmare/research/2026-11-19-what-it-takes-to-be-playable.md)
     - [Dooms 2](ports/dooms2/README.md)
     - [El Dorado](ports/el-dorado/README.md)
     - [The Frozen World](ports/frozen-world/README.md)
