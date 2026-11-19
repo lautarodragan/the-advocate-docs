@@ -21,10 +21,15 @@ until then was a map of addresses written by hand, it is a new segment,
 `FARBSS`, in an area of the `.cfg` that `rm2k-snes-assemble` writes
 (`FAR_POOL_START` in `rm2k-snes/cartridge/src/banks.rs`).
 
-What was already declared stays where it is; how the 128 KB are laid out
-today, [The WRAM map](../internals/wram.md). Decided on 2026-10-11, in
-the task
-[`global-variables-collide`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/global-variables-collide.md).
+**Since 2026-11-19 it holds for the whole WRAM**: the grid's halves, the
+load buffer, `GRID_TOP` and the stack are areas of the `.cfg` too, and
+nothing in the runtime is at an address written by hand. How the 128 KB
+are laid out, [The WRAM map](../internals/wram.md). Decided on
+2026-10-11, in the task
+[`global-variables-collide`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/global-variables-collide.md),
+for new variables; taken to the rest of the WRAM in
+[`all-wram-placed-by-the-linker`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/all-wram-placed-by-the-linker.md),
+after taro asked on 2026-11-16 why anything was still placed by hand.
 
 ## Why
 
@@ -85,9 +90,25 @@ addresses chosen by hand.
   `.assert` that it is exactly that (`TL_BYTES`).
 * **The same holds for what is in `low_ram.s` and `zero_page.s`**: it stays
   where it is.
+* **What has a reason to be at a given address is an area of the `.cfg`,
+  not a number in the runtime**: the areas are `WRAM_AREAS` in
+  `banks.rs`, and a segment `.res` declares what is in them. The grid's
+  two halves are fixed because the converter writes them as numbers into
+  what it compresses, so its own copy goes in the `.inc` and the runtime
+  asserts they are the linker's; `GRID_TOP` is a segment after the grid's,
+  which the grid's `.res` pushes to the end of the half. **What borrows a
+  region for a while** —the battle's scene, a full screen's image, a big
+  picture's palette over the ChipSet animation's drawings— **is named
+  after it**, an offset with an `.assert` of how far it goes, not a second
+  copy of its address.
+* **The far bank is not a place**: `$7E` is where bank 0's RAM shows again,
+  and the code that runs with the data bank there counts on it, so it is
+  written as `$7E0000 +`, `#$7E` and a zero in `WMADDH`, and
+  `far_ram_game.s` asserts `FARBSS` is in it.
 * **What guards it**: ABL's `tests/tooling/test_wram_reservations.py`,
-  in the-advocate-ports, looks in the runtime's source for a far address
-  written by hand —a long one in the area, or a sixteen-bit one named
-  `FAR_*`—, since in the symbol table a `.loword` of a label and a number
-  written by hand look the same; and it checks that every long symbol in
-  the area is a label of the segments or falls inside one.
+  in the-advocate-ports, looks in the runtime's source for a WRAM address
+  written by hand —any long one but the far bank, or a sixteen-bit one
+  named `FAR_*`—, since in the symbol table a `.loword` of a label and a
+  number written by hand look the same; and it checks, for every area
+  `rm2k-snes-assemble --memory-map` lists, that every long symbol in it is
+  a label of its segments or falls inside one.
