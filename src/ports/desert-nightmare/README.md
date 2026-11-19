@@ -7,6 +7,22 @@ current: whoever fixes one removes its line in the same change. The work
 behind each one is a draft or a task in the tasks repository, named here
 as text.
 
+* **The story stops on day 1, at the box on map 12**: pushed to the wall
+  it cannot be climbed, and the middle of the gate north of the first
+  street leads nowhere (its sides do). A second event on the same cell is
+  never asked. Draft: [`a-second-event-on-a-cell-is-never-asked`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-second-event-on-a-cell-is-never-asked.md).
+* **No item can be used**: choosing the light bulb at the warehouse's
+  lamp does nothing, nor does any item anywhere. Draft:
+  [`desert-nightmare-items-cannot-be-used`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-items-cannot-be-used.md).
+* **The number locks do not open**: the warehouse's safe, a chest on day
+  2, the tailor's door and a chest in the second vault. Draft:
+  [`desert-nightmare-the-number-locks-do-not-open`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-number-locks-do-not-open.md).
+* **B opens the game's menu but nothing is drawn**: the map stays on
+  screen while the inventory, the keys, the notes and the maps take the
+  buttons. Draft: [`desert-nightmare-the-game-s-menu-draws-nothing`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-game-s-menu-draws-nothing.md).
+* **Most messages have no box**: the text goes straight over the map,
+  and the map's upper layer cuts it; one with a face gets the System's
+  frame. Task: [`desert-nightmare-own-message-frame`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-own-message-frame.md).
 * **Where nine or more characters stand on one line, the ones further
   back are cut** —a column missing, or gone—: the console draws 34
   slivers of 8 pixels a line and each character takes four. On 53 maps, the worst 3, 5, 62, 12 and 64.
@@ -17,10 +33,14 @@ as text.
 * **The start menu ("With Intro / No Intro / Quit") shows over a pattern of
   garbage** instead of the burning face behind it. Draft:
   [`desert-nightmare-start-menu-over-garbage`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-start-menu-over-garbage.md).
-* **White rectangles where the buildings' roofs go** around the workshop
-  (map 4): the roofs are events, more than the console holds, and the
-  ones left out leave the panorama's holes showing. Maps 14, 61 and 66
-  leave out as many drawn events. Draft: [`desert-nightmare-roofs-left-out-show-white`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-roofs-left-out-show-white.md).
+* **The towns' buildings are missing or white rectangles** —the motel and
+  the store on the first street, the workshop, the houses, the police
+  station—: they are events, a 24x32 piece per cell over a panorama with
+  holes, and the console draws the ones its sprite cache, its table and
+  its RAM hold. On 34 maps. Draft: [`desert-nightmare-roofs-left-out-show-white`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-roofs-left-out-show-white.md).
+* **The towns play at half speed or slower**, on 18 maps: drawing those
+  pieces does not fit in a frame. Draft:
+  [`desert-nightmare-the-towns-run-at-half-speed`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-towns-run-at-half-speed.md).
 * **The characters are not shaded by the lights.** Sandra stays at her
   full colours in the WC's darkness and in every lit interior: the masks
   are drawn into the map, not over her. See [Pictures drawn into the map](../../divergences/pictures-drawn-into-the-map.md).
@@ -30,6 +50,12 @@ as text.
 * **Two apartments keep their first background** where the original
   changes it: the dream one on map 34 and the one on map 82. Task:
   [`a-panorama-with-pictures-drawn-into-it-is-not-swapped`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-panorama-with-pictures-drawn-into-it-is-not-swapped.md).
+
+## What it takes to be playable (2026-11-19)
+
+Played through the harness as far as it goes —the middle of day 1— and
+compared with RPG_RT, what breaks, why, and what to do first: [What it
+takes to be playable](research/2026-11-19-what-it-takes-to-be-playable.md).
 
 ## The lights, drawn into the map (2026-10-16)
 
