@@ -57,8 +57,9 @@ needs 38 rows.
 - **A map without twins pays nothing**: whether it has any is a byte of the
   direct page, `twins_here`, set when the map loads, and the hero's step
   goes straight to `cell_blocked` when it is zero.
-- **Where**: `trim.rs` in `rm2k-snes/convert/`; `twin_in_cell` in
-  `runtime/action_key.s` and `hero_blocked_rest` in `runtime/twins_block.s`.
+- **Where**: `trim.rs` in `rm2k-snes/convert/`; `action_in_cell` and
+  `twin_in_cell` in `runtime/action_key.s` and `hero_blocked_rest` in
+  `runtime/twins_block.s`.
 - **More**: [Events that do not fit in the RAM](../../divergences/events-that-do-not-fit-in-the-ram.md).
 
 ## The pure parallel common events run only when what they read changes
