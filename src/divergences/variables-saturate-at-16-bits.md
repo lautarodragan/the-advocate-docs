@@ -56,6 +56,17 @@ cost of every operation for one sentinel.
   in `runtime/interpreter_variables.s` in the-advocate—, for the same
   reason: Sern's forge, which keeps the party's gold in a variable while
   it lends forge points, loses whatever is above that.
+* **A variable a game only fills with `InputNumber` and compares with
+  constants is wide**, since 2026-11-20, when a branch asks it for a
+  number sixteen bits do not hold: Desert Nightmare's warehouse safe
+  (71456, the end of day 1) and the chest in the second vault (136264).
+  Its high word takes a slot of its own, after every other, and the
+  number and the branches go in 32 bits. One that anything else touches
+  —a `ControlVars`, a `\V[n]`, a page condition, a troop page— stays
+  sixteen bits, and its branch past them does not compile. An
+  `InputNumber` into a sixteen-bit variable saturates at 65,535. The
+  rule is `wide` in `indices.rs` of `rm2k-snes/events/`; the test,
+  `test_desert_nightmare_safe.py` in the ports.
 * The compiler is `ControlVars` in `compile.rs` of `rm2k-snes/events/` in
   the-advocate; the test is `test_putting_more_than_the_word_saturates` in A
   Blurred Line's suite.
