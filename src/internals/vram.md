@@ -559,6 +559,33 @@ Each face the game names is in ROM once, drawn by `faces.rs` in
 it does not model is in [What faces do not
 model](../divergences/what-faces-do-not-model.md).
 
+## A ShowWindow uses the message window's bank
+
+Since 2026-11-20, RPG Maker 2000 PLUS's `ShowWindow` —see
+[its decision](../decisions/show-window.md)— takes **no VRAM beyond the
+message window's** either, and so fits on every map. While no message is
+open its windows own the window's 32x32 tilemap and its 240 text tiles:
+
+- **The tiles**: each window id of the game has a fixed run of the text
+  tiles —the compiler's `windows.rs` numbers them, the widest text each of
+  its lines ever has, two rows of cells per line— and the last text tile,
+  239, holds the System's background for the cells no text covers. The
+  frame's cells are the message window's own, from its framed plane.
+- **The tilemap**: the screen from the first cell row a window covers to
+  the last is composed whole in WRAM —the layer above's tilemap entries,
+  read out of VRAM, and every window over them in the order of its id—
+  and goes to the window's tilemap from its row 20 on, wrapping. A span of
+  twelve rows or fewer leaves the message's two planes, rows 0 to 19, as
+  they are; a taller one writes over them, and they are put back before a
+  message shows. HDMA points BG2 at it on the span's lines, with the
+  camera on the rest, as it does for a message; and over a big picture,
+  which moves the window's tilemap, at the window's tilemap where the big
+  picture put it.
+
+A message that opens takes the windows off the screen —its line writes
+their tiles— and they are drawn again, text and all, when it closes. The
+runtime side is `runtime/show_window.s`.
+
 ## Battle doesn't use the layout
 
 A battle overwrites the whole VRAM and `back_from_battle` restores it:
