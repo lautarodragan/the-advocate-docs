@@ -116,7 +116,8 @@ is emitted by `share_table` in `rm2k-snes-mapdata`, and what the ROM does
 is in `runtime/shared_poses.s`. Map 108 ends up with 22 slots, 376
 tiles, and fits in "+both". The other maps convert as always: `wally`
 first tries without turns and only if that doesn't fit converts again with
-them.
+them. What it tries after that, in which order, and what each step loses:
+[the converter's stages](the-converters-stages.md#5-each-map-wally).
 
 ## When not even taking turns is enough: a slot cache
 
@@ -498,7 +499,9 @@ cover. It goes in front the way the pictures' does, above.
 events than the console's RAM holds, the pieces with nothing but their
 looks are the first left out, after what loses nothing —`Loss::Painted` in
 `trim.rs` of the converter—, and Wally paints them from the whole map. The
-cartridge's degradations name only the ones it did not paint.
+cartridge's degradations name only the ones it did not paint. Why the trim
+has to be told, and what painting costs the other budgets: [the
+converter's stages](the-converters-stages.md#the-pairs-known-to-compete).
 
 What is lost: a character beside a piece, on its row, is drawn under the
 piece's top half where RM2k draws the one to the right over it; what goes

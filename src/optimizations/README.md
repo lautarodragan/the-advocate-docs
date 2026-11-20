@@ -16,6 +16,10 @@ it saves, where it lives in the code and the page that explains it more.
   and then removed or not adopted, and why, so it is not tried again
   blind.
 
+In which order the converter runs them, which budget each spends, and
+which ones compete: [the converter's
+stages](../internals/the-converters-stages.md).
+
 How much each one saves **today** is not written here: it changes with
 every game and every map, and the command that prints it is the source.
 `just space`, in a game's project, says what each cartridge has left; the

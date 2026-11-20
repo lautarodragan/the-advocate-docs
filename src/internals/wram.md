@@ -62,7 +62,9 @@ rest, in each subsystem's file, at its own size.
   palettes, the strips of the tilemap— and the tables the frame walks:
   the events' positions, their flags, the NPC table copied from the
   cartridge. Its tables are sized by the runtime's caps (`EV_MAX`,
-  `NPC_MAX`…), not by the game, so it is the same in every game.
+  `NPC_MAX`…), not by the game, so it is the same in every game. What a
+  map that has more events than those rows loses, and before which other
+  step: [the converter's stages](the-converters-stages.md#1-the-rams-trim).
 * **`FARBSS`** is the whole of `$7E2000`–`$7E7FFF` but the switch table:
   the interpreter's parallel pages, the variables and the inventory, the
   battle's state, the text layer of the screens, the audio's allocation,

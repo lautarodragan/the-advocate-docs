@@ -25,7 +25,9 @@ The paths on the right belong to the game's project —where its
 `advocate.toml` is, which declares them—, and `<rom>` is its
 `[rom] name`. `rm2k-snes-cartridges` runs all of that for each cartridge
 the project declares. How A Blurred Line calls it, with which recipes and
-which flags: [its pipeline](../ports/abl/pipeline.md).
+which flags: [its pipeline](../ports/abl/pipeline.md). In which order the
+converter's stages decide, and which budget each spends: [the converter's
+stages](the-converters-stages.md).
 
 ## What the cartridge does with less than RM2k
 
