@@ -7,10 +7,6 @@ current: whoever fixes one removes its line in the same change. The work
 behind each one is a draft or a task in the tasks repository, named here
 as text.
 
-* **The story stops on day 1, at the box on map 12**: pushed to the wall
-  it cannot be climbed, and the middle of the gate north of the first
-  street leads nowhere (its sides do). A second event on the same cell is
-  never asked. Draft: [`a-second-event-on-a-cell-is-never-asked`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-second-event-on-a-cell-is-never-asked.md).
 * **The number locks do not open**: the warehouse's safe, a chest on day
   2, the tailor's door and a chest in the second vault. Draft:
   [`desert-nightmare-the-number-locks-do-not-open`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-number-locks-do-not-open.md).
