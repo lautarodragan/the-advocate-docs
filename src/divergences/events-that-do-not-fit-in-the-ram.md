@@ -16,9 +16,12 @@ decides, before any stage reads the map, which events the console keeps
 are the same, field by field, that draw nothing, never move and that nobody
 names —with pages that run, or invisible walls— keep only the row of the
 one with the lowest id. The others are a cell in a table in ROM, behind the
-map's positions, which the runtime looks at when no row is on the cell the
-hero steps on or faces (`twin_in_cell` in `runtime/action_key.s`): the cell
-fires the first one's page, which is the same page. That is what most of
+map's positions, which the runtime looks at after the rows of the cell the
+hero steps on or faces (`action_in_cell` in `runtime/action_key.s`): the
+cell fires the first one's page, which is the same page. After the rows and
+whatever they had: a row can stand on a twin's cell —Desert Nightmare's
+invisible dog, sent into the middle of a gate whose middle cell is a
+twin—, and RM2k fires both. That is what most of
 those maps have too many of: a strip of seventy invisible touch events
 along an edge, each a `Teleport` to the same place; a grid of two hundred
 invisible signs on the hero's layer, each the same message. What can not be
