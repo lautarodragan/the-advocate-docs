@@ -64,6 +64,15 @@ and they do not do everything they do in RM2k:
   rest of their pictures are still big ones. A translucent big one the rule
   does not take —zoomed, moved, placed by a variable— is listed in the
   build's `degradations.json` as `translucent-picture-hides-the-map`.
+* **One faded to nothing is taken down**, since 2026-11-20: a
+  `MovePicture` that takes a big picture to transparency 100 and waits,
+  with no other big one seen by its page and no later move of the page
+  bringing it back, is followed by its `ErasePicture`, so the map is seen
+  again —after the fade to black, at once—. In RM2k what is under a picture
+  at 100 % shows; here it stayed black: Desert Nightmare's intro, map 6,
+  fades its title and a black picture out and talks over the gas station,
+  and every message of it went over a black screen. See `big_fade_outs` in
+  `compile.rs` of rm2k-snes-events.
 * **Showing it and erasing it turn the screen off**: measured, two frames
   when showing one and fourteen when erasing it, which reloads the map like
   the return from battle. The game's appear and go away over the black

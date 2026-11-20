@@ -29,9 +29,6 @@ as text.
 * **Sandra's name and the other coloured words have fewer shades** than
   RM2k's gradient, and the message window one colour less: its last entry
   is the box's ink. See [What message escapes do not model](../../divergences/what-message-escapes-do-not-model.md#the-colour).
-* **The start menu ("With Intro / No Intro / Quit") shows over a pattern of
-  garbage** instead of the burning face behind it. Draft:
-  [`desert-nightmare-start-menu-over-garbage`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-start-menu-over-garbage.md).
 * **Some doors, lights and people show up late, or not at all,** on 7
   maps —the first street (2), the exit (35), the mines (102, 105), the
   workshop's cellar and the vault (137, 138), the old mine settlement
