@@ -113,7 +113,7 @@ this, in this order, in `convert_with`:
    painted too, read from the whole map. Frees event rows, object table
    entries, slots and frame time; costs the map a [painted
    layout](vram.md#a-painted-map-keeps-only-what-the-screen-shows) —256
-   sprite tiles— and every cell of itself in the ROM.
+   sprite tiles— and, in the ROM, its distinct cells and a word a cell.
 3. **The layers drawn and converted** —Adeleine decides which colours are
    lost and the palettes, Voodoo cuts the tiles—, with **the tiles above
    the hero nobody can cover lowered** into the background only if that
