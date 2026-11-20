@@ -58,6 +58,10 @@ as text.
 * **The menu and the other screens keep the intro's System** for the whole
   game: the original switches to `Systemset_Spiel` in its common event
   `Init`, and only the message window follows. See [What `ChangeSystemGraphics` does not model](../../divergences/what-changesystemgraphics-does-not-model.md).
+* **The warehouse's first room (21) is darker** than the original's once
+  its opening scene has played: the light drawn into it is the one the
+  scene leaves, not the one the room shows each time it is entered. Draft:
+  [`desert-nightmare-the-warehouse-is-darker`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-warehouse-is-darker.md).
 * **Two apartments keep their first background** where the original
   changes it: the dream one on map 34 and the one on map 82. Task:
   [`a-panorama-with-pictures-drawn-into-it-is-not-swapped`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-panorama-with-pictures-drawn-into-it-is-not-swapped.md).
