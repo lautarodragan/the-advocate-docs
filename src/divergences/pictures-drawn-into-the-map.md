@@ -46,16 +46,23 @@ What the ROM does not do that RM2k does:
   there before, an `ErasePicture` on the map does not erase it, and of
   several pictures under one number on one map —the flags that wave, a
   room with or without a second ceiling— the one shown most is drawn.
-  **Except several drawings of one place** —the same size, opaque, every
-  show of the number on the map one of them—: since 2026-11-20 what they
-  have in common is drawn in, and each `ShowPicture` shows only what its
-  drawing has of its own, as a small picture that goes with the map.
-  Desert Nightmare's start menu is three drawings of its three options,
-  each with its own lit, and the arrows swap them: drawn in as one, the
-  arrows changed nothing on the screen. Its safe's and its shrine's
-  symbols (maps 115 and 161) are the same kind: the plate is drawn in, and
-  the symbol shown changes; the plate stays after the game erases the
-  picture. See `Parts` in `map_pictures.rs` of rm2k-snes-convert.
+  Except a scene's: one its own page erases further on —from the show's
+  branch or one further out— is not drawn into the map at all, and the
+  scene plays without it. Desert Nightmare's warehouse (map 21) opens on a
+  piece of wall shown over its door and erased when the scene ends; drawn
+  in, it stayed in front of the hero for good, until 2026-11-20. One
+  replaced by another under its number is not taken as erased.
+  **And except several drawings of one place** —the same size, opaque,
+  every show of the number on the map one of them and none a scene's—:
+  since 2026-11-20 what they have in common is drawn in, and each
+  `ShowPicture` shows only what its drawing has of its own, as a small
+  picture that goes with the map. Desert Nightmare's start menu is three
+  drawings of its three options, each with its own lit, and the arrows
+  swap them: drawn in as one, the arrows changed nothing on the screen.
+  Its safe's and its shrine's symbols (maps 115 and 161) are the same
+  kind: the plate is drawn in, and the symbol shown changes; the plate
+  stays after the game erases the picture from another page. See
+  `Parts` in `map_pictures.rs` of rm2k-snes-convert.
 * **The screen's tint tints them**, which RM2k does not do to pictures.
 * **A mist that goes with the screen on a map that scrolls is repeated over
   the whole map**, from where it is shown, and moves with the map; its wave
