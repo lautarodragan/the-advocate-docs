@@ -67,8 +67,9 @@ still pieces, painted in](../../internals/vram.md#the-still-pieces-painted-in)â€
 The towns play at a frame a tick with their buildings whole, and the
 captures against EasyRPG are named in the task
 [`still-pieces-painted-into-a-painted-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/still-pieces-painted-into-a-painted-map.md).
-The painted maps do not fit the ROM beside the rest, so the game requires
-the MSU-1: [the MSU-1 is required, for now](decisions/the-msu-1-is-required-for-now.md).
+The painted maps required the MSU-1 for a day, until each one carried each
+distinct cell once: [the MSU-1 is required, for now](decisions/the-msu-1-is-required-for-now.md),
+undone on 2026-11-20.
 Which maps, and why not the others, is said by the project's
 `advocate.toml`.
 

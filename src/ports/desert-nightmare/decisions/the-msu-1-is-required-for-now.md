@@ -1,5 +1,15 @@
 # The MSU-1 is required, for now
 
+**Undone on 2026-11-20: Desert Nightmare's MSU-1 is optional again.** Once
+each painted map carried each distinct cell once, the whole game fitted in
+the ROM, and taro, asked whether it went back, answered, translated:
+
+> if it isn't problematic, that is my preference — that it be optional
+
+The project file says `[rom] msu = "optional"`, and the `.msu` carries only
+what it carries for every game, the battle backgrounds. What follows is the
+decision as it was taken on 2026-11-19.
+
 ## What
 
 **Desert Nightmare requires the MSU-1**, as Vampires Dawn does: its project
