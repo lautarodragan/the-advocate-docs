@@ -7,10 +7,6 @@ current: whoever fixes one removes its line in the same change. The work
 behind each one is a draft or a task in the tasks repository, named here
 as text.
 
-* **The story stops on day 1, at the box on map 12**: pushed to the wall
-  it cannot be climbed, and the middle of the gate north of the first
-  street leads nowhere (its sides do). A second event on the same cell is
-  never asked. Draft: [`a-second-event-on-a-cell-is-never-asked`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-second-event-on-a-cell-is-never-asked.md).
 * **No item can be used**: choosing the light bulb at the warehouse's
   lamp does nothing, nor does any item anywhere. Draft:
   [`desert-nightmare-items-cannot-be-used`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-items-cannot-be-used.md).
