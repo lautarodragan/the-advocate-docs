@@ -432,9 +432,8 @@ VENTANA_PINTADA  sprites 256 | slots 990 + blank, BG1 | map $5000 | window_map $
 The screen is 256x224, so with the scroll halfway through a cell it shows
 33 columns and 29 rows. Cell (x, y) lives in slot `(y mod 30) + 30 * (x mod
 33)`: no two cells on screen share one, and a column of the map is one run
-of slots. The cartridge carries every cell once, column by column, so a
-column goes up in one DMA, or two if it laps; a row is 33 DMAs of 32 bytes.
-The tilemap is the map's moving window, as in any map: `build_column` and
+of slots, so a column goes up in one DMA, or two if it laps; a row is 33
+DMAs of 32 bytes. The tilemap is the map's moving window, as in any map: `build_column` and
 `build_row` build it, and `paint_column` and `paint_row` write over what
 goes to BG1 with the painting's palette and priority and the slot by where
 the cell is.
@@ -448,6 +447,35 @@ If the camera gets there first, or turns back while the row that left is
 half overwritten, what is missing goes in that frame. See
 `runtime/painted.s`, and `paint_table` in `panorama.rs` of
 `rm2k-snes-mapdata`.
+
+**The cartridge carries each distinct cell of a map once**, and the map a
+word per cell, column by column: the cell's number. A painting a game
+builds out of tiles repeats —sand, walls, a floor—: Desert Nightmare's 93
+painted maps have 126,756 cells and 43,935 distinct within their map. A
+drawn picture does not: Sunset Over Imdahl's 60 have 107,280 and 93,671,
+and there the word a cell costs more than the repeats save on its most
+detailed maps, but less over the game. The cells go in pieces of 1,024,
+32 KB, which never cross a bank, so number `n` is cell `n & 1023` of the
+map's first piece plus `n >> 10` (`paint_pieces`). Not shared across maps:
+it would have saved Desert Nightmare 2,366 cells more, and Sunset's maps
+have 90,746 distinct cells together, more than a word numbers. Cells that
+are another one flipped are not looked for either: they were 0.6%. Since
+2026-11-20; until then each map carried every cell of itself, 32 bytes a
+cell.
+
+A row's tiles go up one DMA each from where their cells are, as before. A
+column's cells are not one run of the cartridge any more, so they are
+**gathered before the vblank**: in the tick, a DMA a cell from the pieces
+into WRAM through the WRAM port, behind the queue in the grid's bank
+(`PAINT_COL`; that is why `PAINT_ROOM`, what of that half a painted map's
+grid may take, is `$7700`). In the vblank the column is still one run, one
+DMA or two: the vblank does what it did, and what the cells stored once
+cost is the tick's time, outside it.
+
+There is no cache of cells in VRAM —slots holding a distinct cell and the
+tilemap pointing at them—: it would only save uploads where the screen
+repeats, and a painting that does not —Desert Nightmare's map 171 has 990
+distinct cells in its worst window of 990— needs all the slots anyway.
 
 What goes in front of the hero is the painting itself: the cells the
 pictures cover whole go to BG1's priority 1; the ones they cover in part go
@@ -506,9 +534,9 @@ converter's stages](the-converters-stages.md#the-pairs-known-to-compete).
 What is lost: a character beside a piece, on its row, is drawn under the
 piece's top half where RM2k draws the one to the right over it; what goes
 in front does so by whole 8x8 cells and the edge tiles there is room for;
-and a painted map carries every cell of itself, so each map painted costs
-the cartridge its cells (the `.msu` takes what loads with a map instead,
-in a game that requires it: see [the `.msu`](the-msu-file.md#what-does-not-fit-in-the-rom)).
+and each map painted costs the cartridge its distinct cells and a word a
+cell (the `.msu` takes what loads with a map instead, in a game that
+requires it: see [the `.msu`](the-msu-file.md#what-does-not-fit-in-the-rom)).
 
 **Only a cartridge with a painted map assembles any of this**: without
 `paint_table` in its `.inc`, `painted.s` and its calls are empty, and the
