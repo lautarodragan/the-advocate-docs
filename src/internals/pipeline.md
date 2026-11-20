@@ -70,8 +70,9 @@ is lost, and where, as precisely as whoever lost it knows:
 - **a common event** that runs as a shared body or a parallel one:
   `common` and its `command`, and the file's `commons` says how it runs
   —its trigger and switch— and which pages call it. An automatic one that
-  shows pictures is also copied into each map with room for it, as the
-  pages of an added event 0 (`common_pages.rs` in rm2k-snes-convert): what
+  shows small pictures is also copied into the maps where the copy draws
+  them, as the pages of an added last event (`common_pages.rs` in
+  rm2k-snes-convert; see [the converter's stages](the-converters-stages.md)): what
   the copies lose is not listed again, it is the common event's;
 - **a troop's page**: `troop` and `page`, and its `command` in RM2k's list;
 - **a map**: only `map`, and `events` when it is about some of them;
