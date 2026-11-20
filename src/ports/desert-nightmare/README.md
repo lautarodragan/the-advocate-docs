@@ -41,6 +41,18 @@ as text.
   (172)—: more of them
   stand on screen at once than the sprite cache has slots, and the last
   ones wait for one. Draft: [`desert-nightmare-events-wait-for-a-slot`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-events-wait-for-a-slot.md).
+* **At night the town has no lamps and no lit windows** on the eight
+  night maps that scroll —the entrance (59), the workshop's street (61),
+  the houses (62), the police station (66), the post office (68) and the
+  motel at night (32, 69, 70)—: the night is a tint, dark everywhere, and
+  a character walking under a lamp stays dark. Task:
+  [`desert-nightmare-lit-cells-over-a-tinted-night`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-lit-cells-over-a-tinted-night.md).
+* **The motel's rooms, the warehouse, the dream, the mines and the
+  workshop's cellar are lit as by day**, without their darkness and their
+  lamps' light, on 17 maps (16, 17, 22, 48, 58, 102 to 106, 136 to 138,
+  143, 144, 157, 182): their light masks are placed by a variable and not
+  drawn. Draft:
+  [`desert-nightmare-light-masks-placed-by-an-anchor`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-light-masks-placed-by-an-anchor.md).
 * **The characters are not shaded by the lights.** Sandra stays at her
   full colours in the WC's darkness and in every lit interior: the masks
   are drawn into the map, not over her. See [Pictures drawn into the map](../../divergences/pictures-drawn-into-the-map.md).
@@ -67,6 +79,18 @@ The painted maps do not fit the ROM beside the rest, so the game requires
 the MSU-1: [the MSU-1 is required, for now](decisions/the-msu-1-is-required-for-now.md).
 Which maps, and why not the others, is said by the project's
 `advocate.toml`.
+
+## The nights that scroll, tinted (2026-11-19)
+
+The game's night is two pictures the size of the map, a dark mask with the
+lamps' cones and a canvas with the lit windows. On the eight night maps
+that scroll they are placed at an anchor event's screen position, which the
+converter does not draw, and the town showed as day. Since this day the
+port's manual patches turn the mask into an RM2k `TintScreen` on those
+maps, `desert-nightmare/patches/manual/` in the ports: the console comes
+within 0.1 to 0.3 of 31 of EasyRPG running the same patches, and the lamps
+and windows are what is left. Why, the fit, and the ways of lighting a
+tinted night, measured: [Nights with a tint of their own](research/2026-11-19-nights-with-a-tint-of-their-own.md).
 
 ## What it takes to be playable (2026-11-19)
 
