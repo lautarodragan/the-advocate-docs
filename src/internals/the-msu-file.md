@@ -330,8 +330,8 @@ The pause menu's debug screen —see [the pause
 menu](the-pause-menu.md#the-debug-screen)— is a tool for testing the port,
 and taro tests with the `.msu`; it is not needed to enjoy the game. So
 since 2026-11-16 **its bulk travels only in the `.msu`**: its font
-precomposed —eight phases of each letter, 121,056 bytes in A Blurred
-Line—, the switches' and variables' names, and the windows' tilemap,
+precomposed —eight phases of each letter—, the switches' and variables'
+names, and the windows' tilemap,
 bars, tiles and colours. The ROM keeps the code, the geometry, each
 letter's advance and reach, and where each piece is.
 

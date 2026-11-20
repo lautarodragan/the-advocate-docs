@@ -10,13 +10,15 @@ shape remains on purpose:
   in `$00` and its fast mirror `$80`. In ExHiROM those two are different
   parts of the ROM, so the build places the code banks twice. It costs
   64 KB, and the runtime never had to know.
-- **The third and fourth code banks are not LoROM's**: `FAR2` is the low
-  half of `$C0` and `FAR3` that of `$C1`, fast and without a copy, because
-  what lives there is only entered with a `jsl` to its address. `FAR3`
-  came on 2026-10-15, when bank 1 and `FAR2` were close to full in some
-  cartridge; until then the low half of `$C1` was data. Which code goes in
-  which of the four is said by the header of `runtime/main.s` in
-  the-advocate.
+- **The third, fourth and fifth code banks are not LoROM's**: `FAR2` is
+  the low half of `$C0`, `FAR3` that of `$C1` and `FAR4` that of `$FF`,
+  fast and without a copy, because what lives there is only entered with a
+  `jsl` to its address. `FAR3` came on 2026-10-15, when bank 1 and `FAR2`
+  were close to full in some cartridge; until then the low half of `$C1`
+  was data. `FAR4` came on 2026-11-20, for the font's composers, when every
+  other code bank was close to full in some game; the data still starts at
+  `$C2:0000`, and only `$FF` became a half. Which code goes in which of the
+  five is said by the header of `runtime/main.s` in the-advocate.
 - **Only the first 4 MB are fast** (FastROM doesn't reach `$40`–`$7D`), so
   the packer fills those first.
 - **There is ROM that is not used**: the low halves of `$70`–`$7D`, where
