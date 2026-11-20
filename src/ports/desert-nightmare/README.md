@@ -7,9 +7,6 @@ current: whoever fixes one removes its line in the same change. The work
 behind each one is a draft or a task in the tasks repository, named here
 as text.
 
-* **No item can be used**: choosing the light bulb at the warehouse's
-  lamp does nothing, nor does any item anywhere. Draft:
-  [`desert-nightmare-items-cannot-be-used`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-items-cannot-be-used.md).
 * **The number locks do not open**: the warehouse's safe, a chest on day
   2, the tailor's door and a chest in the second vault. Draft:
   [`desert-nightmare-the-number-locks-do-not-open`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-number-locks-do-not-open.md).
