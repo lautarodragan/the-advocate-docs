@@ -9,6 +9,8 @@ is tested](../testing.md)— is in the chapters before; these
 go one level down, close to the code.
 
 - [The pipeline](pipeline.md): which binary turns what into what.
+- [The converter's stages](the-converters-stages.md): in which order they
+  decide, which budget each spends, and which ones compete.
 - [Mode 3 by default](mode-3.md): how the background is drawn, and why.
 - [ExHiROM, 8 MB](exhirom.md): how the ROM is laid out, and the tables
   that live in bank 0.

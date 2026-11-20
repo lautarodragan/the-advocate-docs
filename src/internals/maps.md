@@ -53,7 +53,9 @@ of it: Zounds' dream, 200x200, is 40,000 bytes. A map that fits neither way
 is left out of the cartridge with a warning and a `map-left-out` in
 `degradations.json`, and a teleport to it is the box that says the map is
 missing. Which maps go narrow and the limits: `cell_bytes` in
-`materials.rs` of `rm2k-snes/mapdata/`.
+`materials.rs` of `rm2k-snes/mapdata/`. It is decided after Wally converts
+the map, because it needs its blocks: see [the converter's
+stages](the-converters-stages.md#6-the-grid-in-wram).
 
 The same happens with the tiles of the background, of the layer above, of
 the sprites, and with the drawings of the ChipSet animation: they travel as

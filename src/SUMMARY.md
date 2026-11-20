@@ -35,6 +35,7 @@
 
 - [Internals](internals/README.md)
     - [The pipeline](internals/pipeline.md)
+    - [The converter's stages](internals/the-converters-stages.md)
     - [Mode 3 by default](internals/mode-3.md)
     - [ExHiROM, 8 MB](internals/exhirom.md)
     - [Maps](internals/maps.md)
