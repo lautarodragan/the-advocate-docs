@@ -24,11 +24,23 @@ level only, so a box is still read on its own.
 ## Glyphs pre-rendered in the cartridge
 
 The variable-width font is stored already shifted to every phase of a
-tile, so composing a letter is copying, not shifting pixels.
+tile, so composing a letter is masking, not shifting pixels. It is stored
+**once and without colour**: per row and cell, the pixels the letter inks
+—glyph and shadow— and, of those, the glyph's; each writer puts its
+colours in as it composes, with them as immediates in code unrolled per
+writer —`runtime/font_ink.s`—. Until 2026-11-20 the message window, the
+text screens and the menu's bank each carried their own copy already
+coloured for its palette: three copies of the same letters, the biggest
+single item of the font. See
+[the task](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-font-is-precomposed-three-times.md).
 
-- **Saves**: CPU while text is written —it costs ROM instead—.
-- **Where**: `font_prerender` in `rm2k-snes/screens/src/message_window.rs`;
-  `compose_char` in `runtime/messages.s`.
+- **Saves**: CPU while text is written —it costs ROM instead—, and ROM
+  against carrying it coloured: two words per row and cell instead of
+  three, and one copy instead of three.
+- **Where**: `font_prerender` and `FontInk` in
+  `rm2k-snes/screens/src/message_window.rs`; `runtime/font_ink.s`,
+  `compose_char_far` in `runtime/messages.s` and `tl_paint_scr` in
+  `runtime/text_layer.s`.
 - **More**: [Events](../../internals/events.md).
 
 ## The message window's text area from one line
@@ -107,22 +119,22 @@ with text tiles take eight pairs more for it.
   `TL_PAIR_CAP`.
 - **More**: the comments of those routines.
 
-## The composed glyphs carry palette entries, not colours
+## The text's colours are palette entries
 
 Each row of a System's text is a single colour —the gradient is vertical—
-and the shadow is flat, so the precomposed glyphs say which palette entry
-each row takes, and the colour is the palette's. The converter gives the
-text the same entries in every System a cartridge switches to, so the
-message window's glyph tables are carried once for all of them, and a
-`ChangeSystemGraphics` is a palette and a few tiles; and the screens' text
-lays every ink out the same way —row k is entry 1 + k, the shadow 13—, so
-one set of tables paints every colour of the items, equipment, shop and
-battle.
+and the shadow is flat, so what a writer puts in a letter is which palette
+entry each row takes, and the colour is the palette's: thirteen numbers
+per writer, constants of the cartridge (`MSG_INK_k`, `SCR_INK_k`,
+`SLOT_INK_k`). The converter gives the text the same entries in every
+System a cartridge switches to, so the message window's are the same for
+all of them, and a `ChangeSystemGraphics` is a palette and a few tiles;
+and the screens' text lays every ink out the same way —row k is entry
+1 + k, the shadow 13—, so one set of numbers paints every colour of the
+items, equipment, shop and battle.
 
-- **Saves**: ROM —the eight tables, one per phase, are most of the font's
-  weight, and are not carried per System nor per ink— and the CPU of sampling the System's colours per
-  pixel. The converter refuses a System whose text rows are not one colour
-  each.
+- **Saves**: ROM —the font is not carried per System nor per ink— and the
+  CPU of sampling the System's colours per pixel. The converter refuses a
+  System whose text rows are not one colour each.
 - **Where**: `text_rows`, `common_rows` and `font_prerender` in
   `rm2k-snes/screens/src/message_window.rs`; `ink_colors` in
   `rm2k-snes/screens/src/items.rs`; `compose_char` in `runtime/messages.s`,
