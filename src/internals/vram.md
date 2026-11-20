@@ -464,6 +464,49 @@ go in front of the painting's cells in front of the hero. See
 cells covered the letters, and GateStreet's messages came out with a glyph
 or two.
 
+### The still pieces, painted in
+
+Since 2026-11-19 a project can also ask, map by map, for the events that
+stand on the painting to be painted into it: `[graphics] painted_events`,
+`true` or a list of maps, as `baked_events`. A game drawn as a painting
+builds its buildings out of events —a wall, a roof, a window, each a
+CharSet's pose in a cell, a hundred on a town of Desert Nightmare—, and as
+objects they took the slots, the lines and half the speed. On such a map,
+if its panorama is fixed to it, no ChipSet tile animates on it and its
+substitutions need no cells of their own, Wally —`pieces.rs`— paints into
+the panorama, in RM2k's order, the ChipSet's lower layer, the pieces below
+and with the hero, the layer above and the pieces above him; the map's
+layers are left empty, so it is one picture and goes painted (or baked into
+the background, if it is one screen and nothing goes in front).
+
+A piece is an event whose every page draws the same CharSet pose on the
+same layer, that nothing moves, flashes, animates in place or turns toward
+the hero, whose first page asks for nothing and that nothing erases: a
+`CallEvent` counts by what it reaches —the common event, the page it
+calls, and theirs—, so a page that calls the message box keeps its piece.
+The event keeps its pages —they run, block and trigger— and draws no
+object; one with nothing but its looks stops being an event, as a
+decorative one does, and its wall goes to the map's passability.
+
+**What goes in front of the hero** is what RM2k draws over a character:
+a piece above him whole; of a piece on his layer, what it draws past its
+cell onto a cell above it, or to its left on its row, where someone can
+stand; and the layer above, except on the cells no character can ever
+cover. It goes in front the way the pictures' does, above.
+
+**The RAM's trim runs first and does not lose them**: on a map with more
+events than the console's RAM holds, the pieces with nothing but their
+looks are the first left out, after what loses nothing —`Loss::Painted` in
+`trim.rs` of the converter—, and Wally paints them from the whole map. The
+cartridge's degradations name only the ones it did not paint.
+
+What is lost: a character beside a piece, on its row, is drawn under the
+piece's top half where RM2k draws the one to the right over it; what goes
+in front does so by whole 8x8 cells and the edge tiles there is room for;
+and a painted map carries every cell of itself, so each map painted costs
+the cartridge its cells (the `.msu` takes what loads with a map instead,
+in a game that requires it: see [the `.msu`](the-msu-file.md#what-does-not-fit-in-the-rom)).
+
 **Only a cartridge with a painted map assembles any of this**: without
 `paint_table` in its `.inc`, `painted.s` and its calls are empty, and the
 ROM comes out byte for byte as before.

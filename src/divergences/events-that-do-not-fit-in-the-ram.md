@@ -50,8 +50,11 @@ WARNING.
 
 From what loses the least to what loses the most: the ones that do
 nothing —no command, nobody names them, they draw nothing and do not
-block—; the still walls, which lose nothing (see below); the ones that are
-only seen; the ones that are seen and are a still wall; invisible walls on
+block—; the still walls, which lose nothing (see below); on a map whose
+still pieces are painted into it —`[graphics] painted_events`, see [the
+VRAM split](../internals/vram.md#the-still-pieces-painted-in)—, the pieces
+that are only seen, which Wally paints from the whole map, so they lose
+nothing either; the ones that are only seen; the ones that are seen and are a still wall; invisible walls on
 the hero's layer that can stop being one; the ones that are seen and block
 that way; the ones with pages that run; the exits,
 whose pages carry a `Teleport`; and last the ones something names

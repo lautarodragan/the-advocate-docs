@@ -25,7 +25,9 @@ as text.
   frame. Task: [`desert-nightmare-own-message-frame`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-own-message-frame.md).
 * **Where nine or more characters stand on one line, the ones further
   back are cut** —a column missing, or gone—: the console draws 34
-  slivers of 8 pixels a line and each character takes four. On 53 maps, the worst 3, 5, 62, 12 and 64.
+  slivers of 8 pixels a line and each character takes four. On 7 maps:
+  the apartment at night (33, 71), the exit's walking crowd (35, which
+  also plays slower), the post office (44), 47 and the mines (48, 102).
   Draft: [`desert-nightmare-characters-cut-on-crowded-lines`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-characters-cut-on-crowded-lines.md).
 * **Sandra's name and the other coloured words have fewer shades** than
   RM2k's gradient, and the message window one colour less: its last entry
@@ -33,14 +35,12 @@ as text.
 * **The start menu ("With Intro / No Intro / Quit") shows over a pattern of
   garbage** instead of the burning face behind it. Draft:
   [`desert-nightmare-start-menu-over-garbage`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-start-menu-over-garbage.md).
-* **The towns' buildings are missing or white rectangles** —the motel and
-  the store on the first street, the workshop, the houses, the police
-  station—: they are events, a 24x32 piece per cell over a panorama with
-  holes, and the console draws the ones its sprite cache, its table and
-  its RAM hold. On 34 maps. Draft: [`desert-nightmare-roofs-left-out-show-white`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-roofs-left-out-show-white.md).
-* **The towns play at half speed or slower**, on 18 maps: drawing those
-  pieces does not fit in a frame. Draft:
-  [`desert-nightmare-the-towns-run-at-half-speed`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-towns-run-at-half-speed.md).
+* **Some doors, lights and people show up late, or not at all,** on 7
+  maps —the first street (2), the exit (35), the mines (102, 105), the
+  workshop's cellar and the vault (137, 138), the old mine settlement
+  (172)—: more of them
+  stand on screen at once than the sprite cache has slots, and the last
+  ones wait for one. Draft: [`desert-nightmare-events-wait-for-a-slot`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-events-wait-for-a-slot.md).
 * **The characters are not shaded by the lights.** Sandra stays at her
   full colours in the WC's darkness and in every lit interior: the masks
   are drawn into the map, not over her. See [Pictures drawn into the map](../../divergences/pictures-drawn-into-the-map.md).
@@ -50,6 +50,23 @@ as text.
 * **Two apartments keep their first background** where the original
   changes it: the dream one on map 34 and the one on map 82. Task:
   [`a-panorama-with-pictures-drawn-into-it-is-not-swapped`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-panorama-with-pictures-drawn-into-it-is-not-swapped.md).
+
+## The towns, painted (2026-11-19)
+
+The towns are built out of events, a 24x32 piece of a building per cell
+over a panorama with white holes, and the console drew each as an object:
+white rectangles where its slots, its table or its RAM ran out, and two
+frames a tick on 18 maps. Since this day the project has `[graphics]
+painted_events` on 95 maps: the pieces that never change are painted into
+the panorama with the ChipSet's layers, and the maps go painted —see [the
+still pieces, painted in](../../internals/vram.md#the-still-pieces-painted-in)—.
+The towns play at a frame a tick with their buildings whole, and the
+captures against EasyRPG are named in the task
+[`still-pieces-painted-into-a-painted-map`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/still-pieces-painted-into-a-painted-map.md).
+The painted maps do not fit the ROM beside the rest, so the game requires
+the MSU-1: [the MSU-1 is required, for now](decisions/the-msu-1-is-required-for-now.md).
+Which maps, and why not the others, is said by the project's
+`advocate.toml`.
 
 ## What it takes to be playable (2026-11-19)
 

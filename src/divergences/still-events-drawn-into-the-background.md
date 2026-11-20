@@ -204,6 +204,11 @@ of the shifted ones against where RM2k draws them are in the task
   the last ones wait a frame.
 * A map with no room for the poses' tiles or colours keeps them as
   objects.
+* A map drawn as a painting, whose panorama is fixed to it, does not take
+  them at all: its still events that never change look are painted into
+  the panorama instead, the ones drawn past their cells and above the hero
+  too, if the project asks for it —see [the still pieces, painted
+  in](../internals/vram.md#the-still-pieces-painted-in)—.
 
 ## How to reproduce it
 
