@@ -14,15 +14,14 @@ as text.
 * **No item can be used**: choosing the light bulb at the warehouse's
   lamp does nothing, nor does any item anywhere. Draft:
   [`desert-nightmare-items-cannot-be-used`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-items-cannot-be-used.md).
-* **The number locks do not open**: the warehouse's safe, a chest on day
-  2, the tailor's door and a chest in the second vault. Draft:
-  [`desert-nightmare-the-number-locks-do-not-open`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-number-locks-do-not-open.md).
 * **B opens the game's menu but nothing is drawn**: the map stays on
   screen while the inventory, the keys, the notes and the maps take the
   buttons. Draft: [`desert-nightmare-the-game-s-menu-draws-nothing`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-game-s-menu-draws-nothing.md).
 * **Most messages have no box**: the text goes straight over the map,
   and the map's upper layer cuts it; one with a face gets the System's
-  frame. Task: [`desert-nightmare-own-message-frame`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-own-message-frame.md).
+  frame. On the few maps where the game's own box is drawn —the tailor's,
+  123— it covers the letters of a box without a face: the tailor's number
+  lock opens with its code, but its digits cannot be read. Task: [`desert-nightmare-own-message-frame`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-own-message-frame.md).
 * **Where nine or more characters stand on one line, the ones further
   back are cut** —a column missing, or gone—: the console draws 34
   slivers of 8 pixels a line and each character takes four. On 7 maps:
