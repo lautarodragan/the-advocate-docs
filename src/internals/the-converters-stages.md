@@ -70,11 +70,14 @@ compiler's own losses). Then the converter decides, for every map at once:
 - **the automatic common events with pictures, copied into each map** as
   one more event (`common_pages.rs`) —only on a map the trim left a free
   row in: the copies come after the trim and spend what it left—, but a
-  custom menu's, a counter's and the ones the project names in
-  `[events] commons_not_copied`: a copy is the common's whole bytecode in
-  every map's, and a long one pushes the maps' code past what
-  decompresses into WRAM, so it stays in the cartridge uncompressed
-  (Desert Nightmare's maps screen, common 14);
+  custom menu's and a counter's. A copy exists to draw a small picture
+  with the map's, so **one whose pictures are all big is not copied**: the
+  scan says what each body shows with its calls pasted, which is what a
+  copy carries, and if one has nothing small it is decided again without
+  it and the scan asked again (Desert Nightmare's notes screen, common
+  12, whose copies were 13,833 bytes of bytecode in each of 181 maps).
+  Whether a map keeps its copy is decided later, when its code is laid
+  out (7);
 - **which maps carry the timer's digits, the raindrops and the sandstorm's
   grains** (`scan.rs`): each costs those maps sprite tiles and a palette's
   room, decided before Wally sees the map;
@@ -171,7 +174,16 @@ maps' first, then the common events', which lose theirs past the table's
 byte. Then `rm2k-snes-battle` answers the encounters and the experience,
 and the event compiler compiles every page, with its own losses per
 command (`rm2k-snes-events culprits`); what Wally painted, drew into the
-map or shows elsewhere is forgotten from that list. The second round
+map or shows elsewhere is forgotten from that list. When each map's
+bytecode is laid out, **its copy of the common events stays only where it
+draws and does not push the bytecode out of WRAM**: on a map where Wally
+put the map's own pictures in instead of the copy's, or whose bytecode
+with the copy would stay in the cartridge raw and without it would not
+(`code_behind_grid` in rm2k-snes-mapdata, a `pictures-not-drawn`), the
+copy's pages go —its event stays, with none— and the shared body starts
+there, as on a map without a copy. It is decided after the compile, and
+not with the copies (2), because the bytecode with the copy is only known
+there. The second round
 checks what needs every map: the route slots (`route-slots-short`), the
 loops (`map-does-not-wrap`), a flash on a shared palette
 (`flash-shared-palette`).
@@ -222,6 +234,7 @@ fit, the largest first. Each one costs a seek when it loads. See [the
 | The painted pieces (5.2) | Sprite slots (the ladder) | The painted layout keeps 256 sprite tiles: Desert Nightmare's maps 18, 33 and 71 went on to wait for slots, and 42 one-screen interiors lost the message box's two pictures. They are not painted: the list of maps is by hand ([task](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/painted-events-chooses-its-maps.md)) |
 | The painted pieces (5.2) | ROM banks (11) | Painting every map Desert Nightmare benefits from does not fit beside the rest: it [requires the MSU-1](../ports/desert-nightmare/decisions/the-msu-1-is-required-for-now.md) |
 | The trim (1) | The common events' copies (2) | A map the trim filled has no row for the copy, and its common event's pictures run blind there (`common_pages.rs`) |
+| The common events' copies (2) | Each map's bytecode in WRAM (7) | Desert Nightmare's copies of commons 12 and 14 put all 181 maps' bytecode past what decompresses into WRAM, and it stayed in the cartridge raw: the cartridge did not fit. Now a copy is made only of a common with a small picture, and kept only where it draws and the bytecode still goes to WRAM ([task](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-common-event-is-copied-only-if-its-copy-draws.md)) |
 | The window's colours (3) | Every background | The window takes its entries from every map first: [lossy](../optimizations/lossy/colours.md#the-message-window-takes-its-colours-from-every-background) |
 | The tiles above lowered (5.3) | Background colours and tiles | Lowered unconditionally, 36 of Vampires Dawn's maps merged more colours, one of them 111 (2026-11-02): now only if it costs nothing |
 | The posed events (5.8) | Background colours | Zounds' desert, map 34, came out a shade off with the same number of colours merged (2026-11-02), and its ship capsule, map 17: now only if the background merges the very same colours |

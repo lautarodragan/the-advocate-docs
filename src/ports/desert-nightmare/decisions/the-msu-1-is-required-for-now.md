@@ -41,5 +41,7 @@ baked?](../research/2026-11-19-can-the-towns-be-baked.md).
 - **For now.** When the painted cells are stored once —the draft
   [`painted-maps-carry-every-cell`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/painted-maps-carry-every-cell.md)—
   the game should go back to `"optional"` if its ROM reaches.
+  [Where the room goes](../research/2026-11-20-where-the-room-goes.md)
+  measured how far that and the other options go.
 - **Nothing of this is Desert Nightmare's code**: the knob and the packing
   are every game's, and A Blurred Line stays without the MSU-1 required.
