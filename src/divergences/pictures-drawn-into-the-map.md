@@ -46,6 +46,11 @@ What the ROM does not do that RM2k does:
   there before, an `ErasePicture` on the map does not erase it, and of
   several pictures under one number on one map —the flags that wave, a
   room with or without a second ceiling— the one shown most is drawn.
+  Except a scene's: one its own page erases further on, or replaces with
+  another under its number, is not drawn into the map at all, and the
+  scene plays without it. Desert Nightmare's warehouse (map 21) opens on a
+  piece of wall shown over its door and erased when the scene ends; drawn
+  in, it stayed in front of the hero for good, until 2026-11-20.
 * **The screen's tint tints them**, which RM2k does not do to pictures.
 * **A mist that goes with the screen on a map that scrolls is repeated over
   the whole map**, from where it is shown, and moves with the map; its wave
