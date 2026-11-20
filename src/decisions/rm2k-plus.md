@@ -27,5 +27,9 @@ game can benefit from".
 - **Adding a feature is adding opcodes** to the event bytecode, not
   declaring a new bytecode: the bytecode is this runtime's format, not
   RM2k's.
+- **Its commands that RM2k's editor does not have are comments** a
+  game's page carries and RPG_RT skips, so the game still runs there: the
+  first is `ShowWindow`, a window of the System in a picture's place —see
+  [ShowWindow: a window in a picture's place](show-window.md)—.
 - See [the-tools-split-from-abl](the-tools-split-from-abl.md)
   and [the-game-is-playable-without-msu-1](the-game-is-playable-without-msu-1.md).

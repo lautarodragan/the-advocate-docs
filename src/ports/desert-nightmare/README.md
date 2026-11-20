@@ -10,9 +10,14 @@ as text.
 * **The number locks do not open**: the warehouse's safe, a chest on day
   2, the tailor's door and a chest in the second vault. Draft:
   [`desert-nightmare-the-number-locks-do-not-open`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-number-locks-do-not-open.md).
-* **B opens the game's menu but nothing is drawn**: the map stays on
-  screen while the inventory, the keys, the notes and the maps take the
-  buttons. Draft: [`desert-nightmare-the-game-s-menu-draws-nothing`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-game-s-menu-draws-nothing.md).
+* **The menu's keys, notes and maps screens draw nothing**: B's options
+  and the inventory are windows of the System since 2026-11-20 —text where
+  the original has pictures, a name where it has an item's icon—, but
+  those three screens still take the buttons over the burning face with
+  nothing on it. Draft: [`desert-nightmare-the-game-s-menu-draws-nothing`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-game-s-menu-draws-nothing.md).
+* **The menu's windows go away while a box is up** —"You have no items.",
+  "Really quit?"— and come back when it closes; the original keeps its
+  pictures under the box. See [ShowWindow](../../decisions/show-window.md).
 * **Most messages have no box**: the text goes straight over the map,
   and the map's upper layer cuts it; one with a face gets the System's
   frame. Task: [`desert-nightmare-own-message-frame`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-own-message-frame.md).

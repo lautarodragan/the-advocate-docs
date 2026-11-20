@@ -54,6 +54,7 @@
 
 - [Decisions](decisions/README.md)
     - [RPG Maker 2000 PLUS](decisions/rm2k-plus.md)
+        - [ShowWindow: a window in a picture's place](decisions/show-window.md)
     - [First the whole game, then the quality](decisions/first-the-whole-game-then-the-quality.md)
     - [The game is playable without MSU-1](decisions/the-game-is-playable-without-msu-1.md)
     - [The MSU-1 is required only when the ROM does not reach](decisions/the-msu-1-is-required-only-when-the-rom-does-not-reach.md)
