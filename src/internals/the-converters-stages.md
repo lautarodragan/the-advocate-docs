@@ -69,7 +69,12 @@ compiler's own losses). Then the converter decides, for every map at once:
 
 - **the automatic common events with pictures, copied into each map** as
   one more event (`common_pages.rs`) —only on a map the trim left a free
-  row in: the copies come after the trim and spend what it left;
+  row in: the copies come after the trim and spend what it left—, but a
+  custom menu's, a counter's and the ones the project names in
+  `[events] commons_not_copied`: a copy is the common's whole bytecode in
+  every map's, and a long one pushes the maps' code past what
+  decompresses into WRAM, so it stays in the cartridge uncompressed
+  (Desert Nightmare's maps screen, common 14);
 - **which maps carry the timer's digits, the raindrops and the sandstorm's
   grains** (`scan.rs`): each costs those maps sprite tiles and a palette's
   room, decided before Wally sees the map;

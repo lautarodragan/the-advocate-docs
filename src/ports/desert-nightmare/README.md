@@ -11,9 +11,6 @@ as text.
   it cannot be climbed, and the middle of the gate north of the first
   street leads nowhere (its sides do). A second event on the same cell is
   never asked. Draft: [`a-second-event-on-a-cell-is-never-asked`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-second-event-on-a-cell-is-never-asked.md).
-* **No item can be used**: choosing the light bulb at the warehouse's
-  lamp does nothing, nor does any item anywhere. Draft:
-  [`desert-nightmare-items-cannot-be-used`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-items-cannot-be-used.md).
 * **The number locks do not open**: the warehouse's safe, a chest on day
   2, the tailor's door and a chest in the second vault. Draft:
   [`desert-nightmare-the-number-locks-do-not-open`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-number-locks-do-not-open.md).
