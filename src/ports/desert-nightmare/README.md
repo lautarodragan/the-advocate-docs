@@ -14,19 +14,19 @@ as text.
 * **After a note or a map is put away, the menu stands over the room
   instead of the burning face**, until it is closed and opened again.
   Draft: [`desert-nightmare-the-menu-loses-its-face-after-a-note`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-menu-loses-its-face-after-a-note.md).
-* **A map from the menu shows no mark of where Sandra is** on most maps:
+* **A map from the menu shows no mark of where Sandra is** on some maps:
   the mark is a small picture, and the map she stands on has no room for
   it. Draft: [`desert-nightmare-the-map-cursor-is-shared-on-ten-maps`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-map-cursor-is-shared-on-ten-maps.md).
 * **The menu's windows go away while a box is up** —"You have no items.",
   "Really quit?"— and come back when it closes; the original keeps its
   pictures under the box. See [ShowWindow](../../decisions/show-window.md).
-* **Most messages have no box**: the text goes straight over the map,
-  and the map's upper layer cuts it; one with a face gets the System's
-  frame. On the few maps where the game's own box is drawn —the tailor's,
-  123— it covers the letters of a box without a face: the tailor's number
-  lock opens with its code, but its digits cannot be read; and while it
-  fades in, before a message, it shows as broken lines across the screen
-  —the office, map 24—. Task: [`desert-nightmare-own-message-frame`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-own-message-frame.md).
+* **The message box does not fade**: it is up at once and gone at once,
+  where the original fades it in and out, and it closes and opens again
+  between two messages with something else in between —a wait, a sound—,
+  where the original keeps it up. It is 4 lines shorter, too. The box is
+  the console's message window with the game's frame; the menu's windows
+  have that frame as well. See [The message box is the message
+  window](decisions/the-message-box-is-the-message-window.md).
 * **Where nine or more characters stand on one line, the ones further
   back are cut** —a column missing, or gone—: the console draws 34
   slivers of 8 pixels a line and each character takes four. On 7 maps:
