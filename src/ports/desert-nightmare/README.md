@@ -72,6 +72,12 @@ as text.
 * **Two apartments keep their first background** where the original
   changes it: the dream one on map 34 and the one on map 82. Task:
   [`a-panorama-with-pictures-drawn-into-it-is-not-swapped`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-panorama-with-pictures-drawn-into-it-is-not-swapped.md).
+* **The warehouse's monster is not seen coming**: on its last room (28)
+  the room stays still for six seconds before the monster appears, where
+  the original shows its silhouette coming down from the roof; on its
+  first room (21) the shadow that crosses it is missing. The rooms have
+  no sprite tiles to spare for them. Draft:
+  [`desert-nightmare-the-warehouse-monster-is-not-drawn`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-warehouse-monster-is-not-drawn.md).
 
 ## The towns, painted (2026-11-19)
 
