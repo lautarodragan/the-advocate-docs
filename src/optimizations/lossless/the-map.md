@@ -216,10 +216,16 @@ them.
 - **Saves**: VRAM —a map of any size takes one window— and vblank time,
   since the strips are built while the screen is drawn.
 - **Costs**: what changes under a still camera is not redrawn by itself:
-  a `TileSubstitution` redraws the window one column per frame, on the
-  frames the camera leaves free.
-- **Where**: `stream_map`, `build_column` and `build_row` in
-  `runtime/map_window.s`; `push_strips` in `runtime/vblank.s`;
+  a `TileSubstitution` builds the screen's columns of the layer it
+  changes in its tick —a frame more of CPU— into the load buffer, and
+  uploads them in the next vblank, 34 DMAs that take 20 of its 37 lines
+  and leave the poses for the vblank after; a substitution that changes
+  both layers shows the upper one a frame later. The margins the screen
+  shake uncovers follow one column a frame, and a map that loops still
+  redraws its whole window that way, as every map did until 2026-11-20.
+- **Where**: `stream_map`, `build_column`, `build_row` and `sub_bulk` in
+  `runtime/map_window.s`; `push_strips` and `sub_upload` in
+  `runtime/vblank.s`;
   `sub_refresh` in `runtime/low_ram.s`.
 - **More**: the comments of those routines.
 
