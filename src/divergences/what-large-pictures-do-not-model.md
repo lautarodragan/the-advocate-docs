@@ -64,6 +64,13 @@ and they do not do everything they do in RM2k:
   rest of their pictures are still big ones. A translucent big one the rule
   does not take —zoomed, moved, placed by a variable— is listed in the
   build's `degradations.json` as `translucent-picture-hides-the-map`.
+  **And one that draws little is not a large one**, since 2026-11-21:
+  a file of the whole screen that the objects take in sixteen of them or
+  fewer —its transparent colour is no object— is a small picture, over the
+  map, and on a map without room for it, it is left out and the map is
+  seen. Desert Nightmare's warehouse drops its monster in four 320x240 files
+  that each draw a 14x19 silhouette, and the screen went black for six
+  seconds. See `sparse` in `pictures.rs` of rm2k-snes-convert.
 * **One faded to nothing is taken down**, since 2026-11-20: a
   `MovePicture` that takes a big picture to transparency 100 and waits,
   with no other big one seen by its page and no later move of the page
@@ -77,7 +84,9 @@ and they do not do everything they do in RM2k:
   when showing one and fourteen when erasing it, which reloads the map like
   the return from battle. The game's appear and go away over the black
   screen, except the photo on 212, which appears over the map with a
-  flicker.
+  flicker. After the reload the characters come back over three or four
+  frames, as black boxes first. Draft:
+  [`the-map-comes-back-in-pieces-after-a-big-picture`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-map-comes-back-in-pieces-after-a-big-picture.md).
 * **The screen flash is not visible over it**, nor the tint —which RM2k does
   not apply to pictures either—: both are the map's palette, and the
   picture's is another one. The white on 213, 214 and 216, which starts
