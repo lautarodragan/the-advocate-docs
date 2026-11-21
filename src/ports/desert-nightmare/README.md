@@ -7,11 +7,16 @@ current: whoever fixes one removes its line in the same change. The work
 behind each one is a draft or a task in the tasks repository, named here
 as text.
 
-* **The menu's keys, notes and maps screens draw nothing**: B's options
-  and the inventory are windows of the System since 2026-11-20 —text where
-  the original has pictures, a name where it has an item's icon—, but
-  those three screens still take the buttons over the burning face with
-  nothing on it. Draft: [`desert-nightmare-the-game-s-menu-draws-nothing`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-game-s-menu-draws-nothing.md).
+* **The menu is windows of the System, not the original's pictures**:
+  text where the original draws, a name where it has an icon —cut to its
+  square: "Room No. 4" for the room key— and the full name in the box
+  below. See [ShowWindow](../../decisions/show-window.md).
+* **After a note or a map is put away, the menu stands over the room
+  instead of the burning face**, until it is closed and opened again.
+  Draft: [`desert-nightmare-the-menu-loses-its-face-after-a-note`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-menu-loses-its-face-after-a-note.md).
+* **A map from the menu shows no mark of where Sandra is** on most maps:
+  the mark is a small picture, and the map she stands on has no room for
+  it. Draft: [`desert-nightmare-the-map-cursor-is-shared-on-ten-maps`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-map-cursor-is-shared-on-ten-maps.md).
 * **The menu's windows go away while a box is up** —"You have no items.",
   "Really quit?"— and come back when it closes; the original keeps its
   pictures under the box. See [ShowWindow](../../decisions/show-window.md).
