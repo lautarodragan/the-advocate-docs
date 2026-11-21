@@ -57,6 +57,11 @@ as text.
   its opening scene has played: the light drawn into it is the one the
   scene leaves, not the one the room shows each time it is entered. Draft:
   [`desert-nightmare-the-warehouse-is-darker`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-warehouse-is-darker.md).
+* **The safe's and the shrine's locks do not open their screen** (maps
+  115 and 161): their symbols stand frozen in the room from the start,
+  and looking at the lock shows its instruction and nothing more, where
+  the original opens a plate with four wheels that turn. Draft:
+  [`desert-nightmare-the-locks-pictures-are-drawn-into-their-rooms`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-locks-pictures-are-drawn-into-their-rooms.md).
 * **Two apartments keep their first background** where the original
   changes it: the dream one on map 34 and the one on map 82. Task:
   [`a-panorama-with-pictures-drawn-into-it-is-not-swapped`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-panorama-with-pictures-drawn-into-it-is-not-swapped.md).
