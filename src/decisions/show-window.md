@@ -73,6 +73,16 @@ game written for PLUS asks for a window with no picture behind it.
   2026-11-20 an id had room for the widest text of each of its lines, and
   Desert Nightmare's keys and notes, its inventory's windows with other
   text, did not fit beside it.
+- **A change shows on one frame** (taro's report, 2026-11-21): a window's
+  new text is composed into a run of text tiles the screen does not show
+  and no other window up takes, a line a vblank, while the old text stays
+  on the screen; then the screen's rows that changed and the HDMA's tables
+  go up in one vblank. The fixed tiles per id are what guarantees that the
+  windows up together fit, and where a window's text goes when no other
+  run is free —then it changes a line at a time on the screen, as every
+  window did until that day—. A stage in RAM put up whole with the rows
+  was tried first: a description box's text and the rows were more than
+  the twenty lines the menu's vblank has left.
 - **A big picture covers the windows under its number**, as a picture
   covers the lower ones in RM2k: the big ones are a background layer, under
   the windows', so after a big picture's `ShowPicture` the windows with a

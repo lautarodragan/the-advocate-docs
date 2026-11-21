@@ -566,16 +566,22 @@ Since 2026-11-20, RPG Maker 2000 PLUS's `ShowWindow` —see
 message window's** either, and so fits on every map. While no message is
 open its windows own the window's 32x32 tilemap and its 240 text tiles:
 
-- **The tiles**: each window id of the game has a fixed run of the text
-  tiles —the compiler's `windows.rs` numbers them, the most one window of
-  that id takes, two rows of cells per line, each line after the ones
-  before it— and the last text tile,
+- **The tiles**: a window's text is a run of the text tiles, two rows of
+  cells per line, each line after the ones before it. The run is chosen
+  each time its text is composed: one the screen does not show and no
+  other window up takes, so that the old text stays until the new one is
+  whole. Each window id of the game also has a fixed run —the compiler's
+  `windows.rs` numbers them, the most one window of that id takes—, which
+  is what guarantees the windows up together fit, and where a window goes
+  when no other run is free. The last text tile,
   239, holds the System's background for the cells no text covers. The
   frame's cells are the message window's own, from its framed plane.
 - **The tilemap**: the screen from the first cell row a window covers to
   the last is composed whole in WRAM —the layer above's tilemap entries,
   read out of VRAM, and every window over them in the order of its id—
-  and goes to the window's tilemap from its row 20 on, wrapping. A span of
+  and goes to the window's tilemap from its row 20 on, wrapping; after
+  the first time, only the rows a change touched are read, composed and
+  put up, together with the HDMA's tables, in one vblank. A span of
   twelve rows or fewer leaves the message's two planes, rows 0 to 19, as
   they are; a taller one writes over them, and they are put back before a
   message shows. HDMA points BG2 at it on the span's lines, with the
