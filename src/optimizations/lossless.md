@@ -20,6 +20,7 @@ One page per part of the port:
 * [A painted map keeps only what the screen shows](lossless/the-map.md#a-painted-map-keeps-only-what-the-screen-shows)
 * [A panorama gets only the layer it needs](lossless/the-map.md#a-panorama-gets-only-the-layer-it-needs)
 * [The pictures that stay put are drawn into the map](lossless/the-map.md#the-pictures-that-stay-put-are-drawn-into-the-map)
+* [Several drawings of one place: their common part in the map, each one's own as a sprite](lossless/the-map.md#several-drawings-of-one-place-their-common-part-in-the-map-each-ones-own-as-a-sprite)
 * [The tilemap is a window the camera fills at its edges](lossless/the-map.md#the-tilemap-is-a-window-the-camera-fills-at-its-edges)
 * [The ChipSet animation is one DMA, on the tick it changes](lossless/the-map.md#the-chipset-animation-is-one-dma-on-the-tick-it-changes)
 * [A cell's terrain is its block's, and a flat map's is one byte](lossless/the-map.md#a-cells-terrain-is-its-blocks-and-a-flat-maps-is-one-byte)

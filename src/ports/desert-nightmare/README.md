@@ -36,9 +36,6 @@ as text.
 * **Sandra's name and the other coloured words have fewer shades** than
   RM2k's gradient, and the message window one colour less: its last entry
   is the box's ink. See [What message escapes do not model](../../divergences/what-message-escapes-do-not-model.md#the-colour).
-* **The start menu ("With Intro / No Intro / Quit") shows over a pattern of
-  garbage** instead of the burning face behind it. Draft:
-  [`desert-nightmare-start-menu-over-garbage`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-start-menu-over-garbage.md).
 * **Some doors, lights and people show up late, or not at all,** on 7
   maps —the first street (2), the exit (35), the mines (102, 105), the
   workshop's cellar and the vault (137, 138), the old mine settlement
@@ -67,6 +64,11 @@ as text.
   its opening scene has played: the light drawn into it is the one the
   scene leaves, not the one the room shows each time it is entered. Draft:
   [`desert-nightmare-the-warehouse-is-darker`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-warehouse-is-darker.md).
+* **The safe's and the shrine's locks do not open their screen** (maps
+  115 and 161): their symbols stand frozen in the room from the start,
+  and looking at the lock shows its instruction and nothing more, where
+  the original opens a plate with four wheels that turn. Draft:
+  [`desert-nightmare-the-locks-pictures-are-drawn-into-their-rooms`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-locks-pictures-are-drawn-into-their-rooms.md).
 * **Two apartments keep their first background** where the original
   changes it: the dream one on map 34 and the one on map 82. Task:
   [`a-panorama-with-pictures-drawn-into-it-is-not-swapped`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-panorama-with-pictures-drawn-into-it-is-not-swapped.md).
