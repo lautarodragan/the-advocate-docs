@@ -567,8 +567,9 @@ message window's** either, and so fits on every map. While no message is
 open its windows own the window's 32x32 tilemap and its 240 text tiles:
 
 - **The tiles**: each window id of the game has a fixed run of the text
-  tiles —the compiler's `windows.rs` numbers them, the widest text each of
-  its lines ever has, two rows of cells per line— and the last text tile,
+  tiles —the compiler's `windows.rs` numbers them, the most one window of
+  that id takes, two rows of cells per line, each line after the ones
+  before it— and the last text tile,
   239, holds the System's background for the cells no text covers. The
   frame's cells are the message window's own, from its framed plane.
 - **The tilemap**: the screen from the first cell row a window covers to
@@ -580,7 +581,8 @@ open its windows own the window's 32x32 tilemap and its 240 text tiles:
   message shows. HDMA points BG2 at it on the span's lines, with the
   camera on the rest, as it does for a message; and over a big picture,
   which moves the window's tilemap, at the window's tilemap where the big
-  picture put it.
+  picture put it. The windows with a lower id than the big picture up are
+  left out of it: the picture covers them.
 
 A message that opens takes the windows off the screen —its line writes
 their tiles— and they are drawn again, text and all, when it closes. The

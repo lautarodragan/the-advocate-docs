@@ -64,12 +64,21 @@ game written for PLUS asks for a window with no picture behind it.
   the box is up. Windows beside a message —in objects, as the inn's gold
   window— are the second stage, if a game asks for it.
 - **The text tiles are fixed per window id for the whole game**: each id
-  gets, line by line, the widest text that line ever has, and every id of
-  the game together has to fit 239 tiles —the 240th is the windows'
-  background—. The build says by how much when they do not. It is the
-  tight limit: Desert Nightmare's menu and inventory take about 230, and
-  its keys screen, the same grid with longer names, does not fit beside
-  them.
+  gets the most that one `@window` of it takes —its lines packed, two rows
+  of cells each—, and every id of the game together has to fit 239 tiles
+  —the 240th is the windows' background—. The build says by how much when
+  they do not. Two windows of the same id are never up together, as two
+  pictures of the same number are not, so a grid of six squares serves
+  the inventory, the keys and the notes with the same tiles. Until
+  2026-11-20 an id had room for the widest text of each of its lines, and
+  Desert Nightmare's keys and notes, its inventory's windows with other
+  text, did not fit beside it.
+- **A big picture covers the windows under its number**, as a picture
+  covers the lower ones in RM2k: the big ones are a background layer, under
+  the windows', so after a big picture's `ShowPicture` the windows with a
+  lower id are left off the screen, and its `ErasePicture` puts them back.
+  Desert Nightmare's notes and maps are big pictures over its menu's
+  windows.
 - **The layer above stays beside a window narrower than the screen**
   (taro's requirement, 2026-10-19): on the lines a window covers, the
   window's tilemap carries the layer above's entries in every cell no
