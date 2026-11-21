@@ -70,6 +70,15 @@ What the ROM does not do that RM2k does:
 * **A mist that goes with the screen on a map that scrolls is repeated over
   the whole map**, from where it is shown, and moves with the map; its wave
   and its drift are not done.
+* **A small picture under a lower number than an opaque one drawn in goes
+  behind it, and behind the layer above the hero too.** RM2k shows a
+  higher number over a lower one, and since 2026-11-21 such a picture goes
+  at the characters' object priority instead of 3, behind the cells the
+  opaque one raised: Desert Nightmare's dog, picture 1, runs behind the
+  warehouse's roof, picture 2, on map 11, where it ran over it. So it also
+  goes behind the ChipSet's layer above the hero, which RM2k draws under
+  every picture, and the events "above the hero" go over it. See
+  `behind_map` in `pictures.rs` of rm2k-snes-convert.
 * **The events "above the hero" go in front of the roofs**: they are
   objects at priority 2, in front of BG2.
 * **A map with such pictures is not baked**: its panorama goes in BG2 at 4

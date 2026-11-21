@@ -50,7 +50,10 @@ not do everything they do in RM2k:
   get banded, and a colour few pixels use can go —the title of Zounds'
   record-player bar comes out the bar's blue—.
 * **They go above the message window**: object priority 3, which is the one
-  from before. In RM2k the window covers the pictures.
+  from before. In RM2k the window covers the pictures. But for one under a
+  lower number than a picture drawn into its map, which goes at the
+  characters' priority: see [Pictures drawn into the
+  map](pictures-drawn-into-the-map.md).
 * **The ones tied to the screen are scaled to 256x224, the map's are not**:
   on the console the map is not shrunk, so a picture attached to it keeps
   its pixels and only its zoom is applied. Nor are a port's own pictures
