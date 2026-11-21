@@ -61,8 +61,11 @@ What the ROM does not do that RM2k does:
   each with its own lit, and the arrows swap them: drawn in as one, the
   arrows changed nothing on the screen. A screen the player opens is not
   split: Desert Nightmare's locks (115, 161) are drawn in as before, one
-  symbol frozen in the room. See `Parts` in `map_pictures.rs` of
-  rm2k-snes-convert.
+  symbol frozen in the room. **A known bug**: the common part stays drawn
+  after the game's `ErasePicture` of the number —task
+  [`a-picture-s-common-part-stays-after-it-is-erased`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-picture-s-common-part-stays-after-it-is-erased.md)—.
+  See `Parts` in `map_pictures.rs` of rm2k-snes-convert, and [its entry
+  among the optimizations](../optimizations/lossless/the-map.md#several-drawings-of-one-place-their-common-part-in-the-map-each-ones-own-as-a-sprite).
 * **The screen's tint tints them**, which RM2k does not do to pictures.
 * **A mist that goes with the screen on a map that scrolls is repeated over
   the whole map**, from where it is shown, and moves with the map; its wave

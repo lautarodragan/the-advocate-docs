@@ -174,6 +174,37 @@ Their commands are then accepted without being done.
   `rm2k-snes/wally/src/`.
 - **More**: [Pictures drawn into the map](../../divergences/pictures-drawn-into-the-map.md).
 
+## Several drawings of one place: their common part in the map, each one's own as a sprite
+
+A game can draw a whole screen once per state and swap the drawings under
+one picture number: Desert Nightmare's start menu (map 1) is three
+320x240 pictures of its three options, each with its own box lit. When
+every show of a number on a map is one of such drawings —the same size
+and place, opaque, shown from pages that run on their own, none a scene's
+its page erases— the converter draws what most of them have into the map,
+and each `ShowPicture` shows only what its drawing has of its own, as a
+small picture that goes with the map, where the common part is.
+
+- **Saves**: measured on that menu on 2026-11-20. The three drawings
+  whole are 594 non-empty 8x8 cells —385 distinct— in 117 colours, more
+  than the 256 tiles the plane of objects gives the pictures: they would
+  be big pictures, one at a time in BG1 with the map hidden and the screen
+  off on each swap. Their own parts are 3920 pixels, 198 cells in 58
+  colours, and the cartridge carries them in 50 objects and 260 tiles in
+  two sprite palettes, over the burning face that stays.
+- **Not lossless when**: the drawings' colours are reduced to the 15 of a
+  sprite palette each; and before the first show the common part alone
+  is seen, which, where every drawing differs, is a drawing of none of
+  them.
+- **Known bug**: the common part stays drawn after the game's
+  `ErasePicture` of the number. Task:
+  [`a-picture-s-common-part-stays-after-it-is-erased`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-picture-s-common-part-stays-after-it-is-erased.md).
+- **Where**: `Parts` in `rm2k-snes/convert/src/map_pictures.rs`; the
+  parts' keys in `maps.rs` and `pictures.rs` there; `with_map` in
+  `rm2k-snes/events/src/registry.rs`; the file Wally draws, `path` in
+  `rm2k-snes/wally/src/map_pictures.rs`.
+- **More**: [Pictures drawn into the map](../../divergences/pictures-drawn-into-the-map.md).
+
 ## The tilemap is a window the camera fills at its edges
 
 The map's tilemaps in VRAM are a window of 64 columns by 32 rows that
