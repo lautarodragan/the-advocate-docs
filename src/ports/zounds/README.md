@@ -261,9 +261,10 @@ current: whoever fixes one removes its line in the same change.
   shown as a picture keeps its fifteen most used colours, and they are all
   her skin's. Draft:
   [`a-small-picture-s-fifteen-colours-lose-a-whole-hue`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-small-picture-s-fifteen-colours-lose-a-whole-hue.md).
-* **In the menu, the shops and the battle the accents are lost**: the text
-  screens draw ASCII, so the hero is "Uname" there and an item's
-  "Líquido" is "Liquido". The message boxes draw them. See
+* **The boxes shown in battle lose their accents**: a box a troop page
+  shows draws each letter as its plain stand-in, `é` as `e` and `¡` as
+  `!`. The menu, the shops, the battle's lists and lines and every other
+  box draw them. See
   [Letters the font does not have](../../divergences/letters-the-font-does-not-have.md).
 * **The boxes shown in battle have no icons**: an item's icon in a box a
   troop page shows —the prize's "Objeto Especial Veneno"— is left out, as

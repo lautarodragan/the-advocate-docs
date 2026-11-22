@@ -48,10 +48,6 @@ as text.
   [What `ChangeMapTileset` does not model](../../divergences/what-changemaptileset-does-not-model.md);
   draft:
   [`changemaptileset-is-not-done`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/changemaptileset-is-not-done.md).
-* **In the menu, the shops and the battle the umlauts are lost**: the text
-  screens draw ASCII, so "Rüstung" is "Rustung" and the gold is
-  "Goldmunzen" there, and an `ß` is `ss`. The message boxes draw them. See
-  [Letters the font does not have](../../divergences/letters-the-font-does-not-have.md).
 * **Coloured words have fewer shades than RM2k's gradient, and a second
   colour in the same box comes out in the window's own shades** —"Valnar
   is a young warrior from Limm" with the town in another colour than the
