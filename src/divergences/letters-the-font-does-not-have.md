@@ -68,6 +68,13 @@ draws all of them and counts which the boxes use
 line. The letters go to the screens stage in `messages.letters`, whose
 glyphs `font_bytes_with` puts after the console's 96 in the message
 window's tables, and the pairs start after them, `MESSAGE_PAIR_FIRST`.
+The text screens' stand-ins are the screens stage's `item_text` for what
+it writes, and the mapdata stage's `plain` and `db_text` for the database's
+texts the battle's text block takes —a skill's name, description and
+using messages, an enemy's name, a condition's messages—; `db_text` keeps
+the ExFont icons. Until 2026-11-22 those battle texts went raw, and each
+accent was a `?`: Zounds' "Látigo de Seda" read "L?tigo de Seda". Task:
+[`zounds-skill-names-show-a-question-mark-for-an-accent`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-skill-names-show-a-question-mark-for-an-accent.md).
 Tested by the test game's `test_plain_letters.py`, a box with letters drawn
 and letters plain, and the ports' `test_zounds.py`, the talk with the
 guards on map 8 that goes on to map 9. Task:
