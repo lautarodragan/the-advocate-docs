@@ -156,7 +156,12 @@ then walks on his own, an airship. A cell with a tile a `TileSubstitution`
 names stays above too, because its block is swapped by tile. **The one
 thing taken on trust** is a `RecallToLocation` to a place the game works
 out —ABL recalls the hero's cell five rows up—: it is taken to be a cell
-one can step on, of any map.
+one can step on, of any map, or, when the variable that holds the recall's
+map is only ever set to numbers, of those maps. Test pages count as the
+game's here: in A Blurred Line a test case that divided that variable sent
+the hero, for the converter, to every map, and taking it out drew still
+events into the background of maps the case never visited —see
+[`abl-the-moved-tests-cases-leave-its-maps`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-the-moved-tests-cases-leave-its-maps.md)—.
 
 The converter's log says, map by map, `N cells draw their tiles above the
 hero below`. What it does not follow is variables: Zounds' map 96 keeps
