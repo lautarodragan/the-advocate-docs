@@ -114,6 +114,20 @@ two neighbouring rows draw alike. They ask the RAM, not the screen, so no
 goldens came with them. The task is
 [`the-test-game-takes-the-harness-and-the-first-ten-tests`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-test-game-takes-the-harness-and-the-first-ten-tests.md).
 
+**And the same day, what no test looked at**: `EraseEvent`'s three
+runtime paths —the erased event's row hidden and its route let go, its
+pages never met, a parallel page cut where it erases its own event— were
+checked only by playing Desert Nightmare. The erasure, map 14, has a
+statue on the hero's layer and a walking pacer with a parallel page, both
+erasing themselves, and `test_erase_event.py` asks the screen whether
+they are still drawn —their cells against the same grass three cells
+over—, and the RAM whether the hero walks through, whether the pacer
+still walks and whether what follows the erase ran; and what A Blurred
+Line's test asks of an invisible event —the foreground page goes on, the
+other pages do not start, a load of the map brings it back—, with a jump
+to the same map that does not. Each path was seen red broken. The task is
+[`eraseevent-no-test-looks-at-what-is-seen`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/eraseevent-no-test-looks-at-what-is-seen.md).
+
 Of the seven assumptions about A Blurred Line the research found in the
 tools when it first wrote a game from scratch, four are gone —a debug map
 the project had to carry, a single-map game not building, a fallback
