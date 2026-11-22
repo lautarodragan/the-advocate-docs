@@ -48,9 +48,10 @@ tests.
   The harness was a small one of its own and the core driver a copy of A
   Blurred Line's, until the harness's generic part came over on
   2026-11-22: see below.
-* **The cases**: `test-game/cases/`, one JSON per test page, like a
-  port's; the harness chooses one by the case variable before the first
-  game frame, the way A Blurred Line's does.
+* **The cases**: until 2026-11-22, `test-game/cases/`, one JSON per test
+  page, like a port's, which the harness chose by the case variable before
+  the first game frame, the way A Blurred Line's does. Since then they are
+  the game's own: see "Playable by hand" below.
 * **What moved out of A Blurred Line**: switches past 1023, on 2026-10-15
   —`test_switches_past_1023.py`: a page conditioned on 1100, a
   `ControlSwitches` and a branch on it, and the page not running before
@@ -128,6 +129,22 @@ other pages do not start, a load of the map brings it back—, with a jump
 to the same map that does not. Each path was seen red broken. The task is
 [`eraseevent-no-test-looks-at-what-is-seen`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/eraseevent-no-test-looks-at-what-is-seen.md).
 
+**And on the same day, playable by hand**: taro asked for a build where
+everything the tests reach can be reached by playing, and then that the
+tests play it too —"mocking is a code smell"—. The meadow is the hub: a
+signpost, the guide, teleports to every map; a board right below where the
+hero starts, the tester, runs every case from `ShowChoice` menus, with the
+hero where the harness had them at boot; an item, the Way Home, brings the
+hero back from anywhere. The cases moved from `cases/` to `tester/`, and
+`hub.toml` says the menus, which `just hub` writes into the meadow. The
+tests boot and walk to the signpost or the board, and keep a shortcut only
+where playing cannot get there, which each says on its line. `just
+deliver` leaves the build for taro. The hub is on the meadow and not on a
+map of its own because the converter puts test pages on the map the
+cartridge boots on, and half the cases run against the meadow's events.
+The task is
+[`the-test-game-playable-by-hand`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-test-game-playable-by-hand.md).
+
 Of the seven assumptions about A Blurred Line the research found in the
 tools when it first wrote a game from scratch, four are gone —a debug map
 the project had to carry, a single-map game not building, a fallback
@@ -147,7 +164,7 @@ In the order the research gives, each a task of its own:
    Blurred Line is its walkthrough and its places.
 2. **The cases**: the rest of `tests/rpgmaker/` in A Blurred Line —phase
    3, the rest of M1— moving over one by one into the test game's
-   `cases/`, each with goldens born anew —and looked at once, since a new
+   `tester/`, each offered by the tester's menus and with goldens born anew —and looked at once, since a new
    golden defends whatever the ROM drew that day—.
 3. **What the moved tests need**, as they need it: more maps, a title,
    battles —with backdrops and enemies made for it—, music from
