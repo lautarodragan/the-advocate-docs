@@ -34,6 +34,13 @@ as text.
   `[windows.background]` —the wood's grain and the stone's joints are
   lost—, and `Stone`'s frame loses most of its 57 colours to fit in the
   starting System's fifteen. See [What `ChangeSystemGraphics` does not model](../../divergences/what-changesystemgraphics-does-not-model.md).
+* **Tradan (map 170) shows only clouds**: the town, its people and the
+  hero are not drawn, though the game goes on underneath. The original
+  drifts a translucent layer of clouds over the town; on the console it
+  is a big picture, which takes the map off the screen. See [What large
+  pictures do not model](../../divergences/what-large-pictures-do-not-model.md);
+  draft:
+  [`vampires-dawn-tradan-is-hidden-under-its-clouds`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vampires-dawn-tradan-is-hidden-under-its-clouds.md).
 * **An event page that uses any variable past the 256th does nothing**:
   the game names more, and those pages are left out. Which scenes that
   touches was not looked at. Draft: [`variables-are-capped-at-256-slots`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/variables-are-capped-at-256-slots.md).
