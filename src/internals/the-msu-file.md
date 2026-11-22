@@ -216,7 +216,8 @@ package, in the order of the table, and inside each one in SRCN order,
 which is how `upload_placed` uploads them. That way a package that goes up
 at once —a battle's, the boot's— **seeks once** and reads straight
 through; an effect that is in two packages goes twice. A teleport's go up
-one at a time, when each is first asked for, each with its own seek: see
+after its fade, in pieces in the idle end of the ticks or whole when one is
+asked for, seeking again whenever another reader moved the stream: see
 [a teleport's sound effects go up when they are
 needed](../optimizations/lossless/audio.md#a-teleports-sound-effects-go-up-when-they-are-needed). `cartridge::msu` in `rm2k-snes-audio` writes it, and also emits
 what the ROM needs: `se_msu_pkg` and `se_msu_rows` —where each effect of

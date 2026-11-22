@@ -180,8 +180,9 @@ does not wait for them: they go up block by block in the idle end of the
 game's ticks once the map is playing —`package_idle_l`, from the main
 loop, stopping before line 180 and never in a tick that overran—, and an
 effect asked for while it still waits goes up whole right then, before
-it starts (`effect_now_l`, from `sound_play`). The ones from the `.msu`,
-which only go up whole, wait for that moment. A new package lets go of
+it starts (`effect_now_l`, from `sound_play`). The ones from the `.msu`
+go up the same way, in pieces, each piece seeking only if the stream was
+left somewhere else (`se_msu_chunk`). A new package lets go of
 what the previous one left waiting instead of uploading it. A `PlayBGM`
 that rebuilds the same package keeps its effects waiting; any other load
 outside a fade —a battle's, the boot's, a save's— uploads everything at
@@ -201,10 +202,11 @@ uploaded every effect again.
 - **Costs**: an effect that plays before its turn freezes the picture
   while it goes up —a few frames for one from the cartridge, up to some
   fifteen for a 22 kHz one from the `.msu`—, with the music going on; and
-  with the `.msu`, that effect's seek, one per effect instead of one per
-  package.
+  with the `.msu`, a seek whenever another reader moved the stream between
+  two pieces.
 - **Where**: `upload_placed`, `package_drop`, `package_idle_l`,
   `effect_now_l`, `pump` and `PKG_WHOLE` in `runtime/audio_package.s`;
-  the calls in `sound_play`, in `runtime/sound_effects.s`, and in the main
-  loop, in `runtime/boot.s`.
+  `se_msu_chunk` in `runtime/msu_effects.s`; the hook in `count_lost`, in
+  `runtime/boot.s`, and the one in `sound_play`, in
+  `runtime/sound_effects.s`.
 - **More**: the comments in `upload_placed` and `package_load_done`.
