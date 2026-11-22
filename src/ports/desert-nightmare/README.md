@@ -13,13 +13,7 @@ as text.
   below. See [ShowWindow](../../decisions/show-window.md).
 * **After a note or a map is put away, the menu stands over the room
   instead of the burning face**, until it is closed and opened again.
-  Draft: [`desert-nightmare-the-menu-loses-its-face-after-a-note`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-menu-loses-its-face-after-a-note.md).
-* **On most maps the menu's burning face goes black past its first
-  screen**: behind the options it shows, a little off; behind the
-  inventory, the keys, the notes and the maps there is black, with a
-  sliver of the face at the right edge. On every painted map —the towns,
-  the one-screen interiors—. Draft:
-  [`desert-nightmare-the-menu-s-face-is-lost-on-painted-maps`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-menu-s-face-is-lost-on-painted-maps.md).
+  Task: [`desert-nightmare-the-menu-loses-its-face-after-a-note`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-menu-loses-its-face-after-a-note.md).
 * **A map from the menu shows no mark of where Sandra is** on some maps:
   the mark is a small picture, and the map she stands on has no room for
   it. Draft: [`desert-nightmare-the-map-cursor-is-shared-on-ten-maps`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-map-cursor-is-shared-on-ten-maps.md).
