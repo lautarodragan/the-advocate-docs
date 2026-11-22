@@ -154,12 +154,12 @@ but its samples are not uploaded there: only the song the map turns on
 goes up at once, when `music_start` asks for it, and the rest is uploaded
 block by block in the ticks of the fade that follow, which are frozen and
 idle, stopping each one before the vblank and before the music's IRQ.
-On the last black tick, what the ramp up could not take goes up at once,
-still in the black —and every sample that only goes up whole, the effects
-from the `.msu`—, so no tick of the ramp lasts longer; and the fade does
-not end until the package is complete. Nothing can sound in
-between —the world is frozen and the effects of the map left behind were
-silenced—, and the ARAM and the directory end up the same.
+On the last black tick, what of the music the ramp up could not take goes
+up at once, still in the black, so no tick of the ramp lasts longer; and
+the fade does not end until the package's music is complete. Nothing can
+sound in between —the world is frozen and the effects of the map left
+behind were silenced—, and the ARAM and the directory end up the same.
+The sound effects do not hold the fade: see the next one.
 
 - **Saves**: loading time. Measured on 2026-10-18 over 200 of A Blurred
   Line's door pairs without MSU-1, the uploads were 17 of the 30 frames a
@@ -172,3 +172,41 @@ silenced—, and the ARAM and the directory end up the same.
   `runtime/audio_package.s`; `LOAD_DEFER` and `fade_tick` in
   `runtime/enter_map.s`.
 - **More**: the comments in `upload_placed` and `package_settle`.
+
+## A teleport's sound effects go up when they are needed
+
+A teleport's package places its sound effects with the rest, but the fade
+does not wait for them: they go up block by block in the idle end of the
+game's ticks once the map is playing —`package_idle_l`, from the main
+loop, stopping before line 180 and never in a tick that overran—, and an
+effect asked for while it still waits goes up whole right then, before
+it starts (`effect_now_l`, from `sound_play`). The ones from the `.msu`
+go up the same way, in pieces, each piece seeking only if the stream was
+left somewhere else (`se_msu_chunk`). A new package lets go of
+what the previous one left waiting instead of uploading it. A `PlayBGM`
+that rebuilds the same package keeps its effects waiting; any other load
+outside a fade —a battle's, the boot's, a save's— uploads everything at
+once, as before. And **the package that is already in ARAM, whole,
+uploads nothing**: a jump within the same map, which with the `.msu`
+uploaded every effect again.
+
+- **Saves**: the black stall of a jump between two maps whose packages do
+  not fit together. The case is The Frozen World's battle, whose every
+  turn jumps from the command grid, map 3, to the battle screen, map 1,
+  and back: measured on 2026-11-22 over the game's own turn, the two
+  jumps went from 81 and 57 frames over their ticks to 33 and 39 without
+  MSU-1, and from 122 and 124 to 33 and 37 with the `.msu`; the black
+  tick of each, from 64 and 33 frames —105 and 102— to 16, which is the
+  map's load. See
+  [`frozen-world-every-turn-re-uploads-the-battle-screens-audio`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/frozen-world-every-turn-re-uploads-the-battle-screens-audio.md).
+- **Costs**: an effect that plays before its turn freezes the picture
+  while it goes up —a few frames for one from the cartridge, up to some
+  fifteen for a 22 kHz one from the `.msu`—, with the music going on; and
+  with the `.msu`, a seek whenever another reader moved the stream between
+  two pieces.
+- **Where**: `upload_placed`, `package_drop`, `package_idle_l`,
+  `effect_now_l`, `pump` and `PKG_WHOLE` in `runtime/audio_package.s`;
+  `se_msu_chunk` in `runtime/msu_effects.s`; the hook in `count_lost`, in
+  `runtime/boot.s`, and the one in `sound_play`, in
+  `runtime/sound_effects.s`.
+- **More**: the comments in `upload_placed` and `package_load_done`.
