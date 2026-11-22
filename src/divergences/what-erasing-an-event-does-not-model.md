@@ -34,6 +34,9 @@ graphic.
 It is not seen. `tests/rpgmaker/test_erase_event_for_real.py`, in the
 ABL port (the-advocate-ports/abl), enforces what the test event lets you look
 at —that a foreground page keeps going, that the others do not start, and
-that reloading the map brings it back—; what is drawn, what blocks and the
-parallel page that gets cut are covered by playing the cartridge of a game
-that erases events with a graphic.
+that reloading the map brings it back—. What is drawn, what blocks and the
+parallel page that gets cut are enforced by the test game's
+`tests/test_erase_event.py`, in the-advocate, since 2026-11-22: a statue on
+the hero's layer that erases itself is not drawn and lets the hero through,
+and a walking event whose parallel page erases it stops there, is not drawn
+and walks no more.
