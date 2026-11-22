@@ -27,6 +27,14 @@ in the [divergences](../../divergences/README.md), not here.
   [`build-oam-costs-a-third-of-the-frame-on-busy-maps`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/build-oam-costs-a-third-of-the-frame-on-busy-maps.md)
   and
   [`the-on-screen-timer-is-expensive-to-draw`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-on-screen-timer-is-expensive-to-draw.md).
+* **The doors of Lashe City's big maps stay black a moment longer** than
+  the original's: a quarter to a third of a second more, decompressing the
+  map's tiles, grid and sprites (maps 8, 9, 11 and 38); without MSU-1, up
+  to a quarter of a second more on some, uploading songs the map is not
+  playing. Drafts:
+  [`a-map-load-still-decompresses-inside-its-tick`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-map-load-still-decompresses-inside-its-tick.md)
+  and
+  [`the-fades-last-black-tick-uploads-songs-the-map-is-not-playing`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-fades-last-black-tick-uploads-songs-the-map-is-not-playing.md).
 * **An actor raised in battle gets up with its conditions**: one that fell
   poisoned and is raised with a Phoenix Down in the same battle is still
   poisoned, and its turns take HP; in the original the fall takes the
