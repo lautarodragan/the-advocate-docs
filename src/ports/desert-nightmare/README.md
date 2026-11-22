@@ -13,7 +13,7 @@ as text.
   below. See [ShowWindow](../../decisions/show-window.md).
 * **After a note or a map is put away, the menu stands over the room
   instead of the burning face**, until it is closed and opened again.
-  Draft: [`desert-nightmare-the-menu-loses-its-face-after-a-note`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-menu-loses-its-face-after-a-note.md).
+  Task: [`desert-nightmare-the-menu-loses-its-face-after-a-note`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-menu-loses-its-face-after-a-note.md).
 * **A map from the menu shows no mark of where Sandra is** on some maps:
   the mark is a small picture, and the map she stands on has no room for
   it. Draft: [`desert-nightmare-the-map-cursor-is-shared-on-ten-maps`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-map-cursor-is-shared-on-ten-maps.md).
@@ -101,6 +101,13 @@ distinct cell once: [the MSU-1 is required, for now](decisions/the-msu-1-is-requ
 undone on 2026-11-20.
 Which maps, and why not the others, is said by the project's
 `advocate.toml`.
+
+On 2026-11-22 the 42 one-screen interiors went painted too: they had been
+left out because the message box's two pictures did not fit beside a
+painting, and since the box is the message window those are never shown.
+Their furniture, which as characters stood lit over the room's light, is
+painted under it, as RPG_RT draws it. Task:
+[`desert-nightmare-interiors-painted-now-that-the-box-is-a-window`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-interiors-painted-now-that-the-box-is-a-window.md).
 
 ## The nights that scroll, tinted (2026-11-19)
 
