@@ -19,8 +19,10 @@ as text.
   should hide him. Draft: [`events-above-the-hero-over-the-painted-roofs`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/events-above-the-hero-over-the-painted-roofs.md).
 * **On the square, some roof edges cover too much or too little.** The
   square has more roof edges than the cartridge keeps, and the rest are
-  left out. A guard at (36,13) has his legs over a roof's edge, likely
-  one of those; not checked. Draft: [`roof-edges-that-dont-fit-in-the-127`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/roof-edges-that-dont-fit-in-the-127.md).
+  left out. The guard at (36,13) has his legs over the orange roof's
+  edge, and the hero beside the green tent at (26,12) shows whole over
+  it; on the summer square, map 3, the hero is drawn over the bunting.
+  Task: [`roof-edges-that-dont-fit-in-the-127`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/roof-edges-that-dont-fit-in-the-127.md).
 * **Characters are not shaded or lit** by the painted shadows, lights and
   fogs, which only touch the painting.
 * **In the busiest towns some people appear late**: when more of them are
