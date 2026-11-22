@@ -65,8 +65,9 @@ doesn't use it. No DynRPG, no custom fonts, an RM2k database.
   the map has no sprite palettes left for them: the converter warns about
   it—.
 - **Its own**: the signs of map 8 could become map tiles instead of
-  pictures, as a patch of the game. And the German text: the console's
-  font is ASCII; a font with Latin-1 is drawing work.
+  pictures, as a patch of the game. (The German text's `ä` has been drawn
+  since 2026-10-16: see
+  [Letters the font does not have](../../divergences/letters-the-font-does-not-have.md).)
 - Its System graphic fits the message window.
 
 ## What changed after it (to 2026-10-06)

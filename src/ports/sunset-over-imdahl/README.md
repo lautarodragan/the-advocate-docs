@@ -174,8 +174,9 @@ with an empty party. No DynRPG, no custom fonts, an RM2k database.
   isn't carried, and a letter the font doesn't have stops the page instead
   of the game. The items the database lacks are an oddity of the game, and
   they no longer stop anything.
-- **From outside RM2k**: the `ô`. The console's font is ASCII; a font with
-  Latin-1 is drawing work.
+- **From outside RM2k**: the `ô`, drawn since 2026-10-16, and the `…`,
+  still `...`: see
+  [Letters the font does not have](../../divergences/letters-the-font-does-not-have.md).
 - Its System graphic fits the message window.
 
 ## What changed after it (to 2026-10-06)
