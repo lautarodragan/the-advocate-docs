@@ -213,9 +213,12 @@ Behind the backdrops go the sound effects of each audio package, whole and
 each at the rate that package allows with ARAM free of music —the split
 belongs to `rm2k-snes-audio`, in its `msu.rs` and `rates_per_package`—: by
 package, in the order of the table, and inside each one in SRCN order,
-which is how `upload_placed` uploads them. That way the ROM **seeks once
-per package** and reads straight through; an effect that is in two packages
-goes twice. `cartridge::msu` in `rm2k-snes-audio` writes it, and also emits
+which is how `upload_placed` uploads them. That way a package that goes up
+at once —a battle's, the boot's— **seeks once** and reads straight
+through; an effect that is in two packages goes twice. A teleport's go up
+one at a time, when each is first asked for, each with its own seek: see
+[a teleport's sound effects go up when they are
+needed](../optimizations/lossless/audio.md#a-teleports-sound-effects-go-up-when-they-are-needed). `cartridge::msu` in `rm2k-snes-audio` writes it, and also emits
 what the ROM needs: `se_msu_pkg` and `se_msu_rows` —where each effect of
 each package is and how long it is— and `se_msu_pitch_pkg` and
 `se_msu_pitch` —the pitch of each sound with each package's version, only
