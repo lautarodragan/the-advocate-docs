@@ -10,7 +10,7 @@ as text.
 * **Where nine or more characters stand on one line, the ones further
   back are cut** —a column missing, or gone—: the console draws 34
   slivers of 8 pixels a line and each character takes four. On map 128.
-  Draft: [`frozen-world-characters-cut-on-crowded-lines`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/frozen-world-characters-cut-on-crowded-lines.md).
+  Task: [`frozen-world-characters-cut-on-crowded-lines`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/frozen-world-characters-cut-on-crowded-lines.md).
 * **In a fight the music starts after a pause, and most of the battle
   screen's sound effects are silent.** Map 1 ("Battle Screen") is in the
   cartridge since 2026-10-15, but its music does not fit in the sound
@@ -23,7 +23,7 @@ as text.
 * **Every turn of a fight goes black for about a second, twice**: going
   from the command grid to the battle screen and back, the screen stays
   black ~1 s and ~0.5 s while the sound chip gets each map's sounds again
-  (measured in an emulator, 2026-10-17). Draft:
+  (measured in an emulator, 2026-10-17). Task:
   [`frozen-world-every-turn-re-uploads-the-battle-screens-audio`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/frozen-world-every-turn-re-uploads-the-battle-screens-audio.md).
 * **In a fight, some plates come out in other colours**: picked in the
   command grid, the Fire plate shows on the battle screen with its flame
@@ -36,7 +36,7 @@ as text.
   original swaps the map's tileset for one with the water and the
   waterfalls still, and back; on the console the water keeps moving. See
   [What `ChangeMapTileset` does not model](../../divergences/what-changemaptileset-does-not-model.md).
-  Draft:
+  Task:
   [`changemaptileset-is-not-done`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/changemaptileset-is-not-done.md).
 * **A fight's backdrop is the one the battle screen picks, not the
   place's**: the encounters name the backdrop after jumping to the battle

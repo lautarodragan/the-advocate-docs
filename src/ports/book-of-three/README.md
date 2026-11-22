@@ -10,9 +10,9 @@ as text.
 * **Where nine or more characters stand on one line, the ones further
   back are cut** —a column missing, or gone—: the console draws 34
   slivers of 8 pixels a line and each character takes four. On map 79.
-  Draft: [`book-of-three-characters-cut-on-crowded-lines`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-characters-cut-on-crowded-lines.md).
+  Task: [`book-of-three-characters-cut-on-crowded-lines`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/book-of-three-characters-cut-on-crowded-lines.md).
 * **A skill that turns a switch on, used from the pause menu, is
-  silent**: the original plays its sound effect. Draft:
+  silent**: the original plays its sound effect. Task:
   [`switch-skills-from-the-menu-play-no-sound`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/switch-skills-from-the-menu-play-no-sound.md).
 * **Gwydion's Blazing Star and Dyrnwyn are not drawn**, in the fights
   against the three Cauldron-Born (map 26) and the Horned King (map 78),
@@ -34,7 +34,7 @@ end under Wine (see "Its walkthrough"):
   [A battle holds eight enemies](../../divergences/a-battle-holds-eight-enemies.md).
 * **Fades are cuts**: where a scene fades the screen to black, to night or
   back to day, the port jumps to the end of the fade and waits its time.
-  Draft:
+  Task:
   [`tint-screen-snaps-instead-of-fading`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/tint-screen-snaps-instead-of-fading.md).
 * **The map's place names are dimmer**: the map item shows the whole land,
   but its place names, white and already blurred in the original, come out
