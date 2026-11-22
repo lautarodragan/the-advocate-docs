@@ -266,6 +266,11 @@ current: whoever fixes one removes its line in the same change.
   `!`. The menu, the shops, the battle's lists and lines and every other
   box draw them. See
   [Letters the font does not have](../../divergences/letters-the-font-does-not-have.md).
+* **A condition given in battle says garbage**: when a Veneno poisons an
+  enemy, the line under the damage reads `Pez Shark'I"A'E-~3'e'1/2?I`.
+  Zounds' conditions carry the editor's untranslated Japanese messages.
+  Draft:
+  [`zounds-condition-messages-are-japanese-defaults`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-condition-messages-are-japanese-defaults.md).
 * **The boxes shown in battle have no icons**: an item's icon in a box a
   troop page shows —the prize's "Objeto Especial Veneno"— is left out, as
   its accents are. Everywhere else they show. See [What ExFont icons do not
