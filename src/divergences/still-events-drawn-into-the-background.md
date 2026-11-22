@@ -46,8 +46,9 @@ drawing moves to BG1. What changes with respect to RM2k:
 **Which events**: every page that draws draws a CharSet, or a ChipSet
 tile that does not go above the hero; no page walks, animates standing
 still or puts it above the hero; nothing moves it —a route that steps,
-`SetEventLocation`, `SwapEventLocations`—, flashes it —`FlashSprite`— or
-gives it another graphic; it does not turn toward the hero —the console
+`SetEventLocation`, `SwapEventLocations`—, flashes it —`FlashSprite`, or a
+battle animation on it: the flash tints the object's palette, and drawn
+into the background it has none— or gives it another graphic; it does not turn toward the hero —the console
 draws that one from the turn slot—; no substitution swaps its cell; and
 it is not translucent. Routes that only turn it are allowed: the turn is
 a pose. The map draws no pictures into itself and does not loop; if it

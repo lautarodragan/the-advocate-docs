@@ -119,8 +119,9 @@ keeps the palettes it needs, and the layer above takes what is left.
 
 ## Opaque fixed events baked into the map
 
-An event drawn with a ChipSet tile that is also opaque and never moves is
-painted into the map, and its row is hidden from the sprite pass.
+An event drawn with a ChipSet tile that is also opaque and never moves or
+flashes —a `FlashSprite` or a battle animation on it— is painted into the
+map, and its row is hidden from the sprite pass.
 
 - **Saves**: sprite tiles, OAM entries and CPU in `build_oam`.
 - **Where**: `baking::bakeable` in Wally (`rm2k-snes/wally/src/baking.rs`);
