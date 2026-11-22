@@ -190,9 +190,13 @@ nothing in this repository names the path of the other one —
 - **What the tools know about the project** —where each folder is, where
   the runtime is, what `advocate.toml` says— the harness asks
   `rm2k-snes-project`, another executable of the suite: see
-  `tests/harness/project.py`. The harness imports nothing from the tools:
-  the emulator, `tests/harness/emulator/`, has been its own since
-  2026-10-02.
+  `tests/harness/project.py`. The harness imports nothing from the tools
+  but their generic harness, the Python package `rm2k_snes_harness` —the
+  libretro driver, the cores' patches, RPG Maker's rules, the engine's
+  numbers—, which it puts on its path where `rm2k-snes-project --harness`
+  says: the checkout the tools were installed from, like the runtime.
+  From 2026-10-02 until 2026-11-22 the driver was its own, in
+  `tests/harness/emulator/`.
 
 So **to run ABL with other tools** —those of a checkout where someone is
 changing them— it is enough to put them first on the PATH: the `justfile`

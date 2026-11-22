@@ -45,8 +45,9 @@ tests.
 * **The test**, `test_meadow.py`: the cartridge boots on the meadow, the
   hero walks up to the elder, A starts his page and his message is
   composed; two goldens, the map and the message, in snes9x and in bsnes.
-  The harness is a small one of its own and the core driver a copy of A
-  Blurred Line's.
+  The harness was a small one of its own and the core driver a copy of A
+  Blurred Line's, until the harness's generic part came over on
+  2026-11-22: see below.
 * **The cases**: `test-game/cases/`, one JSON per test page, like a
   port's; the harness chooses one by the case variable before the first
   game frame, the way A Blurred Line's does.
@@ -89,6 +90,30 @@ tests.
   boxes more are measured the same way under it, with two goldens more
   —[`the-test-game-s-terrace-in-the-rain`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-test-game-s-terrace-in-the-rain.md)—.
 
+**And on 2026-11-22, the end of phase 2**: the harness's generic part and
+the first ten tests. What runs a cartridge in a libretro core and asks it
+questions knows no game —the driver and the cores' patches, the cartridge
+as the builder answers for it, the tick clock, the goldens at 15 bits,
+RPG Maker's rules, the engine's numbers—, and it is one Python package
+now, `rm2k_snes_harness` in `rm2k-snes/harness/` of the-advocate, beside
+the runtime whose symbols it reads. The test game uses it as it is, and
+its stopgap harness and its copy of the driver are gone; A Blurred Line's
+harness, and the ports' other games, take it from where
+`rm2k-snes-project --harness` says —the checkout the tools were installed
+from, like the runtime— and keep on top of it what is theirs: that game's
+title screen, its menus, its battles, its walkthrough. Then ten of its M1
+files moved: the variables, `ConditionalBranch`, the labels, the chained
+teleports, a door to the same map, the hero's speed, `KeyInputProc`,
+`StoreTerrainID`, the action key on the hero's own cell and the tilemap's
+window against the camera, with their cases rewritten on this game's maps
+and run in snes9x and in bsnes, where that game ran them in snes9x alone.
+What their maps gave them is built here: the lookout's dispatcher, a
+terrain for each of the showcase's first four tiles, the doors —two rooms
+of one map crossed by teleports to itself— and the patchwork, stripes no
+two neighbouring rows draw alike. They ask the RAM, not the screen, so no
+goldens came with them. The task is
+[`the-test-game-takes-the-harness-and-the-first-ten-tests`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-test-game-takes-the-harness-and-the-first-ten-tests.md).
+
 Of the seven assumptions about A Blurred Line the research found in the
 tools when it first wrote a game from scratch, four are gone —a debug map
 the project had to carry, a single-map game not building, a fallback
@@ -101,15 +126,15 @@ not reach them. The task says which.
 
 In the order the research gives, each a task of its own:
 
-1. **The harness**: the generic part of A Blurred Line's —the console and
-   the clock, the drawing comparisons, the cartridges, the menus and
-   screens, the models— as one Python package in the-advocate, imported by
-   both games; then the copy of the core driver goes. What stays with A
+1. **The rest of the harness**: what A Blurred Line's still keeps that is
+   not that game's —its menus and screens, its models of the battle and
+   the music, its `Session`'s clock, which the generic one copied—, into
+   `rm2k_snes_harness` as the tests that need it move. What stays with A
    Blurred Line is its walkthrough and its places.
-2. **The cases**: the tests of `tests/rpgmaker/` in A Blurred Line
-   moving over one by one into the test game's `cases/`, each with
-   goldens born anew —and looked at once, since a new golden defends
-   whatever the ROM drew that day—.
+2. **The cases**: the rest of `tests/rpgmaker/` in A Blurred Line —phase
+   3, the rest of M1— moving over one by one into the test game's
+   `cases/`, each with goldens born anew —and looked at once, since a new
+   golden defends whatever the ROM drew that day—.
 3. **What the moved tests need**, as they need it: more maps, a title,
    battles —with backdrops and enemies made for it—, music from
    public-domain scores.

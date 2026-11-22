@@ -117,7 +117,9 @@ plain bsnes the other tests run. The same count over every case of the
 cartridge is a recipe run on demand, not part of every run. The test, the
 patch and the recipes that build the core and run the sweep are in
 A Blurred Line's tests in the-advocate-ports (`test_display_accesses.py`,
-`tests/harness/emulator/`, `just audit-core` and `just display-sweep`).
+`just audit-core` and `just display-sweep`), and the patch in the-advocate,
+with the games' generic test harness (`rm2k-snes/harness/cores/`). The
+test game's `test_terrace.py` runs on the same core.
 
 What it does not replace: the count is in that emulator's timing, and the
 console with an FX Pak's in-game hooks runs code of its own in the NMI, so
