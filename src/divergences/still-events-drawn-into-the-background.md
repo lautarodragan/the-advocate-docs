@@ -118,8 +118,11 @@ of 32 KB. On the Hover-Tram only one of the seven seated people goes in:
 anywhere on the aisle, and the colours of the others would take the
 panorama's. (Since then a patch of the map bakes its whole still crowd:
 [The Hover-Tram's crowd is part of the map](../ports/abl/decisions/the-hover-tram-s-crowd-is-part-of-the-map.md).) Zounds: 427 before, 457 after, 22 of them past their cells
-on 9 maps, about 12 KB of its gaps and no whole bank. The other games
-do not turn `baked_events` on.
+on 9 maps, about 12 KB of its gaps and no whole bank. The Frozen World turns
+it on only on map 128, its market, since 2026-11-22: its sixteen stalls
+and crates put eleven characters on one line as objects, and the hero
+walking past them lost her head. The other games do not turn
+`baked_events` on.
 
 ## Why the background and not the layer above
 
