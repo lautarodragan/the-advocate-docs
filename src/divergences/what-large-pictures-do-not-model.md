@@ -78,8 +78,16 @@ and they do not do everything they do in RM2k:
   again —after the fade to black, at once—. In RM2k what is under a picture
   at 100 % shows; here it stayed black: Desert Nightmare's intro, map 6,
   fades its title and a black picture out and talks over the gas station,
-  and every message of it went over a black screen. See `big_fade_outs` in
-  `compile.rs` of rm2k-snes-events.
+  and every message of it went over a black screen. **A fade that does not
+  wait** is taken down too, since 2026-11-22, where the page has waited the
+  fade's time, or sooner, before the first command that may wait or jump
+  —a message, a branch, a call—: the screen goes black and the map comes
+  back, where RM2k brings the map up through the picture. Desert
+  Nightmare's motel at night, map 32, played its whole scene after the bar
+  on black. Not when a picture's command, a teleport or an `EraseScreen`
+  comes before the fade's time: another big picture would take the layer
+  right after the map came back, and Sunset Over Imdahl's intro lays its
+  title cards one over the fading other. See `big_fade_outs` in `compile.rs` of rm2k-snes-events.
 * **Showing it and erasing it turn the screen off**: measured, two frames
   when showing one and fourteen when erasing it, which reloads the map like
   the return from battle. The game's appear and go away over the black
