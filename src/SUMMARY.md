@@ -51,6 +51,7 @@
     - [ChipSets](reference/rpgmaker/chipsets.md)
     - [The RTP](reference/rpgmaker/rtp.md)
     - [Emulators](reference/snes/emulators.md)
+    - [usb2snes on the FX Pak](reference/snes/usb2snes.md)
 
 - [Decisions](decisions/README.md)
     - [RPG Maker 2000 PLUS](decisions/rm2k-plus.md)
