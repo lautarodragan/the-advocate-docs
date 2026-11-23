@@ -317,8 +317,9 @@ selector and the face over it.
 
 Mode 7 owns words `$0000` to `$3FFF` —its 128x128 map in the low bytes and
 its 256 tiles in the high ones— and can't be moved. So a big picture that a
-`MovePicture` enlarges or shrinks, and which therefore carries a mode 7
-texture, is shown still **in the upper half**: its tiles from `$4000` —up
+`MovePicture` of its map enlarges or shrinks, and which therefore carries a
+mode 7 texture there —on the maps that show it still it goes without one,
+as any other—, is shown still **in the upper half**: its tiles from `$4000` —up
 to 960— and its tilemap, one 32x32 screen, at `$7C00`. While it is still,
 the texture is uploaded to the lower half one piece per vblank, over the
 sprites and the map tiles, which aren't visible. That overwrites the window
