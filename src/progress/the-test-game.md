@@ -145,6 +145,17 @@ cartridge boots on, and half the cases run against the meadow's events.
 The task is
 [`the-test-game-playable-by-hand`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-test-game-playable-by-hand.md).
 
+**And on the same day, a battle animation's flash**: in A Blurred Line
+the rock that hits the Lazer Teeth's computer flashed Talan, because the
+computer was drawn into the background and its flash fell on the hero's
+palette. The anvil, map 15, has two still events drawn with a ChipSet
+tile —a crate that would be drawn into the background and a slab that
+would be baked into the layer above, if nothing flashed them— and a
+battle animation that only flashes, played by the crate on
+itself and on the slab by a lever; `test_animation_flash.py` asks the
+screen that each flashes and the hero does not. The task is
+[`abl-the-rock-s-hit-flashes-talan-instead-of-the-computer`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-the-rock-s-hit-flashes-talan-instead-of-the-computer.md).
+
 Of the seven assumptions about A Blurred Line the research found in the
 tools when it first wrote a game from scratch, four are gone —a debug map
 the project had to carry, a single-map game not building, a fallback
