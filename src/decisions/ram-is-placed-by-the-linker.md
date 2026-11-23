@@ -18,7 +18,7 @@ how addresses were given; what is new is that the declaration leaves the
 three global files of `runtime/` in the-advocate (`zero_page.s`,
 `low_ram.s`, `far_ram.s`) for the subsystem's own. For far RAM, which
 until then was a map of addresses written by hand, it is a new segment,
-`FARBSS`, in an area of the `.cfg` that `rm2k-snes-assemble` writes
+`FARBSS`, in an area of the `.cfg` that `rm2k-snes-cartridges assemble` writes
 (`FAR_POOL_START` in `rm2k-snes/cartridge/src/banks.rs`).
 
 **Since 2026-11-19 it holds for the whole WRAM**: the grid's halves, the
@@ -110,5 +110,5 @@ addresses chosen by hand.
   written by hand —any long one but the far bank, or a sixteen-bit one
   named `FAR_*`—, since in the symbol table a `.loword` of a label and a
   number written by hand look the same; and it checks, for every area
-  `rm2k-snes-assemble --memory-map` lists, that every long symbol in it is
+  `rm2k-snes-cartridges assemble --memory-map` lists, that every long symbol in it is
   a label of its segments or falls inside one.

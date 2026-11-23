@@ -14,10 +14,10 @@ data/ + patches/manual/
                                                                   <rom>.msu (battle backdrops),
                                                                   patches/ (decisions),
                                                                   degradations.json
-runtime/*.s + those .inc    --rm2k-snes-assemble----------> <rom>.sfc + <rom>.sfc.sym
+runtime/*.s + those .inc    --rm2k-snes-cartridges assemble-> <rom>.sfc + <rom>.sfc.sym
                                     (bank packing, ca65 + ld65)   and, with [rom] msu = "required",
                                                                   what does not fit, behind <rom>.msu
-<rom>.sfc + MIDI or replacements  --rm2k-snes-msu---------------> <rom>-N.pcm
+<rom>.sfc + MIDI or replacements  --rm2k-snes-audio msu---------> <rom>-N.pcm
                                     (fluidsynth, ffmpeg)
 ```
 
@@ -91,7 +91,8 @@ flags, its test cases, and a **fingerprint** of everything else that goes
 into the ROM. The fingerprint looks at contents, never at dates:
 
 - the whole `runtime/`, and the binaries that build: `ca65`, `ld65`, the
-  converter and the stages it runs, and `rm2k-snes-assemble`;
+  converter and the stages it runs, and `rm2k-snes-cartridges` itself,
+  whose `assemble` packs the banks;
 - the game's dump, `data/`, whole, and its hand-made patches —with each
   name, for the files of `patches/manual/`'s RM2k folders, below—, its project
   file and the files that file names —custom menus, its own font, its
@@ -116,8 +117,8 @@ not need it: they are outside the stamp, and their own cache keys on the
 SoundFont's content.
 
 Whoever asks whether a cartridge is up to date computes the same
-fingerprint, so it needs the same machine flags: `rm2k-snes-space` takes
-those of `rm2k-snes-cartridges`, and a game's tests pass them to
+fingerprint, so it needs the same machine flags: `rm2k-snes-cartridges
+space` takes those of building, and a game's tests pass them to
 `--list --json`. Without `--game-dir` the fingerprint is an error, not a
 guess.
 

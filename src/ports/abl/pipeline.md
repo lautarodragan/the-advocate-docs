@@ -9,9 +9,9 @@ data/ + patches/manual/
                                      mapdata, patches, audio)
                                                                   abl.msu (battle backdrops),
                                                                   patches/ (decisions)
-the runtime + those .inc          --rm2k-snes-assemble----------> abl.sfc + abl.sfc.sym
+the runtime + those .inc          --rm2k-snes-cartridges assemble-> abl.sfc + abl.sfc.sym
                                     (bank packing, ca65 + ld65)
-abl.sfc + MIDI or replacements    --rm2k-snes-msu---------------> abl-N.pcm
+abl.sfc + MIDI or replacements    --rm2k-snes-audio msu---------> abl-N.pcm
                                     (fluidsynth, ffmpeg)
 
 just cartridges release  everything, with the MSU-1 tracks, in build/release/
