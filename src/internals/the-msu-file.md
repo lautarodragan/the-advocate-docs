@@ -1,7 +1,7 @@
 # The `.msu` file: data the MSU-1 serves to the ROM
 
 The MSU-1 has two parts: the audio tracks (`<rom>-N.pcm`, see
-`rm2k-snes-msu`, in `rm2k-snes/rm2k-snes-audio/src/tracks.rs`) and a
+`rm2k-snes-audio msu`, in `rm2k-snes/rm2k-snes-audio/src/tracks.rs`) and a
 **data port** that reads `<rom>.msu` as a stream. Until 2026-09-25 the
 `.msu` was empty and only served to turn the MSU-1 on. Since that day it
 carries **the battle backdrops**, which started as a pilot, and since

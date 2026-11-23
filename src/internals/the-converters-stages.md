@@ -219,7 +219,7 @@ backdrops and the effects. Only then is `degradations.json` written.
 
 ### 11. The packing
 
-`rm2k-snes-assemble`, after the converter (`banks.rs` in
+`rm2k-snes-cartridges assemble`, after the converter (`banks.rs` in
 rm2k-snes-cartridge): **first-fit decreasing**, the fast 4 MB before the
 slow ones. In a game with `[rom] msu = "required"`, what does not fit goes
 behind the `.msu` (`pack_with_msu`): the fewest pieces that make the rest

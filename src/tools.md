@@ -15,13 +15,13 @@ does; the pages it links to say why things are the way they are.
 
 **The commands a person runs**, from a game's recipes or by hand:
 
-- `rm2k-snes-cartridges`, which builds the cartridges a game declares;
-- `rm2k-snes-space`, how much each one has left;
+- `rm2k-snes-cartridges`, which builds the cartridges a game declares,
+  and its `space`, how much each one has left;
 - `rm2k-snes-patches`, which checks what was decided to lose;
 - `rm2k-snes-project`, what a game's tests ask about the project;
 - `ditto`, to bring a game in and to make one;
 - `rm2k-snes-events culprits`, which commands keep each page out;
-- `rm2k-snes-volume-ceilings`, each song's headroom;
+- `rm2k-snes-audio volume-ceilings`, each song's headroom;
 - `goombario`, the linter, over every built cartridge;
 - `fxpak`, to talk to a cartridge on the console over USB;
 - `rm2k-sketch`, a map written as text into a dump.
@@ -30,11 +30,23 @@ does; the pages it links to say why things are the way they are.
 `rm2k-snes-convert`, run by `rm2k-snes-cartridges`, and the stages it runs
 in turn —`wally`, `rm2k-snes-events`, `rm2k-snes-screens`,
 `rm2k-snes-images`, `rm2k-snes-battle`, `rm2k-snes-mapdata`,
-`rm2k-snes-patches` and `rm2k-snes-audio`—; and `rm2k-snes-assemble` and
-`rm2k-snes-msu`, which `rm2k-snes-cartridges` runs after the converter.
-Each stage is a process of its own on purpose: the conversion cache keys
-every answer by the binary that gave it, so a stage that changes expires
-its own answers and nobody else's.
+`rm2k-snes-patches` and `rm2k-snes-audio`—; and `rm2k-snes-cartridges
+assemble` and `rm2k-snes-audio msu`, which `rm2k-snes-cartridges` runs
+after the converter. Each stage is a process of its own on purpose: the
+conversion cache keys every answer by the binary that gave it, so a stage
+that changes expires its own answers and nobody else's —the audio
+stage's, also when its `msu` or `volume-ceilings` change, which share its
+binary—.
+
+**A command with more than one job takes it as a subcommand**, when the
+jobs share a crate: `rm2k-snes-cartridges space`, `rm2k-snes-audio msu`.
+Until 2026-11-23 four of them were commands of their own
+—`rm2k-snes-space`, `rm2k-snes-assemble`, `rm2k-snes-msu` and
+`rm2k-snes-volume-ceilings`—. Folding them moved no boundary, and only one
+key had to follow: the MSU-1 tracks' cache took the binary that renders
+them, which is now the whole of `rm2k-snes-audio`, so it takes the source
+of the code that writes a track instead, and a change to the compiler does
+not render every track again.
 
 **The libraries under them**, which are not commands: Adeleine, Voodoo,
 LZ2 and Gunter, for the console's formats; Ditto's reader, `rm2k-rules`
@@ -67,8 +79,8 @@ data/   one JSON per map, the database, the tree
         │          7  rm2k-snes-mapdata emit   ──▶ mapdata.inc
         │          8  rm2k-snes-patches        ──▶ patches/     what was decided to lose
         │          9  rm2k-snes-audio cartridge──▶ musicdata.inc, <rom>.msu
-        │    └─ rm2k-snes-assemble   the runtime's .s + both .inc, ca65 + ld65
-        │    └─ rm2k-snes-msu        the MSU-1 tracks, from the MIDIs
+        │    └─ rm2k-snes-cartridges assemble   the runtime's .s + both .inc, ca65 + ld65
+        │    └─ rm2k-snes-audio msu             the MSU-1 tracks, from the MIDIs
         ▼
 build/<cartridge>/   <rom>.sfc  <rom>.sfc.sym  <rom>.msu  <rom>-N.pcm
                      degradations.json  patches/  adeleine/
@@ -103,8 +115,8 @@ pipeline](internals/pipeline.md) under Internals.
 | `rm2k-snes-mapdata emit` | everything above | `mapdata.inc`: the constants the runtime is built with and every table it reads, the shared blocks as LZ2 streams |
 | `rm2k-snes-patches` | what the converter decided | `patches/`: the merged colours, the shrunk animations, the battlers' palettes, as TOML |
 | `rm2k-snes-audio cartridge` | the MIDIs, the SoundFont, the sound effects | `musicdata.inc`: the sample bank, a stream per song, a package per map; and the `.msu` |
-| `rm2k-snes-assemble` | the runtime and both `.inc` | the ROM, its symbols and its debug file |
-| `rm2k-snes-msu` | each song's MIDI, or a replacement recording | one `.pcm` track per song, for an MSU-1 |
+| `rm2k-snes-cartridges assemble` | the runtime and both `.inc` | the ROM, its symbols and its debug file |
+| `rm2k-snes-audio msu` | each song's MIDI, or a replacement recording | one `.pcm` track per song, for an MSU-1 |
 
 ## Three layers
 
@@ -636,9 +648,9 @@ worst package; a stream per song that says what each voice plays frame by
 frame; and a **package** per map, the samples it has to have in sound RAM
 when it is entered. It writes `musicdata.inc` and the `.msu`, and what a
 package lost to fit, which the converter adds to `degradations.json`.
-Next to it, `rm2k-snes-msu` renders the MSU-1 tracks from the same MIDIs
-with fluidsynth, or takes a recording that replaces one, and
-`rm2k-snes-volume-ceilings` measures each song's headroom. More:
+Its subcommand `msu` renders the MSU-1 tracks from the same MIDIs with
+fluidsynth, or takes a recording that replaces one, and `volume-ceilings`
+measures each song's headroom. More:
 [Audio](internals/audio.md), [A single sample
 bank](optimizations/lossless/audio/the-sample-bank.md), [Lossy:
 audio](optimizations/lossy/audio.md), [The .msu
@@ -673,7 +685,7 @@ converter's request; the text they are written as is this program's.
 
 ### The cartridge builder
 
-Three programs share one library.
+One program, with two subcommands, over one library.
 
 - **`rm2k-snes-cartridges`** knows which cartridges the project declares
   —`release`, the one that is played, is required and carries every
@@ -684,12 +696,12 @@ Three programs share one library.
   whole runtime, the binaries that build, the dump, the project file, the
   original game's pictures and songs—. `--list --json` is what a game's
   tests read instead of knowing any of this.
-- **`rm2k-snes-assemble`** packs what the two `.inc` send to `RODATA` into
+- **`rm2k-snes-cartridges assemble`** packs what the two `.inc` send to `RODATA` into
   banks, writes the bytecodes' equates, runs `ca65` and `ld65` with the
   runtime, fixes the header's checksum and writes the symbols. It refuses
   to build if a generated `.inc` is found inside the runtime's folder,
   since `ca65` would take it over the cartridge's without a word.
-- **`rm2k-snes-space`** prints how much each bank and each RAM area has
+- **`rm2k-snes-cartridges space`** prints how much each bank and each RAM area has
   left, for any cartridge or a ROM built elsewhere, **and writes it down
   nowhere**: how much is left is a property of the build, not of the
   documentation.

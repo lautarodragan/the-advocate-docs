@@ -148,7 +148,7 @@ writes            --dsp_music-->        the SPC700 driver
 - **The MSU-1**: every theme plays from a PCM next to the ROM, and the ROM
   silences the SPC700 meanwhile. The number of each track is the theme's
   place in the game's `Music/` —`track_numbers` in `game.rs`—, so it
-  doesn't depend on the cartridge; `rm2k-snes-msu` builds them
+  doesn't depend on the cartridge; `rm2k-snes-audio msu` builds them
   (`tracks.rs`), from the MIDI, a replacement, or the game's own `.wav`.
   A theme can be both a `.wav` and a `.mid` under the same name: the
   SPC700 plays the MIDI and the track comes from the `.wav` —`song_path`
