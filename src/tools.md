@@ -2,13 +2,46 @@
 
 An RPG Maker 2000 game is a folder: a database, a map tree and one binary
 file per map, next to the PNGs it draws with and the MIDIs it plays. A
-Super Nintendo cartridge is one file, the ROM. The tools are the programs
-in between: each one is a command on the PATH, written in Rust, that reads
-something, decides something and writes something, and says what it
-refused. A game's build calls them by name and never calls `cargo`.
+Super Nintendo cartridge is one file, the ROM. The tools are what goes
+in between, written in Rust: **a few commands on the PATH, and libraries
+under them** that the commands are compiled with. Each command reads
+something, decides something, writes something and says what it refused;
+a game's build calls them by name and never calls `cargo`.
 
 This page says which they are, in which order they run and what each one
 does; the pages it links to say why things are the way they are.
+
+## Commands and libraries
+
+**The commands a person runs**, from a game's recipes or by hand:
+
+- `rm2k-snes-cartridges`, which builds the cartridges a game declares;
+- `rm2k-snes-space`, how much each one has left;
+- `rm2k-snes-patches`, which checks what was decided to lose;
+- `rm2k-snes-project`, what a game's tests ask about the project;
+- `ditto`, to bring a game in and to make one;
+- `rm2k-snes-events culprits`, which commands keep each page out;
+- `rm2k-snes-volume-ceilings`, each song's headroom;
+- `goombario`, the linter, over every built cartridge;
+- `fxpak`, to talk to a cartridge on the console over USB;
+- `rm2k-sketch`, a map written as text into a dump.
+
+**The commands the pipeline runs**, which nobody has to call:
+`rm2k-snes-convert`, run by `rm2k-snes-cartridges`, and the stages it runs
+in turn —`wally`, `rm2k-snes-events`, `rm2k-snes-screens`,
+`rm2k-snes-images`, `rm2k-snes-battle`, `rm2k-snes-mapdata`,
+`rm2k-snes-patches` and `rm2k-snes-audio`—; and `rm2k-snes-assemble` and
+`rm2k-snes-msu`, which `rm2k-snes-cartridges` runs after the converter.
+Each stage is a process of its own on purpose: the conversion cache keys
+every answer by the binary that gave it, so a stage that changes expires
+its own answers and nobody else's.
+
+**The libraries under them**, which are not commands: Adeleine, Voodoo,
+LZ2 and Gunter, for the console's formats; Ditto's reader, `rm2k-rules`
+and `rm2k-render`, for RPG Maker's; and `rm2k-project`,
+`rm2k-snes-bytecode` and `rm2k-snes-text`, which join both. Each one is a
+crate of its own, with its own tests, because it knows nothing of what
+the others are for.
 
 ## The road, in order
 
@@ -100,15 +133,16 @@ made to fit them.
 The console draws a 4-bit background or sprite tile with one palette of
 sixteen entries, the first one transparent; a map, a System or a battler
 usually has more colours than that, spread in ways no grouping fits.
-Adeleine is the one program that **decides which colours go and how the
+Adeleine is the one place that **decides which colours go and how the
 rest are grouped into palettes**, so that there is a single answer to
-"which colour was lost".
+"which colour was lost". It is a library: Wally, the screens and the
+images call it.
 
 - **Reads**: colours with the pixels each one covers, and tiles as the set
   of colours each draws with. Never a picture: the caller counts.
-- **Writes**: for `merge`, which colour each one became; for `pack`, the
-  palettes, or `null` if the tiles do not fit; for `reduce`, each tile's
-  palette and the mapping of its colours.
+- **Writes**: for `merge_least_visible`, which colour each one became;
+  for `try_pack`, the palettes, or none if the tiles do not fit; for
+  `reduce_colors`, each tile's palette and the mapping of its colours.
 - **Decides**: the pair that *shows the least* is merged first —the cost
   of sending `a` to `b` is `pixels(a) × distance(a, b)`, the distance
   weighted by luma—, so two near-equal greys over half the sheet melt into
@@ -118,17 +152,17 @@ rest are grouped into palettes**, so that there is a single answer to
   holds, and measures how far apart two colours of the console look, in
   CIE Lab, for whoever has to draw a colour with one it is not: Wally, with
   a character drawn with someone else's palette.
-- **Refuses**: nothing it can answer; exit 1 when no amount of merging
-  fits.
+- **Refuses**: nothing it can answer; it answers no when no amount of
+  merging fits.
 
 Where the rule is explained against the game: [Lossy:
 colours](optimizations/lossy/colours.md), [The CGRAM
 split](internals/cgram.md).
 
-**For example, `merge`.** A character of the EasyRPG RTP's `People1`
+**For example, `merge_least_visible`.** A character of the EasyRPG RTP's `People1`
 —the elder of the test game, character 6— uses 21 colours at 15 bits over
-its twelve poses, and an object palette holds fifteen. The request is
-those 21 colours with the pixels each one covers and `"keep": 15`; the
+its twelve poses, and an object palette holds fifteen. What it is given is
+those 21 colours with the pixels each one covers, to keep fifteen; the
 answer is six merges, each the cheapest left. Before, on the left; after,
 on the right:
 
@@ -142,12 +176,12 @@ one that, by pixels times distance, shows the least:
 
 ![The six merges](tools/adeleine-merge-pairs.png)
 
-**And `reduce`, on the hardest input there is.** The whole `Exterior`
+**And `reduce_colors`, on the hardest input there is.** The whole `Exterior`
 ChipSet —193 colours at 15 bits over 1,894 drawn cells— asked into
 eight, four, two and one palettes of fifteen, which is what the layer
-above the hero goes through: `pack` with eight palettes says it does not
-fit as it is, and `reduce` groups the cells and chooses each group's
-colours. Top row: the original and the eight- and four-palette answers;
+above the hero goes through: `try_pack` with eight palettes says it does
+not fit as it is, and `reduce_colors` groups the cells and chooses each
+group's colours. Top row: the original and the eight- and four-palette answers;
 bottom row: two palettes and one. The crop is the sheet's middle band,
 the house and the stone walls:
 
@@ -166,10 +200,11 @@ look alike.
 Voodoo cuts an indexed picture into 8x8 tiles, numbers the distinct ones
 —a mirrored cell is not a new tile—, and writes them the way a planar PPU
 reads them: bit planes, a tilemap entry per cell and colour memory as
-15-bit words. It **makes no decision anyone could see**: `render` gives
-back exactly the indices `convert` was given.
+15-bit words. It **makes no decision anyone could see**: drawing back
+what it wrote gives exactly the indices it was given. It is a library:
+Wally, the screens and the images call it.
 
-- **Reads**: an 8-bit indexed PNG whose indices *are* colour-memory
+- **Reads**: an 8-bit indexed picture whose indices *are* colour-memory
   entries: index 37 is entry 37 in every picture, so at 4 bits `index >>
   4` is the palette and `index & 15` the colour inside it.
 - **Writes**: the tiles at 4 or 8 bits, the tilemap, the 256 entries of
@@ -185,31 +220,17 @@ it had a cost: Voodoo once had a `--merge` of its own, and it was removed
 so that the answer to "which colour was lost" lives in one place.
 
 **For example.** The meadow's background, as Wally leaves it —an indexed
-PNG whose indices are colour-memory entries—, converted at 8 bits a
-pixel:
-
-```text
-$ voodoo convert background.png --bpp 8 -o meadow.8bpp \
-      --palette meadow.cgram --tilemap meadow.map --json
-{"output": "meadow.8bpp", "bpp": 8, "columns": 40, "rows": 30, "cells": 1200,
- "tiles": 17, "tile_bytes": 1088, "palettes": 1, "colors": 19, "animations": []}
-```
-
-Twelve hundred cells, seventeen distinct tiles: drawn once each, with a
+picture whose indices are colour-memory entries—, converted at 8 bits a
+pixel: forty cells by thirty, nineteen colours in one palette, and 1,088
+bytes of tiles. Twelve hundred cells, seventeen distinct tiles: drawn once each, with a
 tilemap that counts them, they are the whole meadow's material —the grass
 in its few patterns, the bushes' corners, the flowers—:
 
 ![The seventeen tiles of the meadow](tools/voodoo-tiles.png)
 
-`render` with the real tilemap gives the picture back identical to the
-one that went in. And the ChipSet reduced to eight palettes above, asked
-in at 4 bits, is refused:
-
-```text
-$ voodoo convert exterior-8.png --bpp 4 -o ex.4bpp --palette ex.cgram --tilemap ex.map
-error: the picture needs more than 1024 distinct tiles; a tilemap entry
-has ten bits for the tile number
-```
+Drawn back with the real tilemap, the picture is identical to the one
+that went in. And the ChipSet reduced to eight palettes above, asked in
+at 4 bits, is refused: the picture needs more than 1024 distinct tiles.
 
 Which is right: a tilemap entry has ten bits for the tile number, and
 what to do about a sheet that needs more is not Voodoo's to decide.
@@ -232,79 +253,44 @@ maps' blocks, the screens and the pictures travel in it.
   decision about the consumer's memory—, and a stream with bytes after its
   terminator.
 
-`lz2 stats` prints each stream's size and what commands it has; the
-emission uses the library.
+It is a library: the emission and the converter compress with it.
 
-**For example.** The meadow's seventeen tiles and its tilemap, the files
-Voodoo wrote above, compressed and measured:
-
-```text
-$ lz2 compress meadow.8bpp meadow.8bpp.lz2 meadow.map meadow.map.lz2
-$ lz2 stats meadow.8bpp.lz2 meadow.map.lz2
-{"file": "meadow.8bpp.lz2", "stream": 592, "output": 1088, "literal": 27,
- "byte_fill": 9, "word_fill": 2, "increasing": 0, "repeat": 21}
-{"file": "meadow.map.lz2", "stream": 183, "output": 2400, "literal": 8,
- "byte_fill": 0, "word_fill": 0, "increasing": 0, "repeat": 45}
-```
-
-The tilemap, which is mostly the same grass tile over and over, goes down
-to less than a tenth as repeats of its own output; the tiles, which are
-drawings, to about half. `decompress` gives both back byte for byte.
+**For example.** The meadow's seventeen tiles and its tilemap, what Voodoo
+wrote above, compressed: the tilemap, which is mostly the same grass tile
+over and over, goes from 2,400 bytes down to 183, less than a tenth, as
+repeats of its own output; the tiles, which are drawings, from 1,088 to
+592, about half. Decompressing gives both back byte for byte.
 
 ### Gunter: samples for the sound chip
 
 The S-DSP plays BRR: nine bytes for every sixteen samples, and nothing
 else —no sample rate, no loop point; those live in the chip's registers—.
 Gunter does the two jobs that always turn up together: it **reads a
-SoundFont** and takes a sample out of it, and it **encodes PCM into BRR**.
+SoundFont** and finds the sample a program or a drum key plays, and it
+**encodes PCM into BRR**. It is a library: the music stage calls it.
 
-- **Reads**: a `.sf2`, with a selector —a General MIDI program, a drum
-  key, a sample by name—; or a mono `.wav`.
-- **Writes**: the `.wav` of the sample with its zone's contract —rate,
-  loop, the volume envelope—, or the `.brr` with the same contract next to
-  it, in prose or as one line of JSON a build script reads.
+- **Reads**: a `.sf2`, with a selector —a General MIDI program at a key, a
+  drum key, a sample by name—; or PCM samples.
+- **Writes**: the sample's contract —where its audio is, its rate, its
+  loop, its tuning, the zone's volume envelope—; or the BRR blocks.
 - **Decides**: for each block of sixteen samples, which of the four
-  prediction filters and which shift lose the least; and it says the worst
-  error it made.
-- **Refuses**: a loop point that does not fall on a block boundary, a
-  selector the font has nothing for, and —with `--max-error`— an encoding
-  worse than the caller allows.
+  prediction filters and which shift lose the least.
+- **Refuses**: nothing; a selector the font has nothing for is answered
+  with nothing.
 
-`decode` plays the codec back to a `.wav`, to hear what it did. The music
-stage uses it as a library: [Lossless: audio](optimizations/lossless/audio.md),
-[Lossy: audio](optimizations/lossy/audio.md).
+More: [Lossless: audio](optimizations/lossless/audio.md), [Lossy:
+audio](optimizations/lossy/audio.md).
 
 **For example.** General MIDI program 0, the piano, out of a free
-SoundFont —FluidR3—, into BRR and back:
-
-```text
-$ gunter sf2 FluidR3_GM.sf2 --extract program:0 -o piano.wav --json
-{"name": "P200 Piano D5(L)", "output": "piano.wav", "frames": 103887, "rate": 32000,
- "root_key": 62, "tuning_cents": 0, "loops": true, "loop_start": 73030, "loop_end": 103885,
- "env_delay_timecents": -12000, "env_attack_timecents": -8359, …}
-$ gunter encode piano.wav -o piano.brr --json
-{"output": "piano.brr", "samples": 103887, "rate": 32000, "blocks": 6493, "bytes": 58437,
- "loop_block": null, "loop_sample": null, "worst_error_percent": 3.088, "within_limit": true}
-$ gunter decode piano.brr -o piano-back.wav --rate 32000
-$ gunter info piano.brr
-  6493 blocks, 103888 samples
-  last block: end, does not loop
-  filter 0: 2 blocks
-  filter 1: 219 blocks
-  filter 2: 3022 blocks
-  filter 3: 3250 blocks
-  ranges: 2x10 3x532 4x2060 5x1522 6x842 7x899 8x307 9x228 10x89 11x4
-```
-
-Sixteen-bit samples went in and nine bytes per sixteen samples came out,
-with the worst sample off by three percent of the peak; the same six
-hundred samples a little after the attack, before in blue and after in
-orange:
+SoundFont —FluidR3—, into BRR and back: 103,887 samples at 32 kHz became
+6,493 blocks, 58,437 bytes, with the worst sample off by three percent of
+the peak. The same six hundred samples a little after the attack, before
+in blue and after in orange:
 
 ![The piano before and after BRR](tools/gunter-brr.png)
 
-The two blocks with filter 0 are the first ones, which have no previous
-samples to lean on; the rest chose, block by block, the filter and the
+Two blocks took filter 0: the first ones, which have no previous samples
+to lean on; the rest chose, block by block, the filter and the
 range that lost the least.
 
 ### Goombario: a linter for the 65816
@@ -431,12 +417,15 @@ can draw —32 by 45, every combination of every autotile—; what events are
 drawn with, a translucent one blended over what is behind it; faces cut
 from their FaceSets; the System's windows, cursors and text colours; the
 pictures of `ShowPicture` with their transparent colour; a battle
-animation's cells placed as RM2k places them; backdrops and enemies.
+animation's cells placed as RM2k places them; backdrops and enemies. It
+is a library: Wally, the screens, the images, the text and the converter
+call it.
 
-- **Reads**: a map from the dump, or as a request a caller changed; the
-  pictures from the game's folder and then the RTP's, without regard to
-  case, since the games were made on a system that did not care.
-- **Writes**: RGBA PNGs at eight bits.
+- **Reads**: a map as its two layers of tile ids and its ChipSet's
+  passability; the pictures from the game's folder and then the RTP's,
+  without regard to case, since the games were made on a system that did
+  not care.
+- **Writes**: RGBA pictures at eight bits.
 - **Decides**: nothing of its own; where the line is drawn is whether a
   viewer of the game on a PC would draw it the same way.
 
@@ -444,15 +433,9 @@ The goldens of a port's suite are compared against the console, not
 against this; it is what the stages start from, and what the tests use to
 predict the console with.
 
-**For example.** The meadow's two layers, from the test game's dump:
-
-```text
-$ rm2k-render layers --map 1 --data build/data --game-dir build/game \
-      --rtp-dir empty/ --out meadow/
-```
-
-`lower.png`, what is drawn behind the hero on opaque black, and
-`upper.png`, what is drawn in front of them on transparency —here, the
+**For example.** The meadow's two layers, from the test game's dump: the
+lower one, what is drawn behind the hero on opaque black, and the upper
+one, what is drawn in front of them on transparency —here, the
 four trees' crowns, which the ChipSet's passability puts above—:
 
 ![The meadow's lower and upper layers](tools/rm2k-render-meadow.png)
@@ -804,7 +787,7 @@ shows on a map small enough to look at.
 
 ## Running them by hand
 
-Each binary prints what it reads and what it writes with `--help`, and
+Each command prints what it reads and what it writes with `--help`, and
 each subcommand prints the shape of its request and its answer. A stage
 can be run alone on a dump, with a request written by hand; the pieces it
 writes are the same ones the converter hands to the next stage. The
@@ -816,7 +799,10 @@ converter's queries —`scan`, `compile`, `leaders`, `map-context`,
 Every picture above comes out of two scripts in `figures/tools/`, at the
 root of this book's repository. `make.py` counts pixels, writes each
 tool's request, runs the tool from the PATH and pastes the answers side
-by side; it takes the EasyRPG RTP, a SoundFont and the test game's
+by side. It runs Adeleine, Voodoo, LZ2, Gunter and `rm2k-render` as
+commands, which they were until 2026-11-23: to make their pictures again
+it needs those five installed from the-advocate at `ca74a4d4`, the last
+commit that had them, and the rest from today's tools. It takes the EasyRPG RTP, a SoundFont and the test game's
 `build/` —made with `just game` in the-advocate's `test-game/`— as flags,
 and prints what each command printed, which is where the numbers quoted
 above were read from on the day the pictures were made; the tools move,

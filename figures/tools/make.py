@@ -9,7 +9,11 @@ Every picture in `src/tools/` comes out of here, so that it can be made
 again when a tool changes: the only thing this script does by itself is
 count pixels, write requests and paste answers side by side. The tools
 come from the PATH —`adeleine`, `voodoo`, `lz2`, `gunter`, `rm2k-render`,
-`wally`, `rm2k-snes-screens`—, like for any game. What each step printed
+`wally`, `rm2k-snes-screens`—, like for any game. The first five stopped
+being commands on 2026-11-23, when they were left as the libraries the
+stages are built with: this runs their old command lines, so it needs
+those five installed from the-advocate at `ca74a4d4`, the last commit
+that had them. What each step printed
 goes to standard output, which is where the page's numbers were read
 from.
 
