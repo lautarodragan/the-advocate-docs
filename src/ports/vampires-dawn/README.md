@@ -49,12 +49,11 @@ as text.
   and `Staerke`. Drafts:
   [`vampires-dawn-summons-dont-compile`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vampires-dawn-summons-dont-compile.md)
   and [`vampires-dawn-transformations-dont-compile`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/vampires-dawn-transformations-dont-compile.md).
-  When the bat compiles, it will not fly over anything on the castle's
-  maps (28, 56, 89, 90): the game opens every cell for it by swapping the
-  map's tileset, which the console does not do. See
-  [What `ChangeMapTileset` does not model](../../divergences/what-changemaptileset-does-not-model.md);
-  draft:
-  [`changemaptileset-is-not-done`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/changemaptileset-is-not-done.md).
+  When the bat compiles, on the castle's maps (28, 56, 89, 90) it will fly
+  over every cell, as the game swaps the map's tileset for that, but what the
+  castle draws above the hero will stay above it and the rest below: the
+  console takes only that tileset's passability. See
+  [What `ChangeMapTileset` does not model](../../divergences/what-changemaptileset-does-not-model.md).
 * **Coloured words have fewer shades than RM2k's gradient, and a second
   colour in the same box comes out in the window's own shades** —"Valnar
   is a young warrior from Limm" with the town in another colour than the

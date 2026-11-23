@@ -199,6 +199,31 @@ of its attributes say 3 —no character's object has it—, its palette bits
 which of its characters it shows, and its tile byte its number in the
 record.
 
+#### A map with another ChipSet
+
+`ChangeMapTileset` draws and walks the same cells with another ChipSet,
+and since 2026-11-23 the console does it for the ChipSets a map's own pages
+ask for —what it does not model: [What `ChangeMapTileset` does not
+model](../divergences/what-changemaptileset-does-not-model.md)—. The
+converter asks Wally for the map once more with each (`variants.rs` in
+rm2k-snes-convert), and **numbers the blocks by all the conversions at
+once**: a cell's block is the tuple of the blocks it got from each, so
+every ChipSet's block table has the map's size and the grid is the same.
+
+Each ChipSet is then a **variant**: a whole record of `map_table` behind
+the maps', a copy of the map's with its tiles, colours, layer above,
+animation, terrain and grid-with-block-table pointing to its own blocks,
+and an `anim_table` entry in the same place (`variant_data` in
+`record.rs` of rm2k-snes-mapdata). `runtime/tileset.s` swaps one in by
+pointing `map_ofs` at its record —so the strips, the animation and the
+loads after a menu or a battle follow it— and decompressing its block
+table alone over the map's, behind the grid, from `tileset_table`; if
+either the one going out or the one coming in draws otherwise than the
+map, it uploads the drawing too, with the screen off for the tick. A
+ChipSet with the map's picture and animation brings only its passability
+and terrain, and nothing goes to VRAM. `enter_map` points `map_ofs` back
+at the map's own record.
+
 #### A map that loops
 
 A map with RM2k's `scroll_type` loops on that axis —a torus: the hero,

@@ -27,13 +27,6 @@ as text.
   says twelve more plates are drawn there with another graphic's colours,
   on the cursor and on the battle's own events. Draft:
   [`frozen-world-plates-in-the-battle-are-drawn-with-other-colours`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/frozen-world-plates-in-the-battle-are-drawn-with-other-colours.md).
-* **When time stops or starts again, the place does not change**: in the
-  bazaar (maps 9 and 149) and in the temple's scenes (47 and 99) the
-  original swaps the map's tileset for one with the water and the
-  waterfalls still, and back; on the console the water keeps moving. See
-  [What `ChangeMapTileset` does not model](../../divergences/what-changemaptileset-does-not-model.md).
-  Task:
-  [`changemaptileset-is-not-done`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/changemaptileset-is-not-done.md).
 * **A fight's backdrop is the one the battle screen picks, not the
   place's**: the encounters name the backdrop after jumping to the battle
   screen (map 1), and the console keeps the one there is on those; the
