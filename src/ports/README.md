@@ -10,8 +10,11 @@ game, and each one is a whole project**:
   project by looking for this file upwards from where they run, the way
   cargo finds its `Cargo.toml`, so everything is run from the game's
   directory.
-- **`justfile`**: the recipes —dump the game, build the cartridges,
-  measure the space, list which pages don't compile—. It translates the
+- **`justfile`**: where the original game is, `GAME_DIR`, and the recipes
+  that are the game's own; the ones every game shares —dump the game,
+  build the cartridges, measure the space, list which pages don't
+  compile— are in `game.just`, at the root, which each `justfile`
+  imports. They translate the
   variables that say where the original game, the RTP and the SoundFont
   are (`GAME_DIR`, `RTP_DIR`, `SOUNDFONT`) into the tools' flags
   (`--game-dir`, `--rtp-dir`, `--soundfont`); the tools themselves come

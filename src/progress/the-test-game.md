@@ -136,7 +136,7 @@ signpost, the guide, teleports to every map; a board right below where the
 hero starts, the tester, runs every case from `ShowChoice` menus, with the
 hero where the harness had them at boot; an item, the Way Home, brings the
 hero back from anywhere. The cases moved from `cases/` to `tester/`, and
-`hub.toml` says the menus, which `just hub` writes into the meadow. The
+`hub.toml` says the menus, which `tests/hub.py` writes into the meadow. The
 tests boot and walk to the signpost or the board, and keep a shortcut only
 where playing cannot get there, which each says on its line. `just
 deliver` leaves the build for taro. The hub is on the meadow and not on a
