@@ -29,7 +29,13 @@ and they do not do everything they do in RM2k:
   uploaded. It comes back during the zoom, so messages over the black after
   a zoom to zero are visible; **in mode 7 there is no second layer**, and a
   message during the zoom, or with the picture still at another size, is
-  not visible. No scene in ABL does either of those.
+  not visible. No scene in ABL does either of those. **Only on the maps
+  that zoom it**: the same picture shown still on another map goes without
+  the texture, as any large one, and its messages are seen. Until
+  2026-11-23 it carried the texture on every map, and Desert Nightmare's
+  black screen, which one map zooms, hid the messages over it on all of
+  them —see the task
+  [`desert-nightmare-the-scene-after-the-bar-is-black`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-scene-after-the-bar-is-black.md)—.
 * **Transparency darkens.** Under the layer there is only the backdrop
   color, which is black, so a picture at 50 % is a picture at half its
   color: exact over the black screen, which is where the game shows them.
