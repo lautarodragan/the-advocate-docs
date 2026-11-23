@@ -57,6 +57,11 @@ as text.
 * **The characters are not shaded by the lights.** Sandra stays at her
   full colours in the WC's darkness and in every lit interior: the masks
   are drawn into the map, not over her. See [Pictures drawn into the map](../../divergences/pictures-drawn-into-the-map.md).
+* **When a black screen fades out over a room, the room comes back with
+  its furniture and people missing** —the hotel room at night (33), and
+  the motel's corridor before it (32)—, and they come in over some eight
+  frames, while the message box is already typing. Draft:
+  [`the-map-comes-back-in-pieces-after-a-big-picture`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-map-comes-back-in-pieces-after-a-big-picture.md).
 * **The menu and the other screens keep the intro's System** for the whole
   game: the original switches to `Systemset_Spiel` in its common event
   `Init`, and only the message window follows. See [What `ChangeSystemGraphics` does not model](../../divergences/what-changesystemgraphics-does-not-model.md).
