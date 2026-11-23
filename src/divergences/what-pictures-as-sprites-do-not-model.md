@@ -20,7 +20,12 @@ not do everything they do in RM2k:
   place —since 2026-10-16; until then not the place—, each picture with its
   own ramp. One that asks for another zoom does not compile and is accepted
   without being done. One that goes with the map stays where it is, as in
-  RM2k 2000; RM2k 2003 would move it.
+  RM2k 2000; RM2k 2003 would move it. But for one that goes with the
+  screen and that the console puts with the map, because on a map RM2k
+  never scrolls it is placed by the same variables as one with the map
+  under its number —Desert Nightmare's hit dog, on map 11—: scaled to the
+  console's screen it would land apart from that one, so it goes with the
+  map unscaled, and moves as a screen picture does.
 * **Sixteen numbers at a time on a map**, and what goes in is what the map's
   characters leave: the pictures share the sprite palettes they get from
   the top, and the 512 object tiles. A map whose pictures do not fit loses

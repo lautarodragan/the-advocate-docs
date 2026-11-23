@@ -65,11 +65,6 @@ as text.
 * **The menu and the other screens keep the intro's System** for the whole
   game: the original switches to `Systemset_Spiel` in its common event
   `Init`, and only the message window follows. See [What `ChangeSystemGraphics` does not model](../../divergences/what-changesystemgraphics-does-not-model.md).
-* **The hit dog shows on the sand beside the warehouse's roof** in the
-  scene where the dog seems to die (11), a little lower, slides behind the
-  roof and leaves a sliver of itself at its edge; the original hides it
-  behind the roof. Draft:
-  [`desert-nightmare-the-hit-dog-lands-beside-the-roof`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/desert-nightmare-the-hit-dog-lands-beside-the-roof.md).
 * **The warehouse's first room (21) is darker** than the original's once
   its opening scene has played: the light drawn into it is the one the
   scene leaves, not the one the room shows each time it is entered. Draft:
