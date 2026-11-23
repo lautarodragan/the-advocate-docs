@@ -165,8 +165,8 @@ that went over counts its black frames too; bsnes and snes9x clear them
 anyway.
 
 The counts are for what a played game meets, a scene that brings people in.
-Each map as it is entered is counted without the ROM by the ports' `just
-objects-per-line`, which enters every map of every game.
+Each map as it is entered is counted without the ROM by the ports'
+`tests/objects_per_line.py`, which enters every map of every game.
 
 **A row of the list is the screen's whole row** for the text layer —the
 range's label beside it is the same record—, so a step that changes the

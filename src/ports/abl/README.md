@@ -161,7 +161,8 @@ stages and the tests look at these files and not at the binaries. The one
 that writes it is **Ditto**, one of the tools, which also knows how to go
 back: `ditto pack` rebuilds the game's files byte for byte from the exact
 dump, which the same run leaves in `build/ditto-exacto/` and which isn't
-versioned; `just dump-round-trip` checks it on this game. The reason for the
+versioned; the ports' `just boot` checks it on this game and on every
+other, in `test_round_trip.py`. The reason for the
 decision is in [data is the resolved
 view](../../decisions/data-is-the-resolved-view.md), and what is inside,
 in `data/README.md`.

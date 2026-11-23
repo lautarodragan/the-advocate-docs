@@ -15,7 +15,7 @@ abl.sfc + MIDI or replacements    --rm2k-snes-audio msu---------> abl-N.pcm
                                     (fluidsynth, ffmpeg)
 
 just cartridges release  everything, with the MSU-1 tracks, in build/release/
-just patches            copies release's decisions to patches/auto/
+rm2k-snes-patches build/release   copies release's decisions to patches/auto/
 ```
 
 The tools of each arrow and the runtime belong to the tools' repository,

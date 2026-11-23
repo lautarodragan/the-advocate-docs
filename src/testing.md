@@ -50,3 +50,23 @@ square and a bar have goldens, still and walking with the camera moving.
 It is not part of A Blurred Line's suite —one game alone takes a couple of
 minutes to build from scratch—: it is run before handing a build over, or
 after a large change to the tools.
+
+## The dump's round trip
+
+What makes a game's `data/` the game, and not an approximate reading of
+it, is that Ditto writes back from it the very bytes it read: `ditto
+unpack`, then `ditto pack` from the exact dump, and every `.lmu`, `.ldb`
+and `.lmt` equal to the one it came from. Two tests ask it, from the two
+sides:
+
+- **The test game's**, `test_round_trip.py` in `just test-game`: its RM2k
+  files are written by Ditto from a dump written by hand, so it proves
+  Ditto reads what Ditto writes. It runs in CI, where no one else's game
+  can go.
+- **The ports'**, `test_round_trip.py` in `just boot`, once per game and
+  A Blurred Line included: over each game's original, it proves Ditto
+  reads what RPG Maker wrote —2003 too—. It builds no cartridge, so
+  `just boot -k round_trip` takes seconds.
+
+Ditto's own tests ask the same of the library, over whatever game
+`DITTO_CORPUS` names: see its README.
