@@ -45,10 +45,11 @@ and [The pipeline](../internals/pipeline.md) describe what there is today.
 
 ## Why
 
-* **A pipeline one can reason about.** Today a build is
+* **A pipeline one can reason about.** When this was decided a build was
   `rm2k-snes-cartridges`, which runs `rm2k-snes-convert`, which runs each
   stage —a program found on the `PATH`, handed a JSON request in a
-  temporary directory— and then runs itself again to assemble. Which
+  temporary directory—, and then ran itself again to assemble (it calls
+  that code since the same day, the first of the tasks below). Which
   binary answers depends on the `PATH`; what goes between them is JSON
   that neither side's compiler checks. As libraries, the contract between
   two domains is a function signature.
