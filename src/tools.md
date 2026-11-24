@@ -30,9 +30,12 @@ does; the pages it links to say why things are the way they are.
 `rm2k-snes-convert`, run by `rm2k-snes-cartridges`, and the stages it runs
 in turn —`wally`, `rm2k-snes-events`, `rm2k-snes-screens`,
 `rm2k-snes-images`, `rm2k-snes-battle`, `rm2k-snes-mapdata`,
-`rm2k-snes-patches` and `rm2k-snes-audio`—; and `rm2k-snes-cartridges
-assemble` and `rm2k-snes-audio msu`, which `rm2k-snes-cartridges` runs
-after the converter. Each stage is a process of its own on purpose: the
+`rm2k-snes-patches` and `rm2k-snes-audio`—; and `rm2k-snes-audio msu`,
+which `rm2k-snes-cartridges` runs after the converter. The assembling is
+not a process: `rm2k-snes-cartridges` calls its own code, and its
+`assemble` subcommand is for running it by hand and for a game's tests,
+which ask it the memory map. Until 2026-11-24 it ran that subcommand as a
+process, a leftover of when it was `rm2k-snes-assemble`. Each stage is a process of its own on purpose: the
 conversion cache keys every answer by the binary that gave it, so a stage
 that changes expires its own answers and nobody else's —the audio
 stage's, also when its `msu` or `volume-ceilings` change, which share its
@@ -79,7 +82,7 @@ data/   one JSON per map, the database, the tree
         │          7  rm2k-snes-mapdata emit   ──▶ mapdata.inc
         │          8  rm2k-snes-patches        ──▶ patches/     what was decided to lose
         │          9  rm2k-snes-audio cartridge──▶ musicdata.inc, <rom>.msu
-        │    └─ rm2k-snes-cartridges assemble   the runtime's .s + both .inc, ca65 + ld65
+        │    └─ its assemble, in-process        the runtime's .s + both .inc, ca65 + ld65
         │    └─ rm2k-snes-audio msu             the MSU-1 tracks, from the MIDIs
         ▼
 build/<cartridge>/   <rom>.sfc  <rom>.sfc.sym  <rom>.msu  <rom>-N.pcm
