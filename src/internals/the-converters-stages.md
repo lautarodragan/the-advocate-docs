@@ -18,9 +18,11 @@ The order matters for two reasons, and they are different:
   room.
 
 Nobody declares the order: it is how `convert::run`, in `convert.rs` of
-rm2k-snes-convert, asks its stages, and how each stage orders its own
-attempts. What follows is read from there. The binaries and what each
-leaves behind are in [the pipeline](pipeline.md); the list of what a
+rm2k-snes-convert, calls its stages —each a library compiled into it,
+through `stage.rs`—, and how each stage orders its own attempts. What
+follows is read from there, and a stage is named by its crate and the
+subcommand of its binary that answers the same. The binaries and what
+each leaves behind are in [the pipeline](pipeline.md); the list of what a
 cartridge runs with less than RM2k, `degradations.json`, too. The names in
 `code` below are the `kind`s that list counts by, as the converter writes
 them.
@@ -100,8 +102,9 @@ A translucent big one the rule leaves as a picture is shown over black:
 
 ### 5. Each map: Wally
 
-`maps::prepare` builds each map's request and `maps::run_all` asks `wally
-map` for all of them, in parallel. Inside, `map::convert` in Wally does
+`maps::prepare` builds each map's request and `maps::run_requests` asks
+Wally's `map` —`stage::map` in wally— for all of them, in parallel
+threads. Inside, `map::convert` in Wally does
 this, in this order, in `convert_with`:
 
 1. **Which opaque tile events can be baked** into the layer above

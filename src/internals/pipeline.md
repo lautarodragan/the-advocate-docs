@@ -8,9 +8,9 @@ binaries and what each one leaves behind:
 --game-dir (.lmu .ldb .lmt)       --ditto unpack---------------->  data/ (JSON)
 data/ + patches/manual/
 + images, MIDI and WAV            --rm2k-snes-convert-----------> build/<rom>/
-  (--game-dir, --rtp-dir)           (and its stages: wally, events,   mapdata.inc, musicdata.inc,
-                                     screens, images, battle,
-                                     mapdata, patches, audio)
+  (--game-dir, --rtp-dir)           (its stages compiled in: wally,   mapdata.inc, musicdata.inc,
+                                     events, screens, images,
+                                     battle, mapdata, patches, audio)
                                                                   <rom>.msu (battle backdrops),
                                                                   patches/ (decisions),
                                                                   degradations.json
@@ -91,8 +91,8 @@ flags, its test cases, and a **fingerprint** of everything else that goes
 into the ROM. The fingerprint looks at contents, never at dates:
 
 - the whole `runtime/`, and the binaries that build: `ca65`, `ld65`, the
-  converter and the stages it runs, and `rm2k-snes-cartridges` itself,
-  whose `assemble` packs the banks;
+  converter —with its stages, which are libraries compiled into it—, and
+  `rm2k-snes-cartridges` itself, whose `assemble` packs the banks;
 - the game's dump, `data/`, whole, and its hand-made patches —with each
   name, for the files of `patches/manual/`'s RM2k folders, below—, its project
   file and the files that file names —custom menus, its own font, its
@@ -178,6 +178,6 @@ asks Ditto for a dump that is the game's with that section replaced
 (`Dump::with_section`, every other file a link to the game's), in
 `build/patches-manual/dump-<hash>/` of the project, named by the game's
 common events and ours, written aside and renamed; and from there on
-`--data` is that dump for every stage it runs. See
+`--data` is that dump for every stage it calls. See
 `fork::with_common_events` in rm2k-snes-convert. Frozen World's B menu
 was the first, on 2026-10-19.
