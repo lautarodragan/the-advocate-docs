@@ -27,19 +27,24 @@ does; the pages it links to say why things are the way they are.
 - `rm2k-sketch`, a map written as text into a dump.
 
 **The commands the pipeline runs**, which nobody has to call:
-`rm2k-snes-convert`, run by `rm2k-snes-cartridges`, and the stages it runs
-in turn —`wally`, `rm2k-snes-events`, `rm2k-snes-screens`,
+`rm2k-snes-convert`, run by `rm2k-snes-cartridges`, and `rm2k-snes-audio
+msu`, which `rm2k-snes-cartridges` runs after the converter. **The stages
+are not processes**: `wally`, `rm2k-snes-events`, `rm2k-snes-screens`,
 `rm2k-snes-images`, `rm2k-snes-battle`, `rm2k-snes-mapdata`,
-`rm2k-snes-patches` and `rm2k-snes-audio`—; and `rm2k-snes-audio msu`,
-which `rm2k-snes-cartridges` runs after the converter. The assembling is
-not a process: `rm2k-snes-cartridges` calls its own code, and its
-`assemble` subcommand is for running it by hand and for a game's tests,
-which ask it the memory map. Until 2026-11-24 it ran that subcommand as a
-process, a leftover of when it was `rm2k-snes-assemble`. Each stage is a process of its own on purpose: the
-conversion cache keys every answer by the binary that gave it, so a stage
-that changes expires its own answers and nobody else's —the audio
-stage's, also when its `msu` or `volume-ceilings` change, which share its
-binary—.
+`rm2k-snes-patches` and `rm2k-snes-audio` are libraries the converter is
+compiled with, and it calls each one's `stage` module as functions; their
+binaries are a `main` over the same functions, for a game's tests and for
+a person. Until 2026-11-24 the converter ran each stage as a program on
+the PATH, from when it was written in Python, and the conversion cache
+keyed every answer by the binary that gave it. Now it keys every stage's
+answer by the converter's binary: any change to any stage expires every
+stage's answers, the price of the simpler shape until a stage has a key
+of its own
+([task](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-stage-s-cache-key-once-it-is-a-library.md)).
+The assembling is not a process either: `rm2k-snes-cartridges` calls its
+own code, and its `assemble` subcommand is for running it by hand and for
+a game's tests, which ask it the memory map. Until 2026-11-24 it ran that
+subcommand as a process, a leftover of when it was `rm2k-snes-assemble`.
 
 **A command with more than one job takes it as a subcommand**, when the
 jobs share a crate: `rm2k-snes-cartridges space`, `rm2k-snes-audio msu`.
@@ -88,6 +93,10 @@ data/   one JSON per map, the database, the tree
 build/<cartridge>/   <rom>.sfc  <rom>.sfc.sym  <rom>.msu  <rom>-N.pcm
                      degradations.json  patches/  adeleine/
 ```
+
+The converter's numbered steps are its stages' functions, named as the
+subcommands of their binaries, which answer the same: the converter calls
+them in its own process, and runs none of those binaries.
 
 Inside the converter the order is not a convenience. The pages have to be
 scanned before any map is drawn, because which pages compile decides who
@@ -458,10 +467,12 @@ four trees' crowns, which the ChipSet's passability puts above—:
 ## Both sides: `rm2k-snes/`
 
 What joins the two: an RPG Maker game made into a cartridge. One program
-orchestrates, the converter; the rest are **stages**, each a program on the
-PATH with the same shape. A stage reads the game from the dump itself,
+orchestrates, the converter; the rest are **stages**, each a library with
+the same shape that the converter calls, and a binary over it for the
+tests and for a person. A stage reads the game from the dump itself,
 with Ditto's library; gets in a **request** what the cartridge decided and
-the dump does not say; and writes pieces and a JSON into a directory. A
+the dump does not say; and answers pieces and a JSON, as files by name,
+which its binary writes into a directory. A
 rule of RPG Maker is `rm2k-rules`', a format of the console is
 `snes/`'s, and what a stage keeps is what belongs to the cartridge.
 

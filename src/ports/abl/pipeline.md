@@ -4,9 +4,9 @@
 $GAME_DIR (.lmu .ldb .lmt)    --ditto unpack (just dump)-->  data/ (JSON)
 data/ + patches/manual/
 + images, MIDI and WAV            --rm2k-snes-convert-----------> build/<rom>/
-  ($GAME_DIR, $RTP_DIR)     (and its stages: wally, events,   mapdata.inc, musicdata.inc,
-                                     screens, images, battle,
-                                     mapdata, patches, audio)
+  ($GAME_DIR, $RTP_DIR)     (its stages compiled in: wally,   mapdata.inc, musicdata.inc,
+                                     events, screens, images,
+                                     battle, mapdata, patches, audio)
                                                                   abl.msu (battle backdrops),
                                                                   patches/ (decisions)
 the runtime + those .inc          --rm2k-snes-cartridges assemble-> abl.sfc + abl.sfc.sym
