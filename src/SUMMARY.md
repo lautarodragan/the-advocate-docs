@@ -88,6 +88,7 @@
     - [The playing track wins, and the sound effects wait](decisions/the-playing-track-wins-and-the-sound-effects-wait.md)
     - [A port's own files replace the game's, by name](decisions/a-ports-own-files-replace-the-games-by-name.md)
     - [The manual patches are one folder per kind of asset](decisions/the-manual-patches-are-one-folder-per-kind-of-asset.md)
+    - [One command, and no tool of ours runs another](decisions/one-command-and-no-tool-runs-another.md)
 - [Divergences](divergences/README.md)
     - [The map and its graphics]()
         - [A cell with both ChipSet animations](divergences/a-cell-with-both-chipset-animations.md)
