@@ -47,9 +47,9 @@ commands, in the arm of `compile.rs` that compiles each one, and its
 emission what it cut, the screens what they cut or merged, the converter
 its own decisions —the events left out for RAM, a hero's flash on a shared
 palette—, and the audio stage what a package that did not fit in the ARAM
-lost, which it leaves in its `audio.json` under `losses` because it runs
-last; `degradations.rs` in `rm2k-snes-convert` gathers them and writes the
-file after the music. A page that does not compile takes its losses
+lost, which it answers beside its files —and leaves in its `audio.json`
+under `losses` too—; `degradations.rs` in `rm2k-snes-convert` gathers them
+and writes the file after the music, which runs last. A page that does not compile takes its losses
 back, as it takes its texts back, so what is listed is what reaches the
 cartridge.
 
