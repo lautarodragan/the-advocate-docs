@@ -857,7 +857,7 @@ questions a game's tests ask it, and a person's report:
 * `rm2k-snes-images`: `backdrops`, `battlers` and `animations`;
 * `rm2k-snes-battle`: `model`, `simulate`, `lines`, `experience` and
   `field-skill`;
-* `rm2k-snes-mapdata`: `vram`, `pages` and `compress`;
+* `rm2k-snes-mapdata`: `vram`;
 * `rm2k-snes-audio`: `compile`, which rebuilds one cartridge's music from
   the job it left beside it; `volume-ceilings`; and the questions about
   songs and the `.msu`;
