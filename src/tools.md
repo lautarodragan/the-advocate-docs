@@ -94,9 +94,11 @@ build/<cartridge>/   <rom>.sfc  <rom>.sfc.sym  <rom>.msu  <rom>-N.pcm
                      degradations.json  patches/  adeleine/
 ```
 
-The converter's numbered steps are its stages' functions, named as the
-subcommands of their binaries, which answer the same: the converter calls
-them in its own process, and runs none of those binaries.
+The converter's numbered steps are its stages' functions, named by their
+crate's binary and the function: the converter calls them in its own
+process, and runs none of those binaries. A few are also a subcommand of
+the binary, for the tests —`rm2k-snes-events scan`, `rm2k-snes-screens
+window`, `rm2k-snes-battle model`—; the rest are functions only.
 
 Inside the converter the order is not a convenience. The pages have to be
 scanned before any map is drawn, because which pages compile decides who
@@ -814,11 +816,31 @@ shows on a map small enough to look at.
 ## Running them by hand
 
 Each command prints what it reads and what it writes with `--help`, and
-each subcommand prints the shape of its request and its answer. A stage
-can be run alone on a dump, with a request written by hand; the pieces it
-writes are the same ones the converter hands to the next stage. The
-converter's queries —`scan`, `compile`, `leaders`, `map-context`,
-`boxes`— answer a game's tests the same questions it asks itself.
+each subcommand prints the shape of its request and its answer. What a
+stage binary still runs, on a dump and a request written by hand, are the
+questions a game's tests ask it, and a person's report:
+
+* `wally`: `layers`, `bakeable` and `split`;
+* `rm2k-snes-events`: `scan`, and `culprits`, which commands keep each
+  page out;
+* `rm2k-snes-screens`: `render`, `window`, `refit`, `layout` and `equip`;
+* `rm2k-snes-images`: `backdrops`, `battlers` and `animations`;
+* `rm2k-snes-battle`: `model`, `simulate`, `lines`, `experience`,
+  `field-skill` and `layout`;
+* `rm2k-snes-mapdata`: `vram`, `pages`, `compress` and `engine`;
+* `rm2k-snes-audio`: `compile`, which rebuilds one cartridge's music from
+  the job it left beside it; `msu`, the MSU-1 tracks, which the cartridge
+  builder runs; `volume-ceilings`; and the questions about songs and the
+  `.msu`;
+* `rm2k-snes-patches`: a build's patches copied into the project, and
+  `--check`.
+
+The steps of the road the converter alone takes —a whole map, the
+battle's tables, the compilation of every page, the screens, the full
+pictures, the emission, the music, a build's patches— are functions it
+calls, and no binary runs them on their own. The converter's queries
+—`scan`, `compile`, `leaders`, `map-context`, `boxes`— answer a game's
+tests the same questions it asks itself.
 
 ### How the pictures on this page were made
 
