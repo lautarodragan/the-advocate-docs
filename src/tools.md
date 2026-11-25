@@ -870,7 +870,7 @@ battle's tables, the compilation of every page, the screens, the full
 pictures, the emission, the music, a build's patches— are functions it
 calls, and no binary runs them on their own; neither do the MSU-1
 tracks, which `advocate build` renders. The converter's queries
-—`compile`, `leaders`, `map-context`, `boxes`— answer a game's tests the
+—`leaders`, `map-context`, `boxes`— answer a game's tests the
 same questions it asks itself.
 
 What a game's tests read **of a built cartridge** they do not ask a
@@ -882,7 +882,9 @@ writes into the `.sym` and the `.dbg` at no cost in ROM —the ones the
 runtime does not name, `for_readers` in `rm2k-snes-mapdata`'s `emit.rs`
 writes for them—. Until 2026-11-25 the tests asked `rm2k-snes-events
 scan`, `rm2k-snes-convert scan`, `rm2k-snes-mapdata engine`,
-`rm2k-snes-screens layout` and `rm2k-snes-battle layout`, which went.
+`rm2k-snes-screens layout` and `rm2k-snes-battle layout`, which went;
+and a troop's page triggers, `rm2k-snes-convert compile`, which went for
+the LDB read with RM2k's rule.
 
 ### How the pictures on this page were made
 
