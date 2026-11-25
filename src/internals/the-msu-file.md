@@ -1,7 +1,7 @@
 # The `.msu` file: data the MSU-1 serves to the ROM
 
-The MSU-1 has two parts: the audio tracks (`<rom>-N.pcm`, see
-`rm2k-snes-audio msu`, in `rm2k-snes/rm2k-snes-audio/src/tracks.rs`) and a
+The MSU-1 has two parts: the audio tracks (`<rom>-N.pcm`, which
+`advocate build` renders, see `rm2k-snes/rm2k-snes-audio/src/tracks.rs`) and a
 **data port** that reads `<rom>.msu` as a stream. Until 2026-09-25 the
 `.msu` was empty and only served to turn the MSU-1 on. Since that day it
 carries **the battle backdrops**, which started as a pilot, and since
@@ -83,8 +83,8 @@ converter, in `converter.log` ("`.msu:` N fondo(s) y M efecto(s) en B
 bytes", that is, N backdrop(s) and M effect(s) in B bytes).
 
 The converter writes it —it is the one that has the bytes and decides the
-order—, next to each `.sfc` and with its name: `rm2k-snes-cartridges`
-passes it `--msu`. Both cartridges carry it, and the test of the MSU-1 path
+order—, next to each `.sfc` and with its name: `advocate build` passes
+it `--msu`. Both cartridges carry it, and the test of the MSU-1 path
 runs on `release`, which is the ROM that is played.
 
 ## How the ROM knows the `.msu` is its own

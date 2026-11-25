@@ -200,5 +200,5 @@ the rest of the file:
   the hero walks: see [Phasing is a toggle on
   Select](../divergences/phasing-is-a-toggle-on-select.md).
 
-`rm2k-snes-cartridges` reads the four and passes the flags to every
-cartridge of the project.
+`advocate build` reads the four and passes the flags to every cartridge
+of the project.

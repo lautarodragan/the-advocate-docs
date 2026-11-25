@@ -20,9 +20,9 @@ The order matters for two reasons, and they are different:
 Nobody declares the order: it is how `convert::run`, in `convert.rs` of
 rm2k-snes-convert, calls its stages —each a library compiled into it,
 through `stage.rs`—, and how each stage orders its own attempts. What
-follows is read from there, and a stage is named by its crate and the
-subcommand of its binary that answers the same. The binaries and what
-each leaves behind are in [the pipeline](pipeline.md); the list of what a
+follows is read from there, and a stage is named by its crate and its
+function in the crate's `stage` module. What each leaves behind is in
+[the pipeline](pipeline.md); the list of what a
 cartridge runs with less than RM2k, `degradations.json`, too. The names in
 `code` below are the `kind`s that list counts by, as the converter writes
 them.
@@ -176,7 +176,7 @@ The big pictures are numbered for the whole cartridge (`pictures.rs`): the
 maps' first, then the common events', which lose theirs past the table's
 byte. Then `rm2k-snes-battle` answers the encounters and the experience,
 and the event compiler compiles every page, with its own losses per
-command (`rm2k-snes-events culprits`); what Wally painted, drew into the
+command (`culprits.json`, beside the ROM); what Wally painted, drew into the
 map or shows elsewhere is forgotten from that list. When each map's
 bytecode is laid out, **its copy of the common events stays only where it
 draws and does not push the bytecode out of WRAM**: on a map where Wally
@@ -214,7 +214,7 @@ inn's gold window with no room (`inn-no-gold-window`).
 
 `rm2k-snes-patches` writes what Adeleine decided —which colour went into
 which— as the game's patches: decisions, not degradations. **The music
-runs last**, `rm2k-snes-audio cartridge`, because what a map's package
+runs last**, `rm2k-snes-audio`'s `cartridge` stage, because what a map's package
 carries depends on everything above: it spends ARAM, and loses
 `songs-uploaded-on-play`, `sound-effects-left-out` or
 `package-waits-for-playbgm`. It also writes the `.msu`, with the battle
@@ -222,7 +222,7 @@ backdrops and the effects. Only then is `degradations.json` written.
 
 ### 11. The packing
 
-`rm2k-snes-cartridges assemble`, after the converter (`banks.rs` in
+The assembling, after the converter, in the same `advocate build` (`banks.rs` in
 rm2k-snes-cartridge): **first-fit decreasing**, the fast 4 MB before the
 slow ones. In a game with `[rom] msu = "required"`, what does not fit goes
 behind the `.msu` (`pack_with_msu`): the fewest pieces that make the rest

@@ -34,7 +34,7 @@ entry, and nothing has to be fused. It is the game's choice, per System.
 - **Loses**: what the System's background had besides its colours —a
   dither, a stroke near the edges—; a gradient is drawn as its average
   until the runtime draws gradients.
-- **Where**: `windows.rs` in `rm2k-snes-project`; `--window-background` in
+- **Where**: `windows.rs` in `rm2k-project`; `--window-background` in
   `rm2k-snes-screens`.
 - **More**: [The windows' background is the project's, by System](../../decisions/the-windows-background-is-the-projects-by-system.md),
   [The windows, made cheaper](../../research/2026-10-11-the-windows-made-cheaper.md).

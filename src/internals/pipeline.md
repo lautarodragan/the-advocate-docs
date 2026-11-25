@@ -2,31 +2,42 @@
 
 What each step does and why the tools read a JSON dump is in [From a game
 to a ROM](../pipeline.md). This is the same road with the names of the
-binaries and what each one leaves behind:
+crates that do each step and what each one leaves behind; from the dump
+on, it is all one process, `advocate build`, calling them as libraries:
 
 ```text
 --game-dir (.lmu .ldb .lmt)       --ditto unpack---------------->  data/ (JSON)
 data/ + patches/manual/
-+ images, MIDI and WAV            --rm2k-snes-convert-----------> build/<rom>/
++ images, MIDI and WAV            --the converter, rm2k-snes-convert--> build/<rom>/
   (--game-dir, --rtp-dir)           (its stages compiled in: wally,   mapdata.inc, musicdata.inc,
                                      events, screens, images,
                                      battle, mapdata, patches, audio)
                                                                   <rom>.msu (battle backdrops),
                                                                   patches/ (decisions),
                                                                   degradations.json
-runtime/*.s + those .inc    --rm2k-snes-cartridges assemble-> <rom>.sfc + <rom>.sfc.sym
+runtime/*.s + those .inc    --the cartridge library's assemble-> <rom>.sfc + <rom>.sfc.sym
                                     (bank packing, ca65 + ld65)   and, with [rom] msu = "required",
-                                                                  what does not fit, behind <rom>.msu
-<rom>.sfc + MIDI or replacements  --rm2k-snes-audio msu---------> <rom>-N.pcm
+                                                                  what does not fit, behind <rom>.msu;
+                                                                  space.json, what it has left
+<rom>.sfc + MIDI or replacements  --rm2k-snes-audio's tracks----> <rom>-N.pcm
                                     (fluidsynth, ffmpeg)
+every cartridge                   --advocate build, at the end--> build/advocate.json
 ```
 
 The paths on the right belong to the game's project —where its
-`advocate.toml` is, which declares them—, and `<rom>` is its
-`[rom] name`. `rm2k-snes-cartridges` runs all of that for each cartridge
-the project declares. How A Blurred Line calls it, with which recipes and
-which flags: [its pipeline](../ports/abl/pipeline.md). In which order the
-converter's stages decide, and which budget each spends: [the converter's
+`advocate.toml` is, which declares them; `build/` is always beside it—,
+and `<rom>` is its `[rom] name`. `advocate build` does all of that for
+each cartridge the project declares, and leaves `build/advocate.json`:
+the project as the tools read it, the machine values it was given, each
+cartridge with its cases, whether it is up to date and its space, the
+versioned patches compared, the memory map and the runtime's sources,
+which is what a game's tests and recipes read instead of asking a
+binary. Until 2026-11-25 the build was `rm2k-snes-cartridges`, which ran
+`rm2k-snes-convert` and `rm2k-snes-audio msu` as processes.
+
+How A Blurred Line calls it, with which recipes and which flags: [its
+pipeline](../ports/abl/pipeline.md). In which order the converter's
+stages decide, and which budget each spends: [the converter's
 stages](the-converters-stages.md).
 
 ## What the cartridge does with less than RM2k
@@ -37,7 +48,8 @@ accepted without being done, a parameter read and dropped, a graphic
 change skipped, a teleport to a map the cartridge does not carry turned
 into a message box, a ChipSet animation cut to fit, a map's rain or
 battle animations not drawn—. A page left out whole is not in it: that is
-`rm2k-snes-events culprits`. Nor are the colours the converter merged,
+`culprits.json`, beside it, which says which commands keep each page out.
+Nor are the colours the converter merged,
 which are the patches' (`patches/`, above).
 
 It is **complete by construction**: each entry is noted where the loss
@@ -85,14 +97,14 @@ writes it.
 
 ## When a cartridge is rebuilt
 
-`rm2k-snes-cartridges` rebuilds a cartridge only when its stamp
+`advocate build` rebuilds a cartridge only when its stamp
 —`stamp.txt`, next to the ROM— no longer matches: the cartridge's converter
 flags, its test cases, and a **fingerprint** of everything else that goes
 into the ROM. The fingerprint looks at contents, never at dates:
 
-- the whole `runtime/`, and the binaries that build: `ca65`, `ld65`, the
-  converter —with its stages, which are libraries compiled into it—, and
-  `rm2k-snes-cartridges` itself, whose `assemble` packs the banks;
+- the whole `runtime/`, and the binaries that build: `ca65`, `ld65`, and
+  the running `advocate` —the converter, its stages and the assembler are
+  libraries compiled into it—, not whichever is first on the PATH;
 - the game's dump, `data/`, whole, and its hand-made patches —with each
   name, for the files of `patches/manual/`'s RM2k folders, below—, its project
   file and the files that file names —custom menus, its own font, its
@@ -111,16 +123,19 @@ milliseconds.
 **The RTP and the SoundFont, as directories, go in by their path, not
 their content**:
 they are not edited, and hashing them would read them on every run. If one
-is changed in place, `rm2k-snes-cartridges --force` rebuilds the cartridges
+is changed in place, `advocate build --force` rebuilds the cartridges
 named —or all of them— without looking at the stamp. The MSU-1 tracks do
 not need it: they are outside the stamp, and their own cache keys on the
 SoundFont's content.
 
-Whoever asks whether a cartridge is up to date computes the same
-fingerprint, so it needs the same machine flags: `rm2k-snes-cartridges
-space` takes those of building, and a game's tests pass them to
-`--list --json`. Without `--game-dir` the fingerprint is an error, not a
-guess.
+Without `--game-dir` the fingerprint is an error, not a guess. **Whether
+a cartridge is up to date is what the last build saw**: `advocate build`
+writes it into `build/advocate.json`, and a game's tests read it there
+instead of computing the fingerprint again —every recipe that runs tests
+builds first, and a `pytest` run by hand after editing a source runs the
+ROM of the last build (taro's, 2026-11-25)—. Until that day the tests
+asked `rm2k-snes-cartridges --list --json`, with the machine flags of
+building.
 
 ## A game or an RTP as a `.zip`
 
@@ -135,9 +150,11 @@ tools it runs—. A tool that forgets to call it gets an error, not an empty
 game: a lookup that finds nothing in the game falls back to the RTP without
 a word.
 
-Whoever reads the game and is not a tool of the suite —Ditto in a game's
-`datos` recipe, a game's tests— asks `rm2k-snes-project --game-dir X
---unpacked game_dir` for the directory, and gets the same copy.
+Whoever reads the game and is not a tool of the suite reads it another
+way: a game's tests take the directory a build read it from, the
+`machine` of `build/advocate.json`, the same copy; a game's `dump`
+recipe, which runs before any build, reads the `.zip` itself. Until
+2026-11-25 both asked `rm2k-snes-project --unpacked game_dir`.
 
 A `.zip` is what keeps the original game untouched: what the port changes
 goes in its patches, not in the game.
@@ -162,8 +179,8 @@ aside and renamed, like the `.zip`'s.
 
 The directory carries `.rm2k-own-files.json`, what it replaced: a tool that
 receives one already built keeps it, and the converter prints it in
-`converter.log`. `rm2k-snes-project --unpacked game_dir` answers the same
-directory, so a game's tests and Ditto see the port's files too.
+`converter.log`. `build/advocate.json` names the same directory as the
+one the game is read from, so a game's tests see the port's files too.
 
 ## A port's own common events, in the dump
 

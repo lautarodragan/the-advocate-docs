@@ -63,7 +63,7 @@ running would break it.**
 
 The declaration is a `macro_rules!`, `bytecode!`: it gives one constant per
 opcode, which the compiler takes with a `use`, and the table from which
-`rm2k-snes-cartridges assemble` writes `event_opcodes.inc` into the cartridge's
+the assembling, in `advocate build`, writes `event_opcodes.inc` into the cartridge's
 directory, on every build. Until 2026-10-02 the declaration was a TOML file
 in `snes/protocol/`, and from it came, generated and committed, the
 Rust module, the `.inc` in `runtime/` and a Python module the ABL

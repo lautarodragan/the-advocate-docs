@@ -25,7 +25,7 @@ just as compensation:
   game running.
 
 It has two hops —from the JSON to the `.bin`, and from the `.bin` to the
-ROM offset—, and the second already exists: `rm2k-snes-cartridges assemble` writes a
+ROM offset—, and the second already exists: the assembling writes a
 `.sym` with the code's symbols, and this is its extension to the data.
 
 **It is born with the emitter or not at all**: the serializer knows at
