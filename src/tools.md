@@ -105,14 +105,15 @@ data/   one JSON per map, the database, the tree
         ▼
 build/<cartridge>/   <rom>.sfc  <rom>.sfc.sym  <rom>.msu  <rom>-N.pcm
                      degradations.json  patches/  adeleine/  culprits.json  space.json
+                     slots.json
 build/advocate.json  the project, the cartridges, their space, the patches compared
 ```
 
 The converter's numbered steps are its stages' functions, named by their
 crate's binary and the function: the converter calls them in
 `advocate`'s process, and runs none of those binaries. A few are also a subcommand of
-the binary, for the tests —`rm2k-snes-events scan`, `rm2k-snes-screens
-window`, `rm2k-snes-battle model`—; the rest are functions only.
+the binary, for the tests —`rm2k-snes-screens window`, `rm2k-snes-battle
+model`—; the rest are functions only.
 
 Inside the converter the order is not a convenience. The pages have to be
 scanned before any map is drawn, because which pages compile decides who
@@ -851,13 +852,12 @@ stage binary still runs, on a dump and a request written by hand, are the
 questions a game's tests ask it, and a person's report:
 
 * `wally`: `layers`, `bakeable` and `split`;
-* `rm2k-snes-events`: `scan`, and `culprits`, which commands keep each
-  page out;
-* `rm2k-snes-screens`: `render`, `window`, `refit`, `layout` and `equip`;
+* `rm2k-snes-events`: `culprits`, which commands keep each page out;
+* `rm2k-snes-screens`: `render`, `window`, `refit` and `equip`;
 * `rm2k-snes-images`: `backdrops`, `battlers` and `animations`;
-* `rm2k-snes-battle`: `model`, `simulate`, `lines`, `experience`,
-  `field-skill` and `layout`;
-* `rm2k-snes-mapdata`: `vram`, `pages`, `compress` and `engine`;
+* `rm2k-snes-battle`: `model`, `simulate`, `lines`, `experience` and
+  `field-skill`;
+* `rm2k-snes-mapdata`: `vram`, `pages` and `compress`;
 * `rm2k-snes-audio`: `compile`, which rebuilds one cartridge's music from
   the job it left beside it; `volume-ceilings`; and the questions about
   songs and the `.msu`;
@@ -870,8 +870,19 @@ battle's tables, the compilation of every page, the screens, the full
 pictures, the emission, the music, a build's patches— are functions it
 calls, and no binary runs them on their own; neither do the MSU-1
 tracks, which `advocate build` renders. The converter's queries
-—`scan`, `compile`, `leaders`, `map-context`, `boxes`— answer a game's
-tests the same questions it asks itself.
+—`compile`, `leaders`, `map-context`, `boxes`— answer a game's tests the
+same questions it asks itself.
+
+What a game's tests read **of a built cartridge** they do not ask a
+binary: where each RM2k variable and each (actor, skill) pair lives in the
+ROM is `slots.json`, beside it; which pages do not compile,
+`culprits.json`; and the engine's numbers, the screens' and the battle's
+geometry and the `.msu`'s layout are equates of the `.inc`, which `ld65`
+writes into the `.sym` and the `.dbg` at no cost in ROM —the ones the
+runtime does not name, `for_readers` in `rm2k-snes-mapdata`'s `emit.rs`
+writes for them—. Until 2026-11-25 the tests asked `rm2k-snes-events
+scan`, `rm2k-snes-convert scan`, `rm2k-snes-mapdata engine`,
+`rm2k-snes-screens layout` and `rm2k-snes-battle layout`, which went.
 
 ### How the pictures on this page were made
 
