@@ -24,10 +24,12 @@ of the one that flashes.
 
 ## How it looks today
 
-It is guarded by `tests/tooling/test_flash_palette.py` in the ABL
-port (the-advocate-ports/abl), which requires that nobody share the palette of
-a possible leader, because there the one that leaks is the hero, who is on
-screen all the time. **It protects the leader and not the one that
+Wally guards it at every build, in every game: the split stops the
+build if anyone but a possible leader goes into a leader's palette
+(`hold` in `rm2k-snes/wally/src/sprites/split.rs`, in the-advocate),
+because there the one that leaks is the hero, who is on screen all the
+time. Until 2026-11-25 it was a test of the ABL port, over three of its
+maps. **It protects the leader and not the one that
 flashes**: the target is decided at run time and the hero is the only one
 that can be known at conversion time, so a flash on another event would leak
 just the same.
