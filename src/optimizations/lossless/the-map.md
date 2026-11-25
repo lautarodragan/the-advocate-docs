@@ -125,7 +125,10 @@ map, and its row is hidden from the sprite pass.
 
 - **Saves**: sprite tiles, OAM entries and CPU in `build_oam`.
 - **Where**: `baking::bakeable` in Wally (`rm2k-snes/wally/src/baking.rs`);
-  `build_oam` skips the hidden row.
+  `build_oam` skips the hidden row. What makes it lossless is checked at
+  every build by `baking::hold`, beside it, which stops the build if a
+  baked tile does not cover its 16x16 or leaves the cell walked
+  differently than the event's row did.
 - **More**: [Events](../../internals/events.md).
 
 ## A painted map keeps only what the screen shows

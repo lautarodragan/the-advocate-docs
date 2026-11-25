@@ -10,9 +10,9 @@ first in the party.
 
 There is no static way to know it exactly, and which actors get a palette
 reserved depends on it. **If a character is ever drawn without graphics,
-this is the first place to look**; `tests/tooling/test_leaders.py`
-in the ABL port (the-advocate-ports/abl) guards the part that already failed
-once.
+this is the first place to look**; the converter's own tests
+(`scan.rs` in `rm2k-snes/convert/`, in the-advocate) guard the part that
+already failed once, with ABL's opening made small.
 
 ## How it applies
 
