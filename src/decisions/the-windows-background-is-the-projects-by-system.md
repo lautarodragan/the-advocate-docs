@@ -50,7 +50,7 @@ stroke near two edges of A Blurred Line's.
 
 ## How it applies
 
-* `rm2k-snes-project` reads and checks it —`windows.rs`—; the converter
+* `rm2k-project` reads and checks it —`windows.rs`—; the converter
   stops if a key names a System the game and the RTP do not have, because a
   misspelt name would leave its windows as they were without a word.
 * `rm2k-snes-screens` takes the colour as `--window-background` and fills

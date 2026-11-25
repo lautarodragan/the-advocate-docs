@@ -3,10 +3,11 @@
 An RPG Maker 2000 game is a folder: a database, a map tree and one binary
 file per map, next to the PNGs it draws with and the MIDIs it plays. A
 Super Nintendo cartridge is one file, the ROM. The tools are what goes
-in between, written in Rust: **a few commands on the PATH, and libraries
-under them** that the commands are compiled with. Each command reads
+in between, written in Rust: **one command that builds a game,
+`advocate`, a few more on the PATH for other jobs, and libraries under
+them** that the commands are compiled with. Each command reads
 something, decides something, writes something and says what it refused;
-a game's build calls them by name and never calls `cargo`.
+a game's recipes call them by name and never call `cargo`.
 
 This page says which they are, in which order they run and what each one
 does; the pages it links to say why things are the way they are.
@@ -15,46 +16,58 @@ does; the pages it links to say why things are the way they are.
 
 **The commands a person runs**, from a game's recipes or by hand:
 
-- `rm2k-snes-cartridges`, which builds the cartridges a game declares,
-  and its `space`, how much each one has left;
-- `rm2k-snes-patches`, which checks what was decided to lose;
-- `rm2k-snes-project`, what a game's tests ask about the project;
+- `advocate build`, which builds the cartridges a game declares, and
+  leaves beside them what a person or a game's tests want to know of the
+  build: how much each cartridge has left, the versioned patches against
+  what the cartridges decided, which commands keep each page out, and
+  `build/advocate.json` with all of it and the project as the tools read
+  it;
 - `ditto`, to bring a game in and to make one;
-- `rm2k-snes-events culprits`, which commands keep each page out;
 - `rm2k-snes-audio volume-ceilings`, each song's headroom;
 - `goombario`, the linter, over every built cartridge;
 - `fxpak`, to talk to a cartridge on the console over USB;
 - `rm2k-sketch`, a map written as text into a dump.
 
-**The commands the pipeline runs**, which nobody has to call:
-`rm2k-snes-convert`, run by `rm2k-snes-cartridges`, and `rm2k-snes-audio
-msu`, which `rm2k-snes-cartridges` runs after the converter. **The stages
-are not processes**: `wally`, `rm2k-snes-events`, `rm2k-snes-screens`,
-`rm2k-snes-images`, `rm2k-snes-battle`, `rm2k-snes-mapdata`,
-`rm2k-snes-patches` and `rm2k-snes-audio` are libraries the converter is
-compiled with, and it calls each one's `stage` module as functions; their
-binaries are a `main` over the same functions, for a game's tests and for
-a person. Until 2026-11-24 the converter ran each stage as a program on
-the PATH, from when it was written in Python, and the conversion cache
-keyed every answer by the binary that gave it. Now it keys every stage's
-answer by the converter's binary: any change to any stage expires every
-stage's answers, the price of the simpler shape until a stage has a key
-of its own
+**The pipeline runs no command of ours**: `advocate` is compiled with
+the converter, `rm2k-snes-convert`, with the cartridge library that
+assembles and measures each ROM, and with `rm2k-snes-audio`'s MSU-1
+tracks, and it calls them all as functions —see the decision [One
+command, and no tool of ours runs
+another](decisions/one-command-and-no-tool-runs-another.md)—. **The
+stages are not processes either**: `wally`, `rm2k-snes-events`,
+`rm2k-snes-screens`, `rm2k-snes-images`, `rm2k-snes-battle`,
+`rm2k-snes-mapdata`, `rm2k-snes-patches` and `rm2k-snes-audio` are
+libraries the converter is compiled with, and it calls each one's `stage`
+module as functions; their binaries are a `main` over the same
+functions, for a game's tests and for a person, and the converter's
+binary is only the questions a game's tests ask it. What `advocate` still
+runs is not ours: `ca65` and `ld65`, and what the MSU-1 tracks are
+synthesized and encoded with.
+
+Until 2026-11-24 the converter ran each stage as a program on the PATH,
+from when it was written in Python, and the conversion cache keyed every
+answer by the binary that gave it. Now it keys every stage's answer by
+the binary running the conversion, `advocate`: any change to any stage,
+or to the builder itself, expires every stage's answers, the price of the
+simpler shape until a stage has a key of its own
 ([task](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/a-stage-s-cache-key-once-it-is-a-library.md)).
-The assembling is not a process either: `rm2k-snes-cartridges` calls its
-own code, and its `assemble` subcommand is for running it by hand and for
-a game's tests, which ask it the memory map. Until 2026-11-24 it ran that
-subcommand as a process, a leftover of when it was `rm2k-snes-assemble`.
+Until 2026-11-25 the build was `rm2k-snes-cartridges`, which ran
+`rm2k-snes-convert` once per cartridge and `rm2k-snes-audio msu` after
+it, and had `assemble` and `space` subcommands; a game's tests asked it,
+and a binary called `rm2k-snes-project`, what they read in
+`build/advocate.json` now, and `rm2k-snes-patches` checked and copied the
+versioned patches.
 
 **A command with more than one job takes it as a subcommand**, when the
-jobs share a crate: `rm2k-snes-cartridges space`, `rm2k-snes-audio msu`.
+jobs share a crate: `advocate build`, `rm2k-snes-audio volume-ceilings`.
 Until 2026-11-23 four of them were commands of their own
 —`rm2k-snes-space`, `rm2k-snes-assemble`, `rm2k-snes-msu` and
-`rm2k-snes-volume-ceilings`—. Folding them moved no boundary, and only one
-key had to follow: the MSU-1 tracks' cache took the binary that renders
-them, which is now the whole of `rm2k-snes-audio`, so it takes the source
-of the code that writes a track instead, and a change to the compiler does
-not render every track again.
+`rm2k-snes-volume-ceilings`—, and the first three went into `advocate
+build` on 2026-11-25. Folding them moved no boundary, and only one key had
+to follow: the MSU-1 tracks' cache took the binary that renders them,
+which became the whole of `rm2k-snes-audio`, so it takes the source of the
+code that writes a track instead, and a change to the compiler does not
+render every track again.
 
 **The libraries under them**, which are not commands: Adeleine, Voodoo,
 LZ2 and Gunter, for the console's formats; Ditto's reader, `rm2k-rules`
@@ -74,8 +87,8 @@ RPG Maker 2000 game                        the RTP: the pictures and songs
         ▼
 data/   one JSON per map, the database, the tree
 
-        │  rm2k-snes-cartridges    once per cartridge the project declares
-        │    └─ rm2k-snes-convert
+        │  advocate build          once per cartridge the project declares
+        │    └─ the converter, rm2k-snes-convert
         │          1  rm2k-snes-events scan        which pages compile, every index
         │          2  rm2k-snes-screens window     how many colours the message window takes
         │          3  wally map                    one call per map, in parallel
@@ -87,16 +100,17 @@ data/   one JSON per map, the database, the tree
         │          7  rm2k-snes-mapdata emit   ──▶ mapdata.inc
         │          8  rm2k-snes-patches        ──▶ patches/     what was decided to lose
         │          9  rm2k-snes-audio cartridge──▶ musicdata.inc, <rom>.msu
-        │    └─ its assemble, in-process        the runtime's .s + both .inc, ca65 + ld65
-        │    └─ rm2k-snes-audio msu             the MSU-1 tracks, from the MIDIs
+        │    └─ the assembling                  the runtime's .s + both .inc, ca65 + ld65
+        │    └─ the MSU-1 tracks, rm2k-snes-audio's, from the MIDIs
         ▼
 build/<cartridge>/   <rom>.sfc  <rom>.sfc.sym  <rom>.msu  <rom>-N.pcm
-                     degradations.json  patches/  adeleine/
+                     degradations.json  patches/  adeleine/  culprits.json  space.json
+build/advocate.json  the project, the cartridges, their space, the patches compared
 ```
 
 The converter's numbered steps are its stages' functions, named by their
-crate's binary and the function: the converter calls them in its own
-process, and runs none of those binaries. A few are also a subcommand of
+crate's binary and the function: the converter calls them in
+`advocate`'s process, and runs none of those binaries. A few are also a subcommand of
 the binary, for the tests —`rm2k-snes-events scan`, `rm2k-snes-screens
 window`, `rm2k-snes-battle model`—; the rest are functions only.
 
@@ -129,8 +143,9 @@ pipeline](internals/pipeline.md) under Internals.
 | `rm2k-snes-mapdata emit` | everything above | `mapdata.inc`: the constants the runtime is built with and every table it reads, the shared blocks as LZ2 streams |
 | `rm2k-snes-patches` | what the converter decided | `patches/`: the merged colours, the shrunk animations, the battlers' palettes, as TOML |
 | `rm2k-snes-audio cartridge` | the MIDIs, the SoundFont, the sound effects | `musicdata.inc`: the sample bank, a stream per song, a package per map; and the `.msu` |
-| `rm2k-snes-cartridges assemble` | the runtime and both `.inc` | the ROM, its symbols and its debug file |
-| `rm2k-snes-audio msu` | each song's MIDI, or a replacement recording | one `.pcm` track per song, for an MSU-1 |
+| the assembling | the runtime and both `.inc` | the ROM, its symbols and its debug file; how much it has left, `space.json` |
+| the MSU-1 tracks | each song's MIDI, or a replacement recording | one `.pcm` track per song, for an MSU-1 |
+| `advocate build`, at the end | every cartridge, the versioned patches | `build/advocate.json` |
 
 ## Three layers
 
@@ -489,9 +504,14 @@ find it from where they run upwards, the way cargo finds its `Cargo.toml`.
 default would be one game's value, and another game would be built with
 it in silence. Where the machine keeps the original game, the RTP and the
 SoundFont arrives by flags —`--game-dir`, `--rtp-dir`, `--soundfont`—, a
-`.zip` or a directory, with no default either. Its one binary,
-`rm2k-snes-project`, prints the project as the tools resolve it, for a
-game's tests to ask instead of reading the file themselves.
+`.zip` or a directory, with no default either. What gets built goes in
+`build/`, beside `advocate.toml`, always: the way Cargo's `target/` is,
+so whoever reads what a build left finds it without reading the project
+file. The project as it resolves it goes into `build/advocate.json` with
+every build, for a game's tests to read instead of reading
+`advocate.toml` themselves; until 2026-11-25 they asked a binary of this
+library's, `rm2k-snes-project`, and `[paths] build` said where the build
+went.
 
 **`rm2k-snes-bytecode`** declares the two bytecodes the cartridge reads
 —the events' and the music stream's— **once**. A bytecode has two sides
@@ -505,7 +525,7 @@ hand-written on both sides.
 
 ### The converter
 
-`rm2k-snes-convert` runs once per cartridge, and **asks each stage, in
+`rm2k-snes-convert` is called once per cartridge, and **asks each stage, in
 order, what the cartridge needs, and hands each one what the others
 answered**. What it decides itself is only what joins them —none of it is
 a rule of RPG Maker nor a format of the console—:
@@ -694,33 +714,43 @@ Everything the conversion decided to lose —which colour was merged with
 which in each layer, how a map shows its panorama, at what size each
 battle animation is drawn, which fifteen colours each battler was reduced
 to— is written as TOML next to the ROM, copied into the project with the
-playable cartridge's decisions, and **checked against every cartridge**:
-a change in the tools that moves a decision shows as a diff someone has
-to look at, not as a pixel nobody notices. The decisions travel in the
-converter's request; the text they are written as is this program's.
+playable cartridge's decisions —`advocate build --write-patches`—, and
+**checked against every cartridge** on every build, which says the stale
+ones and keeps the comparison in `build/advocate.json`: a change in the
+tools that moves a decision shows as a diff someone has to look at, not
+as a pixel nobody notices. The decisions travel in the converter's
+request; the text they are written as is this library's. Until
+2026-11-25 the copy and the check were a command of their own,
+`rm2k-snes-patches`.
 
 ### The cartridge builder
 
-One program, with two subcommands, over one library.
+`advocate`, over one library, `rm2k-snes/cartridge/`.
 
-- **`rm2k-snes-cartridges`** knows which cartridges the project declares
+- **`advocate build`** knows which cartridges the project declares
   —`release`, the one that is played, is required and carries every
-  case— and builds the stale ones: it runs the converter, the assembler
+  case— and builds the stale ones: it calls the converter, the assembler
   and the MSU-1 tracks for each. A cartridge is stale when its **stamp**
   no longer matches: the converter's flags, its cases, and a fingerprint
   of everything that goes into the ROM by content, never by date —the
-  whole runtime, the binaries that build, the dump, the project file, the
-  original game's pictures and songs—. `--list --json` is what a game's
-  tests read instead of knowing any of this.
-- **`rm2k-snes-cartridges assemble`** packs what the two `.inc` send to `RODATA` into
+  whole runtime, `ca65`, `ld65` and `advocate` itself, the dump, the
+  project file, the original game's pictures and songs—. Every build
+  leaves **`build/advocate.json`**, also when nothing was stale and when
+  a cartridge failed: what a game's tests read instead of knowing any of
+  this, and "up to date" in it is what the build saw.
+- **The assembling** packs what the two `.inc` send to `RODATA` into
   banks, writes the bytecodes' equates, runs `ca65` and `ld65` with the
   runtime, fixes the header's checksum and writes the symbols. It refuses
   to build if a generated `.inc` is found inside the runtime's folder,
   since `ca65` would take it over the cartridge's without a word.
-- **`rm2k-snes-cartridges space`** prints how much each bank and each RAM area has
-  left, for any cartridge or a ROM built elsewhere, **and writes it down
-  nowhere**: how much is left is a property of the build, not of the
-  documentation.
+- **The space** each bank and each RAM area has left is measured when a
+  cartridge is built, into a `space.json` beside its ROM and into the
+  file, and `advocate build` ends with one line per cartridge: its free
+  data banks and its tightest bank. It is **written down nowhere else**:
+  how much is left is a property of the build, not of the documentation.
+
+Until 2026-11-25 this was `rm2k-snes-cartridges`, with `assemble` and
+`space` subcommands, and `space` measured a ROM when asked.
 
 More: [ExHiROM, 8 MB](internals/exhirom.md), [The cartridge goes to 8
 MB](decisions/the-cartridge-goes-to-8-mb.md), [RAM is placed by the
@@ -829,16 +859,17 @@ questions a game's tests ask it, and a person's report:
   `field-skill` and `layout`;
 * `rm2k-snes-mapdata`: `vram`, `pages`, `compress` and `engine`;
 * `rm2k-snes-audio`: `compile`, which rebuilds one cartridge's music from
-  the job it left beside it; `msu`, the MSU-1 tracks, which the cartridge
-  builder runs; `volume-ceilings`; and the questions about songs and the
-  `.msu`;
-* `rm2k-snes-patches`: a build's patches copied into the project, and
-  `--check`.
+  the job it left beside it; `volume-ceilings`; and the questions about
+  songs and the `.msu`;
+* `advocate build NAME --into DIR -- FLAGS`: one cartridge converted and
+  assembled somewhere else, with more flags for the converter, without a
+  stamp and without touching `build/advocate.json`.
 
 The steps of the road the converter alone takes —a whole map, the
 battle's tables, the compilation of every page, the screens, the full
 pictures, the emission, the music, a build's patches— are functions it
-calls, and no binary runs them on their own. The converter's queries
+calls, and no binary runs them on their own; neither do the MSU-1
+tracks, which `advocate build` renders. The converter's queries
 —`scan`, `compile`, `leaders`, `map-context`, `boxes`— answer a game's
 tests the same questions it asks itself.
 

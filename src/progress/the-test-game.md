@@ -99,9 +99,10 @@ RPG Maker's rules, the engine's numbers—, and it is one Python package
 now, `rm2k_snes_harness` in `rm2k-snes/harness/` of the-advocate, beside
 the runtime whose symbols it reads. The test game uses it as it is, and
 its stopgap harness and its copy of the driver are gone; A Blurred Line's
-harness, and the ports' other games, take it from where
-`rm2k-snes-project --harness` says —the checkout the tools were installed
-from, like the runtime— and keep on top of it what is theirs: that game's
+harness, and the ports' other games, take it from where `just install`
+links it, beside the `bin/` of the tools they run —the checkout the tools
+were installed from, like the runtime; until 2026-11-25 they asked
+`rm2k-snes-project --harness`— and keep on top of it what is theirs: that game's
 title screen, its menus, its battles, its walkthrough. Then ten of its M1
 files moved: the variables, `ConditionalBranch`, the labels, the chained
 teleports, a door to the same map, the hero's speed, `KeyInputProc`,

@@ -21,15 +21,25 @@ under it:
   in is a library, and the natural limit: a test needs a ROM someone
   built.
 
-Only what builds a ROM goes in `advocate`: `build`, `assemble`, `space`.
-The domain tools a person runs for something else —Ditto, Goombario,
-`fxpak`, `rm2k-sketch`, the event compiler's `culprits`— stay commands of
-their own.
+Only what builds a ROM goes in `advocate`, and that is `advocate build`.
+What a build can say on its own is not a subcommand but what the build
+leaves (taro, 2026-11-25): how much room each cartridge has left, the
+versioned patches compared against what the cartridges decided, and
+which commands keep each page out, `culprits.json`. The domain tools a
+person runs for something else —Ditto, Goombario, `fxpak`, `rm2k-sketch`—
+stay commands of their own; which of them become subcommands, with an
+`init` and a machine's configuration, is
+[`advocate-init-dump-and-config`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/advocate-init-dump-and-config.md).
 
-**It is a direction, not yet the state.** Decided on 2026-11-24 by taro,
-after a review of which of our tools started others as processes; written
-here before it is done so that it does not live only in the tasks that
-carry it out:
+**The build is the state since 2026-11-25; the tests and the cache are
+still a direction.** Decided on 2026-11-24 by taro, after a review of
+which of our tools started others as processes, and written here before
+it was done so that it did not live only in the tasks that carry it out.
+`advocate build` is one process that runs no tool of ours, and the
+games' tests read `build/advocate.json` instead of asking a binary; what
+the tests still run of ours —the stages' subcommands, the converter's
+queries, Goombario, Ditto— and the cache key per stage are the tasks
+still open below:
 
 * [`cartridges-runs-itself-to-assemble`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/cartridges-runs-itself-to-assemble.md)
 * [`the-stages-speak-json-nobody-types`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-stages-speak-json-nobody-types.md):
@@ -40,8 +50,8 @@ carry it out:
   and
   [`tests-without-the-stages-subcommands`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/tests-without-the-stages-subcommands.md)
 
-Until they land, [The converter's stages](../internals/the-converters-stages.md)
-and [The pipeline](../internals/pipeline.md) describe what there is today.
+[The converter's stages](../internals/the-converters-stages.md) and [The
+pipeline](../internals/pipeline.md) describe what there is today.
 
 ## Why
 

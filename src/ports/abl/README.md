@@ -185,21 +185,25 @@ ABL doesn't know where they live: it knows executables on the PATH, and
 nothing in this repository names the path of the other one —
 `tests/tooling/test_abl_side.py` makes sure of it—.
 
-- **The executables**, by name: `rm2k-snes-cartridges`, `ditto`,
-  `rm2k-snes-patches`… They find this project by looking for
-  `advocate.toml` from where they run, and what belongs to the machine
-  reaches them through flags, which the `justfile` sets.
-- **The runtime** is built by `rm2k-snes-cartridges` from the checkout of
-  the tools it was installed from.
+- **The executables**, by name: `advocate`, `ditto`, `goombario`… They
+  find this project by looking for `advocate.toml` from where they run,
+  and what belongs to the machine reaches them through flags, which the
+  `justfile` sets.
+- **The runtime** is built by `advocate` from the checkout of the tools it
+  was installed from.
 - **What the tools know about the project** —where each folder is, where
-  the runtime is, what `advocate.toml` says— the harness asks
-  `rm2k-snes-project`, another executable of the suite: see
-  `tests/harness/project.py`. The harness imports nothing from the tools
-  but their generic harness, the Python package `rm2k_snes_harness` —the
-  libretro driver, the cores' patches, RPG Maker's rules, the engine's
-  numbers—, which it puts on its path where `rm2k-snes-project --harness`
-  says: the checkout the tools were installed from, like the runtime.
-  From 2026-10-02 until 2026-11-22 the driver was its own, in
+  the runtime is, what `advocate.toml` says, which cartridges there are
+  and whether each is up to date— the harness reads in
+  `build/advocate.json`, which every `advocate build` leaves: see
+  `tests/harness/project.py`. Until 2026-11-25 it asked
+  `rm2k-snes-project` and `rm2k-snes-cartridges`, executables of the
+  suite. The harness imports nothing from the tools but their generic
+  harness, the Python package `rm2k_snes_harness` —the libretro driver,
+  the cores' patches, RPG Maker's rules, the engine's numbers—, which
+  `just install` links beside the tools' `bin/` and puts on Python's path;
+  the harness takes the one beside the `advocate` of its PATH first, the
+  checkout the tools were installed from, like the runtime. From
+  2026-10-02 until 2026-11-22 the driver was its own, in
   `tests/harness/emulator/`.
 
 So **to run ABL with other tools** —those of a checkout where someone is
