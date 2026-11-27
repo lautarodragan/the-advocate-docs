@@ -69,9 +69,8 @@ left The Frozen World's window with 4 colours and The Book of Three's with
 ## Where
 
 `rm2k-snes-screens`: `fit_frame` in `message_window.rs`, the module
-`fit.rs` —which decides once, and both `convert` and `render` draw with
-what it decided—, and End Game's colours in `end_game.rs`. The pieces
-that change pixels are Adeleine's.
+`fit.rs` —which decides once, for every screen `convert` draws—, and End
+Game's colours in `end_game.rs`. The pieces that change pixels are Adeleine's.
 
 Since 2026-10-12 a game can skip all of this for a System by giving it
 a background of its own: see [The windows' background is the project's, by

@@ -5,7 +5,7 @@ left, the party on the right and the gold at the bottom, over black, in the
 same tile bank and palette as the save screen. B opens it when the hero is
 standing still, and the game clock does not run while it is up. The code is
 `runtime/menu.s` in the-advocate, and the geometry and the blocks come from
-`rm2k-snes-screens`, whose `render` is the reference.
+`rm2k-snes-screens`.
 
 ## The options
 
