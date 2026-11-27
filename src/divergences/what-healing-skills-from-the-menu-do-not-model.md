@@ -16,8 +16,9 @@ under Wine and easyrpg-player's `Game_Party::UseSkill` and
   `rm2k-snes-battle` with its own seed, and not RPG_RT's: a heal falls in
   the same range —the skill's power, the user's attack and spirit, the
   variance— but not on the same number. The console computes it with the
-  battle's code, so `field-skill` of `rm2k-snes-battle` gives the exact
-  number for a seed.
+  battle's code, so `field::use_skill` of `rm2k-snes-battle` gives the
+  exact number for a seed; ABL's tests hold each heal to the range and the
+  SP to the cost, RM2k's rules, since 2026-11-27.
 * **No sound.** RPG_RT plays the first sound of the skill's animation on a
   heal that was of use, and its buzzer when it was not; the port plays
   neither, as its menus play no system sound at all.
