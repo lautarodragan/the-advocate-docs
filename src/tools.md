@@ -112,8 +112,9 @@ build/advocate.json  the project, the cartridges, their space, the patches compa
 The converter's numbered steps are its stages' functions, named by their
 crate's binary and the function: the converter calls them in
 `advocate`'s process, and runs none of those binaries. A few are also a subcommand of
-the binary, for the tests —`rm2k-snes-screens window`, `rm2k-snes-battle
-model`—; the rest are functions only.
+the binary, for the tests —`rm2k-snes-battle model`—; the rest are
+functions only. `rm2k-snes-screens`, `rm2k-snes-mapdata` and
+`rm2k-snes-convert` have no binary since 2026-11-27.
 
 Inside the converter the order is not a convenience. The pages have to be
 scanned before any map is drawn, because which pages compile decides who
@@ -643,7 +644,8 @@ windows](optimizations/lossless/text-and-windows.md), [A window with a
 gradient](optimizations/lossy/tiles/a-window-with-a-gradient.md), [The
 windows, made cheaper](research/2026-10-11-the-windows-made-cheaper.md).
 
-*For example*, `window` on the test game, whose System is the RTP's:
+*For example*, `window` on the test game, whose System is the RTP's, as
+the stage's binary answered it until 2026-11-27:
 
 ```text
 $ rm2k-snes-screens window --data build/data --game-dir build/game \
@@ -853,11 +855,9 @@ questions a game's tests ask it, and a person's report:
 
 * `wally`: `layers`, `bakeable` and `split`;
 * `rm2k-snes-events`: `culprits`, which commands keep each page out;
-* `rm2k-snes-screens`: `render`, `window`, `refit` and `equip`;
 * `rm2k-snes-images`: `backdrops`, `battlers` and `animations`;
 * `rm2k-snes-battle`: `model`, `simulate`, `lines`, `experience` and
   `field-skill`;
-* `rm2k-snes-mapdata`: `vram`;
 * `rm2k-snes-audio`: `compile`, which rebuilds one cartridge's music from
   the job it left beside it; `volume-ceilings`; and the questions about
   songs and the `.msu`;
@@ -869,9 +869,15 @@ The steps of the road the converter alone takes —a whole map, the
 battle's tables, the compilation of every page, the screens, the full
 pictures, the emission, the music, a build's patches— are functions it
 calls, and no binary runs them on their own; neither do the MSU-1
-tracks, which `advocate build` renders. The converter's queries
-—`leaders`, `map-context`, `boxes`— answer a game's tests the
-same questions it asks itself.
+tracks, which `advocate build` renders. Until 2026-11-27 the converter's
+binary answered a game's tests the questions it asks itself —`leaders`,
+`map-context`, `boxes`—, and the screens' and the emission's had theirs:
+`rm2k-snes-screens render`, a screen as the console has to show it, which
+ABL's tests compared the console against and compare against goldens of
+what the ROM showed now; `refit`, `window` and `equip`; and
+`rm2k-snes-mapdata vram`. Every message box the converter reflows is
+checked at every build against the reflow's promise —it fits, and says
+the same words—, and a box that breaks it stops the build.
 
 What a game's tests read **of a built cartridge** they do not ask a
 binary: where each RM2k variable and each (actor, skill) pair lives in the
@@ -880,7 +886,9 @@ ROM is `slots.json`, beside it; which pages do not compile,
 geometry and the `.msu`'s layout are equates of the `.inc`, which `ld65`
 writes into the `.sym` and the `.dbg` at no cost in ROM —the ones the
 runtime does not name, `for_readers` in `rm2k-snes-mapdata`'s `emit.rs`
-writes for them—. Until 2026-11-25 the tests asked `rm2k-snes-events
+writes for them—: how many colours the message window takes is
+`CGRAM_BASE` less one, and the battle font's advances are the ROM's
+`font_advance`. Until 2026-11-25 the tests asked `rm2k-snes-events
 scan`, `rm2k-snes-convert scan`, `rm2k-snes-mapdata engine`,
 `rm2k-snes-screens layout` and `rm2k-snes-battle layout`, which went;
 and a troop's page triggers, `rm2k-snes-convert compile`, which went for
@@ -894,7 +902,8 @@ tool's request, runs the tool from the PATH and pastes the answers side
 by side. It runs Adeleine, Voodoo, LZ2, Gunter and `rm2k-render` as
 commands, which they were until 2026-11-23: to make their pictures again
 it needs those five installed from the-advocate at `ca74a4d4`, the last
-commit that had them, and the rest from today's tools. It takes the EasyRPG RTP, a SoundFont and the test game's
+commit that had them, `rm2k-snes-screens` from `2b4f8cf2`, the last that
+had its binary, and the rest from today's tools. It takes the EasyRPG RTP, a SoundFont and the test game's
 `build/` —made with `just game` in the-advocate's `test-game/`— as flags,
 and prints what each command printed, which is where the numbers quoted
 above were read from on the day the pictures were made; the tools move,
