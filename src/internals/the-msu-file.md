@@ -108,9 +108,9 @@ The ROM can't hash 32 KB per backdrop at the start of each battle.
 
 The positions come from the `.inc` and not from the file's index: once the
 signature is accepted they are the same data, and reading the index would
-be one more seek per battle. The index stays for the tools
-(`rm2k-snes-audio msu-index`) and for adding entries without changing the
-format.
+be one more seek per battle. The index stays for the tools —the build
+also leaves it beside the ROM as `msu-index.json`, which a game's tests
+read— and for adding entries without changing the format.
 
 ## The backdrops
 
