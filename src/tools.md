@@ -39,8 +39,9 @@ stages are not processes either**: `wally`, `rm2k-snes-events`,
 `rm2k-snes-mapdata`, `rm2k-snes-patches` and `rm2k-snes-audio` are
 libraries the converter is compiled with, and it calls each one's `stage`
 module as functions; their binaries are a `main` over the same
-functions, for a game's tests and for a person, and the converter's
-binary is only the questions a game's tests ask it. What `advocate` still
+functions, for a game's tests and for a person —`rm2k-snes-images`,
+`rm2k-snes-screens` and `rm2k-snes-mapdata` have none, and neither has
+the converter: no test asks them since 2026-11-27—. What `advocate` still
 runs is not ours: `ca65` and `ld65`, and what the MSU-1 tracks are
 synthesized and encoded with.
 
@@ -113,8 +114,7 @@ The converter's numbered steps are its stages' functions, named by their
 crate's binary and the function: the converter calls them in
 `advocate`'s process, and runs none of those binaries. A few are also a subcommand of
 the binary, for the tests —`rm2k-snes-battle model`—; the rest are
-functions only. `rm2k-snes-screens`, `rm2k-snes-mapdata` and
-`rm2k-snes-convert` have no binary since 2026-11-27.
+functions only.
 
 Inside the converter the order is not a convenience. The pages have to be
 scanned before any map is drawn, because which pages compile decides who
@@ -855,7 +855,6 @@ questions a game's tests ask it, and a person's report:
 
 * `wally`: `layers`, `bakeable` and `split`;
 * `rm2k-snes-events`: `culprits`, which commands keep each page out;
-* `rm2k-snes-images`: `backdrops`, `battlers` and `animations`;
 * `rm2k-snes-battle`: `model`, `simulate`, `lines`, `experience` and
   `field-skill`;
 * `rm2k-snes-audio`: `compile`, which rebuilds one cartridge's music from
