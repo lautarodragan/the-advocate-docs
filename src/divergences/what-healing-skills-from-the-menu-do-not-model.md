@@ -36,7 +36,6 @@ under Wine and easyrpg-player's `Game_Party::UseSkill` and
 The choice is `target_screen` in `runtime/menu.s` and the skill's part of
 it in `runtime/actor_choice.s`; the effect is `sk_heal_use` in
 `runtime/skills_screen.s`, over the battle's `ba_skill_effect` and
-`ba_variance`. The reference for the screen is `render` of
-`rm2k-snes-screens` with a `skill`, and the tests are
+`ba_variance`. The tests are
 `tests/rpgmaker/test_healing_skills.py` of A Blurred Line. The task is
 [`healing-skills-from-the-menu`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/healing-skills-from-the-menu.md).

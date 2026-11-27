@@ -65,8 +65,8 @@ captured the same way, with the 2015 RPG_RT, and the port's look like them.
 It is covered in the ABL port by `test_title_golden.py` —the title with and
 without a save, the bar on each option, A on the greyed one, the slots and
 the way back, in 8 and 4 bits per pixel— and by `test_title_drawing.py`,
-which compares the menu against `rm2k-snes-screens render` with the screen
-`title`, with and without a save, and checks that `exit_game` leaves the
+which compares the menu with the cursor on each option against its
+goldens, with and without a save, and checks that `exit_game` leaves the
 screen black and the game not started. The other games are covered only by
 `tests/test_boot.py` at the root of the ports, which passes the title by
 its first option.

@@ -64,11 +64,11 @@ The condition is `MENU_STATE_COL` and `StateInks` in `slots.rs` of
 [`the-menu-shows-the-partys-conditions`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-menu-shows-the-partys-conditions.md).
 The geometry is `MENU_LIST_ROWS`, `MENU_SHOWN`, `MENU_ARROW_Y`,
 `MENU_BAR`, `TARGET_BAR`, `MENU_EXP_X` and `MENU_SP_X` in `layout.rs` of
-`rm2k-snes-screens` in the-advocate, whose `render` draws both screens;
-the console's side is `runtime/menu_list.s` —the rows, painted once each
-when the menu opens and kept in WRAM, so a scroll is one vblank's
-upload, and the SP line in cells, `menu_sp_cells`— and `menu_exp_build`
-in `runtime/menu_experience.s`. The tests are
+`rm2k-snes-screens` in the-advocate; the console's side is
+`runtime/menu_list.s` —the rows, painted once each when the menu opens
+and kept in WRAM, so a scroll is one vblank's upload, and the SP line in
+cells, `menu_sp_cells`— and `menu_exp_build` in
+`runtime/menu_experience.s`. The tests are
 `tests/rpgmaker/test_menu_party_scroll.py` and
 `tests/rpgmaker/test_menu_heal_drawing.py` of A Blurred Line, on the debug
 map's full party. The tasks are

@@ -53,11 +53,11 @@ RM2k's most, so nothing scrolls.
 
 The geometry is `TARGET_WINDOWS`, `TARGET_PARTY_ROW`, `TARGET_ACTOR_COL`,
 `TARGET_SP_COL` and `TARGET_BAR` in `layout.rs` of `rm2k-snes-screens` in
-the-advocate, whose `render::target` draws the screen; the console's side
-is `runtime/actor_choice.s` —the window, the name and the count— and
-`menu_party_paint` and `target_sp_cells` in `runtime/menu_list.s`, the
-rows: the pause menu's block, moved to the left edge. The tests are
-`tests/rpgmaker/test_menu_heal_drawing.py` of A Blurred Line, against the
-render, and the golden of `tests/test_zounds_item_target.py` in the ports.
+the-advocate; the console's side is `runtime/actor_choice.s` —the window,
+the name and the count— and `menu_party_paint` and `target_sp_cells` in
+`runtime/menu_list.s`, the rows: the pause menu's block, moved to the
+left edge. The tests are `tests/rpgmaker/test_menu_heal_drawing.py` of A
+Blurred Line, against its goldens, and the golden of
+`tests/test_zounds_item_target.py` in the ports.
 The task is
 [`zounds-the-item-target-picker-does-not-fit`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-the-item-target-picker-does-not-fit.md).
