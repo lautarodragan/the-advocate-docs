@@ -13,8 +13,8 @@ come from the PATH —`adeleine`, `voodoo`, `lz2`, `gunter`, `rm2k-render`,
 being commands on 2026-11-23, when they were left as the libraries the
 stages are built with: this runs their old command lines, so it needs
 those five installed from the-advocate at `ca74a4d4`, the last commit
-that had them, and `rm2k-snes-screens` from `2b4f8cf2`, the last that
-had its binary. What each step printed
+that had them, `rm2k-snes-screens` from `2b4f8cf2`, the last that had
+its binary, and `wally` from `e5b3d067`, the last that had its. What each step printed
 goes to standard output, which is where the page's numbers were read
 from.
 

@@ -38,10 +38,9 @@ stages are not processes either**: `wally`, `rm2k-snes-events`,
 `rm2k-snes-screens`, `rm2k-snes-images`, `rm2k-snes-battle`,
 `rm2k-snes-mapdata`, `rm2k-snes-patches` and `rm2k-snes-audio` are
 libraries the converter is compiled with, and it calls each one's `stage`
-module as functions; their binaries are a `main` over the same
-functions, for a game's tests and for a person —`rm2k-snes-images`,
-`rm2k-snes-screens` and `rm2k-snes-mapdata` have none, and neither has
-the converter: no test asks them since 2026-11-27—. What `advocate` still
+module as functions. Only `rm2k-snes-audio` still has a binary, a `main`
+over its `volume-ceilings` for a person; the others' went on 2026-11-27,
+when no test asked them any more, and so did the converter's. What `advocate` still
 runs is not ours: `ca65` and `ld65`, and what the MSU-1 tracks are
 synthesized and encoded with.
 
@@ -111,10 +110,9 @@ build/advocate.json  the project, the cartridges, their space, the patches compa
 ```
 
 The converter's numbered steps are its stages' functions, named by their
-crate's binary and the function: the converter calls them in
-`advocate`'s process, and runs none of those binaries. A few are also a subcommand of
-the binary, for the tests —`rm2k-snes-battle model`—; the rest are
-functions only.
+crate and the function: the converter calls them in `advocate`'s
+process. Until 2026-11-27 a few were also a subcommand of a binary, for
+the tests —`rm2k-snes-battle model`, the last—.
 
 Inside the converter the order is not a convenience. The pages have to be
 scanned before any map is drawn, because which pages compile decides who
@@ -579,7 +577,9 @@ split](internals/cgram.md), [The VRAM split](internals/vram.md),
 [Maps](internals/maps.md).
 
 *For example*, the background half alone, on the meadow, with the
-message window's count from the screens:
+message window's count from the screens —through the `wally` binary,
+which went on 2026-11-27: `stage::layers_of` is the same question as a
+function—:
 
 ```text
 $ wally layers --data build/data --search-dir build/game \
@@ -614,7 +614,7 @@ that does not exist. `scan` compiles every page on its own, before any
 map is drawn, to learn the indices and which pages compile; `compile`
 compiles them all for real, with the text block, the songs and the troops,
 after the maps exist. `culprits` is for people: which commands keep each
-page out. More: [Events](internals/events.md), [Lossless:
+page out, which every build leaves beside the ROM as `culprits.json`. More: [Events](internals/events.md), [Lossless:
 events](optimizations/lossless/events.md), [Lossy:
 events](optimizations/lossy/events.md), [What the compiler ignores
 silently](research/2026-10-14-what-the-compiler-ignores-silently.md).
@@ -627,7 +627,9 @@ into integers the console shifts and compares. `model` answers what the
 battle is made of —which skills, to whom, what each enemy can do, which
 items, what a troop gives— and lays out its text screen on the grid of
 cells. `simulate` plays a battle turn by turn with the console's rules
-and randomness, for the tests to compare against. More: [Lossless:
+and randomness, which the model is built on; a game's tests compared the
+console against it until 2026-11-27, and expect RM2k's rules now —each
+hit in its formula's range, the books kept, exact where RM2k is—. More: [Lossless:
 battle](optimizations/lossless/battle.md).
 
 **`rm2k-snes-screens`**, with `rm2k-snes-text` under it, draws once what
@@ -850,13 +852,8 @@ shows on a map small enough to look at.
 
 Each command prints what it reads and what it writes with `--help`, and
 each subcommand prints the shape of its request and its answer. What a
-stage binary still runs, on a dump and a request written by hand, are the
-questions a game's tests ask it, and a person's report:
+stage binary still runs, on a dump and a request written by hand:
 
-* `wally`: `layers`, `bakeable` and `split`;
-* `rm2k-snes-events`: `culprits`, which commands keep each page out;
-* `rm2k-snes-battle`: `model`, `simulate`, `lines`, `experience` and
-  `field-skill`;
 * `rm2k-snes-audio`: `volume-ceilings`, each song's headroom, which
   ABL's `just ceilings` runs;
 * `advocate build NAME --into DIR -- FLAGS`: one cartridge converted and
@@ -867,9 +864,14 @@ The steps of the road the converter alone takes —a whole map, the
 battle's tables, the compilation of every page, the screens, the full
 pictures, the emission, the music, a build's patches— are functions it
 calls, and no binary runs them on their own; neither do the MSU-1
-tracks, which `advocate build` renders. Until 2026-11-27 the converter's
-binary answered a game's tests the questions it asks itself —`leaders`,
-`map-context`, `boxes`—, and the screens' and the emission's had theirs:
+tracks, which `advocate build` renders. Until 2026-11-27 Wally's binary
+answered `layers`, `bakeable` and `split`, the event compiler's the
+culprits report, and the battle's `model`, `simulate`, `lines`,
+`experience` and `field-skill`, which ABL's tests compared the console
+against: they hold it to RM2k's rules now, in the harness. And the
+converter's binary answered a game's tests the questions it asks itself
+—`leaders`, `map-context`, `boxes`—, and the screens' and the emission's
+had theirs:
 `rm2k-snes-screens render`, a screen as the console has to show it, which
 ABL's tests compared the console against and compare against goldens of
 what the ROM showed now; `refit`, `window` and `equip`; and
