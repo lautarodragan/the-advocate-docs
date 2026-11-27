@@ -106,7 +106,7 @@ data/   one JSON per map, the database, the tree
         ▼
 build/<cartridge>/   <rom>.sfc  <rom>.sfc.sym  <rom>.msu  <rom>-N.pcm
                      degradations.json  patches/  adeleine/  culprits.json  space.json
-                     slots.json
+                     slots.json  msu-index.json  music-writes/
 build/advocate.json  the project, the cartridges, their space, the patches compared
 ```
 
@@ -858,9 +858,8 @@ questions a game's tests ask it, and a person's report:
 * `rm2k-snes-battle`: `model`, `simulate`, `lines`, `experience` and
   `field-skill`;
 * `rm2k-snes-mapdata`: `vram`;
-* `rm2k-snes-audio`: `compile`, which rebuilds one cartridge's music from
-  the job it left beside it; `volume-ceilings`; and the questions about
-  songs and the `.msu`;
+* `rm2k-snes-audio`: `volume-ceilings`, each song's headroom, which
+  ABL's `just ceilings` runs;
 * `advocate build NAME --into DIR -- FLAGS`: one cartridge converted and
   assembled somewhere else, with more flags for the converter, without a
   stamp and without touching `build/advocate.json`.
@@ -880,11 +879,22 @@ ROM is `slots.json`, beside it; which pages do not compile,
 geometry and the `.msu`'s layout are equates of the `.inc`, which `ld65`
 writes into the `.sym` and the `.dbg` at no cost in ROM —the ones the
 runtime does not name, `for_readers` in `rm2k-snes-mapdata`'s `emit.rs`
-writes for them—. Until 2026-11-25 the tests asked `rm2k-snes-events
+writes for them—; the `.msu`'s index is `msu-index.json`; and what each
+song's stream writes to the DSP, the compiler's spec the tests hold the
+65816's decoder to, is `music-writes/<song>.json.gz`, one compressed file
+per song because a whole game's are tens of megabytes of JSON. Until
+2026-11-25 the tests asked `rm2k-snes-events
 scan`, `rm2k-snes-convert scan`, `rm2k-snes-mapdata engine`,
 `rm2k-snes-screens layout` and `rm2k-snes-battle layout`, which went;
 and a troop's page triggers, `rm2k-snes-convert compile`, which went for
-the LDB read with RM2k's rule.
+the LDB read with RM2k's rule. Until 2026-11-27 they asked
+`rm2k-snes-audio` for the writes (`decode`), the `.msu`'s index and its
+signature (`msu-index`, `msu-sign`), a sound effect's WAV, a song's file
+and a pitch (`wav`, `find-song`, `pitch`) and the engine's constants
+(`constants`), and compiled made-up jobs with `compile` and `keys`: those
+tests went to the crate, over songs it makes, and the rest are read from
+the build or are rules of the console and of RM2k's files, written in
+the harness.
 
 ### How the pictures on this page were made
 
