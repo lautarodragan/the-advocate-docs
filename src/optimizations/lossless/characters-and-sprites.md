@@ -180,7 +180,10 @@ copies the new ones, unrolled; the vblank uploads the 2 KB whole.
   per frame built.
 - **Where**: `frame_without_gaps` in `rm2k-snes/mapdata/src/emit.rs`;
   `anim_frame_build` and `anim_buf_clear` in
-  `runtime/battle_animation_frames.s`.
+  `runtime/battle_animation_frames.s`. The round trip of a frame is
+  `an_animation_frame_comes_back_whole_without_its_gaps`, in that crate,
+  and every frame the ROM builds is held against a golden per animation
+  by `tests/rpgmaker/test_animation_frames.py` in the ABL port.
 - **More**: the header of `runtime/battle_animation_frames.s`.
 
 ## Still events that animate are walked only when a column changes

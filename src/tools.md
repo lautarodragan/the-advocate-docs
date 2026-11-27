@@ -39,7 +39,8 @@ stages are not processes either**: `wally`, `rm2k-snes-events`,
 `rm2k-snes-mapdata`, `rm2k-snes-patches` and `rm2k-snes-audio` are
 libraries the converter is compiled with, and it calls each one's `stage`
 module as functions; their binaries are a `main` over the same
-functions, for a game's tests and for a person, and the converter's
+functions, for a game's tests and for a person —`rm2k-snes-images` has
+none: no test asks it since 2026-11-27—, and the converter's
 binary is only the questions a game's tests ask it. What `advocate` still
 runs is not ours: `ca65` and `ld65`, and what the MSU-1 tracks are
 synthesized and encoded with.
@@ -854,7 +855,6 @@ questions a game's tests ask it, and a person's report:
 * `wally`: `layers`, `bakeable` and `split`;
 * `rm2k-snes-events`: `culprits`, which commands keep each page out;
 * `rm2k-snes-screens`: `render`, `window`, `refit` and `equip`;
-* `rm2k-snes-images`: `backdrops`, `battlers` and `animations`;
 * `rm2k-snes-battle`: `model`, `simulate`, `lines`, `experience` and
   `field-skill`;
 * `rm2k-snes-mapdata`: `vram`;

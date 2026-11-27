@@ -394,9 +394,10 @@ Debug row.
 The test suite runs without MSU-1, so its battle goldens are the light
 fallback. `tests/abl/test_msu_data.py` in the ABL port runs both paths
 in snes9x and bsnes and compares **each one against its golden**
-—`msu-data-rom` and `msu-data-msu`— and the clean backdrop in WRAM
-against the bytes the converter builds: the quality one as is and the
-light one expanded to 8bpp and doubled. The same with a battle in the
+—`msu-data-rom` and `msu-data-msu`—, and the clean backdrop in WRAM:
+with the `.msu`, against that backdrop's bytes in the `.msu` itself; without
+it, the light one expanded to 8bpp and doubled, against a golden of its
+own, whole. The same with a battle in the
 world, whose backdrop is that of the terrain the hero stands on
 —`msu-world-rom`, its fallback, and `msu-world-msu`, the quality one—, and
 that each backdrop is in its fixed place with the same bytes in the `.msu`
