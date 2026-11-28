@@ -2,7 +2,7 @@
 
 ```text
 RPG Maker 2000 project
-        │  ditto unpack
+        │  advocate import, with Ditto
         ▼
    JSON dump (maps, database, tree)
         │  the converter asks each stage, in order

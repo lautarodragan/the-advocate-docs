@@ -22,7 +22,8 @@ does; the pages it links to say why things are the way they are.
   what the cartridges decided, which commands keep each page out, and
   `build/advocate.json` with all of it and the project as the tools read
   it;
-- `ditto`, to bring a game in and to make one;
+- `advocate import`, to bring a game in, with Ditto, and `advocate
+  export`, to write a dump back as RPG Maker's files;
 - `rm2k-snes-audio volume-ceilings`, each song's headroom;
 - `goombario`, the linter, over every built cartridge;
 - `fxpak`, to talk to a cartridge on the console over USB;
@@ -69,7 +70,7 @@ code that writes a track instead, and a change to the compiler does not
 render every track again.
 
 **The libraries under them**, which are not commands: Adeleine, Voodoo,
-LZ2 and Gunter, for the console's formats; Ditto's reader, `rm2k-rules`
+LZ2 and Gunter, for the console's formats; Ditto, `rm2k-rules`
 and `rm2k-render`, for RPG Maker's; and `rm2k-project`,
 `rm2k-snes-bytecode` and `rm2k-snes-text`, which join both. Each one is a
 crate of its own, with its own tests, because it knows nothing of what
@@ -82,7 +83,7 @@ RPG Maker 2000 game                        the RTP: the pictures and songs
   RPG_RT.ldb  RPG_RT.lmt  Map*.lmu         the game does not ship
   ChipSet/ CharSet/ System/ … Music/
         │
-        │  ditto unpack            once, when the game is brought in
+        │  advocate import         once, when the game is brought in
         ▼
 data/   one JSON per map, the database, the tree
 
@@ -130,7 +131,7 @@ pipeline](internals/pipeline.md) under Internals.
 
 | Step | Reads | Writes |
 |---|---|---|
-| `ditto unpack` | the game's `.ldb`, `.lmt` and `.lmu` | `data/`: the same document as JSON, in two views |
+| `advocate import` | the game's `.ldb`, `.lmt` and `.lmu` | `data/`: the same document as JSON, in two views, and whether it writes back byte for byte |
 | `rm2k-snes-events scan` | `data/`, the project's cases | each variable's and switch's slot, which pages of each map compile and what they send walking |
 | `rm2k-snes-screens window` | the System picture | how many colour-memory entries the message window takes, and what it merged to fit |
 | `wally map` | one map and its ChipSet, its events' CharSets | the two background layers as tiles, the 16x16 blocks, the sprite bank, the eight object palettes, and what it merged |
@@ -387,8 +388,11 @@ else reads what it wrote.
 - **Refuses**: to pack the resolved view, by name, instead of writing a
   file with every chunk in it that nobody ever wrote.
 
-As a library it is the one place in Rust that reads a dump, with the
-schema's own types: every stage below reads the game through it. Why a
+It is a library, and the one place in Rust that reads a dump, with the
+schema's own types: every stage below reads the game through it, and
+`advocate import` and `export` are its `unpack` and `pack`. Until
+2026-11-27 it had a binary of its own, `ditto`; taro's, that day:
+`advocate import` instead. Why a
 dump at all: [From a game to a ROM](pipeline.md#why-a-json-dump-and-not-the-game-itself),
 [`data/` is the resolved view](decisions/data-is-the-resolved-view.md).
 

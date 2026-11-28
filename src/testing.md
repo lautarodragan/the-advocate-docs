@@ -54,21 +54,23 @@ after a large change to the tools.
 ## The dump's round trip
 
 What makes a game's `data/` the game, and not an approximate reading of
-it, is that Ditto writes back from it the very bytes it read: `ditto
-unpack`, then `ditto pack` from the exact dump, and every `.lmu`, `.ldb`
-and `.lmt` equal to the one it came from. No test asks it: the recipe
-that dumps checks its own, every time, from the two sides —taro's, since
-2026-11-25: no test runs a binary of ours—.
+it, is that Ditto writes back from it the very bytes it read: the exact
+dump packed again gives every `.lmu`, `.ldb` and `.lmt` equal to the one
+it came from. No test asks it: `advocate import` checks its own, every
+time, and the recipes that import run it from the two sides —taro's,
+since 2026-11-25: no test runs a binary of ours—.
 
 - **The test game's** `just game`, which `just test-game` runs first: its
-  RM2k files are written by Ditto from a dump written by hand, so it
-  proves Ditto reads what Ditto writes. It runs in CI, where no one
+  RM2k files are written by `advocate export` from a dump written by
+  hand, and imported back, so it proves Ditto reads what Ditto writes. It runs in CI, where no one
   else's game can go.
 - **Each port's** `just dump`: over the game's original, it proves Ditto
   reads what RPG Maker wrote —2003 too—, every time `data/` is written.
 
 Until that day both were a `test_round_trip.py`, one in `just test-game`
-and one in the ports' `just boot`, once per game.
+and one in the ports' `just boot`, once per game; until 2026-11-27 the
+recipes ran `ditto unpack` and `ditto pack` and compared the files
+themselves.
 
 Ditto's own tests ask the same of the library, over whatever game
 `DITTO_CORPUS` names: see its README.

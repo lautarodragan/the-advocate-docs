@@ -169,6 +169,11 @@ went. A command that recalculates the autotiles of a `.tiles` is
 [`advocate-reset-autotiles`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/advocate-reset-autotiles.md);
 this one is
 [`rm2k-sketch-becomes-a-library`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/rm2k-sketch-becomes-a-library.md).
+And the same day Ditto's binary went: `just game` writes the RM2k files
+with `advocate export` and brings them back into `build/data/` with
+`advocate import`, which checks the round trip itself, as a port's `just
+dump` does
+—[`ditto-becomes-advocate-import`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/ditto-becomes-advocate-import.md)—.
 
 Of the seven assumptions about A Blurred Line the research found in the
 tools when it first wrote a game from scratch, four are gone —a debug map
