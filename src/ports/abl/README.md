@@ -56,10 +56,6 @@ in the [divergences](../../divergences/README.md), not here.
   places him and its lines go on, but he is not drawn —drawn, the rain
   would lose its colours—. Draft:
   [`abl-forem-left-out-at-the-factory`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-forem-left-out-at-the-factory.md).
-* **The inn of map 200 shows no gold window**: its greeting comes without
-  the party's credits at the top right, where the other inns and the
-  original show them; "Yes" is still greyed without the price. Draft:
-  [`map-200-has-no-room-for-the-gold-window`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/map-200-has-no-room-for-the-gold-window.md).
 * **Without MSU-1 some drums and instruments sound duller** in every
   song that uses them: since the story's battles play their own themes,
   one of those themes, `T_AVGFighter_KyaraSelect`, has to fit next to the
