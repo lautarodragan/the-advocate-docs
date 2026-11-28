@@ -12,6 +12,10 @@ in the [divergences](../../divergences/README.md), not here.
   back are cut** —a column missing, or gone—: the console draws 34
   slivers of 8 pixels a line and each character takes four. On maps 267, 318, 3, 52, 54, 199 and 20.
   Draft: [`abl-characters-cut-on-crowded-lines`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-characters-cut-on-crowded-lines.md).
+* **A device in the Emitter Room is a shade lighter** (map 3, event 42,
+  shown by switch 19): drawn into the background, its greys take a merge
+  the map's palettes already make.
+  Draft: [`posed-event-takes-a-merge-the-map-already-made`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/posed-event-takes-a-merge-the-map-already-made.md).
 * **Some characters stand mid-step** where the original shows them with
   their feet together: a character whose page picks a side pattern and
   whose graphic is not fixed stands on the middle one in RM2k, and on the

@@ -51,11 +51,20 @@ battle animation on it: the flash tints the object's palette, and drawn
 into the background it has none— or gives it another graphic; it does not turn toward the hero —the console
 draws that one from the turn slot—; no substitution swaps its cell; and
 it is not translucent. Routes that only turn it are allowed: the turn is
-a pose. The map draws no pictures into itself and does not loop; if it
+a pose. The map draws no pictures into itself and does not loop. If it
 shows a panorama —one it covers everywhere, which goes hidden, is no
-panorama—, the panorama goes in mode 3 or flattened, the ways that draw
-the poses' cells, and every cell the event is drawn on hides it whole, in
-every drawing of the map's animation. And it stays an object if, with its poses, the background
+panorama—, only with `[graphics] baked_events_over_panoramas` too —`true`
+or a list of map ids, off when the key is missing: it spends background
+tiles on maps `baked_events` alone leaves as they were—, and then the
+panorama goes in mode 3, flattened, mode 1 or baked into the background,
+the ways that convert the map with the poses' cells, and every cell the
+event is drawn on hides it whole, in every drawing of the map's
+animation. Baked, also only if no substitution needs rows of its own
+below the map: the panorama is baked under those at their place, not at
+the cell they stand for. In mode 1 the map is at 4 bits, and the poses'
+colours have to fit its cells' palettes: the colour rule below holds them
+to it. Until 2026-11-28 a seen panorama took them under `baked_events`
+alone, in mode 3 and flattened. And it stays an object if, with its poses, the background
 merges a single colour more —the event would come out a shade off— or
 spends more tiles than the layouts leave: all of them, or CharSet by
 CharSet, the most numerous first. The
@@ -216,10 +225,12 @@ of the shifted ones against where RM2k draws them are in the task
 
 ## How to reproduce it
 
-`[graphics] baked_events` and `baked_events_nudge` in the project's
-`advocate.toml`, which reach Wally's map stage —`stage::map` in `wally`—
-as `"posed_stills": true` and `"baked_events_nudge"` in the map's request; the runtime is `posed.s` in the-advocate. Zounds
-turns it on, and A Blurred Line since 2026-11-16, once its event page
+`[graphics] baked_events`, `baked_events_over_panoramas` and
+`baked_events_nudge` in the project's `advocate.toml`, which reach Wally's
+map stage —`stage::map` in `wally`— as `"posed_stills": true`,
+`"posed_over_panoramas": true` and `"baked_events_nudge"` in the map's
+request; the runtime is `posed.s` in the-advocate. Zounds
+turns both on, and A Blurred Line since 2026-11-16, once its event page
 tables went to WRAM compressed and the runs left far RAM for `GRID_TOP`
 (see [The WRAM map](../internals/wram.md)). Until 2026-11-16 the key was
 called `posed_events`.
