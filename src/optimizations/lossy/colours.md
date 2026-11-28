@@ -21,7 +21,7 @@ and the cursor— come out of every map's budget, and a map that needed
 those entries merges colours.
 
 - **Loses**: on some maps, a shadow takes the shade next to it.
-- **Where**: `window_colors`, counted by `rm2k-snes-screens window`;
+- **Where**: `window_colors`, counted by the screens' `window` stage, `stage::window` in `rm2k-snes-screens`;
   `cgram_reserved` in `rm2k-snes/wally/src/background/layers.rs`.
 - **More**: [The window takes thirteen colors from every background](../../divergences/the-window-takes-thirteen-colors-from-every-background.md).
 

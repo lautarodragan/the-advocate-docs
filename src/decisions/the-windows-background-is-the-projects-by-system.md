@@ -53,7 +53,7 @@ stroke near two edges of A Blurred Line's.
 * `rm2k-project` reads and checks it —`windows.rs`—; the converter
   stops if a key names a System the game and the RTP do not have, because a
   misspelt name would leave its windows as they were without a word.
-* `rm2k-snes-screens` takes the colour as `--window-background` and fills
+* `rm2k-snes-screens` takes the colour in its `Place`, `window_background`, and fills
   the System's background square with it, so every window drawn from the
   System gets it: the message window, the screens, the battle.
 * **Until the runtime draws gradients, a gradient is drawn as its average

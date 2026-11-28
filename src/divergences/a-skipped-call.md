@@ -21,7 +21,8 @@ investigated.
 
 The page that exposed it no longer goes through there —`CallEvent` is
 compiled inline since 2026-09-12— but **the path still exists** for the
-calls that are still skipped: `rm2k-snes-events culprits` lists them. On
+calls that are still skipped: `culprits.json`, which every build leaves
+beside the ROM, lists them, and a game's `just culprits` prints it. On
 2026-09-12 they were 216, almost all to common events that stopped at
 `ControlVars` and at the original's own menus; in A Blurred Line the last
 47, to common event 45, went away on 2026-10-11 with

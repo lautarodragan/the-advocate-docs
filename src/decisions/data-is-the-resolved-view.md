@@ -7,7 +7,7 @@ enums as numbers— and the exact dump **isn't versioned**.
 
 ## Why
 
-From 2026-09-20. `ditto unpack` emits both in the same run: `data/` and
+From 2026-09-20. `ditto unpack` —`advocate import` since 2026-11-27— emits both in the same run: `data/` and
 ABL's `build/ditto-exacto/`, shaped like the binary. With that,
 `tools/rpgmaker/lcf.py` doesn't know any rule of the format, which was the
 goal.

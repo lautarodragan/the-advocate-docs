@@ -24,7 +24,8 @@ take care of:
 
 ## Measured
 
-`rm2k-snes-events culprits --every-map` on Desert Nightmare: `EraseEvent` was
+`rm2k-snes-events culprits --every-map` on Desert Nightmare —today
+`culprits.json`, which every build leaves beside the ROM—: `EraseEvent` was
 the command that left the most pages out on its own (127 of the 157 that use
 it), and it no longer leaves any. All 157 are parallel pages without a
 graphic.

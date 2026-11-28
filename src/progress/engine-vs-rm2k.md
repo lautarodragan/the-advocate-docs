@@ -26,7 +26,8 @@ It measures **what exists, not bugs**: a command marked done can still
 have a bug, and the board won't show it. That is what the tests are for.
 The page counts in its notes —how many pages each gap leaves out— come
 from `rm2k-snes-events culprits`, run over the eight RM2k games the tools
-are measured against.
+are measured against; since 2026-11-27 that report is `culprits.json`,
+which every build leaves beside the ROM.
 
 It is **a snapshot**, taken on 2026-10-06 at commit `3d0c787c` of
 the-advocate, and says so at the top. It isn't kept up to date by hand: when

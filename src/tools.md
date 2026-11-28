@@ -88,18 +88,18 @@ RPG Maker 2000 game                        the RTP: the pictures and songs
 data/   one JSON per map, the database, the tree
 
         │  advocate build          once per cartridge the project declares
-        │    └─ the converter, rm2k-snes-convert
-        │          1  rm2k-snes-events scan        which pages compile, every index
-        │          2  rm2k-snes-screens window     how many colours the message window takes
-        │          3  wally map                    one call per map, in parallel
-        │          4  rm2k-snes-battle tables      experience, random encounters
-        │          5  rm2k-snes-events compile     every page, the text block, the troops
-        │          6  rm2k-snes-screens convert    the menus, the slots, the fonts
-        │             rm2k-snes-images …           the title, the pictures, the battle's
-        │             rm2k-snes-battle model       what the battle is made of
-        │          7  rm2k-snes-mapdata emit   ──▶ mapdata.inc
-        │          8  rm2k-snes-patches        ──▶ patches/     what was decided to lose
-        │          9  rm2k-snes-audio cartridge──▶ musicdata.inc, <rom>.msu
+        │    └─ the converter, rm2k-snes-convert, calling each stage's functions
+        │          1  events::scan                 which pages compile, every index
+        │          2  screens::window              how many colours the message window takes
+        │          3  wally::map                   one call per map, in parallel
+        │          4  battle::tables               experience, random encounters
+        │          5  events::compile              every page, the text block, the troops
+        │          6  screens::convert             the menus, the slots, the fonts
+        │             images::…                    the title, the pictures, the battle's
+        │             battle::model                what the battle is made of
+        │          7  mapdata::emit            ──▶ mapdata.inc
+        │          8  patches::patches         ──▶ patches/     what was decided to lose
+        │          9  audio::cartridge         ──▶ musicdata.inc, <rom>.msu
         │    └─ the assembling                  the runtime's .s + both .inc, ca65 + ld65
         │    └─ the MSU-1 tracks, rm2k-snes-audio's, from the MIDIs
         ▼
@@ -109,10 +109,14 @@ build/<cartridge>/   <rom>.sfc  <rom>.sfc.sym  <rom>.msu  <rom>-N.pcm
 build/advocate.json  the project, the cartridges, their space, the patches compared
 ```
 
-The converter's numbered steps are its stages' functions, named by their
-crate and the function: the converter calls them in `advocate`'s
-process. Until 2026-11-27 a few were also a subcommand of a binary, for
-the tests —`rm2k-snes-battle model`, the last—.
+The converter's numbered steps are its stages' functions, each named by
+its crate, without the `rm2k-snes-`, and the function in the crate's
+`stage` module —`events::scan` is `stage::scan` in `rm2k-snes-events`,
+`audio::cartridge` is `rm2k-snes-audio`'s—: the converter calls them in
+`advocate`'s process, and no binary runs them on their own. Until
+2026-11-27 most were also a subcommand of their crate's binary, under the
+same name —`rm2k-snes-events scan`, `wally map`—, and the battle's
+`model`, which the tests asked, was the last to go.
 
 Inside the converter the order is not a convenience. The pages have to be
 scanned before any map is drawn, because which pages compile decides who
@@ -132,17 +136,17 @@ pipeline](internals/pipeline.md) under Internals.
 | Step | Reads | Writes |
 |---|---|---|
 | `advocate import` | the game's `.ldb`, `.lmt` and `.lmu` | `data/`: the same document as JSON, in two views, and whether it writes back byte for byte |
-| `rm2k-snes-events scan` | `data/`, the project's cases | each variable's and switch's slot, which pages of each map compile and what they send walking |
-| `rm2k-snes-screens window` | the System picture | how many colour-memory entries the message window takes, and what it merged to fit |
-| `wally map` | one map and its ChipSet, its events' CharSets | the two background layers as tiles, the 16x16 blocks, the sprite bank, the eight object palettes, and what it merged |
-| `rm2k-snes-battle tables` | the actors, the tree, the maps' encounters | the experience and level per actor, each map's encounter odds as integers |
-| `rm2k-snes-events compile` | every page the cartridge carries | the bytecode of every page, the text block with its pair table, the songs each map asks for |
-| `rm2k-snes-screens convert` | the System, the faces, the terms | every screen as tiles and tilemaps, the font precomposed, each face with its palette |
-| `rm2k-snes-images …` | the title, the Game Over, the pictures, the backdrops, the battlers, the animation sheets | each one scaled to the console's screen and brought down to its palette |
-| `rm2k-snes-battle model` | the skills, the items, the troops | what each one can do, and the battle's text screen laid out |
-| `rm2k-snes-mapdata emit` | everything above | `mapdata.inc`: the constants the runtime is built with and every table it reads, the shared blocks as LZ2 streams |
-| `rm2k-snes-patches` | what the converter decided | `patches/`: the merged colours, the shrunk animations, the battlers' palettes, as TOML |
-| `rm2k-snes-audio cartridge` | the MIDIs, the SoundFont, the sound effects | `musicdata.inc`: the sample bank, a stream per song, a package per map; and the `.msu` |
+| the events' scan, `stage::scan` in `rm2k-snes-events` | `data/`, the project's cases | each variable's and switch's slot, which pages of each map compile and what they send walking |
+| the message window's colours, `stage::window` in `rm2k-snes-screens` | the System picture | how many colour-memory entries the message window takes, and what it merged to fit |
+| Wally's map stage, `stage::map` in `wally`, once per map | one map and its ChipSet, its events' CharSets | the two background layers as tiles, the 16x16 blocks, the sprite bank, the eight object palettes, and what it merged |
+| the battle's tables, `stage::tables` in `rm2k-snes-battle` | the actors, the tree, the maps' encounters | the experience and level per actor, each map's encounter odds as integers |
+| the events' compilation, `stage::compile` in `rm2k-snes-events` | every page the cartridge carries | the bytecode of every page, the text block with its pair table, the songs each map asks for |
+| the screens, `stage::convert` in `rm2k-snes-screens` | the System, the faces, the terms | every screen as tiles and tilemaps, the font precomposed, each face with its palette |
+| the pictures, one `stage` function of `rm2k-snes-images` per kind | the title, the Game Over, the pictures, the backdrops, the battlers, the animation sheets | each one scaled to the console's screen and brought down to its palette |
+| the battle's model, `stage::model` in `rm2k-snes-battle` | the skills, the items, the troops | what each one can do, and the battle's text screen laid out |
+| the emission, `stage::emit` in `rm2k-snes-mapdata` | everything above | `mapdata.inc`: the constants the runtime is built with and every table it reads, the shared blocks as LZ2 streams |
+| what was decided to lose, `stage::patches` in `rm2k-snes-patches` | what the converter decided | `patches/`: the merged colours, the shrunk animations, the battlers' palettes, as TOML |
+| the music, `stage::cartridge` in `rm2k-snes-audio` | the MIDIs, the SoundFont, the sound effects | `musicdata.inc`: the sample bank, a stream per song, a package per map; and the `.msu` |
 | the assembling | the runtime and both `.inc` | the ROM, its symbols and its debug file; how much it has left, `space.json` |
 | the MSU-1 tracks | each song's MIDI, or a replacement recording | one `.pcm` track per song, for an MSU-1 |
 | `advocate build`, at the end | every cartridge, the versioned patches | `build/advocate.json` |
@@ -468,11 +472,12 @@ four trees' crowns, which the ChipSet's passability puts above—:
 
 What joins the two: an RPG Maker game made into a cartridge. One program
 orchestrates, the converter; the rest are **stages**, each a library with
-the same shape that the converter calls, and a binary over it for the
-tests and for a person. A stage reads the game from the dump itself,
-with Ditto's library; gets in a **request** what the cartridge decided and
-the dump does not say; and answers pieces and a JSON, as files by name,
-which its binary writes into a directory. A
+the same shape, a `stage` module of functions the converter calls. A
+stage reads the game from the dump itself, with Ditto's library; gets in
+a **request** what the cartridge decided and the dump does not say; and
+answers pieces and a JSON, as files by name, which the conversion cache
+keeps. Until 2026-11-27 each stage also had a binary over it, for the
+tests and for a person, which wrote those files into a directory. A
 rule of RPG Maker is `rm2k-rules`', a format of the console is
 `snes/`'s, and what a stage keeps is what belongs to the cartridge.
 
@@ -672,9 +677,10 @@ worst package; a stream per song that says what each voice plays frame by
 frame; and a **package** per map, the samples it has to have in sound RAM
 when it is entered. It writes `musicdata.inc` and the `.msu`, and what a
 package lost to fit, which the converter adds to `degradations.json`.
-Its subcommand `msu` renders the MSU-1 tracks from the same MIDIs with
-fluidsynth, or takes a recording that replaces one, and `volume-ceilings`
-measures each song's headroom. More:
+Its MSU-1 tracks, which `advocate build` renders from the same MIDIs
+with fluidsynth or takes from a recording that replaces one, are not a
+stage; until 2026-11-25 they were its subcommand `msu`. Its binary's one
+subcommand, `volume-ceilings`, measures each song's headroom. More:
 [Audio](internals/audio.md), [A single sample
 bank](optimizations/lossless/audio/the-sample-bank.md), [Lossy:
 audio](optimizations/lossy/audio.md), [The .msu
@@ -833,9 +839,9 @@ shows on a map small enough to look at.
 
 ## Running them by hand
 
-Each command prints what it reads and what it writes with `--help`, and
-each subcommand prints the shape of its request and its answer. What a
-stage binary still runs, on a dump and a request written by hand:
+Each command prints what it reads and what it writes with `--help`.
+Besides `advocate build` and `advocate import` and `export`, what a
+person runs by hand:
 
 * `rm2k-snes-audio`: `volume-ceilings`, each song's headroom, which
   ABL's `just ceilings` runs;
