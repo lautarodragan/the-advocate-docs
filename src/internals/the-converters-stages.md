@@ -164,7 +164,10 @@ the first that fits—:
 Around that ladder, two more comparisons of the whole map: **the common
 events' copied pictures** go in only if the map loses nothing more with
 them (`pictures-not-drawn` names theirs), and **the dressed rows** only if
-they cost nothing else (`dressed-not-drawn`). The rest of what Wally
+they cost nothing else (`dressed-not-drawn`) —a tile lent a palette is
+not a cost, nor a `rain-colors-lent` on a map where no page can make it
+rain (the converter's `rain_reach`) or whose drops are drawn a shade off
+their greys (`RAIN_SHADE` in `map.rs`)—. The rest of what Wally
 reports —`rain-not-drawn`, `sand-grains-not-drawn`— comes from the extras
 at the end of the sprite bank.
 

@@ -43,19 +43,11 @@ in the [divergences](../../divergences/README.md), not here.
 * **The save slots show no HP**: each saved game says its leader's name
   and level, and the original also says its hit points ("HP 40") after the
   level. Draft: [`the-slot-screen-shows-no-hp`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-slot-screen-shows-no-hp.md).
-* **A missed attack says the target avoids taking damage**: where the
-  original writes "Junkbot maneuvers out of the way!", the port writes
-  "Junkbot avoids taking damage.", and a hit of nothing says "0 health
-  lost.". Draft: [`the-attack-says-undamaged-for-a-miss`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/the-attack-says-undamaged-for-a-miss.md).
 * **Radin's Mix Formula and Sern's Weapon Forging do nothing**: chosen
   from Tech Skill they close the menu and nothing happens, where the
   original takes you to Radin's and Sern's menus. Emily's Change Tape
   asks which tape, as in the original; Radin's Field/Battery Repair runs
   its common event, which was not played through. Draft: [`radin-s-and-sern-s-menus-do-not-compile`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/radin-s-and-sern-s-menus-do-not-compile.md).
-* **Forem is missing from a scene at the factory** (map 83): the scene
-  places him and its lines go on, but he is not drawn —drawn, the rain
-  would lose its colours—. Draft:
-  [`abl-forem-left-out-at-the-factory`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-forem-left-out-at-the-factory.md).
 * **Without MSU-1 some drums and instruments sound duller** in every
   song that uses them: since the story's battles play their own themes,
   one of those themes, `T_AVGFighter_KyaraSelect`, has to fit next to the
