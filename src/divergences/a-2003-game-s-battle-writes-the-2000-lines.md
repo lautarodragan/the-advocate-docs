@@ -24,6 +24,14 @@ are its database's, unless `[battle.terms]` gives them too. See
 `UNSHOWN_IN_2003` and `battle_term` in `rm2k-snes/mapdata/src/emit.rs` in
 the-advocate.
 
+The conditions' messages —`message_actor`, `message_enemy`,
+`message_already`, `message_affected` and `message_recovery`, the dead
+condition's being the revival line— are the same case: the 2003 battle
+never writes them either. The converter has no stand-in for those, and
+takes them from the database as they are: a 2003 game that carries the
+editor's defaults in them has them written in its own data, as Zounds did
+on 2026-11-27.
+
 ## What RM2k3 does
 
 `Game_BattleAlgorithm::*::GetStartMessage`, in easyrpg, writes the 2000
