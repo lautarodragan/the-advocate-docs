@@ -25,10 +25,18 @@ What it does differently:
   objects, after the message arrow's two tiles past the sprite bank and in
   the sprite palette nobody takes —see [The window without a background
   does not cover the characters](the-window-without-a-background-does-not-cover-the-characters.md#the-arrow-as-objects)—,
-  because mode 3 has no other layer for it. A map without that room shows
-  the greeting without it, and the build lists the map as
-  `inn-no-gold-window`: in A Blurred Line, map 200, whose eight sprite
-  palettes are taken. Under a big picture it does not show either.
+  because mode 3 has no other layer for it. On a map whose sprites take
+  every palette, the window gets one all the same: first the timer's
+  digits, the raindrops and the sand are drawn with the nearest colours of
+  a palette there is (`timer-colors-lent`, `rain-colors-lent`), as they
+  are when none is left; and if the characters alone take them all, two
+  of them share one —the pair that loses least, over the pixels the map
+  shows—, which the build lists as `palette-shared`, with how many pixels
+  of theirs change colour. In A Blurred Line, map 200 gives its raindrops'
+  palette: they fall in the nearest greys of a character's. A map that
+  still has no room —its tiles past the bank, or no pair it can join—
+  shows the greeting without the window, and the build lists the map as
+  `inn-no-gold-window`. Under a big picture it does not show either.
 * **The gold window is drawn when the box opens**: if a parallel event
   changes the gold while the greeting or the choice is up, the window keeps
   the number it opened with, until the next box.

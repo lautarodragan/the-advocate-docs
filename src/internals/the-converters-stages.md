@@ -138,6 +138,11 @@ this, in this order, in `convert_with`:
 9. **The characters**: the eight object palettes split among them
    (`palette-lent`, `timer-colors-lent`, `rain-colors-lent`; seven
    palettes on a map with the battle animation box) and the sprite bank.
+   On a map that opens an inn's gold window, which wants a palette above
+   them all, the timer, the rain and the sand are lent colours instead of
+   taking one, and two of the characters' share one while there is still
+   none: the pair that loses least, over the pixels the map shows
+   (`palette-shared`, with who and how many pixels change colour).
 
 That is one conversion. `convert_fitting` then checks it **against the
 VRAM layouts**, and when it fits none, tries again giving up something,

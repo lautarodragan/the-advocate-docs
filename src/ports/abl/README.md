@@ -52,10 +52,6 @@ in the [divergences](../../divergences/README.md), not here.
   original takes you to Radin's and Sern's menus. Emily's Change Tape
   asks which tape, as in the original; Radin's Field/Battery Repair runs
   its common event, which was not played through. Draft: [`radin-s-and-sern-s-menus-do-not-compile`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/radin-s-and-sern-s-menus-do-not-compile.md).
-* **The inn of map 200 shows no gold window**: its greeting comes without
-  the party's credits at the top right, where the other inns and the
-  original show them; "Yes" is still greyed without the price. Draft:
-  [`map-200-has-no-room-for-the-gold-window`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/map-200-has-no-room-for-the-gold-window.md).
 * **Without MSU-1 some drums and instruments sound duller** in every
   song that uses them: since the story's battles play their own themes,
   one of those themes, `T_AVGFighter_KyaraSelect`, has to fit next to the
