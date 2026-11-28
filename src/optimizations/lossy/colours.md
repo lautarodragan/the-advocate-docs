@@ -89,6 +89,15 @@ so a grey goes to a grey: most end up a step or two away, and where the
 palette has a single grey the three shades are that one —Paradise, A
 Blurred Line's 108, draws its drops in `[8, 8, 8]`—.
 
+Every map of a game that sets rain anywhere carries the drops, even where
+it never rains, so a map can lend them a palette for a rain nobody sees.
+Since 2026-11-28 that does not leave out a character a route dresses:
+the lent drops count against it only where some page can make it rain,
+and there only when a drop is drawn farther than a CIE76 difference of 10
+from its grey. A Blurred Line's factory, map 83, draws the Agency
+Captain that way, its drops `[6, 6, 7]` drawn `[6, 6, 6]` —taro's choice,
+over the captain missing or the pump's red light—.
+
 - **Loses**: the drops' exact greys, on the maps that lend, and on some
   their three shades.
 - **Where**: `rain_drops` and `lend_to_rain` in
