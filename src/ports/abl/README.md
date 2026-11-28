@@ -48,10 +48,6 @@ in the [divergences](../../divergences/README.md), not here.
   original takes you to Radin's and Sern's menus. Emily's Change Tape
   asks which tape, as in the original; Radin's Field/Battery Repair runs
   its common event, which was not played through. Draft: [`radin-s-and-sern-s-menus-do-not-compile`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/radin-s-and-sern-s-menus-do-not-compile.md).
-* **Forem is missing from a scene at the factory** (map 83): the scene
-  places him and its lines go on, but he is not drawn —drawn, the rain
-  would lose its colours—. Draft:
-  [`abl-forem-left-out-at-the-factory`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-forem-left-out-at-the-factory.md).
 * **The inn of map 200 shows no gold window**: its greeting comes without
   the party's credits at the top right, where the other inns and the
   original show them; "Yes" is still greyed without the price. Draft:
