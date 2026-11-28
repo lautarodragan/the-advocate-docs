@@ -146,17 +146,18 @@ follows Talan's row](decisions/the-chasing-guard-follows-talans-row.md).
 ## The data in a versionable format
 
 ```sh
-just dump         # the game -> data/ and build/ditto-exacto/, with Ditto
+just dump         # the game -> data/ and build/exact/, with advocate import
 ```
 
 `data/` has the same data as the `.lmu` files but in a format git can
 really version: you can see what changed, review it and edit it by hand.
 And **it is where the port reads the game from**: the converter, its
 stages and the tests look at these files and not at the binaries. The one
-that writes it is **Ditto**, one of the tools, which also knows how to go
-back: `ditto pack` rebuilds the game's files byte for byte from the exact
-dump, which the same run leaves in `build/ditto-exacto/` and which isn't
-versioned; `just dump` checks it every time it runs. The reason for the
+that writes it is `advocate import`, with **Ditto**, the tools' reader,
+which also knows how to go back: the exact dump, which the same run
+leaves in `build/exact/` and which isn't versioned, is written back to
+the game's files byte for byte, and `just dump` checks it every time it
+runs. The reason for the
 decision is in [data is the resolved
 view](../../decisions/data-is-the-resolved-view.md), and what is inside,
 in `data/README.md`.
@@ -184,7 +185,7 @@ ABL doesn't know where they live: it knows executables on the PATH, and
 nothing in this repository names the path of the other one —
 `tests/tooling/test_abl_side.py` makes sure of it—.
 
-- **The executables**, by name: `advocate`, `ditto`, `goombario`… They
+- **The executables**, by name: `advocate`, `goombario`… They
   find this project by looking for `advocate.toml` from where they run,
   and what belongs to the machine reaches them through flags, which the
   `justfile` sets.

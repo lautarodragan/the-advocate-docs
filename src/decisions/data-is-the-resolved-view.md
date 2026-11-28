@@ -17,7 +17,9 @@ pipeline is Rust and Ditto is a library.
 
 Not versioning the exact dump is what makes **the game the only source of
 the binary**, which is what `ditto pack` already needed to have alongside
-to compare against.
+to compare against. (Since 2026-11-27 both views come out of `advocate
+import`, which checks that round trip itself, and the exact one goes to
+each game's `build/exact/`.)
 
 And the reason for reading the dump and not the binary, the decision this
 one hangs from: the format **doesn't store a field when it holds its

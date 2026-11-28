@@ -6,7 +6,7 @@ crates that do each step and what each one leaves behind; from the dump
 on, it is all one process, `advocate build`, calling them as libraries:
 
 ```text
---game-dir (.lmu .ldb .lmt)       --ditto unpack---------------->  data/ (JSON)
+--game-dir (.lmu .ldb .lmt)       --advocate import, with Ditto-->  data/ (JSON)
 data/ + patches/manual/
 + images, MIDI and WAV            --the converter, rm2k-snes-convert--> build/<rom>/
   (--game-dir, --rtp-dir)           (its stages compiled in: wally,   mapdata.inc, musicdata.inc,
@@ -150,11 +150,14 @@ tools it runs—. A tool that forgets to call it gets an error, not an empty
 game: a lookup that finds nothing in the game falls back to the RTP without
 a word.
 
-Whoever reads the game and is not a tool of the suite reads it another
-way: a game's tests take the directory a build read it from, the
-`machine` of `build/advocate.json`, the same copy; a game's `dump`
-recipe, which runs before any build, reads the `.zip` itself. Until
-2026-11-25 both asked `rm2k-snes-project --unpacked game_dir`.
+`advocate import` unpacks it into the same `zip/`, but not through
+`Environment::unpack`, which also puts the port's own files in front of
+the game's (see below): what is imported is the game as its author left
+it. A game's tests take the directory a build read it from, the
+`machine` of `build/advocate.json`, the same copy. Until 2026-11-25 both
+asked `rm2k-snes-project --unpacked game_dir`, and until 2026-11-27 a
+game's `dump` recipe read the `.zip` itself, with a script of the
+ports.
 
 A `.zip` is what keeps the original game untouched: what the port changes
 goes in its patches, not in the game.

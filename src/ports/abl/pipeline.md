@@ -1,7 +1,7 @@
 # A Blurred Line's pipeline
 
 ```text
-$GAME_DIR (.lmu .ldb .lmt)    --ditto unpack (just dump)-->  data/ (JSON)
+$GAME_DIR (.lmu .ldb .lmt)    --advocate import (just dump)-->  data/ (JSON)
 data/ + patches/manual/
 + images, MIDI and WAV            --the converter, rm2k-snes-convert--> build/<rom>/
   ($GAME_DIR, $RTP_DIR)     (its stages compiled in: wally,   mapdata.inc, musicdata.inc,

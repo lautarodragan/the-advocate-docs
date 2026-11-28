@@ -21,9 +21,9 @@ game, and each one is a whole project**:
   from the PATH. The game and the RTP can be a directory or a `.zip` of
   one: see [A game or an RTP as a
   `.zip`](../internals/pipeline.md#a-game-or-an-rtp-as-a-zip).
-- **`data/`**: the game dumped to JSON with Ditto (`just dump`), which is
-  where the port reads the game from (see [From a game to a
-  ROM](../pipeline.md)). The original game isn't in the repository: it
+- **`data/`**: the game dumped to JSON by `advocate import` (`just
+  dump`), which is where the port reads the game from (see [From a game
+  to a ROM](../pipeline.md)). The original game isn't in the repository: it
   isn't ours to redistribute.
 - **`build/`**: what the tools leave, cartridges included. It isn't
   versioned.

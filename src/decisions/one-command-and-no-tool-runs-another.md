@@ -21,15 +21,19 @@ under it:
   in is a library, and the natural limit: a test needs a ROM someone
   built.
 
-Only what builds a ROM goes in `advocate`, and that is `advocate build`.
+What builds a ROM goes in `advocate`, and that is `advocate build`.
 What a build can say on its own is not a subcommand but what the build
 leaves (taro, 2026-11-25): how much room each cartridge has left, the
 versioned patches compared against what the cartridges decided, and
-which commands keep each page out, `culprits.json`. The domain tools a
-person runs for something else —Ditto, Goombario, `fxpak`, `rm2k-sketch`—
-stay commands of their own; which of them become subcommands, with an
-`init` and a machine's configuration, is
+which commands keep each page out, `culprits.json`. And what a person
+does to bring a game in is a subcommand too, against the first rule but
+better to use (taro, 2026-11-25): Ditto's binary became `advocate
+import` and `export` on 2026-11-27,
+[`ditto-becomes-advocate-import`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/ditto-becomes-advocate-import.md),
+and an `init` and a machine's configuration are
 [`advocate-init-dump-and-config`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/advocate-init-dump-and-config.md).
+The domain tools a person runs for something else —Goombario, `fxpak`—
+stay commands of their own.
 
 **The build is the state since 2026-11-25; the tests and the cache are
 still a direction.** Decided on 2026-11-24 by taro, after a review of
