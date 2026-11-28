@@ -137,6 +137,46 @@ ROM of the last build (taro's, 2026-11-25)—. Until that day the tests
 asked `rm2k-snes-cartridges --list --json`, with the machine flags of
 building.
 
+## The conversion cache
+
+What a build computes and another can reuse goes into one directory,
+`--cache` —by default `cache/` in the project's build—: each stage's
+answer, `ca65`'s objects, the volume ceilings, the MSU-1 tracks —hard
+links to the build's `.pcm`, so they cost nothing while a build keeps
+them—, and the games unpacked from their `.zip` and with the port's own
+files on top, below. Each value is a file `<category>/<key>`, and its key
+carries the contents of what it was made from and with —the inputs, the
+binary that made it—, never a checkout's paths, so a machine can point
+every checkout's `--cache` at the same directory and a new worktree finds
+what another one already built. A value is written aside and renamed into
+place, whole or not at all, because two processes may make the same one
+at once; and `NO_CACHE=1` is how a build is checked against it: with and
+without, the ROMs must come out byte for byte equal. See `cache.rs` in
+`rm2k-project`.
+
+**What nobody used in two weeks is deleted** (taro's, 2026-11-28):
+since a key carries the binaries that made the value, each new converter
+leaves the whole previous set of answers behind, and on that day the
+machine's cache had reached 92 GB in five days. Each use of an entry
+—reading it, fetching it as a hard link, a build finding its own copy of
+a track still the cache's— stamps it by its **access time**, written by
+the cache itself, because the kernel's is not to be trusted —`relatime`
+writes it once a day at most, `noatime` never, and a hard link is not
+even read—; not by its modification time, which a track shares with the
+build's `.pcm`. And once a day, `advocate build`, before touching the
+cache, deletes every entry whose stamp is more than fourteen days old,
+and what a process that died left half written.
+
+**Nothing is deleted while a process that may read it lives.** Every
+process that uses the cache holds a shared lock on its `.lock` until it
+exits —`Environment::unpack` takes it too, so a tool reading the game
+below the cache holds it even when it unpacks nothing—, and the sweep
+needs it exclusive: a build that finds the cache held by anyone else
+does not sweep and does not wait, and the next build will. Locking each
+entry would let the sweep run beside other builds, but nobody would
+reliably unlock what a crashed process held; a lock that goes with the
+process is released however it dies.
+
 ## A game or an RTP as a `.zip`
 
 `--game-dir` and `--rtp-dir` take a directory or a `.zip` of one, with the
