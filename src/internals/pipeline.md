@@ -154,7 +154,7 @@ at once; and `NO_CACHE=1` is how a build is checked against it: with and
 without, the ROMs must come out byte for byte equal. See `cache.rs` in
 `rm2k-project`.
 
-**What nobody used in two weeks is deleted** (taro's, 2026-11-28):
+**What nobody used in four days is deleted** (taro's, 2026-11-28):
 since a key carries the binaries that made the value, each new converter
 leaves the whole previous set of answers behind, and on that day the
 machine's cache had reached 92 GB in five days. Each use of an entry
@@ -164,7 +164,7 @@ the cache itself, because the kernel's is not to be trusted —`relatime`
 writes it once a day at most, `noatime` never, and a hard link is not
 even read—; not by its modification time, which a track shares with the
 build's `.pcm`. And once a day, `advocate build`, before touching the
-cache, deletes every entry whose stamp is more than fourteen days old,
+cache, deletes every entry whose stamp is more than four days old,
 and what a process that died left half written.
 
 **Nothing is deleted while a process that may read it lives.** Every
