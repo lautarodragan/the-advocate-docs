@@ -28,7 +28,7 @@ tests.
   by hand —liblcf's names, enums by name, defaults left out— and each map's
   tile layers as a **sketch**, a grid of characters with a legend of the
   tiles each one stands for. `rm2k-sketch`, a new tool in `rm2k/`, makes a
-  sketch into the dump's `.tiles`; `ditto pack` makes the RM2k files, which
+  sketch into the dump's `.tiles`; `ditto pack` —`advocate export` since 2026-11-27— makes the RM2k files, which
   open in the editor; and the cartridge is built from them like a port's,
   with the installed tools.
 * **The assets** are EasyRPG's RTP, unchanged: the Exterior ChipSet (Jason

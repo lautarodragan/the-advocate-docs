@@ -48,7 +48,9 @@ objects.
 
 ## How to reproduce it
 
-`wally map` on the map's request with `"decorative": true`.
+`[graphics] decorative_events = true` in the project's `advocate.toml`,
+which reaches Wally's map stage —`stage::map` in `wally`— as
+`"decorative": true` in the map's request.
 
 ## As an optimization
 

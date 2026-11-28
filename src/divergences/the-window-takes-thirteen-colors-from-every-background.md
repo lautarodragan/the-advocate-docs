@@ -4,7 +4,7 @@
 
 The message window lives in CGRAM palette 0, and in mode 3 those entries are
 also the background's, which is 8 bits deep and addresses all of CGRAM. What
-the window takes —`window_colors`, which `rm2k-snes-screens window` counts
+the window takes —`window_colors`, which the screens' `window` stage counts
 from the game's System and the converter hands to `wally` and to the
 emission— comes out of the budget of **every** map, and a map that needed
 those entries merges colors of its background: Adeleine decides which ones,

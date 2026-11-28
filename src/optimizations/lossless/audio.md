@@ -101,7 +101,7 @@ in—. The only ceiling left is the byte the ROM counts boot frames in.
   with it, by itself. The tests read it from the symbol table, so it moves
   no golden.
 - **Where**: `boot_frames` in `rm2k-snes/rm2k-snes-audio/src/emit.rs`,
-  which `rm2k-snes-audio cartridge` writes into the cartridge's
+  which the music stage, `stage::cartridge` in `rm2k-snes-audio`, writes into the cartridge's
   `musicdata.inc`; `BOOT_FRAMES_FLOOR` in `runtime/far_ram.s`.
 - **More**: [Audio](../../internals/audio.md).
 

@@ -62,9 +62,10 @@ of its frame's colours, once, where the switch is.
   regard to case —`systems.rs` in `rm2k-snes-convert`—; one the game and
   the RTP do not have is left out with a warning, and so is the page that
   asks for it.
-* `rm2k-snes-screens window`, with the others in its request, answers the
-  text rows, the count and each other System's window; `convert` draws the
-  starting one with the same rows.
+* The screens' `window` stage —`stage::window` in `rm2k-snes-screens`—,
+  with the others in its request, answers the text rows, the count and
+  each other System's window; its `convert` draws the starting one with
+  the same rows.
 * The event compiler emits `OP_CHANGE_SYSTEM` with the System's index; a
   cartridge whose commands all name the starting System carries one window
   and the opcode changes nothing.

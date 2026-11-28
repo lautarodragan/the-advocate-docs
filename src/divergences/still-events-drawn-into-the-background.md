@@ -216,8 +216,9 @@ of the shifted ones against where RM2k draws them are in the task
 
 ## How to reproduce it
 
-`wally map` on the map's request with `"posed_stills": true` and
-`"baked_events_nudge"`; the runtime is `posed.s` in the-advocate. Zounds
+`[graphics] baked_events` and `baked_events_nudge` in the project's
+`advocate.toml`, which reach Wally's map stage —`stage::map` in `wally`—
+as `"posed_stills": true` and `"baked_events_nudge"` in the map's request; the runtime is `posed.s` in the-advocate. Zounds
 turns it on, and A Blurred Line since 2026-11-16, once its event page
 tables went to WRAM compressed and the runs left far RAM for `GRID_TOP`
 (see [The WRAM map](../internals/wram.md)). Until 2026-11-16 the key was
