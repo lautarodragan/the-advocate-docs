@@ -157,6 +157,19 @@ itself and on the slab by a lever; `test_animation_flash.py` asks the
 screen that each flashes and the hero does not. The task is
 [`abl-the-rock-s-hit-flashes-talan-instead-of-the-computer`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-the-rock-s-hit-flashes-talan-instead-of-the-computer.md).
 
+**And on 2026-11-27, the maps as `.tiles` and no sketch**: the forest,
+map 17, 30x22 of 2x2 trees, a pond and a path, was written straight as
+Ditto's `.tiles`, the numbers computed by a throwaway script from a plan
+of the cells. What it showed is that the hard part of a map is not its
+format but its autotiles, each cell's variant chosen from its eight
+neighbours, and a sketch's legend never chose them. So the other sixteen
+maps' sketches became the `.tiles` `rm2k-sketch` made of them, byte for
+byte, each under the comment that says what its map is for, and the tool
+went. A command that recalculates the autotiles of a `.tiles` is
+[`advocate-reset-autotiles`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/advocate-reset-autotiles.md);
+this one is
+[`rm2k-sketch-becomes-a-library`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/rm2k-sketch-becomes-a-library.md).
+
 Of the seven assumptions about A Blurred Line the research found in the
 tools when it first wrote a game from scratch, four are gone —a debug map
 the project had to carry, a single-map game not building, a fallback

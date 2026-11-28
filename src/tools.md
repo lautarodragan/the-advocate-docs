@@ -26,7 +26,6 @@ does; the pages it links to say why things are the way they are.
 - `rm2k-snes-audio volume-ceilings`, each song's headroom;
 - `goombario`, the linter, over every built cartridge;
 - `fxpak`, to talk to a cartridge on the console over USB;
-- `rm2k-sketch`, a map written as text into a dump.
 
 **The pipeline runs no command of ours**: `advocate` is compiled with
 the converter, `rm2k-snes-convert`, with the cartridge library that
@@ -157,7 +156,7 @@ Maker's to a port that is not for the console.
 | Layer | Knows about | Tools |
 |---|---|---|
 | `snes/` | the console's formats, nothing of RPG Maker | [Adeleine](#adeleine-which-colours-are-lost), [Voodoo](#voodoo-a-picture-into-tiles), [LZ2](#lz2-nintendos-compression), [Gunter](#gunter-samples-for-the-sound-chip), [Goombario](#goombario-a-linter-for-the-65816) |
-| `rm2k/` | RPG Maker 2000's formats, nothing of the console | [Ditto](#ditto-reads-and-writes-the-formats), [the rules](#rm2k-rules-what-the-format-means), [`rm2k-sketch`](#rm2k-sketch-a-map-drawn-as-text), [`rm2k-render`](#rm2k-render-draws-like-rm2k) |
+| `rm2k/` | RPG Maker 2000's formats, nothing of the console | [Ditto](#ditto-reads-and-writes-the-formats), [the rules](#rm2k-rules-what-the-format-means), [`rm2k-render`](#rm2k-render-draws-like-rm2k) |
 | `rm2k-snes/` | both | [the project](#the-project-and-the-bytecode), [the converter](#the-converter) and [its stages](#the-stages), [the emission](#rm2k-snes-mapdata-the-emission), [the patches](#rm2k-snes-patches-what-was-decided-to-lose), [the cartridge builder](#the-cartridge-builder) |
 
 A test of the tools fails if a crate in `snes/` or `rm2k/` depends on
@@ -393,50 +392,10 @@ schema's own types: every stage below reads the game through it. Why a
 dump at all: [From a game to a ROM](pipeline.md#why-a-json-dump-and-not-the-game-itself),
 [`data/` is the resolved view](decisions/data-is-the-resolved-view.md).
 
-### `rm2k-rules`: what the format means
-
-Ditto says a ChipSet is a list of passability bytes; this says where one
-can walk. It is a library of the original engine's rules —which layer
-covers which, which page of an event is showing and what it draws, the
-experience curve, which troops a step can meet, what a map inherits from
-the tree—, and **none of the numbers are its own**: each function says
-which of easyrpg-player's or liblcf's it is. The stages use it so that a
-rule of RPG Maker is written once.
-
-### `rm2k-sketch`: a map drawn as text
-
-A dump keeps a map's two layers as a grid of tile ids, which diffs well
-and draws badly. A sketch is the same map as characters, one per cell, and
-a legend that says which lower and which upper tile each character stands
-for:
-
-```toml
-grid = '''
-#####
-#.*.#
-#####
-'''
-
-[legend]
-"." = { lower = 4000 }                  # grass
-"*" = { lower = 4000, upper = 10018 }   # flowers over the grass
-"#" = { lower = 4000, upper = 10007 }   # a bush
-```
-
-- **Reads**: the sketch.
-- **Writes**: the map's `.tiles`, as `ditto pack` reads it next to the
-  map's JSON.
-- **Does not do**, yet: choose an autotile's pattern from its neighbours,
-  the way the editor does; a legend entry is one id.
-
-The test game's maps are written this way: [The test
-game](progress/the-test-game.md). Its meadow is the sketch of the next
-example: twenty by fifteen cells, a border of bushes, four trees and some
-flowers over the grass, each a character and a legend line.
-
-What comes out is a dump's `.tiles`, a grid of RM2k's ids —`4000` is the
-first terrain autotile in its plain pattern, `10007` the bush on the
-upper layer— and the thing the renderer below reads:
+A map's two layers do not go in its JSON: they go beside it, in a
+`.tiles`, a grid of RM2k's ids with a line per row —`4000` is the first
+terrain autotile in its plain pattern, `10007` a bush on the upper
+layer—, which diffs well and is the thing the renderer below reads:
 
 ```text
 # 20x15, 300 tiles per layer
@@ -446,6 +405,26 @@ upper layer— and the thing the renderer below reads:
  10007 10007 10007 10007 10007 10007 10007 10007 10007 10007 …
  10007 10000 10000 10002 10000 10000 10000 10000 10000 10000 …
 ```
+
+A `#` line is a comment, so a `.tiles` written by hand can say what its
+map is for; the test game's maps are written that way —[The test
+game](progress/the-test-game.md)—. What is hard in writing one is not the
+format but the autotiles: each grass, path or water cell's id is one of
+47 variants, chosen from its eight neighbours, which RPG Maker's editor
+works out as one paints. Until 2026-11-27 the test game's maps were
+sketches, a grid of characters and a legend of the tiles each stood for,
+which `rm2k-sketch` made into the `.tiles`; its legend named one variant
+per character, so it never solved that, and it went.
+
+### `rm2k-rules`: what the format means
+
+Ditto says a ChipSet is a list of passability bytes; this says where one
+can walk. It is a library of the original engine's rules —which layer
+covers which, which page of an event is showing and what it draws, the
+experience curve, which troops a step can meet, what a map inherits from
+the tree—, and **none of the numbers are its own**: each function says
+which of easyrpg-player's or liblcf's it is. The stages use it so that a
+rule of RPG Maker is written once.
 
 ### `rm2k-render`: draws like RM2k
 
@@ -833,8 +812,8 @@ greyer than they were. The background, two rows above, lost twenty-one
 of its hundred and seventeen and it takes the red mask to find them,
 because what Adeleine merges first is what shows the least.
 
-The three maps live in the-advocate's `test-game/`, sketched as text
-—`src/maps/Map0001.toml` to `Map0003.toml`— and each has its golden in
+The three maps live in the-advocate's `test-game/`, as `.tiles`
+—`src/maps/Map0001.tiles` to `Map0003.tiles`— and each has its golden in
 `tests/golden/`, so a change in Adeleine or in Wally that moves a merge
 shows on a map small enough to look at.
 

@@ -26,7 +26,7 @@ What a build can say on its own is not a subcommand but what the build
 leaves (taro, 2026-11-25): how much room each cartridge has left, the
 versioned patches compared against what the cartridges decided, and
 which commands keep each page out, `culprits.json`. The domain tools a
-person runs for something else —Ditto, Goombario, `fxpak`, `rm2k-sketch`—
+person runs for something else —Ditto, Goombario, `fxpak`—
 stay commands of their own; which of them become subcommands, with an
 `init` and a machine's configuration, is
 [`advocate-init-dump-and-config`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/advocate-init-dump-and-config.md).
