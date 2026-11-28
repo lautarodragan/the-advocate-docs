@@ -24,7 +24,6 @@ does; the pages it links to say why things are the way they are.
   it;
 - `advocate import`, to bring a game in, with Ditto, and `advocate
   export`, to write a dump back as RPG Maker's files;
-- `rm2k-snes-audio volume-ceilings`, each song's headroom;
 - `goombario`, the linter, over every built cartridge;
 - `fxpak`, to talk to a cartridge on the console over USB;
 
@@ -38,9 +37,10 @@ stages are not processes either**: `wally`, `rm2k-snes-events`,
 `rm2k-snes-screens`, `rm2k-snes-images`, `rm2k-snes-battle`,
 `rm2k-snes-mapdata`, `rm2k-snes-patches` and `rm2k-snes-audio` are
 libraries the converter is compiled with, and it calls each one's `stage`
-module as functions. Only `rm2k-snes-audio` still has a binary, a `main`
-over its `volume-ceilings` for a person; the others' went on 2026-11-27,
-when no test asked them any more, and so did the converter's. What `advocate` still
+module as functions. Their binaries went on 2026-11-27, when no test
+asked them any more, and so did the converter's; `rm2k-snes-audio`'s,
+a `main` over its `volume-ceilings`, went on 2026-11-28, when each song's
+volume ceiling came to be measured while the music compiles. What `advocate` still
 runs is not ours: `ca65` and `ld65`, and what the MSU-1 tracks are
 synthesized and encoded with.
 
@@ -59,8 +59,8 @@ and a binary called `rm2k-snes-project`, what they read in
 versioned patches.
 
 **A command with more than one job takes it as a subcommand**, when the
-jobs share a crate: `advocate build`, `rm2k-snes-audio volume-ceilings`.
-Until 2026-11-23 four of them were commands of their own
+jobs share a crate: `advocate build`, `advocate import`. Until 2026-11-23
+four of them were commands of their own
 —`rm2k-snes-space`, `rm2k-snes-assemble`, `rm2k-snes-msu` and
 `rm2k-snes-volume-ceilings`—, and the first three went into `advocate
 build` on 2026-11-25. Folding them moved no boundary, and only one key had
@@ -70,7 +70,8 @@ code that writes a track instead, and a change to the compiler does not
 render every track again.
 
 **The libraries under them**, which are not commands: Adeleine, Voodoo,
-LZ2 and Gunter, for the console's formats; Ditto, `rm2k-rules`
+LZ2, Gunter and `spc-dsp` —blargg's S-DSP, vendored C++ under the LGPL—,
+for the console's formats; Ditto, `rm2k-rules`
 and `rm2k-render`, for RPG Maker's; and `rm2k-project`,
 `rm2k-snes-bytecode` and `rm2k-snes-text`, which join both. Each one is a
 crate of its own, with its own tests, because it knows nothing of what
@@ -679,8 +680,13 @@ when it is entered. It writes `musicdata.inc` and the `.msu`, and what a
 package lost to fit, which the converter adds to `degradations.json`.
 Its MSU-1 tracks, which `advocate build` renders from the same MIDIs
 with fluidsynth or takes from a recording that replaces one, are not a
-stage; until 2026-11-25 they were its subcommand `msu`. Its binary's one
-subcommand, `volume-ceilings`, measures each song's headroom. More:
+stage; until 2026-11-25 they were its subcommand `msu`. **Each song's
+volume ceiling** —the highest headroom that keeps it from clipping— is
+measured while the song compiles, by playing what it writes to the S-DSP
+in `spc-dsp`, and kept per mix in the disk cache; until 2026-11-28 it was
+the binary's subcommand `volume-ceilings`, which played each song of a
+built ROM in a libretro core and wrote a table into the game's automatic
+patches. More:
 [Audio](internals/audio.md), [A single sample
 bank](optimizations/lossless/audio/the-sample-bank.md), [Lossy:
 audio](optimizations/lossy/audio.md), [The .msu
@@ -843,8 +849,6 @@ Each command prints what it reads and what it writes with `--help`.
 Besides `advocate build` and `advocate import` and `export`, what a
 person runs by hand:
 
-* `rm2k-snes-audio`: `volume-ceilings`, each song's headroom, which
-  ABL's `just ceilings` runs;
 * `advocate build NAME --into DIR -- FLAGS`: one cartridge converted and
   assembled somewhere else, with more flags for the converter, without a
   stamp and without touching `build/advocate.json`.
