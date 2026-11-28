@@ -210,8 +210,12 @@ of the shifted ones against where RM2k draws them are in the task
 * A person whose head falls where someone walks behind it —a crowd
   standing on an aisle, whose heads are over the aisle— stays an object.
   So does one wherever a scene may seat the hero on its row or walk him
-  behind it: `reach` does not know a scene runs once, nor which of the
-  places a game recalls the hero to it really uses. See the task
+  behind it: `reach` does not know which of the places a game recalls the
+  hero to it really uses. (It knows, since 2026-11-28, that a scene that
+  turns on for good the switch of the page above it runs once, from where
+  the hero first arrives: see
+  [`reach-does-not-know-a-scene-runs-once`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/reach-does-not-know-a-scene-runs-once.md).)
+  See the task
   [`abl-the-hover-tram-s-crowd-is-cut`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/abl-the-hover-tram-s-crowd-is-cut.md).
 * A whole map's switches turning together: past sixteen runs a vblank
   the last ones wait a frame.

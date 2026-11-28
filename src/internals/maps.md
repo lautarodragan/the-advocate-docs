@@ -140,12 +140,20 @@ character can be on, through walls if it turns that on, jumping where it
 jumps —a jump lands on a cell passable from some side, and rises a row
 more—. A page that starts by the action key or a touch walks the hero from
 beside its event, which is what keeps a door that walks him through a wall
-from walking him through every wall.
+from walking him through every wall. An autostart page that asks for
+nothing, under pages that ask only for switches nothing on the map turns
+off, and that takes him off the map before it ends, walks him from where
+he arrives; and if it turns on for good every switch of a page above it
+—no command of the whole game turns them off— it runs once, so from where
+he first arrives, and not from a place a recall puts him on later: A
+Blurred Line's Hover-Tram trip.
 
 **Where the hero arrives** only the whole cartridge knows: the converter
 gathers it once (`reach.rs` in rm2k-snes-convert) —the game's start, every
 `Teleport`, teleport and escape target into the map, the vehicles— and
-sends it in each map's Wally request as `reach`. Wally's background half
+sends it in each map's Wally request as `reach`, with the switches some
+command of the game can turn off, which say whether a scene runs once.
+Wally's background half
 draws the cells (`layers::below` and `lower_cells`); the characters half
 knows nothing of it.
 

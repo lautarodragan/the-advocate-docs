@@ -33,6 +33,15 @@ aisle, where people walk behind them, and the seated ones were held back
 by the game's recalls of the hero's place and by the colours. A patch of
 the map is what taro had planned from the start.
 
+Since 2026-11-28 the recalls no longer hold the seated ones back —`reach`
+knows the trip runs once, from where the hero first arrives—, but the
+converter alone still does not reach what the patch draws: built without
+it, two of the seven still seated people go into the background, the
+other five stay objects for the panorama's colours, and so do the
+thirteen standing ones, whose heads are over the aisle; the lines go over
+again. See
+[`reach-does-not-know-a-scene-runs-once`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/reach-does-not-know-a-scene-runs-once.md).
+
 With it, the seated row is six characters on a line and the standing row
 one, and the runtime's count of frames the PPU dropped objects is 0 over
 the whole trip.
