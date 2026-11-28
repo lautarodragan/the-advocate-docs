@@ -43,6 +43,12 @@ the port's project is `zounds/` in the-advocate-ports, built on 2026-10-15,
   [A 2003 game's battle writes the 2000 lines](../../divergences/a-2003-game-s-battle-writes-the-2000-lines.md).
   Task:
   [`zounds-battle-messages-cannot-be-read`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-battle-messages-cannot-be-read.md).
+  The conditions' messages —what one says when it is given, already
+  held, lasting or gone, and the revival line— were the editor's Japanese
+  too, for the same reason; those were written in Spanish in the game
+  itself, on 2026-11-27, since no project setting stands in for them.
+  Task:
+  [`zounds-condition-messages-are-japanese-defaults`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-condition-messages-are-japanese-defaults.md).
 * **Its images were XYZ**, RPG Maker 2003's own format, which the tools do
   not read on purpose: the port builds from a branch of the game's
   repository where they are PNG, converted once with EasyRPG's `xyz2png`.
@@ -266,11 +272,6 @@ current: whoever fixes one removes its line in the same change.
   `!`. The menu, the shops, the battle's lists and lines and every other
   box draw them. See
   [Letters the font does not have](../../divergences/letters-the-font-does-not-have.md).
-* **A condition given in battle says garbage**: when a Veneno poisons an
-  enemy, the line under the damage reads `Pez Shark'I"A'E-~3'e'1/2?I`.
-  Zounds' conditions carry the editor's untranslated Japanese messages.
-  Draft:
-  [`zounds-condition-messages-are-japanese-defaults`](https://github.com/lautarodragan/the-advocate-work/blob/main/tasks/zounds-condition-messages-are-japanese-defaults.md).
 * **The boxes shown in battle have no icons**: an item's icon in a box a
   troop page shows —the prize's "Objeto Especial Veneno"— is left out, as
   its accents are. Everywhere else they show. See [What ExFont icons do not
