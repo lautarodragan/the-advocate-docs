@@ -47,3 +47,13 @@ each one implements: [Emulators](snes/emulators.md).
 - [cc65](https://github.com/cc65/cc65), where `ca65` and `ld65` come from.
   It is not packaged in every distribution and is compiled from its
   sources.
+
+## The S-DSP model
+
+- snes_spc 0.9.0, by blargg (Shay Green, 2007), whose accurate S-DSP,
+  `SPC_DSP`, the music plays each song in to measure its volume ceiling.
+  blargg's site no longer answers; the copy vendored in the-advocate, in
+  `snes/spc-dsp/vendor/snes_spc/` under the LGPL 2.1 or later, comes from
+  the first commit of a mirror,
+  [yupferris/snes_spc](https://github.com/yupferris/snes_spc) `8f0ea63`:
+  that crate's README says what was checked of it and what was not.

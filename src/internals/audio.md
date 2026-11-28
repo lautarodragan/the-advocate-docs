@@ -45,9 +45,16 @@ writes            --dsp_music-->        the SPC700 driver
 - **The eight voices belong to every channel** and are handed out note by
   note: a note takes a free voice or steals one by priority. See `assign`,
   `victim` and `frame_order` in `voices.rs`.
-- **Volume has a ceiling per theme**, measured and versioned in
-  `patches/auto/music/ceilings.toml` in the ABL port (`just ceilings`): see
-  `ceilings` in `game.rs`.
+- **Volume has a ceiling per theme**, measured on every build: each
+  song is played at half the headroom in blargg's S-DSP (`spc-dsp`, a
+  library of the-advocate), from the writes its stream makes and with the
+  samples it plays, six times with the writes of a frame spread
+  differently, and gets the highest headroom that leaves the loudest of
+  the six 0.5 dB below the cap. Each song's peak is kept per mix in the
+  disk cache. How far the model is from the console, and the rest: see
+  `ceilings.rs` in `rm2k-snes-audio`. Until 2026-11-28 it was measured by
+  hand in the ROM, in a libretro core, and versioned in each port's
+  automatic patches, `music/ceilings.toml` (ABL's `just ceilings`).
 - **The samples come from the SoundFont** the game was composed with
   (`samples.rs`; `SOUNDFONT` points to another), and Gunter, which the
   compiler uses as a library, turns them into BRR.
